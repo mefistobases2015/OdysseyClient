@@ -20,24 +20,51 @@ namespace OdysseyDesktopClient
         private const string friend_request_path = "api/Solicitud";
         private const string mongo_users_path = "api/Usuarios";
 
-        /**
-         *Constructor vacío
-         */
+        /// <summary>
+        /// Constructor vacío, con valores por 
+        /// defecto para conectarse al servidor
+        /// </summary>
         public RestTools()
         {
             //constructor vacion con valores default
         }
 
+        /// <summary>
+        /// Constructor que cambia el url con el que se
+        /// conecta al servidor.
+        /// </summary>
+        /// <param name="p_server_url">
+        /// Dirección url del servidor.
+        /// </param>
         public RestTools(string p_server_url)
         {
             this.server_url = p_server_url;
         }
 
+        /// <summary>
+        /// Cambia como el formato del contenido de 
+        /// las consultas rest
+        /// </summary>
+        /// <param name="p_format">
+        /// String con nuevo formato de envio
+        /// </param>
         public void setFormat(string p_format)
         {
             format = p_format;
         }
 
+        /// <summary>
+        /// Verifica si un nombre de usuario existe en la base de datos 
+        /// remota
+        /// </summary>
+        /// <param name="usr_name">
+        /// string con el nombre de usuario que se va a consultar 
+        /// si existe
+        /// </param>
+        /// <returns>
+        /// bool que resulta true si el usuario existe y false cualquier
+        /// otro caso
+        /// </returns>
         public async Task<bool> isUser(string usr_name)
         {
             bool flag = false;
@@ -63,6 +90,21 @@ namespace OdysseyDesktopClient
 
         }
 
+        /// <summary>
+        /// Verifica que el password que se le especifica a un 
+        /// usuario este correcto.
+        /// </summary>
+        /// <param name="usr_name">
+        /// string con el nombre de usuario al que 
+        /// se le va a consultar el password.
+        /// </param>
+        /// string con el password a consultar.
+        /// <param name="password">
+        /// </param>
+        /// <returns>
+        /// bool que es true si el password coincide con el usuario,
+        /// false en cualquier otro caso.
+        /// </returns>
         public async Task<bool> isPassword(string usr_name, string password)
         {
             bool flag = false;
@@ -98,6 +140,20 @@ namespace OdysseyDesktopClient
             return flag;
         }
 
+        /// <summary>
+        /// Crea un nuevo usuario con el nombre de usuario y
+        /// el password del nuevo usuario
+        /// </summary>
+        /// <param name="p_usr_name">
+        /// Nuevo nombre de usuario
+        /// </param>
+        /// <param name="p_pass">
+        /// Password del nuevo usuario
+        /// </param>
+        /// <returns>
+        /// bool que es true en caso de que se haya creado el usuario con 
+        /// exito, false en cualquier otro caso
+        /// </returns>
         public async Task<bool> createUser(string p_usr_name, string p_pass)
         {
             bool flag = false;
@@ -110,16 +166,24 @@ namespace OdysseyDesktopClient
 
                 Credential cred = new Credential() { user_name = p_usr_name, pass = p_pass };
 
-                HttpResponseMessage response = await client.PostAsJsonAsync(credentials_path, cred);
+                HttpResponseMessage response = await client.PostAsJsonAsync<Credential>(credentials_path, cred);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    //Console.WriteLine("Sirvio el post :-D");
                     flag = true;
+
+                    cred = await response.Content.ReadAsAsync<Credential>();
+
+                    bool result2 = await addMongoUser(cred.user_name);
+
+                    if (!result2)
+                    {
+                        Console.WriteLine("No se pudo agregar el usurio {0} a Mongo", cred.user_name);
+                    }
                 }
                 else
                 {
-                    //Console.WriteLine("No sirvio el post D-: {0}", response.StatusCode);
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
                     flag = false;
                 }
             }
@@ -128,6 +192,51 @@ namespace OdysseyDesktopClient
 
         }
 
+        /// <summary>
+        /// Crea un usario en los usarios de mongo
+        /// </summary>
+        /// <param name="user_name">
+        /// Nombre de usuario
+        /// </param>
+        /// <returns>
+        /// bool true si se logra crear, en cualquier otro caso 
+        /// false
+        /// </returns>
+        public async Task<bool> addMongoUser(string user_name)
+        {
+            bool result = false;
+
+            using(HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.PostAsJsonAsync<string>(mongo_users_path+"?values="+user_name, "");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    result = true;
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                    result = false;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Crea una nueva canción
+        /// </summary>
+        /// <param name="p_song_directory">
+        /// Directorio donde se encuetra la canción.
+        /// </param>
+        /// <returns>
+        /// Un objeto song con la información de la canción
+        /// </returns>
         public async Task<Song> createSong(string p_song_directory)
         {
 
@@ -148,13 +257,12 @@ namespace OdysseyDesktopClient
 
                     result = await response.Content.ReadAsAsync<Song>();
 
-                    Console.WriteLine("\nId de la cancion {0}", result.song_id);
+                    bool res = await addMongoSong(result.song_id);
 
-                    /*Uri uri = response.Headers.Location;
-
-                    HttpResponseMessage response2 = await client.GetAsync(uri);
-
-                    result = await response2.Content.ReadAsAsync<Song>();*/
+                    if (!res)
+                    {
+                        Console.WriteLine("No se puedo agregar a Mongo la cancion id {0}", result.song_id);
+                    }
 
                 }
                 else
@@ -167,6 +275,57 @@ namespace OdysseyDesktopClient
             return result;
         }
 
+        /// <summary>
+        /// Agrega una cancion que se agrego a la base de datos de cancioens a 
+        /// Mongo
+        /// </summary>
+        /// <param name="song_id">
+        /// int que es el id de la cancion a agregar
+        /// </param>
+        /// <returns>
+        /// bool que es true si se logró agregar, false en cualquier otro caso
+        /// </returns>
+        public async Task<bool> addMongoSong(int song_id)
+        {
+            bool result = false;
+
+            using(HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.PostAsJsonAsync<string>(mongo_songs_path + "/"+song_id.ToString(), "");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Crea una version de metadata
+        /// </summary>
+        /// <param name="new_version">
+        /// Lista con los valores de metadata, viene con los 
+        /// datos necesario para crear una version
+        /// </param>
+        /// <param name="p_song_directory">
+        /// Directorio de la cancion, para ser
+        /// creada y agregarle la version de metadata
+        /// </param>
+        /// <returns>
+        /// Objeto Song con los parametros de la canción
+        /// </returns>
         public async Task<Song> createVersion(List<string> new_version, string p_song_directory)
         {
 
@@ -213,6 +372,19 @@ namespace OdysseyDesktopClient
 
         }
 
+        /// <summary>
+        /// Crea una version nueva pero con un objeto Song
+        /// </summary>
+        /// <param name="new_version">
+        /// Version que se le va a agregar a la canción
+        /// </param>
+        /// <param name="song">
+        /// Canción a la que se le asigna la version
+        /// </param>
+        /// <returns>
+        /// Objeto Song que contiene los valores de la cancion
+        /// y con una version asignada
+        /// </returns>
         public async Task<Song> createVersion(List<string> new_version, Song song)
         {
             Version ver = new Version(new_version, song.song_id);
@@ -253,6 +425,11 @@ namespace OdysseyDesktopClient
             return song;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="met"></param>
+        /// <returns></returns>
         public async Task<Song> createVersion(Metadata met)
         {
             Song song;
@@ -296,6 +473,24 @@ namespace OdysseyDesktopClient
             }
         }
 
+        /// <summary>
+        /// Agrega una canción a un usuario al crear la canción
+        /// </summary>
+        /// <param name="p_user_name">
+        /// Nombre de usuario al que se le agrega la cancion
+        /// </param>
+        /// <param name="p_song_name">
+        /// nombre de la cancion
+        /// </param>
+        /// <param name="new_version">
+        /// lista con la información de una versión
+        /// </param>
+        /// <param name="p_song_directory">
+        /// dirección de la canción a agregar
+        /// </param>
+        /// <returns>
+        /// bool que es true si se logró crear la canción, en otro caso false
+        /// </returns>
         public async Task<bool> addSong2user(string p_user_name, string p_song_name,
             List<string> new_version, string p_song_directory) 
         {
@@ -328,6 +523,24 @@ namespace OdysseyDesktopClient
             return flag;
         }
 
+        /// <summary>
+        /// Agrega una canción a un usuario
+        /// </summary>
+        /// <param name="p_user_name">
+        /// Nombre del usaurio al que se le va a agregar 
+        /// la canción
+        /// </param>
+        /// <param name="p_song_name">
+        /// Nombre de la canción que se va a agregar
+        /// </param>
+        /// <param name="song">
+        /// Objeto Song que tiene los parametros necearios 
+        /// para unir las canciones
+        /// </param>
+        /// <returns>
+        /// bool true si se logra crear el enlace, false en cualquier 
+        /// otro caso
+        /// </returns>
         public async Task<bool> addSong2user(string p_user_name, string p_song_name, Song song)
         {
             bool flag = false;
@@ -357,6 +570,18 @@ namespace OdysseyDesktopClient
             return flag;
         }
 
+        /// <summary>
+        /// Le asigna una una metada a una canción
+        /// </summary>
+        /// <param name="p_song_id">
+        /// id de la canción
+        /// </param>
+        /// <param name="p_version_id">
+        /// id de la versión que se le va a asignar
+        /// </param>
+        /// <returns>
+        /// bool true si se logra asignar, false en cualquier otro caso
+        /// </returns>
         public async Task<bool> setMetadataSong(int p_song_id, int p_version_id) 
         {
             bool flag = false;
@@ -394,6 +619,16 @@ namespace OdysseyDesktopClient
             return flag;
         }
 
+        /// <summary>
+        /// Obtiene una canción
+        /// </summary>
+        /// <param name="p_song_id">
+        /// int que es el id de la canción
+        /// </param>
+        /// <returns>
+        /// Objeto Song que contiene los parametros 
+        /// de una canción
+        /// </returns>
         public async Task<Song> getSongById(int p_song_id)
         {
             Song song = new Song();
@@ -421,6 +656,15 @@ namespace OdysseyDesktopClient
             return song;
         }
 
+        /// <summary>
+        /// Obtiene todas las canciones de un usario y su metadata
+        /// </summary>
+        /// <param name="user_name">
+        /// nombre del usuario
+        /// </param>
+        /// <returns>
+        /// Lista de objetos metadata 
+        /// </returns>
         public async Task<List<Metadata>> getMetadataSongByUser(string user_name)
         {
             List<Metadata> songs_metadata = new List<Metadata>();
@@ -457,6 +701,15 @@ namespace OdysseyDesktopClient
 
         }
 
+        /// <summary>
+        /// Obtiene la clasificación musical de un usuario
+        /// </summary>
+        /// <param name="usr_id">
+        /// Nombre del usuario
+        /// </param>
+        /// <returns>
+        /// string con la clasificación del usuario
+        /// </returns>
         public async Task<string> getMusicalByUserName(string usr_id)
         {
             string res = "";
@@ -481,6 +734,16 @@ namespace OdysseyDesktopClient
             return res;
         }
 
+        /// <summary>
+        /// Obtiene la clasificacion como resultado de los gustos de 
+        /// los amigos
+        /// </summary>
+        /// <param name="usr_name">
+        /// nombre del usuario
+        /// </param>
+        /// <returns>
+        /// retorna un string con la clasificación
+        /// </returns>
         public async Task<string> getSocialByUserName(string usr_name)
         {
             string res = "";
@@ -507,6 +770,18 @@ namespace OdysseyDesktopClient
             return res;
         }
 
+        /// <summary>
+        /// Envia una solicitud de amista a un usuario
+        /// </summary>
+        /// <param name="usr_name">
+        /// Nombre del usuario que hace la solicitud
+        /// </param>
+        /// <param name="friend_usr_name">
+        /// nombre del usario que se le solicita
+        /// </param>
+        /// <returns>
+        /// bool que si se envia la solicitud es true, en cualquier otro caso es false
+        /// </returns>
         public async Task<bool> addFriendByUserName(string usr_name, string friend_usr_name)
         {
             bool res_status = false;
@@ -534,6 +809,16 @@ namespace OdysseyDesktopClient
             return res_status;
         }
 
+        /// <summary>
+        /// Se le da like a una canción
+        /// </summary>
+        /// <param name="song_id">
+        /// Id de la canción a la que se le va a dar like
+        /// </param>
+        /// <returns>
+        /// un bool que es true si se completa la acción, false 
+        /// en cualquier otro caso
+        /// </returns>
         public async Task<bool> setLike2ASong(int song_id)
         {
             bool result = false;
@@ -561,6 +846,17 @@ namespace OdysseyDesktopClient
             return result;
         }
 
+        /// <summary>
+        /// Se le da dislike a una canción
+        /// </summary>
+        /// <param name="song_id">
+        /// nombre de la cacion a la que se le va a dar 
+        /// un dislike
+        /// </param>
+        /// <returns>
+        /// bool que es true si se completa el request, false
+        /// en cualqueir otro caso
+        /// </returns>
         public async Task<bool> setDislike2ASong(int song_id)
         {
             bool result = false;
@@ -588,6 +884,16 @@ namespace OdysseyDesktopClient
             return result;
         }
 
+        /// <summary>
+        /// Se le suma una reproducción a la cancion
+        /// </summary>
+        /// <param name="song_id">
+        /// id de la canción 
+        /// </param>
+        /// <returns>
+        /// bool que es true si se termina de subir 
+        /// el numero, false en cualquier otro caso
+        /// </returns>
         public async Task<bool> setPlay2ASong(int song_id)
         {
             bool result = false;
@@ -615,11 +921,27 @@ namespace OdysseyDesktopClient
             return result;
         }
 
+        /// <summary>
+        /// Se le agrega un comentario a una canción
+        /// </summary>
+        /// <param name="song_id">
+        /// id de la canción
+        /// </param>
+        /// <param name="usr_name">
+        /// nombre de usuario del que hace el comentario
+        /// </param>
+        /// <param name="p_comment">
+        /// comentario
+        /// </param>
+        /// <returns>
+        /// bool que es true si se completa la acción, 
+        /// es false si no se logra.
+        /// </returns>
         public async Task<bool> setComment2ASong(int song_id, string usr_name, string p_comment)
         {
             bool result = false;
 
-            Comment comm = new Comment() { author = usr_name, comment = p_comment };
+            Comment comm = new Comment() { autor = usr_name, cmt = p_comment };
 
             using (HttpClient client = new HttpClient())
             {
@@ -644,6 +966,17 @@ namespace OdysseyDesktopClient
             return result;
         }
 
+        /// <summary>
+        /// Obtiene la cantidad de likes que tiene una canción
+        /// </summary>
+        /// <param name="song_id">
+        /// identificador de la canción a la que se le obtiene la
+        /// cantidad de likes
+        /// </param>
+        /// <returns>
+        /// int con la cantiad de likes, si es -1 
+        /// hubo un error
+        /// </returns>
         public async Task<int> getSongLikes(int song_id)
         {
             int result = 0;
@@ -671,6 +1004,17 @@ namespace OdysseyDesktopClient
 
         }
 
+        /// <summary>
+        /// Obtiene los dislikes de una canción
+        /// </summary>
+        /// <param name="song_id">
+        /// identificadro de la canción a la que se le 
+        /// van a obtener los dislikes
+        /// </param>
+        /// <returns>
+        /// int que es la cantidad de dislikes, si es -1 
+        /// hubo un error
+        /// </returns>
         public async Task<int> getSongDislkes(int song_id)
         {
             int result = 0;
@@ -697,6 +1041,16 @@ namespace OdysseyDesktopClient
             }
         }
 
+        /// <summary>
+        /// Obtiene las veces que ha sido reproducida una canción
+        /// </summary>
+        /// <param name="song_id">
+        /// Identificador de la canción
+        /// </param>
+        /// <returns>
+        /// int que son las cantidades de veces que ha sido reproducida
+        /// una canción
+        /// </returns>
         public async Task<int> getSongPlays(int song_id)
         {
             int result = 0;
@@ -723,9 +1077,10 @@ namespace OdysseyDesktopClient
             return result;
         }
 
-        public async Task<int> getSongComments(int song_id)
+        
+        public async Task<string> getSongComments(int song_id)
         {
-            int result = 0;
+            string result = "";
 
             using (HttpClient client = new HttpClient())
             {
@@ -737,11 +1092,11 @@ namespace OdysseyDesktopClient
 
                 if (response.IsSuccessStatusCode)
                 {
-                    result = Convert.ToInt32(await response.Content.ReadAsStringAsync());
+                    result = await response.Content.ReadAsAsync<String>();
                 }
                 else
                 {
-                    result = -1;
+                    result = null;
                     Console.WriteLine("Status Code {0}", response.StatusCode);
                 }
             }
@@ -749,6 +1104,18 @@ namespace OdysseyDesktopClient
             return result;
         }
 
+        /// <summary>
+        /// Obtiene una lista de solicitudes que tiene 
+        /// un usuario
+        /// </summary>
+        /// <param name="usr_name">
+        /// nombre de usuario al que se le van a obtener
+        /// las solicitudes
+        /// </param>
+        /// <returns>
+        /// List<Solicitud> que tiene las solicitudes que se le hicieron a un
+        /// usuario
+        /// </returns>
         public async Task<List<Solicitud>> getRequests(string usr_name)
         {
             List<Solicitud> requests = new List<Solicitud>();
@@ -779,6 +1146,18 @@ namespace OdysseyDesktopClient
             return requests;
         } 
 
+        /// <summary>
+        /// Se envia una solicitud a un usuario
+        /// </summary>
+        /// <param name="p_emisor">
+        /// usario que hace la solicitud
+        /// </param>
+        /// <param name="p_receptor">
+        /// usuario al que le solicitan
+        /// </param>
+        /// <returns>
+        /// bool que es true si se completa la acción
+        /// </returns>
         public async Task<bool> setRequest(string p_emisor, string p_receptor)
         {
             bool result = false;
@@ -807,6 +1186,18 @@ namespace OdysseyDesktopClient
             return result;
         }
 
+        /// <summary>
+        /// Elimina solicitud de amigo
+        /// </summary>
+        /// <param name="p_emisor">
+        /// el que enviaba la solicitud
+        /// </param>
+        /// <param name="p_receptor">
+        /// usario que recibia la solicitud
+        /// </param>
+        /// <returns>
+        /// bool que es true si se completa la acción
+        /// </returns>
         public async Task<bool> deleteRequest(string p_emisor, string p_receptor)
         {
             bool result = false;

@@ -110,7 +110,7 @@ namespace OdysseyDesktopClient
 
     public class Comment
     {
-        public string author { get; set; }
-        public string comment { get; set; }
+        public string autor { get; set; }
+        public string cmt { get; set; }
     }
 }
