@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace OdysseyDesktopClient
 {
-    public partial class Form1 : Form
+    public partial class form_main_screen : Form
     {
-        public Form1()
+        public form_main_screen()
         {
             InitializeComponent();
         }
