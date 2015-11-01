@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OdysseyDesktopClient
+namespace pruebawpf
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace OdysseyDesktopClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new form_main_screen());
+            Application.Run(new Form1());
         }
     }
 }

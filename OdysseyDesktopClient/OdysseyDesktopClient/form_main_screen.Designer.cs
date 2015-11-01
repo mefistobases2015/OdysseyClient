@@ -28,18 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button_friends = new System.Windows.Forms.Button();
-            this.panel_user = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.label_buscador_usuarios = new System.Windows.Forms.Label();
-            this.label_buscador_canciones = new System.Windows.Forms.Label();
-            this.combobox_user_searcher = new System.Windows.Forms.ComboBox();
-            this.button_voice_searcher = new System.Windows.Forms.Button();
-            this.textbox_buscador_canciones = new System.Windows.Forms.TextBox();
-            this.button12 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.label_profile_username = new System.Windows.Forms.Label();
             this.listview_data = new System.Windows.Forms.ListView();
             this.column_song_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.column_artista = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -55,12 +43,6 @@
             this.label_title = new System.Windows.Forms.Label();
             this.label_artist = new System.Windows.Forms.Label();
             this.panel_biblioteca = new System.Windows.Forms.Panel();
-            this.button_cloud_library = new System.Windows.Forms.Button();
-            this.button__personal_library = new System.Windows.Forms.Button();
-            this.label_dislike = new System.Windows.Forms.Label();
-            this.panel_dislike = new System.Windows.Forms.Panel();
-            this.button_dislike = new System.Windows.Forms.Button();
-            this.label_dislike_counter = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label_timer_final = new System.Windows.Forms.Label();
             this.label_timer_inicial = new System.Windows.Forms.Label();
@@ -68,11 +50,8 @@
             this.button_like = new System.Windows.Forms.Button();
             this.label_like = new System.Windows.Forms.Label();
             this.label_like_counter = new System.Windows.Forms.Label();
-            this.panel_places = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.button_id3_launcher = new System.Windows.Forms.Button();
             this.button_sinc = new System.Windows.Forms.Button();
-            this.button_add_music = new System.Windows.Forms.Button();
             this.button_play = new System.Windows.Forms.Button();
             this.button_previous = new System.Windows.Forms.Button();
             this.panel_comentario = new System.Windows.Forms.Panel();
@@ -80,183 +59,44 @@
             this.label_comentario = new System.Windows.Forms.Label();
             this.textbox_comment = new System.Windows.Forms.TextBox();
             this.progressbar_song = new System.Windows.Forms.ProgressBar();
-            this.button_logo = new System.Windows.Forms.Button();
             this.button_next = new System.Windows.Forms.Button();
             this.panel_player = new System.Windows.Forms.Panel();
-            this.panel_user.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.panel_complement = new System.Windows.Forms.Panel();
+            this.button_id3_launcher = new System.Windows.Forms.Button();
+            this.button_add_music = new System.Windows.Forms.Button();
+            this.button_logo = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label_profile_username = new System.Windows.Forms.Label();
+            this.button11 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.textbox_buscador_canciones = new System.Windows.Forms.TextBox();
+            this.button_voice_searcher = new System.Windows.Forms.Button();
+            this.combobox_user_searcher = new System.Windows.Forms.ComboBox();
+            this.label_buscador_canciones = new System.Windows.Forms.Label();
+            this.label_buscador_usuarios = new System.Windows.Forms.Label();
+            this.panel_user = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button_friends = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button_cloud_library = new System.Windows.Forms.Button();
+            this.button__personal_library = new System.Windows.Forms.Button();
             this.panel_biblioteca.SuspendLayout();
-            this.panel_dislike.SuspendLayout();
             this.panel_like.SuspendLayout();
-            this.panel_places.SuspendLayout();
             this.panel_comentario.SuspendLayout();
             this.panel_player.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel_complement.SuspendLayout();
+            this.panel_user.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button_friends
-            // 
-            this.button_friends.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button_friends.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button_friends.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_friends.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_friends.ForeColor = System.Drawing.Color.White;
-            this.button_friends.Location = new System.Drawing.Point(0, 83);
-            this.button_friends.Name = "button_friends";
-            this.button_friends.Size = new System.Drawing.Size(171, 34);
-            this.button_friends.TabIndex = 11;
-            this.button_friends.TabStop = false;
-            this.button_friends.Text = "Amigos";
-            this.button_friends.UseVisualStyleBackColor = false;
-            // 
-            // panel_user
-            // 
-            this.panel_user.Controls.Add(this.button1);
-            this.panel_user.Controls.Add(this.button16);
-            this.panel_user.Controls.Add(this.label_buscador_usuarios);
-            this.panel_user.Controls.Add(this.label_buscador_canciones);
-            this.panel_user.Controls.Add(this.combobox_user_searcher);
-            this.panel_user.Controls.Add(this.button_voice_searcher);
-            this.panel_user.Controls.Add(this.textbox_buscador_canciones);
-            this.panel_user.Controls.Add(this.button12);
-            this.panel_user.Controls.Add(this.button11);
-            this.panel_user.Controls.Add(this.label_profile_username);
-            this.panel_user.Location = new System.Drawing.Point(193, 57);
-            this.panel_user.Name = "panel_user";
-            this.panel_user.Size = new System.Drawing.Size(1083, 48);
-            this.panel_user.TabIndex = 25;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(655, 9);
-            this.button1.Name = "button1";
-            this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button1.Size = new System.Drawing.Size(33, 30);
-            this.button1.TabIndex = 15;
-            this.button1.TabStop = false;
-            this.button1.Text = "⚡";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button16
-            // 
-            this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button16.FlatAppearance.BorderSize = 0;
-            this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button16.ForeColor = System.Drawing.Color.White;
-            this.button16.Location = new System.Drawing.Point(694, 9);
-            this.button16.Name = "button16";
-            this.button16.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button16.Size = new System.Drawing.Size(36, 30);
-            this.button16.TabIndex = 14;
-            this.button16.TabStop = false;
-            this.button16.Text = "⛉";
-            this.button16.UseVisualStyleBackColor = false;
-            // 
-            // label_buscador_usuarios
-            // 
-            this.label_buscador_usuarios.AutoSize = true;
-            this.label_buscador_usuarios.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_buscador_usuarios.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_buscador_usuarios.Location = new System.Drawing.Point(238, 8);
-            this.label_buscador_usuarios.Name = "label_buscador_usuarios";
-            this.label_buscador_usuarios.Size = new System.Drawing.Size(108, 12);
-            this.label_buscador_usuarios.TabIndex = 13;
-            this.label_buscador_usuarios.Text = "Buscador De Usuarios";
-            // 
-            // label_buscador_canciones
-            // 
-            this.label_buscador_canciones.AutoSize = true;
-            this.label_buscador_canciones.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_buscador_canciones.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_buscador_canciones.Location = new System.Drawing.Point(0, 7);
-            this.label_buscador_canciones.Name = "label_buscador_canciones";
-            this.label_buscador_canciones.Size = new System.Drawing.Size(113, 12);
-            this.label_buscador_canciones.TabIndex = 12;
-            this.label_buscador_canciones.Text = "Buscador De Canciones";
-            // 
-            // combobox_user_searcher
-            // 
-            this.combobox_user_searcher.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.combobox_user_searcher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.combobox_user_searcher.FormattingEnabled = true;
-            this.combobox_user_searcher.Location = new System.Drawing.Point(240, 23);
-            this.combobox_user_searcher.Name = "combobox_user_searcher";
-            this.combobox_user_searcher.Size = new System.Drawing.Size(216, 23);
-            this.combobox_user_searcher.TabIndex = 11;
-            this.combobox_user_searcher.TextChanged += new System.EventHandler(this.combobox_user_searcher_TextChanged);
-            // 
-            // button_voice_searcher
-            // 
-            this.button_voice_searcher.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button_voice_searcher.FlatAppearance.BorderSize = 0;
-            this.button_voice_searcher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_voice_searcher.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_voice_searcher.ForeColor = System.Drawing.Color.White;
-            this.button_voice_searcher.Location = new System.Drawing.Point(206, 21);
-            this.button_voice_searcher.Name = "button_voice_searcher";
-            this.button_voice_searcher.Size = new System.Drawing.Size(27, 23);
-            this.button_voice_searcher.TabIndex = 10;
-            this.button_voice_searcher.TabStop = false;
-            this.button_voice_searcher.Text = "⛬";
-            this.button_voice_searcher.UseVisualStyleBackColor = false;
-            // 
-            // textbox_buscador_canciones
-            // 
-            this.textbox_buscador_canciones.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textbox_buscador_canciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textbox_buscador_canciones.Location = new System.Drawing.Point(0, 23);
-            this.textbox_buscador_canciones.MaxLength = 50;
-            this.textbox_buscador_canciones.Name = "textbox_buscador_canciones";
-            this.textbox_buscador_canciones.Size = new System.Drawing.Size(200, 23);
-            this.textbox_buscador_canciones.TabIndex = 9;
-            this.textbox_buscador_canciones.TabStop = false;
-            // 
-            // button12
-            // 
-            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button12.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button12.FlatAppearance.BorderSize = 0;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button12.ForeColor = System.Drawing.Color.White;
-            this.button12.Location = new System.Drawing.Point(1027, 13);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(52, 30);
-            this.button12.TabIndex = 6;
-            this.button12.TabStop = false;
-            this.button12.Text = "Salir";
-            this.button12.UseVisualStyleBackColor = false;
-            // 
-            // button11
-            // 
-            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button11.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button11.FlatAppearance.BorderSize = 0;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button11.ForeColor = System.Drawing.Color.White;
-            this.button11.Location = new System.Drawing.Point(920, 13);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(101, 30);
-            this.button11.TabIndex = 5;
-            this.button11.TabStop = false;
-            this.button11.Text = "Configuración";
-            this.button11.UseVisualStyleBackColor = false;
-            // 
-            // label_profile_username
-            // 
-            this.label_profile_username.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_profile_username.ForeColor = System.Drawing.Color.White;
-            this.label_profile_username.Location = new System.Drawing.Point(736, 9);
-            this.label_profile_username.Name = "label_profile_username";
-            this.label_profile_username.Size = new System.Drawing.Size(178, 30);
-            this.label_profile_username.TabIndex = 4;
-            this.label_profile_username.Text = "Le Putin Memen";
-            this.label_profile_username.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // listview_data
             // 
@@ -270,11 +110,11 @@
             this.column_genre});
             this.listview_data.ForeColor = System.Drawing.Color.White;
             this.listview_data.FullRowSelect = true;
-            this.listview_data.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listview_data.Location = new System.Drawing.Point(-1, 32);
+            this.listview_data.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.listview_data.Location = new System.Drawing.Point(-1, 34);
             this.listview_data.MultiSelect = false;
             this.listview_data.Name = "listview_data";
-            this.listview_data.Size = new System.Drawing.Size(795, 238);
+            this.listview_data.Size = new System.Drawing.Size(829, 238);
             this.listview_data.TabIndex = 17;
             this.listview_data.UseCompatibleStateImageBehavior = false;
             this.listview_data.View = System.Windows.Forms.View.Details;
@@ -288,33 +128,37 @@
             // column_artista
             // 
             this.column_artista.Text = "Artista";
-            this.column_artista.Width = 135;
+            this.column_artista.Width = 150;
             // 
             // column_title
             // 
             this.column_title.Text = "Título";
+            this.column_title.Width = 150;
             // 
             // column_album
             // 
             this.column_album.Text = "Álbum";
+            this.column_album.Width = 150;
             // 
             // column_year
             // 
             this.column_year.Text = "Año";
+            this.column_year.Width = 150;
             // 
             // column_genre
             // 
             this.column_genre.Text = "Género";
+            this.column_genre.Width = 150;
             // 
             // textbox_lyrics
             // 
             this.textbox_lyrics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textbox_lyrics.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textbox_lyrics.ForeColor = System.Drawing.Color.White;
-            this.textbox_lyrics.Location = new System.Drawing.Point(795, 34);
+            this.textbox_lyrics.Location = new System.Drawing.Point(827, 34);
             this.textbox_lyrics.Multiline = true;
             this.textbox_lyrics.Name = "textbox_lyrics";
-            this.textbox_lyrics.Size = new System.Drawing.Size(287, 238);
+            this.textbox_lyrics.Size = new System.Drawing.Size(294, 238);
             this.textbox_lyrics.TabIndex = 8;
             this.textbox_lyrics.TextChanged += new System.EventHandler(this.textbox_lyrics_TextChanged);
             // 
@@ -323,7 +167,7 @@
             this.label_lyrics.AutoSize = true;
             this.label_lyrics.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_lyrics.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_lyrics.Location = new System.Drawing.Point(1051, 81);
+            this.label_lyrics.Location = new System.Drawing.Point(1044, 36);
             this.label_lyrics.Name = "label_lyrics";
             this.label_lyrics.Size = new System.Drawing.Size(39, 15);
             this.label_lyrics.TabIndex = 7;
@@ -334,7 +178,7 @@
             this.label_genre.AutoSize = true;
             this.label_genre.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_genre.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_genre.Location = new System.Drawing.Point(607, 9);
+            this.label_genre.Location = new System.Drawing.Point(666, 9);
             this.label_genre.Name = "label_genre";
             this.label_genre.Size = new System.Drawing.Size(50, 15);
             this.label_genre.TabIndex = 5;
@@ -345,7 +189,7 @@
             this.label_year.AutoSize = true;
             this.label_year.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_year.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_year.Location = new System.Drawing.Point(484, 9);
+            this.label_year.Location = new System.Drawing.Point(523, 9);
             this.label_year.Name = "label_year";
             this.label_year.Size = new System.Drawing.Size(30, 15);
             this.label_year.TabIndex = 4;
@@ -356,7 +200,7 @@
             this.label_album.AutoSize = true;
             this.label_album.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_album.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_album.Location = new System.Drawing.Point(336, 9);
+            this.label_album.Location = new System.Drawing.Point(372, 9);
             this.label_album.Name = "label_album";
             this.label_album.Size = new System.Drawing.Size(47, 15);
             this.label_album.TabIndex = 3;
@@ -367,7 +211,7 @@
             this.label_title.AutoSize = true;
             this.label_title.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_title.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_title.Location = new System.Drawing.Point(205, 9);
+            this.label_title.Location = new System.Drawing.Point(222, 9);
             this.label_title.Name = "label_title";
             this.label_title.Size = new System.Drawing.Size(43, 15);
             this.label_title.TabIndex = 2;
@@ -378,7 +222,7 @@
             this.label_artist.AutoSize = true;
             this.label_artist.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_artist.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_artist.Location = new System.Drawing.Point(91, 9);
+            this.label_artist.Location = new System.Drawing.Point(71, 9);
             this.label_artist.Name = "label_artist";
             this.label_artist.Size = new System.Drawing.Size(48, 15);
             this.label_artist.TabIndex = 1;
@@ -387,6 +231,7 @@
             // panel_biblioteca
             // 
             this.panel_biblioteca.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_biblioteca.Controls.Add(this.label5);
             this.panel_biblioteca.Controls.Add(this.textbox_lyrics);
             this.panel_biblioteca.Controls.Add(this.listview_data);
             this.panel_biblioteca.Controls.Add(this.label_title);
@@ -394,90 +239,10 @@
             this.panel_biblioteca.Controls.Add(this.label_album);
             this.panel_biblioteca.Controls.Add(this.label_genre);
             this.panel_biblioteca.Controls.Add(this.label_year);
-            this.panel_biblioteca.Location = new System.Drawing.Point(195, 115);
+            this.panel_biblioteca.Location = new System.Drawing.Point(188, 70);
             this.panel_biblioteca.Name = "panel_biblioteca";
-            this.panel_biblioteca.Size = new System.Drawing.Size(1083, 277);
+            this.panel_biblioteca.Size = new System.Drawing.Size(1125, 273);
             this.panel_biblioteca.TabIndex = 24;
-            // 
-            // button_cloud_library
-            // 
-            this.button_cloud_library.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button_cloud_library.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button_cloud_library.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_cloud_library.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_cloud_library.ForeColor = System.Drawing.Color.White;
-            this.button_cloud_library.Location = new System.Drawing.Point(0, 43);
-            this.button_cloud_library.Name = "button_cloud_library";
-            this.button_cloud_library.Size = new System.Drawing.Size(171, 34);
-            this.button_cloud_library.TabIndex = 10;
-            this.button_cloud_library.TabStop = false;
-            this.button_cloud_library.Text = "Archivos en la nube";
-            this.button_cloud_library.UseVisualStyleBackColor = false;
-            this.button_cloud_library.Click += new System.EventHandler(this.button_cloud_library_Click);
-            // 
-            // button__personal_library
-            // 
-            this.button__personal_library.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button__personal_library.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button__personal_library.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button__personal_library.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button__personal_library.ForeColor = System.Drawing.Color.White;
-            this.button__personal_library.Location = new System.Drawing.Point(0, 3);
-            this.button__personal_library.Name = "button__personal_library";
-            this.button__personal_library.Size = new System.Drawing.Size(171, 34);
-            this.button__personal_library.TabIndex = 3;
-            this.button__personal_library.TabStop = false;
-            this.button__personal_library.Text = "Biblioteca Personal";
-            this.button__personal_library.UseVisualStyleBackColor = false;
-            this.button__personal_library.Click += new System.EventHandler(this.button__personal_library_Click);
-            // 
-            // label_dislike
-            // 
-            this.label_dislike.AutoSize = true;
-            this.label_dislike.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_dislike.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_dislike.Location = new System.Drawing.Point(3, 54);
-            this.label_dislike.Name = "label_dislike";
-            this.label_dislike.Size = new System.Drawing.Size(58, 15);
-            this.label_dislike.TabIndex = 8;
-            this.label_dislike.Text = "Dislike\'s";
-            // 
-            // panel_dislike
-            // 
-            this.panel_dislike.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_dislike.Controls.Add(this.button_dislike);
-            this.panel_dislike.Controls.Add(this.label_dislike);
-            this.panel_dislike.Controls.Add(this.label_dislike_counter);
-            this.panel_dislike.Location = new System.Drawing.Point(125, 444);
-            this.panel_dislike.Name = "panel_dislike";
-            this.panel_dislike.Size = new System.Drawing.Size(111, 79);
-            this.panel_dislike.TabIndex = 30;
-            // 
-            // button_dislike
-            // 
-            this.button_dislike.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button_dislike.FlatAppearance.BorderSize = 0;
-            this.button_dislike.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_dislike.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_dislike.ForeColor = System.Drawing.Color.White;
-            this.button_dislike.Location = new System.Drawing.Point(10, 15);
-            this.button_dislike.Name = "button_dislike";
-            this.button_dislike.Size = new System.Drawing.Size(39, 36);
-            this.button_dislike.TabIndex = 9;
-            this.button_dislike.TabStop = false;
-            this.button_dislike.Text = "☁";
-            this.button_dislike.UseVisualStyleBackColor = false;
-            // 
-            // label_dislike_counter
-            // 
-            this.label_dislike_counter.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_dislike_counter.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_dislike_counter.Location = new System.Drawing.Point(66, 15);
-            this.label_dislike_counter.Name = "label_dislike_counter";
-            this.label_dislike_counter.Size = new System.Drawing.Size(40, 33);
-            this.label_dislike_counter.TabIndex = 7;
-            this.label_dislike_counter.Text = "0";
-            this.label_dislike_counter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // openFileDialog1
             // 
@@ -512,9 +277,9 @@
             this.panel_like.Controls.Add(this.button_like);
             this.panel_like.Controls.Add(this.label_like);
             this.panel_like.Controls.Add(this.label_like_counter);
-            this.panel_like.Location = new System.Drawing.Point(16, 444);
+            this.panel_like.Location = new System.Drawing.Point(9, 454);
             this.panel_like.Name = "panel_like";
-            this.panel_like.Size = new System.Drawing.Size(103, 79);
+            this.panel_like.Size = new System.Drawing.Size(110, 63);
             this.panel_like.TabIndex = 29;
             // 
             // button_like
@@ -524,7 +289,7 @@
             this.button_like.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_like.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_like.ForeColor = System.Drawing.Color.White;
-            this.button_like.Location = new System.Drawing.Point(16, 15);
+            this.button_like.Location = new System.Drawing.Point(16, 3);
             this.button_like.Name = "button_like";
             this.button_like.Size = new System.Drawing.Size(39, 33);
             this.button_like.TabIndex = 9;
@@ -537,7 +302,7 @@
             this.label_like.AutoSize = true;
             this.label_like.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_like.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_like.Location = new System.Drawing.Point(13, 54);
+            this.label_like.Location = new System.Drawing.Point(13, 39);
             this.label_like.Name = "label_like";
             this.label_like.Size = new System.Drawing.Size(42, 15);
             this.label_like.TabIndex = 8;
@@ -547,87 +312,43 @@
             // 
             this.label_like_counter.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_like_counter.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_like_counter.Location = new System.Drawing.Point(61, 15);
+            this.label_like_counter.Location = new System.Drawing.Point(61, 20);
             this.label_like_counter.Name = "label_like_counter";
             this.label_like_counter.Size = new System.Drawing.Size(40, 33);
             this.label_like_counter.TabIndex = 7;
             this.label_like_counter.Text = "0";
             this.label_like_counter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // panel_places
-            // 
-            this.panel_places.Controls.Add(this.button2);
-            this.panel_places.Controls.Add(this.button_friends);
-            this.panel_places.Controls.Add(this.button_cloud_library);
-            this.panel_places.Controls.Add(this.button_id3_launcher);
-            this.panel_places.Controls.Add(this.button__personal_library);
-            this.panel_places.Controls.Add(this.button_sinc);
-            this.panel_places.Controls.Add(this.button_add_music);
-            this.panel_places.Location = new System.Drawing.Point(16, 111);
-            this.panel_places.Name = "panel_places";
-            this.panel_places.Size = new System.Drawing.Size(171, 277);
-            this.panel_places.TabIndex = 23;
-            // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(0, 121);
+            this.button2.Location = new System.Drawing.Point(50, 68);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(171, 34);
+            this.button2.Size = new System.Drawing.Size(29, 34);
             this.button2.TabIndex = 12;
             this.button2.TabStop = false;
-            this.button2.Text = "Añadir Música";
+            this.button2.Text = "↓ ";
             this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button_id3_launcher
-            // 
-            this.button_id3_launcher.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button_id3_launcher.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button_id3_launcher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_id3_launcher.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_id3_launcher.ForeColor = System.Drawing.Color.White;
-            this.button_id3_launcher.Location = new System.Drawing.Point(0, 241);
-            this.button_id3_launcher.Name = "button_id3_launcher";
-            this.button_id3_launcher.Size = new System.Drawing.Size(171, 34);
-            this.button_id3_launcher.TabIndex = 9;
-            this.button_id3_launcher.TabStop = false;
-            this.button_id3_launcher.Text = "Modificar Metadata";
-            this.button_id3_launcher.UseVisualStyleBackColor = false;
-            this.button_id3_launcher.Click += new System.EventHandler(this.button_id3_launcher_Click);
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button_sinc
             // 
-            this.button_sinc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button_sinc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.button_sinc.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button_sinc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_sinc.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_sinc.ForeColor = System.Drawing.Color.White;
-            this.button_sinc.Location = new System.Drawing.Point(0, 201);
+            this.button_sinc.Location = new System.Drawing.Point(8, 68);
             this.button_sinc.Name = "button_sinc";
-            this.button_sinc.Size = new System.Drawing.Size(171, 34);
+            this.button_sinc.Size = new System.Drawing.Size(31, 34);
             this.button_sinc.TabIndex = 7;
             this.button_sinc.TabStop = false;
-            this.button_sinc.Text = "Sincronizar";
+            this.button_sinc.Text = "↑ ";
             this.button_sinc.UseVisualStyleBackColor = false;
-            // 
-            // button_add_music
-            // 
-            this.button_add_music.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button_add_music.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button_add_music.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_add_music.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_add_music.ForeColor = System.Drawing.Color.White;
-            this.button_add_music.Location = new System.Drawing.Point(0, 161);
-            this.button_add_music.Name = "button_add_music";
-            this.button_add_music.Size = new System.Drawing.Size(171, 34);
-            this.button_add_music.TabIndex = 6;
-            this.button_add_music.TabStop = false;
-            this.button_add_music.Text = "Añadir Música";
-            this.button_add_music.UseVisualStyleBackColor = false;
             // 
             // button_play
             // 
@@ -666,9 +387,9 @@
             this.panel_comentario.Controls.Add(this.listbox_comentarios);
             this.panel_comentario.Controls.Add(this.label_comentario);
             this.panel_comentario.Controls.Add(this.textbox_comment);
-            this.panel_comentario.Location = new System.Drawing.Point(242, 444);
+            this.panel_comentario.Location = new System.Drawing.Point(242, 399);
             this.panel_comentario.Name = "panel_comentario";
-            this.panel_comentario.Size = new System.Drawing.Size(1034, 79);
+            this.panel_comentario.Size = new System.Drawing.Size(1034, 118);
             this.panel_comentario.TabIndex = 28;
             // 
             // listbox_comentarios
@@ -717,22 +438,6 @@
             this.progressbar_song.TabIndex = 4;
             this.progressbar_song.Value = 30;
             // 
-            // button_logo
-            // 
-            this.button_logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button_logo.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button_logo.FlatAppearance.BorderSize = 0;
-            this.button_logo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_logo.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_logo.ForeColor = System.Drawing.Color.White;
-            this.button_logo.Location = new System.Drawing.Point(25, 59);
-            this.button_logo.Name = "button_logo";
-            this.button_logo.Size = new System.Drawing.Size(150, 39);
-            this.button_logo.TabIndex = 27;
-            this.button_logo.TabStop = false;
-            this.button_logo.Text = "Odyssey";
-            this.button_logo.UseVisualStyleBackColor = false;
-            // 
             // button_next
             // 
             this.button_next.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -758,61 +463,401 @@
             this.panel_player.Controls.Add(this.button_play);
             this.panel_player.Controls.Add(this.button_previous);
             this.panel_player.Controls.Add(this.progressbar_song);
-            this.panel_player.Location = new System.Drawing.Point(16, 394);
+            this.panel_player.Location = new System.Drawing.Point(9, 349);
             this.panel_player.Name = "panel_player";
-            this.panel_player.Size = new System.Drawing.Size(1260, 44);
+            this.panel_player.Size = new System.Drawing.Size(1301, 44);
             this.panel_player.TabIndex = 26;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(125, 454);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(111, 63);
+            this.panel1.TabIndex = 30;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(16, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(39, 33);
+            this.button3.TabIndex = 9;
+            this.button3.TabStop = false;
+            this.button3.Text = "☁";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Window;
+            this.label1.Location = new System.Drawing.Point(13, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 15);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Like\'s";
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Window;
+            this.label2.Location = new System.Drawing.Point(61, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 33);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "0";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Location = new System.Drawing.Point(9, 405);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(227, 42);
+            this.panel2.TabIndex = 31;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.Window;
+            this.label3.Location = new System.Drawing.Point(22, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 15);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Like\'s";
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.Window;
+            this.label4.Location = new System.Drawing.Point(126, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 33);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "0";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel_complement
+            // 
+            this.panel_complement.Controls.Add(this.button_id3_launcher);
+            this.panel_complement.Controls.Add(this.button2);
+            this.panel_complement.Controls.Add(this.button_add_music);
+            this.panel_complement.Controls.Add(this.button_logo);
+            this.panel_complement.Controls.Add(this.button_sinc);
+            this.panel_complement.Location = new System.Drawing.Point(12, 12);
+            this.panel_complement.Name = "panel_complement";
+            this.panel_complement.Size = new System.Drawing.Size(170, 161);
+            this.panel_complement.TabIndex = 38;
+            this.panel_complement.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_complement_Paint);
+            // 
+            // button_id3_launcher
+            // 
+            this.button_id3_launcher.BackColor = System.Drawing.Color.Purple;
+            this.button_id3_launcher.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button_id3_launcher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_id3_launcher.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_id3_launcher.ForeColor = System.Drawing.Color.White;
+            this.button_id3_launcher.Location = new System.Drawing.Point(132, 68);
+            this.button_id3_launcher.Name = "button_id3_launcher";
+            this.button_id3_launcher.Size = new System.Drawing.Size(29, 34);
+            this.button_id3_launcher.TabIndex = 39;
+            this.button_id3_launcher.TabStop = false;
+            this.button_id3_launcher.Text = "#";
+            this.button_id3_launcher.UseVisualStyleBackColor = false;
+            this.button_id3_launcher.Click += new System.EventHandler(this.button_id3_launcher_Click);
+            // 
+            // button_add_music
+            // 
+            this.button_add_music.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.button_add_music.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button_add_music.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_add_music.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_add_music.ForeColor = System.Drawing.Color.White;
+            this.button_add_music.Location = new System.Drawing.Point(92, 68);
+            this.button_add_music.Name = "button_add_music";
+            this.button_add_music.Size = new System.Drawing.Size(29, 34);
+            this.button_add_music.TabIndex = 38;
+            this.button_add_music.TabStop = false;
+            this.button_add_music.Text = "+";
+            this.button_add_music.UseVisualStyleBackColor = false;
+            // 
+            // button_logo
+            // 
+            this.button_logo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button_logo.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button_logo.FlatAppearance.BorderSize = 0;
+            this.button_logo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_logo.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_logo.ForeColor = System.Drawing.Color.White;
+            this.button_logo.Location = new System.Drawing.Point(7, 16);
+            this.button_logo.Name = "button_logo";
+            this.button_logo.Size = new System.Drawing.Size(150, 39);
+            this.button_logo.TabIndex = 37;
+            this.button_logo.TabStop = false;
+            this.button_logo.Text = "Odyssey";
+            this.button_logo.UseVisualStyleBackColor = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.Window;
+            this.label5.Location = new System.Drawing.Point(833, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 15);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Letra";
+            // 
+            // label_profile_username
+            // 
+            this.label_profile_username.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_profile_username.ForeColor = System.Drawing.Color.White;
+            this.label_profile_username.Location = new System.Drawing.Point(736, 9);
+            this.label_profile_username.Name = "label_profile_username";
+            this.label_profile_username.Size = new System.Drawing.Size(178, 30);
+            this.label_profile_username.TabIndex = 4;
+            this.label_profile_username.Text = "Le Putin Memen";
+            this.label_profile_username.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button11.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button11.FlatAppearance.BorderSize = 0;
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button11.ForeColor = System.Drawing.Color.White;
+            this.button11.Location = new System.Drawing.Point(920, 13);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(101, 30);
+            this.button11.TabIndex = 5;
+            this.button11.TabStop = false;
+            this.button11.Text = "Configuración";
+            this.button11.UseVisualStyleBackColor = false;
+            // 
+            // button12
+            // 
+            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button12.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button12.FlatAppearance.BorderSize = 0;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button12.ForeColor = System.Drawing.Color.White;
+            this.button12.Location = new System.Drawing.Point(1027, 13);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(52, 30);
+            this.button12.TabIndex = 6;
+            this.button12.TabStop = false;
+            this.button12.Text = "Salir";
+            this.button12.UseVisualStyleBackColor = false;
+            // 
+            // textbox_buscador_canciones
+            // 
+            this.textbox_buscador_canciones.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textbox_buscador_canciones.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textbox_buscador_canciones.Location = new System.Drawing.Point(0, 23);
+            this.textbox_buscador_canciones.MaxLength = 50;
+            this.textbox_buscador_canciones.Name = "textbox_buscador_canciones";
+            this.textbox_buscador_canciones.Size = new System.Drawing.Size(200, 23);
+            this.textbox_buscador_canciones.TabIndex = 9;
+            this.textbox_buscador_canciones.TabStop = false;
+            // 
+            // button_voice_searcher
+            // 
+            this.button_voice_searcher.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button_voice_searcher.FlatAppearance.BorderSize = 0;
+            this.button_voice_searcher.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_voice_searcher.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_voice_searcher.ForeColor = System.Drawing.Color.White;
+            this.button_voice_searcher.Location = new System.Drawing.Point(206, 21);
+            this.button_voice_searcher.Name = "button_voice_searcher";
+            this.button_voice_searcher.Size = new System.Drawing.Size(27, 23);
+            this.button_voice_searcher.TabIndex = 10;
+            this.button_voice_searcher.TabStop = false;
+            this.button_voice_searcher.Text = "⛬";
+            this.button_voice_searcher.UseVisualStyleBackColor = false;
+            // 
+            // combobox_user_searcher
+            // 
+            this.combobox_user_searcher.Font = new System.Drawing.Font("Calibri", 9.75F);
+            this.combobox_user_searcher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.combobox_user_searcher.FormattingEnabled = true;
+            this.combobox_user_searcher.Location = new System.Drawing.Point(240, 23);
+            this.combobox_user_searcher.Name = "combobox_user_searcher";
+            this.combobox_user_searcher.Size = new System.Drawing.Size(216, 23);
+            this.combobox_user_searcher.TabIndex = 11;
+            this.combobox_user_searcher.TextChanged += new System.EventHandler(this.combobox_user_searcher_TextChanged);
+            // 
+            // label_buscador_canciones
+            // 
+            this.label_buscador_canciones.AutoSize = true;
+            this.label_buscador_canciones.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_buscador_canciones.ForeColor = System.Drawing.SystemColors.Window;
+            this.label_buscador_canciones.Location = new System.Drawing.Point(0, 7);
+            this.label_buscador_canciones.Name = "label_buscador_canciones";
+            this.label_buscador_canciones.Size = new System.Drawing.Size(113, 12);
+            this.label_buscador_canciones.TabIndex = 12;
+            this.label_buscador_canciones.Text = "Buscador De Canciones";
+            // 
+            // label_buscador_usuarios
+            // 
+            this.label_buscador_usuarios.AutoSize = true;
+            this.label_buscador_usuarios.Font = new System.Drawing.Font("Cambria", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_buscador_usuarios.ForeColor = System.Drawing.SystemColors.Window;
+            this.label_buscador_usuarios.Location = new System.Drawing.Point(238, 8);
+            this.label_buscador_usuarios.Name = "label_buscador_usuarios";
+            this.label_buscador_usuarios.Size = new System.Drawing.Size(108, 12);
+            this.label_buscador_usuarios.TabIndex = 13;
+            this.label_buscador_usuarios.Text = "Buscador De Usuarios";
+            // 
+            // panel_user
+            // 
+            this.panel_user.Controls.Add(this.label_buscador_usuarios);
+            this.panel_user.Controls.Add(this.label_buscador_canciones);
+            this.panel_user.Controls.Add(this.combobox_user_searcher);
+            this.panel_user.Controls.Add(this.button_voice_searcher);
+            this.panel_user.Controls.Add(this.textbox_buscador_canciones);
+            this.panel_user.Controls.Add(this.button12);
+            this.panel_user.Controls.Add(this.button11);
+            this.panel_user.Controls.Add(this.label_profile_username);
+            this.panel_user.Location = new System.Drawing.Point(186, 12);
+            this.panel_user.Name = "panel_user";
+            this.panel_user.Size = new System.Drawing.Size(1124, 48);
+            this.panel_user.TabIndex = 25;
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.button_friends);
+            this.panel3.Controls.Add(this.button7);
+            this.panel3.Controls.Add(this.button_cloud_library);
+            this.panel3.Controls.Add(this.button__personal_library);
+            this.panel3.Location = new System.Drawing.Point(13, 179);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(168, 163);
+            this.panel3.TabIndex = 39;
+            // 
+            // button_friends
+            // 
+            this.button_friends.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button_friends.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button_friends.FlatAppearance.BorderSize = 0;
+            this.button_friends.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_friends.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_friends.ForeColor = System.Drawing.Color.White;
+            this.button_friends.Location = new System.Drawing.Point(7, 123);
+            this.button_friends.Name = "button_friends";
+            this.button_friends.Size = new System.Drawing.Size(150, 34);
+            this.button_friends.TabIndex = 44;
+            this.button_friends.TabStop = false;
+            this.button_friends.Text = "Compartir";
+            this.button_friends.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_friends.UseVisualStyleBackColor = false;
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.ForeColor = System.Drawing.Color.White;
+            this.button7.Location = new System.Drawing.Point(6, 83);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(150, 34);
+            this.button7.TabIndex = 43;
+            this.button7.TabStop = false;
+            this.button7.Text = "Descubrir";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button7.UseVisualStyleBackColor = false;
+            // 
+            // button_cloud_library
+            // 
+            this.button_cloud_library.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button_cloud_library.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button_cloud_library.FlatAppearance.BorderSize = 0;
+            this.button_cloud_library.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_cloud_library.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_cloud_library.ForeColor = System.Drawing.Color.White;
+            this.button_cloud_library.Location = new System.Drawing.Point(6, 3);
+            this.button_cloud_library.Name = "button_cloud_library";
+            this.button_cloud_library.Size = new System.Drawing.Size(149, 34);
+            this.button_cloud_library.TabIndex = 42;
+            this.button_cloud_library.TabStop = false;
+            this.button_cloud_library.Text = "Biblioteca Cloud";
+            this.button_cloud_library.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_cloud_library.UseVisualStyleBackColor = false;
+            this.button_cloud_library.Click += new System.EventHandler(this.button_cloud_library_Click);
+            // 
+            // button__personal_library
+            // 
+            this.button__personal_library.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button__personal_library.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button__personal_library.FlatAppearance.BorderSize = 0;
+            this.button__personal_library.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button__personal_library.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button__personal_library.ForeColor = System.Drawing.Color.White;
+            this.button__personal_library.Location = new System.Drawing.Point(6, 43);
+            this.button__personal_library.Name = "button__personal_library";
+            this.button__personal_library.Size = new System.Drawing.Size(149, 34);
+            this.button__personal_library.TabIndex = 41;
+            this.button__personal_library.TabStop = false;
+            this.button__personal_library.Text = "Biblioteca Personal";
+            this.button__personal_library.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button__personal_library.UseVisualStyleBackColor = false;
             // 
             // form_main_screen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1362, 529);
+            this.ClientSize = new System.Drawing.Size(1326, 620);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel_complement);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel_user);
             this.Controls.Add(this.label_lyrics);
             this.Controls.Add(this.panel_biblioteca);
-            this.Controls.Add(this.panel_dislike);
             this.Controls.Add(this.panel_like);
-            this.Controls.Add(this.panel_places);
             this.Controls.Add(this.panel_comentario);
-            this.Controls.Add(this.button_logo);
             this.Controls.Add(this.panel_player);
             this.Name = "form_main_screen";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.form_main_screen_Load);
-            this.panel_user.ResumeLayout(false);
-            this.panel_user.PerformLayout();
             this.panel_biblioteca.ResumeLayout(false);
             this.panel_biblioteca.PerformLayout();
-            this.panel_dislike.ResumeLayout(false);
-            this.panel_dislike.PerformLayout();
             this.panel_like.ResumeLayout(false);
             this.panel_like.PerformLayout();
-            this.panel_places.ResumeLayout(false);
             this.panel_comentario.ResumeLayout(false);
             this.panel_comentario.PerformLayout();
             this.panel_player.ResumeLayout(false);
             this.panel_player.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel_complement.ResumeLayout(false);
+            this.panel_user.ResumeLayout(false);
+            this.panel_user.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button_friends;
-        private System.Windows.Forms.Panel panel_user;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Label label_buscador_usuarios;
-        private System.Windows.Forms.Label label_buscador_canciones;
-        private System.Windows.Forms.ComboBox combobox_user_searcher;
-        private System.Windows.Forms.Button button_voice_searcher;
-        private System.Windows.Forms.TextBox textbox_buscador_canciones;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.Label label_profile_username;
         private System.Windows.Forms.ListView listview_data;
         private System.Windows.Forms.ColumnHeader column_artista;
         private System.Windows.Forms.ColumnHeader column_title;
@@ -826,12 +871,6 @@
         private System.Windows.Forms.Label label_title;
         private System.Windows.Forms.Label label_artist;
         private System.Windows.Forms.Panel panel_biblioteca;
-        private System.Windows.Forms.Button button_cloud_library;
-        private System.Windows.Forms.Button button__personal_library;
-        private System.Windows.Forms.Label label_dislike;
-        private System.Windows.Forms.Panel panel_dislike;
-        private System.Windows.Forms.Button button_dislike;
-        private System.Windows.Forms.Label label_dislike_counter;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label_timer_final;
         private System.Windows.Forms.Label label_timer_inicial;
@@ -839,10 +878,7 @@
         private System.Windows.Forms.Button button_like;
         private System.Windows.Forms.Label label_like;
         private System.Windows.Forms.Label label_like_counter;
-        private System.Windows.Forms.Panel panel_places;
-        private System.Windows.Forms.Button button_id3_launcher;
         private System.Windows.Forms.Button button_sinc;
-        private System.Windows.Forms.Button button_add_music;
         private System.Windows.Forms.Button button_play;
         private System.Windows.Forms.Button button_previous;
         private System.Windows.Forms.Panel panel_comentario;
@@ -850,12 +886,37 @@
         private System.Windows.Forms.Label label_comentario;
         private System.Windows.Forms.TextBox textbox_comment;
         private System.Windows.Forms.ProgressBar progressbar_song;
-        private System.Windows.Forms.Button button_logo;
         private System.Windows.Forms.Button button_next;
         private System.Windows.Forms.Panel panel_player;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ColumnHeader column_song_id;
         private System.Windows.Forms.ColumnHeader column_genre;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel_complement;
+        private System.Windows.Forms.Button button_id3_launcher;
+        private System.Windows.Forms.Button button_add_music;
+        private System.Windows.Forms.Button button_logo;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label_profile_username;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.TextBox textbox_buscador_canciones;
+        private System.Windows.Forms.Button button_voice_searcher;
+        private System.Windows.Forms.ComboBox combobox_user_searcher;
+        private System.Windows.Forms.Label label_buscador_canciones;
+        private System.Windows.Forms.Label label_buscador_usuarios;
+        private System.Windows.Forms.Panel panel_user;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button_friends;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button_cloud_library;
+        private System.Windows.Forms.Button button__personal_library;
     }
 }
 

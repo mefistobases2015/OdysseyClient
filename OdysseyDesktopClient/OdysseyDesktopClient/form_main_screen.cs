@@ -27,6 +27,7 @@ namespace OdysseyDesktopClient
 
         private void refreshSongCollection()
         {
+            button_id3_launcher.Visible = false;
             listview_data.BeginUpdate();
             // Delete The Current Data
             while (listview_data.Items.Count > 0)
@@ -73,6 +74,11 @@ namespace OdysseyDesktopClient
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 textbox_lyrics.Text = this._SongList[index]._ID3Lyrics;
                 textbox_comment.Text = this._SongList[index]._ID3Comment;
+                button_id3_launcher.Visible = true;
+            }
+            else
+            {
+                button_id3_launcher.Visible = false;
             }
         }
 
@@ -101,7 +107,6 @@ namespace OdysseyDesktopClient
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 form_id3_editor form_id3_editor = new form_id3_editor(this._SongList[index], this._ProfileUser, this._UploadMode);
                 form_id3_editor.Show();
-                this.refreshSongCollection();
             }
         }
 
@@ -111,6 +116,16 @@ namespace OdysseyDesktopClient
         }
 
         private void textbox_lyrics_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel_complement_Paint(object sender, PaintEventArgs e)
         {
 
         }
