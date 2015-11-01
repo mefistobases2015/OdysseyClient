@@ -54,7 +54,7 @@ namespace OdysseyDesktopClient
                 Song songtop = await rtop.createVersion(pMetadataInitial);
                 if(songtop == null)
                 {
-                    Console.WriteLine("Primera Versión Creada");
+                    MessageBox.Show(("Primera Versión Creada"));
                 }
                 else
                 {

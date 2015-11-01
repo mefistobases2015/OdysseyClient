@@ -15,15 +15,17 @@ namespace OdysseyDesktopClient
         public const string MODE_LOCAL = "LOCAL";
         public const string MODE_CLOUD = "CLOUD"; 
         string _UserSongName { get; set; }
+        public List<Metadata> _OldVersions { get; set; }
         Metadata _MetadataToEdit { get; set; }
         string _UploadMode { get; set; }
-        
+
         public form_id3_editor(Metadata pMetadata, string pUserPropertary, string pMode)
         {
             this._UserSongName = pUserPropertary;
             this._MetadataToEdit = pMetadata;
             this._UploadMode = pMode;
             InitializeComponent();
+            this.paintActualMetadata();
         }
 
         private void paintActualMetadata()
@@ -39,7 +41,7 @@ namespace OdysseyDesktopClient
 
         private void form_id3_editor_Load(object sender, EventArgs e)
         {
-            this.paintActualMetadata();
+            
         }
 
         private void panel_biblioteca_Paint(object sender, PaintEventArgs e)
@@ -49,6 +51,7 @@ namespace OdysseyDesktopClient
 
         private void button__apply_Click(object sender, EventArgs e)
         {
+            this.saveMetadata();
             InfoProvider ipop = new InfoProvider();
             if (this._UploadMode == form_id3_editor.MODE_CLOUD)
             {

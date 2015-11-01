@@ -119,7 +119,7 @@
             this.panel_user.Controls.Add(this.button12);
             this.panel_user.Controls.Add(this.button11);
             this.panel_user.Controls.Add(this.label_profile_username);
-            this.panel_user.Location = new System.Drawing.Point(189, 10);
+            this.panel_user.Location = new System.Drawing.Point(193, 57);
             this.panel_user.Name = "panel_user";
             this.panel_user.Size = new System.Drawing.Size(1083, 48);
             this.panel_user.TabIndex = 25;
@@ -271,7 +271,7 @@
             this.listview_data.ForeColor = System.Drawing.Color.White;
             this.listview_data.FullRowSelect = true;
             this.listview_data.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listview_data.Location = new System.Drawing.Point(1, 38);
+            this.listview_data.Location = new System.Drawing.Point(-1, 32);
             this.listview_data.MultiSelect = false;
             this.listview_data.Name = "listview_data";
             this.listview_data.Size = new System.Drawing.Size(795, 238);
@@ -283,10 +283,12 @@
             // column_song_id
             // 
             this.column_song_id.Text = "ID";
+            this.column_song_id.Width = 70;
             // 
             // column_artista
             // 
             this.column_artista.Text = "Artista";
+            this.column_artista.Width = 135;
             // 
             // column_title
             // 
@@ -309,18 +311,19 @@
             this.textbox_lyrics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textbox_lyrics.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textbox_lyrics.ForeColor = System.Drawing.Color.White;
-            this.textbox_lyrics.Location = new System.Drawing.Point(795, 38);
+            this.textbox_lyrics.Location = new System.Drawing.Point(795, 34);
             this.textbox_lyrics.Multiline = true;
             this.textbox_lyrics.Name = "textbox_lyrics";
             this.textbox_lyrics.Size = new System.Drawing.Size(287, 238);
             this.textbox_lyrics.TabIndex = 8;
+            this.textbox_lyrics.TextChanged += new System.EventHandler(this.textbox_lyrics_TextChanged);
             // 
             // label_lyrics
             // 
             this.label_lyrics.AutoSize = true;
             this.label_lyrics.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_lyrics.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_lyrics.Location = new System.Drawing.Point(807, 12);
+            this.label_lyrics.Location = new System.Drawing.Point(1051, 81);
             this.label_lyrics.Name = "label_lyrics";
             this.label_lyrics.Size = new System.Drawing.Size(39, 15);
             this.label_lyrics.TabIndex = 7;
@@ -331,7 +334,7 @@
             this.label_genre.AutoSize = true;
             this.label_genre.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_genre.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_genre.Location = new System.Drawing.Point(591, 10);
+            this.label_genre.Location = new System.Drawing.Point(607, 9);
             this.label_genre.Name = "label_genre";
             this.label_genre.Size = new System.Drawing.Size(50, 15);
             this.label_genre.TabIndex = 5;
@@ -342,7 +345,7 @@
             this.label_year.AutoSize = true;
             this.label_year.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_year.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_year.Location = new System.Drawing.Point(468, 10);
+            this.label_year.Location = new System.Drawing.Point(484, 9);
             this.label_year.Name = "label_year";
             this.label_year.Size = new System.Drawing.Size(30, 15);
             this.label_year.TabIndex = 4;
@@ -353,7 +356,7 @@
             this.label_album.AutoSize = true;
             this.label_album.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_album.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_album.Location = new System.Drawing.Point(320, 10);
+            this.label_album.Location = new System.Drawing.Point(336, 9);
             this.label_album.Name = "label_album";
             this.label_album.Size = new System.Drawing.Size(47, 15);
             this.label_album.TabIndex = 3;
@@ -364,7 +367,7 @@
             this.label_title.AutoSize = true;
             this.label_title.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_title.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_title.Location = new System.Drawing.Point(123, 10);
+            this.label_title.Location = new System.Drawing.Point(205, 9);
             this.label_title.Name = "label_title";
             this.label_title.Size = new System.Drawing.Size(43, 15);
             this.label_title.TabIndex = 2;
@@ -375,7 +378,7 @@
             this.label_artist.AutoSize = true;
             this.label_artist.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_artist.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_artist.Location = new System.Drawing.Point(16, 10);
+            this.label_artist.Location = new System.Drawing.Point(91, 9);
             this.label_artist.Name = "label_artist";
             this.label_artist.Size = new System.Drawing.Size(48, 15);
             this.label_artist.TabIndex = 1;
@@ -384,15 +387,14 @@
             // panel_biblioteca
             // 
             this.panel_biblioteca.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_biblioteca.Controls.Add(this.listview_data);
             this.panel_biblioteca.Controls.Add(this.textbox_lyrics);
-            this.panel_biblioteca.Controls.Add(this.label_lyrics);
-            this.panel_biblioteca.Controls.Add(this.label_genre);
-            this.panel_biblioteca.Controls.Add(this.label_year);
-            this.panel_biblioteca.Controls.Add(this.label_album);
+            this.panel_biblioteca.Controls.Add(this.listview_data);
             this.panel_biblioteca.Controls.Add(this.label_title);
             this.panel_biblioteca.Controls.Add(this.label_artist);
-            this.panel_biblioteca.Location = new System.Drawing.Point(189, 64);
+            this.panel_biblioteca.Controls.Add(this.label_album);
+            this.panel_biblioteca.Controls.Add(this.label_genre);
+            this.panel_biblioteca.Controls.Add(this.label_year);
+            this.panel_biblioteca.Location = new System.Drawing.Point(195, 115);
             this.panel_biblioteca.Name = "panel_biblioteca";
             this.panel_biblioteca.Size = new System.Drawing.Size(1083, 277);
             this.panel_biblioteca.TabIndex = 24;
@@ -446,7 +448,7 @@
             this.panel_dislike.Controls.Add(this.button_dislike);
             this.panel_dislike.Controls.Add(this.label_dislike);
             this.panel_dislike.Controls.Add(this.label_dislike_counter);
-            this.panel_dislike.Location = new System.Drawing.Point(121, 397);
+            this.panel_dislike.Location = new System.Drawing.Point(125, 444);
             this.panel_dislike.Name = "panel_dislike";
             this.panel_dislike.Size = new System.Drawing.Size(111, 79);
             this.panel_dislike.TabIndex = 30;
@@ -510,7 +512,7 @@
             this.panel_like.Controls.Add(this.button_like);
             this.panel_like.Controls.Add(this.label_like);
             this.panel_like.Controls.Add(this.label_like_counter);
-            this.panel_like.Location = new System.Drawing.Point(12, 397);
+            this.panel_like.Location = new System.Drawing.Point(16, 444);
             this.panel_like.Name = "panel_like";
             this.panel_like.Size = new System.Drawing.Size(103, 79);
             this.panel_like.TabIndex = 29;
@@ -561,7 +563,7 @@
             this.panel_places.Controls.Add(this.button__personal_library);
             this.panel_places.Controls.Add(this.button_sinc);
             this.panel_places.Controls.Add(this.button_add_music);
-            this.panel_places.Location = new System.Drawing.Point(12, 64);
+            this.panel_places.Location = new System.Drawing.Point(16, 111);
             this.panel_places.Name = "panel_places";
             this.panel_places.Size = new System.Drawing.Size(171, 277);
             this.panel_places.TabIndex = 23;
@@ -664,7 +666,7 @@
             this.panel_comentario.Controls.Add(this.listbox_comentarios);
             this.panel_comentario.Controls.Add(this.label_comentario);
             this.panel_comentario.Controls.Add(this.textbox_comment);
-            this.panel_comentario.Location = new System.Drawing.Point(238, 397);
+            this.panel_comentario.Location = new System.Drawing.Point(242, 444);
             this.panel_comentario.Name = "panel_comentario";
             this.panel_comentario.Size = new System.Drawing.Size(1034, 79);
             this.panel_comentario.TabIndex = 28;
@@ -723,7 +725,7 @@
             this.button_logo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_logo.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_logo.ForeColor = System.Drawing.Color.White;
-            this.button_logo.Location = new System.Drawing.Point(21, 12);
+            this.button_logo.Location = new System.Drawing.Point(25, 59);
             this.button_logo.Name = "button_logo";
             this.button_logo.Size = new System.Drawing.Size(150, 39);
             this.button_logo.TabIndex = 27;
@@ -756,7 +758,7 @@
             this.panel_player.Controls.Add(this.button_play);
             this.panel_player.Controls.Add(this.button_previous);
             this.panel_player.Controls.Add(this.progressbar_song);
-            this.panel_player.Location = new System.Drawing.Point(12, 347);
+            this.panel_player.Location = new System.Drawing.Point(16, 394);
             this.panel_player.Name = "panel_player";
             this.panel_player.Size = new System.Drawing.Size(1260, 44);
             this.panel_player.TabIndex = 26;
@@ -766,8 +768,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1281, 529);
+            this.ClientSize = new System.Drawing.Size(1362, 529);
             this.Controls.Add(this.panel_user);
+            this.Controls.Add(this.label_lyrics);
             this.Controls.Add(this.panel_biblioteca);
             this.Controls.Add(this.panel_dislike);
             this.Controls.Add(this.panel_like);
@@ -777,6 +780,7 @@
             this.Controls.Add(this.panel_player);
             this.Name = "form_main_screen";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.form_main_screen_Load);
             this.panel_user.ResumeLayout(false);
             this.panel_user.PerformLayout();
             this.panel_biblioteca.ResumeLayout(false);
@@ -791,6 +795,7 @@
             this.panel_player.ResumeLayout(false);
             this.panel_player.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
