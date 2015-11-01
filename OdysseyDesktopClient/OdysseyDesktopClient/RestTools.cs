@@ -420,12 +420,6 @@ namespace OdysseyDesktopClient
 
             return song;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="user_name"></param>
-        /// <returns></returns>
-        /// 
 
         public async Task<List<Metadata>> getMetadataSongByUser(string user_name)
         {
@@ -462,6 +456,7 @@ namespace OdysseyDesktopClient
             return songs_metadata;
 
         }
+
         public async Task<string> getMusicalByUserName(string usr_id)
         {
             string res = "";

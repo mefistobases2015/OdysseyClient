@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlobManager.cs" />
     <Compile Include="form_id3_editor.cs">
       <SubType>Form</SubType>
     </Compile>
