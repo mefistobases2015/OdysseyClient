@@ -206,13 +206,13 @@ namespace OdysseyDesktopClient
         {
             bool result = false;
 
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(server_url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage response = await client.PostAsJsonAsync<string>(mongo_users_path+"?values="+user_name, "");
+                HttpResponseMessage response = await client.PostAsJsonAsync<string>(mongo_users_path + "?value=" + user_name, "");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -240,7 +240,7 @@ namespace OdysseyDesktopClient
         public async Task<Song> createSong(string p_song_directory)
         {
 
-            Song result= new Song();
+            Song result = new Song();
 
             Song song = new Song() { song_id = -1, metadata_id = -1, song_directory = p_song_directory };
 
@@ -289,13 +289,13 @@ namespace OdysseyDesktopClient
         {
             bool result = false;
 
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(server_url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage response = await client.PostAsJsonAsync<string>(mongo_songs_path + "/"+song_id.ToString(), "");
+                HttpResponseMessage response = await client.PostAsJsonAsync<string>(mongo_songs_path + "/" + song_id.ToString(), "");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -492,7 +492,7 @@ namespace OdysseyDesktopClient
         /// bool que es true si se logró crear la canción, en otro caso false
         /// </returns>
         public async Task<bool> addSong2user(string p_user_name, string p_song_name,
-            List<string> new_version, string p_song_directory) 
+            List<string> new_version, string p_song_directory)
         {
             bool flag = false;
 
@@ -500,7 +500,7 @@ namespace OdysseyDesktopClient
 
             Property prop = new Property() { user_name = p_user_name, song_name = p_song_name, song_id = song.song_id };
 
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(server_url);
                 client.DefaultRequestHeaders.Accept.Clear();
@@ -582,11 +582,11 @@ namespace OdysseyDesktopClient
         /// <returns>
         /// bool true si se logra asignar, false en cualquier otro caso
         /// </returns>
-        public async Task<bool> setMetadataSong(int p_song_id, int p_version_id) 
+        public async Task<bool> setMetadataSong(int p_song_id, int p_version_id)
         {
             bool flag = false;
 
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(server_url);
                 client.DefaultRequestHeaders.Accept.Clear();
@@ -633,7 +633,7 @@ namespace OdysseyDesktopClient
         {
             Song song = new Song();
 
-            using(var client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(server_url);
                 client.DefaultRequestHeaders.Accept.Clear();
@@ -1077,10 +1077,19 @@ namespace OdysseyDesktopClient
             return result;
         }
 
-        
-        public async Task<string> getSongComments(int song_id)
+        /// <summary>
+        /// Obtiene los comentarios y que los hizo
+        /// </summary>
+        /// <param name="song_id">
+        /// Identificador de la canción de la que se 
+        /// quieren obtener los comentarios
+        /// </param>
+        /// <returns>
+        /// List de string que tiene comentarios y quien los hizo
+        /// </returns>
+        public async Task<List<string>> getSongComments(int song_id)
         {
-            string result = "";
+            List<string> result = new List<string>();
 
             using (HttpClient client = new HttpClient())
             {
@@ -1092,7 +1101,12 @@ namespace OdysseyDesktopClient
 
                 if (response.IsSuccessStatusCode)
                 {
-                    result = await response.Content.ReadAsAsync<String>();
+                    string[] res = await response.Content.ReadAsAsync<string[]>();
+
+                    for (int i = 0; i < res.Length; i++)
+                    {
+                        result.Add(res[i]);
+                    }
                 }
                 else
                 {
@@ -1120,19 +1134,19 @@ namespace OdysseyDesktopClient
         {
             List<Solicitud> requests = new List<Solicitud>();
 
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(server_url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage response = await client.GetAsync(friend_request_path+"/"+usr_name);
+                HttpResponseMessage response = await client.GetAsync(friend_request_path + "/" + usr_name);
 
                 if (response.IsSuccessStatusCode)
                 {
                     Solicitud[] requests_array = await response.Content.ReadAsAsync<Solicitud[]>();
 
-                    for(int i = 0; i < requests_array.Length; i++)
+                    for (int i = 0; i < requests_array.Length; i++)
                     {
                         requests.Add(requests_array[i]);
                     }
@@ -1144,7 +1158,7 @@ namespace OdysseyDesktopClient
             }
 
             return requests;
-        } 
+        }
 
         /// <summary>
         /// Se envia una solicitud a un usuario
@@ -1164,7 +1178,7 @@ namespace OdysseyDesktopClient
 
             Solicitud request = new Solicitud() { emisor = p_emisor, receptor = p_receptor };
 
-            using(HttpClient client = new HttpClient())
+            using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(server_url);
                 client.DefaultRequestHeaders.Accept.Clear();
@@ -1226,5 +1240,47 @@ namespace OdysseyDesktopClient
             return result;
         }
 
+        /// <summary>
+        /// Retorna una lista de amigos
+        /// </summary>
+        /// <param name="usr_name">
+        /// Nombre de usario al que se le van a ver los amigos
+        /// </param>
+        /// <returns>
+        /// List de string que tiene todos los amigos
+        /// </returns>
+        public async Task<List<string>> getFriends(string usr_name)
+        {
+            List<string> result = new List<string>();
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.GetAsync(mongo_users_path + "/" + usr_name);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string[] res = await response.Content.ReadAsAsync<string[]>();
+
+                    for (int i = 0; i < res.Length; i++)
+                    {
+                        result.Add(res[i]);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+
+                    result = null;
+                }
+
+
+            }
+
+            return result;
+        }
     }
 }
