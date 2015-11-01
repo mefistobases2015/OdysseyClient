@@ -107,4 +107,10 @@ namespace OdysseyDesktopClient
         public string emisor { get; set; }
         public string receptor { get; set; }
     }
+
+    public class Comment
+    {
+        public string author { get; set; }
+        public string comment { get; set; }
+    }
 }

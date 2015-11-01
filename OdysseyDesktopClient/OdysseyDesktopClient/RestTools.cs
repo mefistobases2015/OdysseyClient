@@ -620,9 +620,11 @@ namespace OdysseyDesktopClient
             return result;
         }
 
-        public async Task<bool> setComment2ASong(int song_id, string comment)
+        public async Task<bool> setComment2ASong(int song_id, string usr_name, string p_comment)
         {
             bool result = false;
+
+            Comment comm = new Comment() { author = usr_name, comment = p_comment };
 
             using (HttpClient client = new HttpClient())
             {
@@ -630,8 +632,8 @@ namespace OdysseyDesktopClient
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage response = await client.PutAsJsonAsync<String>(mongo_songs_path + "/Comment?id=" + song_id.ToString(),
-                    comment);
+                HttpResponseMessage response = await client.PutAsJsonAsync<Comment>(mongo_songs_path + "/Comment?id=" + song_id.ToString(),
+                    comm);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -807,7 +809,7 @@ namespace OdysseyDesktopClient
                 }
             }
 
-            return false;
+            return result;
         }
 
         public async Task<bool> deleteRequest(string p_emisor, string p_receptor)
@@ -835,7 +837,7 @@ namespace OdysseyDesktopClient
                 }
             }
 
-            return false;
+            return result;
         }
 
     }
