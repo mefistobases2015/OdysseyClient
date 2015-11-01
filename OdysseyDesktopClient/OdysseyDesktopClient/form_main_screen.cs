@@ -101,7 +101,18 @@ namespace OdysseyDesktopClient
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 form_id3_editor form_id3_editor = new form_id3_editor(this._SongList[index], this._ProfileUser, this._UploadMode);
                 form_id3_editor.Show();
+                this.refreshSongCollection();
             }
+        }
+
+        private void form_main_screen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textbox_lyrics_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

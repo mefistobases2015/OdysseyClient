@@ -16,7 +16,7 @@ namespace OdysseyDesktopClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new form_main_screen());
+            Application.Run(new PruebaSlide());
         }
     }
 }
