@@ -70,14 +70,14 @@ namespace OdysseyDesktopClient
         private void refreshLikeInfo(string pSongID)
         {
             InfoProvider ipop = new InfoProvider();
-            label_like_counter.Text = ipop.getLikeBySong(pSongID);
+            label_like_counter.Text = ipop.getLikeBySong(pSongID).ToString();
             label_like_counter.Update();
         }
 
         private void refreshDislikeInfo(string pSongID)
         {
             InfoProvider ipop = new InfoProvider();
-            label_dislike_counter.Text = ipop.getDislikeBySong(pSongID);
+            label_dislike_counter.Text = ipop.getDislikeBySong(pSongID).ToString();
             label_dislike_counter.Update();
         }
 
