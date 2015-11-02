@@ -80,10 +80,16 @@ namespace OdysseyDesktopClient
             label_dislike_counter.Text = (await ipop.getDislikeBySong(pSongID)).ToString();
             label_dislike_counter.Update();
         }
+        private async void refreshPlays(string pSongID)
+        {
+            InfoProvider ipop = new InfoProvider();
+            label_song_reproductions.Text = (await ipop.getSongReproductions(pSongID)).ToString();
+            label_song_reproductions.Update();
+        }
         private async void refreshReproductions(string pSongID)
         {
             InfoProvider ipop = new InfoProvider();
-            label_song_reproductions.Text = ipop.getSongReproductions(pSongID).ToString();
+            label_song_reproductions.Text = (await ipop.getSongReproductions(pSongID)).ToString();
             label_song_reproductions.Update();
         }
         private void listview_data_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,8 +100,9 @@ namespace OdysseyDesktopClient
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 textbox_lyrics.Text = this._SongList[index]._ID3Lyrics;
                 textbox_ID3Comment.Text = this._SongList[index]._ID3Comment;
-                refreshLikeInfo(this._SongList[index]._SongID);
-                refreshDislikeInfo( this._SongList[index]._SongID);
+                this.refreshLikeInfo(this._SongList[index]._SongID);
+                this.refreshDislikeInfo( this._SongList[index]._SongID);
+                this.refreshReproductions(this._SongList[index]._SongID);
             }
             else
             {
