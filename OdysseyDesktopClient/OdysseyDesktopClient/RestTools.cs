@@ -1130,9 +1130,9 @@ namespace OdysseyDesktopClient
         /// List<Solicitud> que tiene las solicitudes que se le hicieron a un
         /// usuario
         /// </returns>
-        public async Task<List<Solicitud>> getRequests(string usr_name)
+        public async Task<List<string>> getRequests(string usr_name)
         {
-            List<Solicitud> requests = new List<Solicitud>();
+            List<string> requests = new List<string>();
 
             using (HttpClient client = new HttpClient())
             {
@@ -1144,7 +1144,7 @@ namespace OdysseyDesktopClient
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Solicitud[] requests_array = await response.Content.ReadAsAsync<Solicitud[]>();
+                    string[] requests_array = await response.Content.ReadAsAsync<string[]>();
 
                     for (int i = 0; i < requests_array.Length; i++)
                     {
@@ -1282,5 +1282,6 @@ namespace OdysseyDesktopClient
 
             return result;
         }
+
     }
 }
