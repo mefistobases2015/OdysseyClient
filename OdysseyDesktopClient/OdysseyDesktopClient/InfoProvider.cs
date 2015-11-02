@@ -101,11 +101,11 @@ namespace OdysseyDesktopClient
         {
             return 0;
         }
-        public int getLikeBySong(int pSongID)
+        public int getLikeBySong(string pSongID)
         {
             return 0;
         }
-        public int getDislikeBySong(int pSongID)
+        public int getDislikeBySong(string pSongID)
         {
             return 0;
         }
