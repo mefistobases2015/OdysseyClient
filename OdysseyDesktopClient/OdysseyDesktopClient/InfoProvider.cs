@@ -101,14 +101,6 @@ namespace OdysseyDesktopClient
         {
             return 0;
         }
-        public int getLikeBySong(string pSongID)
-        {
-            return 0;
-        }
-        public int getDislikeBySong(string pSongID)
-        {
-            return 0;
-        }
         public int getVisualization(int pSongID)
         {
             return 3;
@@ -128,6 +120,14 @@ namespace OdysseyDesktopClient
         public bool makeDislike(int pUserID)
         {
             return false;
+        }
+        public int getLikeBySong(string pSongID)
+        {
+            return 0;
+        }
+        public int getDislikeBySong(string pSongID)
+        {
+            return 0;
         }
     }
 }
