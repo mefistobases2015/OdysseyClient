@@ -97,7 +97,7 @@ namespace OdysseyDesktopClient
         {
             return null;
         }
-        public int getSongReproductions(int pSongID)
+        public int getSongReproductions(string pSongID)
         {
             return 0;
         }

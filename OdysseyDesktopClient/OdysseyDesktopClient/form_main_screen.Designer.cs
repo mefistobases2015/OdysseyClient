@@ -68,7 +68,7 @@
             this.label_dislike_counter = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label_song_reproductions = new System.Windows.Forms.Label();
             this.panel_complement = new System.Windows.Forms.Panel();
             this.button_id3_launcher = new System.Windows.Forms.Button();
             this.button_add_music = new System.Windows.Forms.Button();
@@ -84,7 +84,7 @@
             this.panel_user = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button_friends = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.button_friend_manager = new System.Windows.Forms.Button();
             this.button_cloud_library = new System.Windows.Forms.Button();
             this.button__personal_library = new System.Windows.Forms.Button();
             this.panel_biblioteca.SuspendLayout();
@@ -402,7 +402,7 @@
             this.panel_comentario.Controls.Add(this.textbox_comment);
             this.panel_comentario.Location = new System.Drawing.Point(242, 399);
             this.panel_comentario.Name = "panel_comentario";
-            this.panel_comentario.Size = new System.Drawing.Size(1034, 118);
+            this.panel_comentario.Size = new System.Drawing.Size(1071, 118);
             this.panel_comentario.TabIndex = 28;
             // 
             // listbox_comentarios
@@ -465,6 +465,7 @@
             this.button_next.TabStop = false;
             this.button_next.Text = "▲";
             this.button_next.UseVisualStyleBackColor = false;
+            this.button_next.Click += new System.EventHandler(this.button_next_Click);
             // 
             // panel_player
             // 
@@ -478,7 +479,7 @@
             this.panel_player.Controls.Add(this.progressbar_song);
             this.panel_player.Location = new System.Drawing.Point(9, 349);
             this.panel_player.Name = "panel_player";
-            this.panel_player.Size = new System.Drawing.Size(1301, 44);
+            this.panel_player.Size = new System.Drawing.Size(1305, 44);
             this.panel_player.TabIndex = 26;
             // 
             // panel1
@@ -533,33 +534,34 @@
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Location = new System.Drawing.Point(9, 405);
+            this.panel2.Controls.Add(this.label_song_reproductions);
+            this.panel2.Location = new System.Drawing.Point(9, 400);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(227, 42);
+            this.panel2.Size = new System.Drawing.Size(227, 47);
             this.panel2.TabIndex = 31;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.Window;
-            this.label3.Location = new System.Drawing.Point(22, 20);
+            this.label3.Location = new System.Drawing.Point(2, 4);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 15);
+            this.label3.Size = new System.Drawing.Size(147, 37);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Like\'s";
+            this.label3.Text = "Reproducciones";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // label4
+            // label_song_reproductions
             // 
-            this.label4.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.Window;
-            this.label4.Location = new System.Drawing.Point(126, 4);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 33);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "0";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_song_reproductions.Font = new System.Drawing.Font("Cambria", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_song_reproductions.ForeColor = System.Drawing.SystemColors.Window;
+            this.label_song_reproductions.Location = new System.Drawing.Point(154, 4);
+            this.label_song_reproductions.Name = "label_song_reproductions";
+            this.label_song_reproductions.Size = new System.Drawing.Size(68, 37);
+            this.label_song_reproductions.TabIndex = 7;
+            this.label_song_reproductions.Text = "0";
+            this.label_song_reproductions.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // panel_complement
             // 
@@ -568,9 +570,9 @@
             this.panel_complement.Controls.Add(this.button_add_music);
             this.panel_complement.Controls.Add(this.button_logo);
             this.panel_complement.Controls.Add(this.button_sinc);
-            this.panel_complement.Location = new System.Drawing.Point(12, 12);
+            this.panel_complement.Location = new System.Drawing.Point(9, 12);
             this.panel_complement.Name = "panel_complement";
-            this.panel_complement.Size = new System.Drawing.Size(170, 161);
+            this.panel_complement.Size = new System.Drawing.Size(173, 161);
             this.panel_complement.TabIndex = 38;
             this.panel_complement.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_complement_Paint);
             // 
@@ -625,7 +627,7 @@
             // 
             this.label_profile_username.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_profile_username.ForeColor = System.Drawing.Color.White;
-            this.label_profile_username.Location = new System.Drawing.Point(736, 9);
+            this.label_profile_username.Location = new System.Drawing.Point(778, 10);
             this.label_profile_username.Name = "label_profile_username";
             this.label_profile_username.Size = new System.Drawing.Size(178, 30);
             this.label_profile_username.TabIndex = 4;
@@ -640,7 +642,7 @@
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button11.ForeColor = System.Drawing.Color.White;
-            this.button11.Location = new System.Drawing.Point(920, 13);
+            this.button11.Location = new System.Drawing.Point(962, 14);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(101, 30);
             this.button11.TabIndex = 5;
@@ -656,7 +658,7 @@
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button12.ForeColor = System.Drawing.Color.White;
-            this.button12.Location = new System.Drawing.Point(1027, 13);
+            this.button12.Location = new System.Drawing.Point(1069, 14);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(52, 30);
             this.button12.TabIndex = 6;
@@ -742,12 +744,12 @@
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.button_friends);
-            this.panel3.Controls.Add(this.button7);
+            this.panel3.Controls.Add(this.button_friend_manager);
             this.panel3.Controls.Add(this.button_cloud_library);
             this.panel3.Controls.Add(this.button__personal_library);
-            this.panel3.Location = new System.Drawing.Point(13, 179);
+            this.panel3.Location = new System.Drawing.Point(9, 179);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(168, 163);
+            this.panel3.Size = new System.Drawing.Size(172, 163);
             this.panel3.TabIndex = 39;
             // 
             // button_friends
@@ -767,22 +769,23 @@
             this.button_friends.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_friends.UseVisualStyleBackColor = false;
             // 
-            // button7
+            // button_friend_manager
             // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button7.FlatAppearance.BorderSize = 0;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(6, 83);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(150, 34);
-            this.button7.TabIndex = 43;
-            this.button7.TabStop = false;
-            this.button7.Text = "Descubrir";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.UseVisualStyleBackColor = false;
+            this.button_friend_manager.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button_friend_manager.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button_friend_manager.FlatAppearance.BorderSize = 0;
+            this.button_friend_manager.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_friend_manager.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_friend_manager.ForeColor = System.Drawing.Color.White;
+            this.button_friend_manager.Location = new System.Drawing.Point(6, 83);
+            this.button_friend_manager.Name = "button_friend_manager";
+            this.button_friend_manager.Size = new System.Drawing.Size(150, 34);
+            this.button_friend_manager.TabIndex = 43;
+            this.button_friend_manager.TabStop = false;
+            this.button_friend_manager.Text = "Descubrir";
+            this.button_friend_manager.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button_friend_manager.UseVisualStyleBackColor = false;
+            this.button_friend_manager.Click += new System.EventHandler(this.button_friend_manager_Click);
             // 
             // button_cloud_library
             // 
@@ -849,7 +852,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.panel_complement.ResumeLayout(false);
             this.panel_user.ResumeLayout(false);
             this.panel_user.PerformLayout();
@@ -899,7 +901,7 @@
         private System.Windows.Forms.Label label_dislike_counter;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label_song_reproductions;
         private System.Windows.Forms.Panel panel_complement;
         private System.Windows.Forms.Button button_id3_launcher;
         private System.Windows.Forms.Button button_add_music;
@@ -916,7 +918,7 @@
         private System.Windows.Forms.Panel panel_user;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button_friends;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button_friend_manager;
         private System.Windows.Forms.Button button_cloud_library;
         private System.Windows.Forms.Button button__personal_library;
     }

@@ -43,13 +43,6 @@
             this.textbox_lyric = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel_biblioteca = new System.Windows.Forms.Panel();
-            this.listview_data = new System.Windows.Forms.ListView();
-            this.column_song_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.column_artista = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.column_title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.column_album = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.column_year = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.column_genre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label_genre = new System.Windows.Forms.Label();
             this.label_year = new System.Windows.Forms.Label();
             this.label_album = new System.Windows.Forms.Label();
@@ -57,6 +50,14 @@
             this.label_artist = new System.Windows.Forms.Label();
             this.button__apply = new System.Windows.Forms.Button();
             this.button_cancel = new System.Windows.Forms.Button();
+            this.listview_data = new System.Windows.Forms.ListView();
+            this.column_song_id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_artista = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_album = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_year = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.column_genre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label8 = new System.Windows.Forms.Label();
             this.panel_biblioteca.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,10 +98,11 @@
             // 
             this.textbox_title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textbox_title.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textbox_title.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textbox_title.ForeColor = System.Drawing.Color.White;
             this.textbox_title.Location = new System.Drawing.Point(16, 31);
             this.textbox_title.Name = "textbox_title";
-            this.textbox_title.Size = new System.Drawing.Size(214, 20);
+            this.textbox_title.Size = new System.Drawing.Size(214, 22);
             this.textbox_title.TabIndex = 4;
             this.textbox_title.TextChanged += new System.EventHandler(this.textbox_title_TextChanged);
             // 
@@ -108,10 +110,11 @@
             // 
             this.textbox_artist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textbox_artist.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textbox_artist.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textbox_artist.ForeColor = System.Drawing.Color.White;
             this.textbox_artist.Location = new System.Drawing.Point(16, 91);
             this.textbox_artist.Name = "textbox_artist";
-            this.textbox_artist.Size = new System.Drawing.Size(214, 20);
+            this.textbox_artist.Size = new System.Drawing.Size(214, 22);
             this.textbox_artist.TabIndex = 5;
             this.textbox_artist.TextChanged += new System.EventHandler(this.textbox_artist_TextChanged);
             // 
@@ -119,10 +122,11 @@
             // 
             this.textbox_genre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textbox_genre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textbox_genre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textbox_genre.ForeColor = System.Drawing.Color.White;
             this.textbox_genre.Location = new System.Drawing.Point(16, 145);
             this.textbox_genre.Name = "textbox_genre";
-            this.textbox_genre.Size = new System.Drawing.Size(214, 20);
+            this.textbox_genre.Size = new System.Drawing.Size(214, 22);
             this.textbox_genre.TabIndex = 6;
             this.textbox_genre.TextChanged += new System.EventHandler(this.textbox_genre_TextChanged);
             // 
@@ -130,6 +134,7 @@
             // 
             this.textbox_comment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textbox_comment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textbox_comment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textbox_comment.ForeColor = System.Drawing.Color.White;
             this.textbox_comment.Location = new System.Drawing.Point(254, 88);
             this.textbox_comment.Multiline = true;
@@ -142,10 +147,11 @@
             // 
             this.textbox_year.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textbox_year.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textbox_year.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textbox_year.ForeColor = System.Drawing.Color.White;
             this.textbox_year.Location = new System.Drawing.Point(254, 31);
             this.textbox_year.Name = "textbox_year";
-            this.textbox_year.Size = new System.Drawing.Size(214, 20);
+            this.textbox_year.Size = new System.Drawing.Size(214, 22);
             this.textbox_year.TabIndex = 10;
             this.textbox_year.TextChanged += new System.EventHandler(this.textbox_year_TextChanged);
             // 
@@ -175,10 +181,11 @@
             // 
             this.textbox_album.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textbox_album.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textbox_album.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textbox_album.ForeColor = System.Drawing.Color.White;
             this.textbox_album.Location = new System.Drawing.Point(16, 199);
             this.textbox_album.Name = "textbox_album";
-            this.textbox_album.Size = new System.Drawing.Size(214, 20);
+            this.textbox_album.Size = new System.Drawing.Size(214, 22);
             this.textbox_album.TabIndex = 13;
             this.textbox_album.TextChanged += new System.EventHandler(this.textbox_album_TextChanged);
             // 
@@ -197,6 +204,7 @@
             // 
             this.textbox_lyric.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textbox_lyric.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textbox_lyric.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textbox_lyric.ForeColor = System.Drawing.Color.White;
             this.textbox_lyric.Location = new System.Drawing.Point(490, 31);
             this.textbox_lyric.Multiline = true;
@@ -218,69 +226,25 @@
             // panel_biblioteca
             // 
             this.panel_biblioteca.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_biblioteca.Controls.Add(this.label8);
             this.panel_biblioteca.Controls.Add(this.listview_data);
             this.panel_biblioteca.Controls.Add(this.label_genre);
             this.panel_biblioteca.Controls.Add(this.label_year);
             this.panel_biblioteca.Controls.Add(this.label_album);
             this.panel_biblioteca.Controls.Add(this.label_title);
             this.panel_biblioteca.Controls.Add(this.label_artist);
-            this.panel_biblioteca.Location = new System.Drawing.Point(16, 238);
+            this.panel_biblioteca.Location = new System.Drawing.Point(16, 235);
             this.panel_biblioteca.Name = "panel_biblioteca";
             this.panel_biblioteca.Size = new System.Drawing.Size(981, 174);
             this.panel_biblioteca.TabIndex = 25;
             this.panel_biblioteca.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_biblioteca_Paint);
-            // 
-            // listview_data
-            // 
-            this.listview_data.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.listview_data.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.column_song_id,
-            this.column_artista,
-            this.column_title,
-            this.column_album,
-            this.column_year,
-            this.column_genre});
-            this.listview_data.ForeColor = System.Drawing.Color.White;
-            this.listview_data.FullRowSelect = true;
-            this.listview_data.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listview_data.Location = new System.Drawing.Point(-1, 39);
-            this.listview_data.MultiSelect = false;
-            this.listview_data.Name = "listview_data";
-            this.listview_data.Size = new System.Drawing.Size(981, 130);
-            this.listview_data.TabIndex = 17;
-            this.listview_data.UseCompatibleStateImageBehavior = false;
-            this.listview_data.View = System.Windows.Forms.View.Details;
-            // 
-            // column_song_id
-            // 
-            this.column_song_id.Text = "ID";
-            // 
-            // column_artista
-            // 
-            this.column_artista.Text = "Artista";
-            // 
-            // column_title
-            // 
-            this.column_title.Text = "Título";
-            // 
-            // column_album
-            // 
-            this.column_album.Text = "Álbum";
-            // 
-            // column_year
-            // 
-            this.column_year.Text = "Año";
-            // 
-            // column_genre
-            // 
-            this.column_genre.Text = "Género";
             // 
             // label_genre
             // 
             this.label_genre.AutoSize = true;
             this.label_genre.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_genre.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_genre.Location = new System.Drawing.Point(504, 10);
+            this.label_genre.Location = new System.Drawing.Point(808, 19);
             this.label_genre.Name = "label_genre";
             this.label_genre.Size = new System.Drawing.Size(50, 15);
             this.label_genre.TabIndex = 5;
@@ -291,7 +255,7 @@
             this.label_year.AutoSize = true;
             this.label_year.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_year.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_year.Location = new System.Drawing.Point(421, 10);
+            this.label_year.Location = new System.Drawing.Point(666, 19);
             this.label_year.Name = "label_year";
             this.label_year.Size = new System.Drawing.Size(30, 15);
             this.label_year.TabIndex = 4;
@@ -302,7 +266,7 @@
             this.label_album.AutoSize = true;
             this.label_album.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_album.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_album.Location = new System.Drawing.Point(294, 10);
+            this.label_album.Location = new System.Drawing.Point(510, 19);
             this.label_album.Name = "label_album";
             this.label_album.Size = new System.Drawing.Size(47, 15);
             this.label_album.TabIndex = 3;
@@ -313,7 +277,7 @@
             this.label_title.AutoSize = true;
             this.label_title.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_title.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_title.Location = new System.Drawing.Point(182, 10);
+            this.label_title.Location = new System.Drawing.Point(357, 19);
             this.label_title.Name = "label_title";
             this.label_title.Size = new System.Drawing.Size(43, 15);
             this.label_title.TabIndex = 2;
@@ -324,7 +288,7 @@
             this.label_artist.AutoSize = true;
             this.label_artist.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_artist.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_artist.Location = new System.Drawing.Point(69, 10);
+            this.label_artist.Location = new System.Drawing.Point(219, 19);
             this.label_artist.Name = "label_artist";
             this.label_artist.Size = new System.Drawing.Size(48, 15);
             this.label_artist.TabIndex = 1;
@@ -337,7 +301,7 @@
             this.button__apply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button__apply.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button__apply.ForeColor = System.Drawing.Color.White;
-            this.button__apply.Location = new System.Drawing.Point(357, 424);
+            this.button__apply.Location = new System.Drawing.Point(332, 415);
             this.button__apply.Name = "button__apply";
             this.button__apply.Size = new System.Drawing.Size(171, 34);
             this.button__apply.TabIndex = 26;
@@ -353,7 +317,7 @@
             this.button_cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_cancel.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_cancel.ForeColor = System.Drawing.Color.White;
-            this.button_cancel.Location = new System.Drawing.Point(553, 424);
+            this.button_cancel.Location = new System.Drawing.Point(509, 415);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(171, 34);
             this.button_cancel.TabIndex = 27;
@@ -361,6 +325,69 @@
             this.button_cancel.Text = "Cancelar";
             this.button_cancel.UseVisualStyleBackColor = false;
             this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
+            // 
+            // listview_data
+            // 
+            this.listview_data.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.listview_data.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.column_song_id,
+            this.column_artista,
+            this.column_title,
+            this.column_album,
+            this.column_year,
+            this.column_genre});
+            this.listview_data.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listview_data.ForeColor = System.Drawing.Color.White;
+            this.listview_data.FullRowSelect = true;
+            this.listview_data.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.listview_data.Location = new System.Drawing.Point(-1, 47);
+            this.listview_data.MultiSelect = false;
+            this.listview_data.Name = "listview_data";
+            this.listview_data.Size = new System.Drawing.Size(988, 126);
+            this.listview_data.TabIndex = 18;
+            this.listview_data.UseCompatibleStateImageBehavior = false;
+            this.listview_data.View = System.Windows.Forms.View.Details;
+            // 
+            // column_song_id
+            // 
+            this.column_song_id.Text = "ID";
+            this.column_song_id.Width = 70;
+            // 
+            // column_artista
+            // 
+            this.column_artista.Text = "Artista";
+            this.column_artista.Width = 150;
+            // 
+            // column_title
+            // 
+            this.column_title.Text = "Título";
+            this.column_title.Width = 150;
+            // 
+            // column_album
+            // 
+            this.column_album.Text = "Álbum";
+            this.column_album.Width = 150;
+            // 
+            // column_year
+            // 
+            this.column_year.Text = "Año";
+            this.column_year.Width = 150;
+            // 
+            // column_genre
+            // 
+            this.column_genre.Text = "Género";
+            this.column_genre.Width = 150;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.Window;
+            this.label8.Location = new System.Drawing.Point(100, 19);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(41, 15);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Fecha";
             // 
             // form_id3_editor
             // 
@@ -412,13 +439,6 @@
         private System.Windows.Forms.TextBox textbox_lyric;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel_biblioteca;
-        private System.Windows.Forms.ListView listview_data;
-        private System.Windows.Forms.ColumnHeader column_song_id;
-        private System.Windows.Forms.ColumnHeader column_artista;
-        private System.Windows.Forms.ColumnHeader column_title;
-        private System.Windows.Forms.ColumnHeader column_album;
-        private System.Windows.Forms.ColumnHeader column_year;
-        private System.Windows.Forms.ColumnHeader column_genre;
         private System.Windows.Forms.Label label_genre;
         private System.Windows.Forms.Label label_year;
         private System.Windows.Forms.Label label_album;
@@ -426,5 +446,13 @@
         private System.Windows.Forms.Label label_artist;
         private System.Windows.Forms.Button button__apply;
         private System.Windows.Forms.Button button_cancel;
+        private System.Windows.Forms.ListView listview_data;
+        private System.Windows.Forms.ColumnHeader column_song_id;
+        private System.Windows.Forms.ColumnHeader column_artista;
+        private System.Windows.Forms.ColumnHeader column_title;
+        private System.Windows.Forms.ColumnHeader column_album;
+        private System.Windows.Forms.ColumnHeader column_year;
+        private System.Windows.Forms.ColumnHeader column_genre;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -80,7 +80,12 @@ namespace OdysseyDesktopClient
             label_dislike_counter.Text = ipop.getDislikeBySong(pSongID).ToString();
             label_dislike_counter.Update();
         }
-
+        private void refreshReproductions(string pSongID)
+        {
+            InfoProvider ipop = new InfoProvider();
+            label_song_reproductions.Text = ipop.getSongReproductions(pSongID).ToString();
+            label_song_reproductions.Update();
+        }
         private void listview_data_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listview_data.SelectedItems.Count > 0)
@@ -144,6 +149,30 @@ namespace OdysseyDesktopClient
         private void panel_complement_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_friend_manager_Click(object sender, EventArgs e)
+        {
+            var form_friend = new form_friend_manager(this._ProfileUser);
+            form_friend.Show();
+        }
+
+        private void button_next_Click(object sender, EventArgs e)
+        {
+            if (listview_data.SelectedItems.Count > 0)
+            {
+                button_id3_launcher.Visible = true;
+                int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
+                textbox_lyrics.Text = this._SongList[index]._ID3Lyrics;
+                textbox_comment.Text = this._SongList[index]._ID3Comment;
+                refreshLikeInfo(this._SongList[index]._SongID);
+                refreshDislikeInfo(this._SongList[index]._SongID);
+            }
         }
     }
 }
