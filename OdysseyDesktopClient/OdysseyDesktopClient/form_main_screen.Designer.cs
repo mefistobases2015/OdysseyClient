@@ -43,6 +43,7 @@
             this.label_title = new System.Windows.Forms.Label();
             this.label_artist = new System.Windows.Forms.Label();
             this.panel_biblioteca = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label_timer_final = new System.Windows.Forms.Label();
             this.label_timer_inicial = new System.Windows.Forms.Label();
@@ -64,7 +65,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label_dislike_counter = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -72,7 +73,6 @@
             this.button_id3_launcher = new System.Windows.Forms.Button();
             this.button_add_music = new System.Windows.Forms.Button();
             this.button_logo = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.label_profile_username = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
@@ -108,6 +108,7 @@
             this.column_album,
             this.column_year,
             this.column_genre});
+            this.listview_data.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listview_data.ForeColor = System.Drawing.Color.White;
             this.listview_data.FullRowSelect = true;
             this.listview_data.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
@@ -154,6 +155,7 @@
             // 
             this.textbox_lyrics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textbox_lyrics.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textbox_lyrics.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.textbox_lyrics.ForeColor = System.Drawing.Color.White;
             this.textbox_lyrics.Location = new System.Drawing.Point(827, 34);
             this.textbox_lyrics.Multiline = true;
@@ -243,6 +245,17 @@
             this.panel_biblioteca.Name = "panel_biblioteca";
             this.panel_biblioteca.Size = new System.Drawing.Size(1125, 273);
             this.panel_biblioteca.TabIndex = 24;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.Window;
+            this.label5.Location = new System.Drawing.Point(833, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(39, 15);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Letra";
             // 
             // openFileDialog1
             // 
@@ -473,7 +486,7 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label_dislike_counter);
             this.panel1.Location = new System.Drawing.Point(125, 454);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(111, 63);
@@ -505,16 +518,16 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Like\'s";
             // 
-            // label2
+            // label_dislike_counter
             // 
-            this.label2.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.Window;
-            this.label2.Location = new System.Drawing.Point(61, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 33);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "0";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_dislike_counter.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_dislike_counter.ForeColor = System.Drawing.SystemColors.Window;
+            this.label_dislike_counter.Location = new System.Drawing.Point(61, 20);
+            this.label_dislike_counter.Name = "label_dislike_counter";
+            this.label_dislike_counter.Size = new System.Drawing.Size(40, 33);
+            this.label_dislike_counter.TabIndex = 7;
+            this.label_dislike_counter.Text = "0";
+            this.label_dislike_counter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel2
             // 
@@ -607,17 +620,6 @@
             this.button_logo.TabStop = false;
             this.button_logo.Text = "Odyssey";
             this.button_logo.UseVisualStyleBackColor = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.Window;
-            this.label5.Location = new System.Drawing.Point(833, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 15);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "Letra";
             // 
             // label_profile_username
             // 
@@ -822,7 +824,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1326, 620);
+            this.ClientSize = new System.Drawing.Size(1326, 527);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel_complement);
             this.Controls.Add(this.panel2);
@@ -894,7 +896,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label_dislike_counter;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

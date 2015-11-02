@@ -67,14 +67,30 @@ namespace OdysseyDesktopClient
             this.refreshSongCollection();
         }
 
+        private void refreshLikeInfo(string pSongID)
+        {
+            InfoProvider ipop = new InfoProvider();
+            label_like_counter.Text = ipop.getLikeBySong(pSongID);
+            label_like_counter.Update();
+        }
+
+        private void refreshDislikeInfo(string pSongID)
+        {
+            InfoProvider ipop = new InfoProvider();
+            label_dislike_counter.Text = ipop.getDislikeBySong(pSongID);
+            label_dislike_counter.Update();
+        }
+
         private void listview_data_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listview_data.SelectedItems.Count > 0)
             {
+                button_id3_launcher.Visible = true;
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 textbox_lyrics.Text = this._SongList[index]._ID3Lyrics;
                 textbox_comment.Text = this._SongList[index]._ID3Comment;
-                button_id3_launcher.Visible = true;
+                refreshLikeInfo(this._SongList[index]._SongID);
+                refreshDislikeInfo(this._SongList[index]._SongID);
             }
             else
             {

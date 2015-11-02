@@ -79,5 +79,35 @@ namespace OdysseyDesktopClient
             this._MetadataToEdit._ID3Lyrics = textbox_lyric.Text;
             this._MetadataToEdit._ID3Comment = textbox_comment.Text;
         }
+
+        private void textbox_comment_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textbox_album_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textbox_genre_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textbox_artist_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textbox_title_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textbox_year_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -96,48 +96,58 @@
             // textbox_title
             // 
             this.textbox_title.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textbox_title.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textbox_title.ForeColor = System.Drawing.Color.White;
             this.textbox_title.Location = new System.Drawing.Point(16, 31);
             this.textbox_title.Name = "textbox_title";
             this.textbox_title.Size = new System.Drawing.Size(214, 20);
             this.textbox_title.TabIndex = 4;
+            this.textbox_title.TextChanged += new System.EventHandler(this.textbox_title_TextChanged);
             // 
             // textbox_artist
             // 
             this.textbox_artist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textbox_artist.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textbox_artist.ForeColor = System.Drawing.Color.White;
             this.textbox_artist.Location = new System.Drawing.Point(16, 91);
             this.textbox_artist.Name = "textbox_artist";
             this.textbox_artist.Size = new System.Drawing.Size(214, 20);
             this.textbox_artist.TabIndex = 5;
+            this.textbox_artist.TextChanged += new System.EventHandler(this.textbox_artist_TextChanged);
             // 
             // textbox_genre
             // 
             this.textbox_genre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textbox_genre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textbox_genre.ForeColor = System.Drawing.Color.White;
             this.textbox_genre.Location = new System.Drawing.Point(16, 145);
             this.textbox_genre.Name = "textbox_genre";
             this.textbox_genre.Size = new System.Drawing.Size(214, 20);
             this.textbox_genre.TabIndex = 6;
+            this.textbox_genre.TextChanged += new System.EventHandler(this.textbox_genre_TextChanged);
             // 
             // textbox_comment
             // 
             this.textbox_comment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textbox_comment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textbox_comment.ForeColor = System.Drawing.Color.White;
             this.textbox_comment.Location = new System.Drawing.Point(254, 88);
             this.textbox_comment.Multiline = true;
             this.textbox_comment.Name = "textbox_comment";
             this.textbox_comment.Size = new System.Drawing.Size(214, 131);
             this.textbox_comment.TabIndex = 11;
+            this.textbox_comment.TextChanged += new System.EventHandler(this.textbox_comment_TextChanged);
             // 
             // textbox_year
             // 
             this.textbox_year.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textbox_year.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textbox_year.ForeColor = System.Drawing.Color.White;
             this.textbox_year.Location = new System.Drawing.Point(254, 31);
             this.textbox_year.Name = "textbox_year";
             this.textbox_year.Size = new System.Drawing.Size(214, 20);
             this.textbox_year.TabIndex = 10;
+            this.textbox_year.TextChanged += new System.EventHandler(this.textbox_year_TextChanged);
             // 
             // label5
             // 
@@ -164,11 +174,13 @@
             // textbox_album
             // 
             this.textbox_album.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textbox_album.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textbox_album.ForeColor = System.Drawing.Color.White;
             this.textbox_album.Location = new System.Drawing.Point(16, 199);
             this.textbox_album.Name = "textbox_album";
             this.textbox_album.Size = new System.Drawing.Size(214, 20);
             this.textbox_album.TabIndex = 13;
+            this.textbox_album.TextChanged += new System.EventHandler(this.textbox_album_TextChanged);
             // 
             // label3
             // 
@@ -184,6 +196,7 @@
             // textbox_lyric
             // 
             this.textbox_lyric.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textbox_lyric.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textbox_lyric.ForeColor = System.Drawing.Color.White;
             this.textbox_lyric.Location = new System.Drawing.Point(490, 31);
             this.textbox_lyric.Multiline = true;
