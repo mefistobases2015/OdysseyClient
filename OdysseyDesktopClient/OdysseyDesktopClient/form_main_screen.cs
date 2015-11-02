@@ -67,20 +67,20 @@ namespace OdysseyDesktopClient
             this.refreshSongCollection();
         }
 
-        private void refreshLikeInfo(string pSongID)
+        private async void refreshLikeInfo(string pSongID)
         {
             InfoProvider ipop = new InfoProvider();
-            label_like_counter.Text = ipop.getLikeBySong(pSongID).ToString();
+            label_like_counter.Text = (await ipop.getLikeBySong(pSongID)).ToString();
             label_like_counter.Update();
         }
 
-        private void refreshDislikeInfo(string pSongID)
+        private async void refreshDislikeInfo(string pSongID)
         {
             InfoProvider ipop = new InfoProvider();
-            label_dislike_counter.Text = ipop.getDislikeBySong(pSongID).ToString();
+            label_dislike_counter.Text = (await ipop.getDislikeBySong(pSongID)).ToString();
             label_dislike_counter.Update();
         }
-        private void refreshReproductions(string pSongID)
+        private async void refreshReproductions(string pSongID)
         {
             InfoProvider ipop = new InfoProvider();
             label_song_reproductions.Text = ipop.getSongReproductions(pSongID).ToString();
@@ -93,9 +93,9 @@ namespace OdysseyDesktopClient
                 button_id3_launcher.Visible = true;
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 textbox_lyrics.Text = this._SongList[index]._ID3Lyrics;
-                textbox_comment.Text = this._SongList[index]._ID3Comment;
+                textbox_ID3Comment.Text = this._SongList[index]._ID3Comment;
                 refreshLikeInfo(this._SongList[index]._SongID);
-                refreshDislikeInfo(this._SongList[index]._SongID);
+                refreshDislikeInfo( this._SongList[index]._SongID);
             }
             else
             {
@@ -169,9 +169,31 @@ namespace OdysseyDesktopClient
                 button_id3_launcher.Visible = true;
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 textbox_lyrics.Text = this._SongList[index]._ID3Lyrics;
-                textbox_comment.Text = this._SongList[index]._ID3Comment;
+                textbox_comment_writer.Text = this._SongList[index]._ID3Comment;
                 refreshLikeInfo(this._SongList[index]._SongID);
                 refreshDislikeInfo(this._SongList[index]._SongID);
+            }
+        }
+
+        private async void button_like_Click(object sender, EventArgs e)
+        {
+            if (listview_data.SelectedItems.Count > 0)
+            {
+                int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
+                InfoProvider ipop = new InfoProvider();
+                await ipop.makeLike(this._SongList[index]._SongID);
+                this.refreshLikeInfo(this._SongList[index]._SongID);
+            }
+        }
+
+        private async void button_dislike_Click(object sender, EventArgs e)
+        {
+            if (listview_data.SelectedItems.Count > 0)
+            {
+                int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
+                InfoProvider ipop = new InfoProvider();
+                await ipop.makeDislike(this._SongList[index]._SongID);
+                this.refreshDislikeInfo(this._SongList[index]._SongID);
             }
         }
     }

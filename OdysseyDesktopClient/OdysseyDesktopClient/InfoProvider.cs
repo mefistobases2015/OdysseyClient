@@ -143,12 +143,12 @@ namespace OdysseyDesktopClient
         /// bool que es true si se realiza la acción, en cualquier otro caso
         /// retorna false.
         /// </returns>
-        public async Task<bool> makeLike(int pSongID)
+        public async Task<bool> makeLike(string pSongID)
         {
 
             RestTools rt = new RestTools();
 
-            bool flag = await rt.setLike2ASong(pSongID);
+            bool flag = await rt.setLike2ASong(Convert.ToInt32(pSongID));
 
             return flag;
         }
@@ -163,12 +163,12 @@ namespace OdysseyDesktopClient
         /// retorna true si se realiza la acción, en cualquier otro caso 
         /// retorna false.
         /// </returns>
-        public async Task<bool> makeDislike(int pSongID)
+        public async Task<bool> makeDislike(string pSongID)
         {
 
             RestTools rt = new RestTools();
 
-            bool flag = await rt.setDislike2ASong(pSongID);
+            bool flag = await rt.setDislike2ASong(Convert.ToInt32(pSongID));
 
             return flag;
         }

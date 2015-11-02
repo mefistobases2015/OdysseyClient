@@ -56,14 +56,13 @@
             this.button_play = new System.Windows.Forms.Button();
             this.button_previous = new System.Windows.Forms.Button();
             this.panel_comentario = new System.Windows.Forms.Panel();
-            this.listbox_comentarios = new System.Windows.Forms.ListBox();
             this.label_comentario = new System.Windows.Forms.Label();
-            this.textbox_comment = new System.Windows.Forms.TextBox();
+            this.textbox_comment_writer = new System.Windows.Forms.TextBox();
             this.progressbar_song = new System.Windows.Forms.ProgressBar();
             this.button_next = new System.Windows.Forms.Button();
             this.panel_player = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
+            this.button_dislike = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label_dislike_counter = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -87,6 +86,10 @@
             this.button_friend_manager = new System.Windows.Forms.Button();
             this.button_cloud_library = new System.Windows.Forms.Button();
             this.button__personal_library = new System.Windows.Forms.Button();
+            this.textbox_ID3Comment = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label_comment = new System.Windows.Forms.Label();
             this.panel_biblioteca.SuspendLayout();
             this.panel_like.SuspendLayout();
             this.panel_comentario.SuspendLayout();
@@ -292,7 +295,7 @@
             this.panel_like.Controls.Add(this.label_like_counter);
             this.panel_like.Location = new System.Drawing.Point(9, 454);
             this.panel_like.Name = "panel_like";
-            this.panel_like.Size = new System.Drawing.Size(110, 63);
+            this.panel_like.Size = new System.Drawing.Size(121, 63);
             this.panel_like.TabIndex = 29;
             // 
             // button_like
@@ -302,20 +305,21 @@
             this.button_like.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_like.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_like.ForeColor = System.Drawing.Color.White;
-            this.button_like.Location = new System.Drawing.Point(16, 3);
+            this.button_like.Location = new System.Drawing.Point(3, 3);
             this.button_like.Name = "button_like";
             this.button_like.Size = new System.Drawing.Size(39, 33);
             this.button_like.TabIndex = 9;
             this.button_like.TabStop = false;
             this.button_like.Text = "☀";
             this.button_like.UseVisualStyleBackColor = false;
+            this.button_like.Click += new System.EventHandler(this.button_like_Click);
             // 
             // label_like
             // 
             this.label_like.AutoSize = true;
             this.label_like.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_like.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_like.Location = new System.Drawing.Point(13, 39);
+            this.label_like.Location = new System.Drawing.Point(3, 39);
             this.label_like.Name = "label_like";
             this.label_like.Size = new System.Drawing.Size(42, 15);
             this.label_like.TabIndex = 8;
@@ -323,11 +327,11 @@
             // 
             // label_like_counter
             // 
-            this.label_like_counter.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_like_counter.Font = new System.Drawing.Font("Cambria", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_like_counter.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_like_counter.Location = new System.Drawing.Point(61, 20);
+            this.label_like_counter.Location = new System.Drawing.Point(48, 1);
             this.label_like_counter.Name = "label_like_counter";
-            this.label_like_counter.Size = new System.Drawing.Size(40, 33);
+            this.label_like_counter.Size = new System.Drawing.Size(68, 33);
             this.label_like_counter.TabIndex = 7;
             this.label_like_counter.Text = "0";
             this.label_like_counter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -397,26 +401,16 @@
             // panel_comentario
             // 
             this.panel_comentario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_comentario.Controls.Add(this.listbox_comentarios);
+            this.panel_comentario.Controls.Add(this.label_comment);
+            this.panel_comentario.Controls.Add(this.button4);
+            this.panel_comentario.Controls.Add(this.button3);
+            this.panel_comentario.Controls.Add(this.textbox_ID3Comment);
             this.panel_comentario.Controls.Add(this.label_comentario);
-            this.panel_comentario.Controls.Add(this.textbox_comment);
-            this.panel_comentario.Location = new System.Drawing.Point(242, 399);
+            this.panel_comentario.Controls.Add(this.textbox_comment_writer);
+            this.panel_comentario.Location = new System.Drawing.Point(263, 399);
             this.panel_comentario.Name = "panel_comentario";
-            this.panel_comentario.Size = new System.Drawing.Size(1071, 118);
+            this.panel_comentario.Size = new System.Drawing.Size(1050, 118);
             this.panel_comentario.TabIndex = 28;
-            // 
-            // listbox_comentarios
-            // 
-            this.listbox_comentarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.listbox_comentarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listbox_comentarios.Font = new System.Drawing.Font("Calibri", 9.75F);
-            this.listbox_comentarios.ForeColor = System.Drawing.Color.White;
-            this.listbox_comentarios.FormattingEnabled = true;
-            this.listbox_comentarios.ItemHeight = 15;
-            this.listbox_comentarios.Location = new System.Drawing.Point(3, 54);
-            this.listbox_comentarios.Name = "listbox_comentarios";
-            this.listbox_comentarios.Size = new System.Drawing.Size(1026, 15);
-            this.listbox_comentarios.TabIndex = 16;
             // 
             // label_comentario
             // 
@@ -429,17 +423,17 @@
             this.label_comentario.TabIndex = 15;
             this.label_comentario.Text = "Comentario";
             // 
-            // textbox_comment
+            // textbox_comment_writer
             // 
-            this.textbox_comment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textbox_comment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textbox_comment.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textbox_comment.ForeColor = System.Drawing.Color.White;
-            this.textbox_comment.Location = new System.Drawing.Point(3, 29);
-            this.textbox_comment.Name = "textbox_comment";
-            this.textbox_comment.Size = new System.Drawing.Size(1026, 23);
-            this.textbox_comment.TabIndex = 0;
-            this.textbox_comment.Text = "La mejor de RHCP";
+            this.textbox_comment_writer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textbox_comment_writer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textbox_comment_writer.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textbox_comment_writer.ForeColor = System.Drawing.Color.White;
+            this.textbox_comment_writer.Location = new System.Drawing.Point(3, 90);
+            this.textbox_comment_writer.Name = "textbox_comment_writer";
+            this.textbox_comment_writer.Size = new System.Drawing.Size(1026, 16);
+            this.textbox_comment_writer.TabIndex = 0;
+            this.textbox_comment_writer.Text = "Escribir un comentario....";
             // 
             // progressbar_song
             // 
@@ -485,47 +479,48 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.button_dislike);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label_dislike_counter);
-            this.panel1.Location = new System.Drawing.Point(125, 454);
+            this.panel1.Location = new System.Drawing.Point(136, 454);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(111, 63);
+            this.panel1.Size = new System.Drawing.Size(121, 63);
             this.panel1.TabIndex = 30;
             // 
-            // button3
+            // button_dislike
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(16, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(39, 33);
-            this.button3.TabIndex = 9;
-            this.button3.TabStop = false;
-            this.button3.Text = "☁";
-            this.button3.UseVisualStyleBackColor = false;
+            this.button_dislike.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button_dislike.FlatAppearance.BorderSize = 0;
+            this.button_dislike.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_dislike.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_dislike.ForeColor = System.Drawing.Color.White;
+            this.button_dislike.Location = new System.Drawing.Point(-1, 3);
+            this.button_dislike.Name = "button_dislike";
+            this.button_dislike.Size = new System.Drawing.Size(39, 33);
+            this.button_dislike.TabIndex = 9;
+            this.button_dislike.TabStop = false;
+            this.button_dislike.Text = "☁";
+            this.button_dislike.UseVisualStyleBackColor = false;
+            this.button_dislike.Click += new System.EventHandler(this.button_dislike_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Window;
-            this.label1.Location = new System.Drawing.Point(13, 39);
+            this.label1.Location = new System.Drawing.Point(1, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 15);
+            this.label1.Size = new System.Drawing.Size(58, 15);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Like\'s";
+            this.label1.Text = "Dislike\'s";
             // 
             // label_dislike_counter
             // 
-            this.label_dislike_counter.Font = new System.Drawing.Font("Cambria", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_dislike_counter.Font = new System.Drawing.Font("Cambria", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_dislike_counter.ForeColor = System.Drawing.SystemColors.Window;
-            this.label_dislike_counter.Location = new System.Drawing.Point(61, 20);
+            this.label_dislike_counter.Location = new System.Drawing.Point(49, 1);
             this.label_dislike_counter.Name = "label_dislike_counter";
-            this.label_dislike_counter.Size = new System.Drawing.Size(40, 33);
+            this.label_dislike_counter.Size = new System.Drawing.Size(67, 33);
             this.label_dislike_counter.TabIndex = 7;
             this.label_dislike_counter.Text = "0";
             this.label_dislike_counter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -537,7 +532,7 @@
             this.panel2.Controls.Add(this.label_song_reproductions);
             this.panel2.Location = new System.Drawing.Point(9, 400);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(227, 47);
+            this.panel2.Size = new System.Drawing.Size(248, 47);
             this.panel2.TabIndex = 31;
             // 
             // label3
@@ -822,6 +817,56 @@
             this.button__personal_library.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button__personal_library.UseVisualStyleBackColor = false;
             // 
+            // textbox_ID3Comment
+            // 
+            this.textbox_ID3Comment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textbox_ID3Comment.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textbox_ID3Comment.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textbox_ID3Comment.ForeColor = System.Drawing.Color.White;
+            this.textbox_ID3Comment.Location = new System.Drawing.Point(66, 24);
+            this.textbox_ID3Comment.Name = "textbox_ID3Comment";
+            this.textbox_ID3Comment.Size = new System.Drawing.Size(959, 16);
+            this.textbox_ID3Comment.TabIndex = 16;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Arial", 8F);
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(6, 54);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(18, 26);
+            this.button3.TabIndex = 46;
+            this.button3.TabStop = false;
+            this.button3.Text = "▼";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Arial", 8F);
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(30, 54);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(18, 26);
+            this.button4.TabIndex = 47;
+            this.button4.TabStop = false;
+            this.button4.Text = "▲";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // label_comment
+            // 
+            this.label_comment.Font = new System.Drawing.Font("Cambria", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_comment.ForeColor = System.Drawing.SystemColors.Window;
+            this.label_comment.Location = new System.Drawing.Point(63, 59);
+            this.label_comment.Name = "label_comment";
+            this.label_comment.Size = new System.Drawing.Size(725, 26);
+            this.label_comment.TabIndex = 48;
+            // 
             // form_main_screen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -886,9 +931,8 @@
         private System.Windows.Forms.Button button_play;
         private System.Windows.Forms.Button button_previous;
         private System.Windows.Forms.Panel panel_comentario;
-        private System.Windows.Forms.ListBox listbox_comentarios;
         private System.Windows.Forms.Label label_comentario;
-        private System.Windows.Forms.TextBox textbox_comment;
+        private System.Windows.Forms.TextBox textbox_comment_writer;
         private System.Windows.Forms.ProgressBar progressbar_song;
         private System.Windows.Forms.Button button_next;
         private System.Windows.Forms.Panel panel_player;
@@ -896,7 +940,7 @@
         private System.Windows.Forms.ColumnHeader column_song_id;
         private System.Windows.Forms.ColumnHeader column_genre;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_dislike;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label_dislike_counter;
         private System.Windows.Forms.Panel panel2;
@@ -921,6 +965,10 @@
         private System.Windows.Forms.Button button_friend_manager;
         private System.Windows.Forms.Button button_cloud_library;
         private System.Windows.Forms.Button button__personal_library;
+        private System.Windows.Forms.TextBox textbox_ID3Comment;
+        private System.Windows.Forms.Label label_comment;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
     }
 }
 
