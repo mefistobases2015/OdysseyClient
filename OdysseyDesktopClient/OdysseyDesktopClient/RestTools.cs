@@ -991,7 +991,7 @@ namespace OdysseyDesktopClient
 
                 if (response.IsSuccessStatusCode)
                 {
-                    result = Convert.ToInt32(await response.Content.ReadAsStringAsync());
+                    result = await response.Content.ReadAsAsync<int>();
                 }
                 else
                 {
@@ -1015,7 +1015,7 @@ namespace OdysseyDesktopClient
         /// int que es la cantidad de dislikes, si es -1 
         /// hubo un error
         /// </returns>
-        public async Task<int> getSongDislkes(int song_id)
+        public async Task<int> getSongDisLikes(int song_id)
         {
             int result = 0;
 
@@ -1029,7 +1029,7 @@ namespace OdysseyDesktopClient
 
                 if (response.IsSuccessStatusCode)
                 {
-                    result = Convert.ToInt32(await response.Content.ReadAsStringAsync());
+                    result = await response.Content.ReadAsAsync<int>();
                 }
                 else
                 {

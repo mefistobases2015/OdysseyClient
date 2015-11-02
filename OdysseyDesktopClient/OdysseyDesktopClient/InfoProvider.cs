@@ -89,10 +89,29 @@ namespace OdysseyDesktopClient
             throw new NotImplementedException();
         }
 
-        public bool verifyUser(string pUserName, string pPassword)
+        /// <summary>
+        /// Verifica el password con un nombre de usuario
+        /// </summary>
+        /// <param name="pUserName">
+        /// Nombre de usuario
+        /// </param>
+        /// <param name="pPassword">
+        /// password a comprobar
+        /// </param>
+        /// <returns>
+        /// true si el password es del usuario, false en cualquier
+        /// otro ccaso
+        /// </returns>
+        public async Task<bool> verifyUser(string pUserName, string pPassword)
         {
-            return true;
+
+            RestTools rt = new RestTools();
+
+            bool result = await rt.isPassword(pUserName, pPassword);
+
+            return result;
         }
+
         public List< string > getSongComments(int pSongID)
         {
             return null;
@@ -113,21 +132,88 @@ namespace OdysseyDesktopClient
         {
             return true;
         }
-        public bool makeLike(int pUserID)
+
+        /// <summary>
+        /// Da un like a una cacion
+        /// </summary>
+        /// <param name="pSongID">
+        /// Identificador de la canción a la que se le va a dar like
+        /// </param>
+        /// <returns>
+        /// bool que es true si se realiza la acción, en cualquier otro caso
+        /// retorna false.
+        /// </returns>
+        public async Task<bool> makeLike(int pSongID)
         {
-            return true;
+
+            RestTools rt = new RestTools();
+
+            bool flag = await rt.setLike2ASong(pSongID);
+
+            return flag;
         }
-        public bool makeDislike(int pUserID)
+
+        /// <summary>
+        /// Da un dislike a una cancion
+        /// </summary>
+        /// <param name="pSongID">
+        /// Identificador de la cancion a darle dislike
+        /// </param>
+        /// <returns>
+        /// retorna true si se realiza la acción, en cualquier otro caso 
+        /// retorna false.
+        /// </returns>
+        public async Task<bool> makeDislike(int pSongID)
         {
-            return false;
+
+            RestTools rt = new RestTools();
+
+            bool flag = await rt.setDislike2ASong(pSongID);
+
+            return flag;
         }
-        public int getLikeBySong(string pSongID)
+
+        /// <summary>
+        /// Obtiene la cantidad de likes de una cancion
+        /// </summary>
+        /// <param name="pSongID">
+        /// identificador de la canción a a que se le 
+        /// van a obtener los likes
+        /// </param>
+        /// <returns>
+        /// int con la cantidad de likes, en caso de fallo
+        /// retorna -1
+        /// </returns>
+        public async Task<int> getLikeBySong(string pSongID)
         {
-            return 0;
+
+            RestTools rt = new RestTools();
+
+            int likes = await rt.getSongLikes(Convert.ToInt32(pSongID));
+
+            return likes;
         }
-        public int getDislikeBySong(string pSongID)
+
+        /// <summary>
+        /// Obtiene la cantidad de dislikes de una cancion
+        /// </summary>
+        /// <param name="pSongID">
+        /// Identificador de la canción a la que se le obtienen
+        /// los dislikes
+        /// </param>
+        /// <returns>
+        /// int que es la cantidad de dislikes, en caso de error
+        /// retorna -1
+        /// </returns>
+        public async Task<int> getDislikeBySong(string pSongID)
         {
-            return 0;
+            RestTools rt = new RestTools();
+
+            int likes = await rt.getSongDisLikes(Convert.ToInt32(pSongID));
+
+            return likes;
         }
+
+
     }
 }
