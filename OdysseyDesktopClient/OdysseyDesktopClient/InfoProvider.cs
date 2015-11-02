@@ -175,11 +175,29 @@ namespace OdysseyDesktopClient
             return plays;
         }
 
-
-        public int getVisualization(int pSongID)
+        /// <summary>
+        /// Suma una reproducción a una canción
+        /// </summary>
+        /// <param name="pSongID">
+        /// Identificador de la canción
+        /// </param>
+        /// <returns>
+        /// return un bool que es true si se logra agregar la reproducción
+        /// y false en cualquier otro caso
+        /// </returns>
+        public async Task<bool> setSongReproduction(string pSongID)
         {
-            return 3;
+            bool result = false;
+
+            RestTools rt = new RestTools();
+
+            int song_id = Convert.ToInt32(pSongID);
+
+            result = await rt.setPlay2ASong(song_id);
+
+            return result;
         }
+        
         public bool hasuserLikes(string pUserName, int pSongID)
         {
             return true;
