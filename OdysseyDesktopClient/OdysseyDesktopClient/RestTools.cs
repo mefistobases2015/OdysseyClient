@@ -1163,7 +1163,7 @@ namespace OdysseyDesktopClient
         /// <summary>
         /// Se envia una solicitud a un usuario
         /// </summary>
-        /// <param name="p_emisor">
+        /// <param name="user_name">
         /// usario que hace la solicitud
         /// </param>
         /// <param name="p_receptor">
@@ -1172,11 +1172,11 @@ namespace OdysseyDesktopClient
         /// <returns>
         /// bool que es true si se completa la acción
         /// </returns>
-        public async Task<bool> setRequest(string p_emisor, string p_receptor)
+        public async Task<bool> setRequest(string user_name, string p_receptor)
         {
             bool result = false;
 
-            Solicitud request = new Solicitud() { emisor = p_emisor, receptor = p_receptor };
+            Solicitud request = new Solicitud() { emisor = user_name, receptor = p_receptor };
 
             using (HttpClient client = new HttpClient())
             {
@@ -1206,17 +1206,17 @@ namespace OdysseyDesktopClient
         /// <param name="p_emisor">
         /// el que enviaba la solicitud
         /// </param>
-        /// <param name="p_receptor">
+        /// <param name="user_name">
         /// usario que recibia la solicitud
         /// </param>
         /// <returns>
         /// bool que es true si se completa la acción
         /// </returns>
-        public async Task<bool> deleteRequest(string p_emisor, string p_receptor)
+        public async Task<bool> deleteRequest(string p_emisor, string user_name)
         {
             bool result = false;
 
-            Solicitud request = new Solicitud() { emisor = p_emisor, receptor = p_receptor };
+            Solicitud request = new Solicitud() { emisor = p_emisor, receptor = user_name };
 
             using (HttpClient client = new HttpClient())
             {
