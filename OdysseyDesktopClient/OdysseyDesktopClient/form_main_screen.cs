@@ -99,7 +99,6 @@ namespace OdysseyDesktopClient
                 button_id3_launcher.Visible = true;
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 textbox_lyrics.Text = this._SongList[index]._ID3Lyrics;
-                textbox_ID3Comment.Text = this._SongList[index]._ID3Comment;
                 this.refreshLikeInfo(this._SongList[index]._SongID);
                 this.refreshDislikeInfo( this._SongList[index]._SongID);
                 this.refreshReproductions(this._SongList[index]._SongID);
@@ -173,12 +172,12 @@ namespace OdysseyDesktopClient
         {
             if (listview_data.SelectedItems.Count > 0)
             {
-                button_id3_launcher.Visible = true;
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
-                textbox_lyrics.Text = this._SongList[index]._ID3Lyrics;
-                textbox_comment_writer.Text = this._SongList[index]._ID3Comment;
-                refreshLikeInfo(this._SongList[index]._SongID);
-                refreshDislikeInfo(this._SongList[index]._SongID);
+                if (listview_data.Items.Count > index + 1)
+                {
+                    listview_data.Items[index].Selected = false;
+                    listview_data.Items[index + 1].Selected = true;
+                }
             }
         }
 
@@ -202,6 +201,43 @@ namespace OdysseyDesktopClient
                 await ipop.makeDislike(this._SongList[index]._SongID);
                 this.refreshDislikeInfo(this._SongList[index]._SongID);
             }
+        }
+
+        private void textbox_comment_writer_Click(object sender, EventArgs e)
+        {
+            textbox_comment_writer.Text = "";
+        }
+
+        private void panel_comentario_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button_previous_Click(object sender, EventArgs e)
+        {
+            if (listview_data.SelectedItems.Count > 0)
+            {
+                int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
+                if (index > 0)
+                {
+                    listview_data.Items[index].Selected = false;
+                    listview_data.Items[index - 1].Selected = true;
+                }
+            }
+        }
+
+        private void button_play_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void button__personal_library_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel_user_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
