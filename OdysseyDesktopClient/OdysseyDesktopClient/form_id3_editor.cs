@@ -30,13 +30,13 @@ namespace OdysseyDesktopClient
 
         private void paintActualMetadata()
         {
-            textbox_title.Text = this._MetadataToEdit._ID3Title;
-            textbox_genre.Text = this._MetadataToEdit._ID3Genre;
-            textbox_artist.Text = this._MetadataToEdit._ID3Artist;
-            textbox_lyric.Text = this._MetadataToEdit._ID3Lyrics;
-            textbox_year.Text = this._MetadataToEdit._ID3Year;
+            textbox_title.Text =   this._MetadataToEdit._ID3Title;
+            textbox_genre.Text =   this._MetadataToEdit._ID3Genre;
+            textbox_artist.Text =  this._MetadataToEdit._ID3Artist;
+            textbox_lyric.Text =   this._MetadataToEdit._ID3Lyrics;
+            textbox_year.Text =    this._MetadataToEdit._ID3Year;
             textbox_comment.Text = this._MetadataToEdit._ID3Comment;
-            textbox_album.Text = this._MetadataToEdit._ID3Album;
+            textbox_album.Text =   this._MetadataToEdit._ID3Album;
         }
 
         private void form_id3_editor_Load(object sender, EventArgs e)

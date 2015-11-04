@@ -23,5 +23,52 @@ namespace OdysseyDesktopClient
         {
 
         }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button_friend_Click(object sender, EventArgs e)
+        {
+            button_accept.Enabled = false;
+            button_decline.Enabled = false;
+        }
+
+        private void button_friend_request_Click(object sender, EventArgs e)
+        {
+            button_accept.Enabled = true;
+            button_decline.Enabled = true;
+            this.showFriendCircle(this._UserSigned);
+        }
+
+        private void button_suggestion_Click(object sender, EventArgs e)
+        {
+            button_accept.Enabled = true;
+            button_decline.Enabled = true;
+            this.showFriendRequest(this._UserSigned);
+        }
+
+        private async void showFriendRequest(string pUsername)
+        {
+            InfoProvider ipop = new InfoProvider();
+            //ipop.g
+        }
+
+        private async void showFriendCircle(string pUsername)
+        {
+            InfoProvider ipop = new InfoProvider();
+            //ipop.g
+        }
     }
 }
