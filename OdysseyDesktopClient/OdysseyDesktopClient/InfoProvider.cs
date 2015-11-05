@@ -9,6 +9,7 @@ namespace OdysseyDesktopClient
 {
     class InfoProvider
     {
+        //listo
         public List< Metadata > getID3ByDirectory(List< string > pPatchs)
         {
             List<Metadata> id3Collection = new List<Metadata>();
@@ -19,6 +20,7 @@ namespace OdysseyDesktopClient
             }
             return id3Collection;
         }
+        //listo
         public async Task<List<Metadata>> getSongsByUserInCloud(string pUserName)
         {
             List<Metadata> result;
@@ -26,7 +28,7 @@ namespace OdysseyDesktopClient
             result = await rtop.getMetadataSongByUser(pUserName);
             return result;
         }
-
+        //listo
         public async Task<List<Metadata>> getSongsByUserInLocal(string pUserName)
         {
             List<Metadata> result;
@@ -34,12 +36,13 @@ namespace OdysseyDesktopClient
             result = await rtop.getMetadataSongByUser(pUserName);
             return result;
         }
-
+        //listo
         public void createMetadataVersionLocal(Metadata pMetadataVersion)
         {
             TagManager tmop = new TagManager();
             tmop.setID3(pMetadataVersion);
         }
+        //listo
         public async void createSong(Metadata pMetadataInitial)
         {
             RestTools rtop = new RestTools();
@@ -62,24 +65,76 @@ namespace OdysseyDesktopClient
                 }
             }
         }
+        //listo
         public async void createMetadataVersionCloud(Metadata pMetadataVersion)
         {
             RestTools rtop = new RestTools();
             Song songop = await rtop.createVersion(pMetadataVersion);
         }
 
+        /// <summary>
+        /// Busca los amigos de un usuario
+        /// </summary>
+        /// <param name="pUsername">
+        /// Nombre de usuario al que se le van a buscar 
+        /// los amigos
+        /// </param>
+        /// <returns>
+        /// Lista de string que tiene los nombres 
+        /// de los amigos
+        /// </returns>
+        public async Task <List< string >>  getFriendByUser(string pUsername)
+        {
+            List<string> friends = new List<string>();
 
-        public List< string > getFriendByUser(string pUsername)
-        {
-            return null;
+            RestTools rt = new RestTools();
+
+            friends = await rt.getFriends(pUsername);
+
+            return friends;
         }
-        public List< string > getFriendRequestByUser(string pUserName)
+
+        /// <summary>
+        /// Obtiene la los usuarios que han enviado solicitudes
+        /// de amistad 
+        /// </summary>
+        /// <param name="pUserName">
+        /// Nombre de usuario que tiene las solicitudes
+        /// </param>
+        /// <returns>
+        /// Lista de nombres de usuarioss que han enviado solicitud
+        /// </returns>
+        public async Task<List< string >> getFriendRequestByUser(string pUserName)
         {
-            return null;
+
+            List<string> friend_request = new List<string>();
+
+            RestTools rt = new RestTools();
+
+            friend_request = await rt.getRequests(pUserName);
+
+            return friend_request;
         }
-        public List< string > searchUsers(string pNameKey)
+
+        /// <summary>
+        /// Busca usuarios en la base de datos por partes 
+        /// de su nombre
+        /// </summary>
+        /// <param name="pNameKey">
+        /// nombre del usuario que se anda buscando
+        /// </param>
+        /// <returns>
+        /// Retorna lisa de posibles usuarios
+        /// </returns>
+        public async Task<List< string >> searchUsers(string pNameKey)
         {
-            return null;
+            List<string> srch_us = new List<string>();
+
+            RestTools rt = new RestTools();
+
+            srch_us = await rt.searchUsers(pNameKey);
+
+            return srch_us;
         }
 
         /// <summary>
