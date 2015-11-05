@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -70,6 +68,48 @@ namespace OdysseyDesktopClient
         {
             RestTools rtop = new RestTools();
             Song songop = await rtop.createVersion(pMetadataVersion);
+        }
+
+        /// <summary>
+        /// Carga una cancion en el blob
+        /// </summary>
+        /// <param name="pSongID">
+        /// Id de la canción a subir
+        /// </param>
+        /// <param name="pSongPath">
+        /// Dirección de la canción a subir
+        /// </param>
+        /// <returns>
+        /// bool que es true si la canción se sube correctamente
+        /// </returns>
+        public bool uploadSong(int pSongID, string pSongPath)
+        {
+            BlobManager bm = new BlobManager();
+
+            return bm.uploadSong(pSongID, pSongPath);
+
+        }
+
+        /// <summary>
+        /// Descarga una canción
+        /// </summary>
+        /// <param name="pSongID">
+        /// Id de la canción a descargar
+        /// </param>
+        /// <param name="pSongName">
+        /// Nombre de la canción a descargar 
+        /// </param>
+        /// <param name="pDestinyPath">
+        /// Destino de la descarga
+        /// </param>
+        /// <returns>
+        /// bool que es true si se descarga correctamente.
+        /// </returns>
+        public bool donwloadSong(string pSongID, string pSongName, string pDestinyPath)
+        {
+            BlobManager bm = new BlobManager();
+
+            return bm.downloadSong(Convert.ToInt32(pSongID), pSongName, pDestinyPath); 
         }
 
         /// <summary>
@@ -158,6 +198,7 @@ namespace OdysseyDesktopClient
             return await rt.createUser(pUserName, pName);
         }
 
+        //falta, no se que hace
         public void addMetadataVersion(int pID, List<string> pMetadata)
         {
             throw new NotImplementedException();
@@ -343,6 +384,69 @@ namespace OdysseyDesktopClient
             return likes;
         }
 
+        /// <summary>
+        /// Obtiene todas las versiones de metadata de
+        /// una cación
+        /// </summary>
+        /// <param name="pSongID">
+        /// id de la canción de la que se obtienen metadatas
+        /// </param>
+        /// <returns>
+        /// lista de metadatas
+        /// </returns>
+        public async Task<List<Version>> getListOfMetadata(string pSongID)
+        {
+            int song_id = Convert.ToInt32(pSongID);
 
+            RestTools rt = new RestTools();
+
+            return await rt.getVersionOfSong(song_id);
+        }
+
+        /// <summary>
+        /// Obtiene los comentarios de una canción
+        /// </summary>
+        /// <param name="pSongID">
+        /// ID de la canción que se le busan los 
+        /// comentarios
+        /// </param>
+        /// <returns>
+        /// Lista de string que viene comentario y usuario que 
+        /// hizo el comentario
+        /// </returns>
+        public async Task<List<string>> getSongComents(string pSongID)
+        {
+            int song_id = Convert.ToInt32(pSongID);
+
+            RestTools rt = new RestTools();
+
+            return await rt.getSongComments(song_id);
+        }
+        
+        /// <summary>
+        /// Crea un comentario en una canción
+        /// </summary>
+        /// <param name="pSongID">
+        /// Identificador de la canción a la que 
+        /// se le va a hacer un comentario
+        /// </param>
+        /// <param name="pUsrName">
+        /// Nombre del usaurio que hace el comentario
+        /// </param>
+        /// <param name="pComment">
+        /// Comentraio 
+        /// </param>
+        /// <returns>
+        /// bool que es true si se logra hacer el comentario con exito
+        /// en cualquier otro caso false.
+        /// </returns>
+        public async Task<bool> setComent(string pSongID, string pUsrName, string pComment)
+        {
+            RestTools rt = new RestTools();
+
+            int song_id = Convert.ToInt32(pSongID);
+
+            return await rt.setComment2ASong(song_id, pUsrName, pComment);
+        }
     }
 }
