@@ -1,0 +1,108 @@
+﻿<Window x:Name="Odyssey_Client" x:Class="OdysseyAplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OdysseyAplication"
+        mc:Ignorable="d"
+        Title="Odyssey Client" Height="579.736" Width="1290.783" Background="#FF141414" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Window.Resources>
+        <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="MainGrid" Margin="0,0,13,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="358*"/>
+            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition Width="142*"/>
+            <ColumnDefinition Width="670*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Height="60" Margin="0,489,10,0" VerticalAlignment="Top" Background="#FF323232" Grid.ColumnSpan="4">
+            <ProgressBar HorizontalAlignment="Left" Height="8" Margin="254,24,0,0" VerticalAlignment="Top" Width="821"/>
+            <Button x:Name="button_Copy3" Content="►" HorizontalAlignment="Left" Margin="75,10,0,13" Width="38" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="29.333" FontFamily="Arial"/>
+            <Button x:Name="button_Copy2" Content="▼" HorizontalAlignment="Left" Margin="127,10,0,13" Width="39" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486"/>
+            <Button x:Name="button_Copy4" Content="▲" HorizontalAlignment="Left" Margin="23,10,0,13" Width="38" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="16"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="205" Background="#FF323232">
+            <Label x:Name="label" Content="MÚSICA" HorizontalAlignment="Left" Width="158" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="9,84,0,309"/>
+            <Button x:Name="button_Copy" Content="Biblioteca Local" HorizontalAlignment="Left" Margin="18,150,0,246" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left"/>
+            <Button x:Name="button_Copy1" Content="Comunidad" HorizontalAlignment="Left" Margin="18,271,0,127" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left"/>
+            <Label x:Name="label_Copy" Content="SOCIAL" HorizontalAlignment="Left" Width="158" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="9,241,0,153"/>
+            <Label x:Name="label_Odyssey" Content="Odyssey" HorizontalAlignment="Left" Height="43" Margin="18,10,0,0" VerticalAlignment="Top" Width="158" Foreground="#FFC8C8C8" FontSize="26.667" HorizontalContentAlignment="Center"/>
+            <Button x:Name="button_Copy5" Content="Descubrir" HorizontalAlignment="Left" Margin="18,182,0,215" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left"/>
+            <Button x:Name="button_Copy7" Content="Biblioteca Cloud" HorizontalAlignment="Left" Margin="18,122,0,274" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="60" Margin="0,424,0,0" VerticalAlignment="Top" Width="205" Background="#FF323232">
+            <Label x:Name="label_Copy2" Content="Artista" HorizontalAlignment="Left" Width="186" Foreground="White" FontWeight="Bold" Margin="9,0,0,35"/>
+            <Label x:Name="label_Copy3" Content="Título de la canción" HorizontalAlignment="Left" Width="185" Foreground="White" Margin="10,25,0,10" RenderTransformOrigin="0.728,1.56"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="66" Margin="210,0,0,0" VerticalAlignment="Top" Width="1060" Grid.ColumnSpan="4">
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="172,16,0,0" VerticalAlignment="Top" Width="236" Height="34" BorderBrush="#FF242424">
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF242424" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+            </ComboBox>
+            <Button x:Name="button1" Content="↑" HorizontalAlignment="Left" Height="33" Margin="10,17,0,0" VerticalAlignment="Top" Width="33" Background="#FFC31414" Foreground="White" FontSize="18.667" BorderBrush="#FF242424"/>
+            <Button x:Name="button1_Copy" Content="+" HorizontalAlignment="Left" Height="33" Margin="86,17,0,0" VerticalAlignment="Top" Width="33" Background="#FF28BD19" Foreground="White" FontSize="18.667" BorderBrush="#FF242424"/>
+            <Button x:Name="button1_Copy1" Content="↓" HorizontalAlignment="Left" Height="33" Margin="48,17,0,0" VerticalAlignment="Top" Width="33" Background="#FF1A1A95" Foreground="White" FontSize="18.667" BorderBrush="#FF242424"/>
+            <Button x:Name="button1_Copy2" Content="#" HorizontalAlignment="Left" Height="33" Margin="124,17,0,0" VerticalAlignment="Top" Width="33" Background="#FF700E7A" Foreground="White" FontSize="18.667" BorderBrush="#FF242424"/>
+            <Label x:Name="label_Copy14" Content="Professional With Standars" HorizontalAlignment="Left" Width="263" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="787,13,0,13" FontSize="18.667" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+        </Grid>
+        <StackPanel HorizontalAlignment="Left" Height="39" Margin="210,434,0,0" VerticalAlignment="Top" Width="106" Orientation="Horizontal">
+            <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"/>
+            <Button x:Name="button_Copy6" Content="☀" HorizontalAlignment="Left" Width="34" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF141414" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486" Height="34" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_Copy5" Content="0" HorizontalAlignment="Left" Width="64" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" Margin="0,6,0,7"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="39" Margin="316,434,0,0" VerticalAlignment="Top" Width="106" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"/>
+            <Button x:Name="button_Copy8" Content="☁" HorizontalAlignment="Left" Width="34" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF141414" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486" Height="34" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_Copy8" Content="0" HorizontalAlignment="Left" Width="60" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" Margin="0,6,0,7"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="39" Margin="64,434,0,0" VerticalAlignment="Top" Width="123" Orientation="Horizontal" Grid.Column="1" Grid.ColumnSpan="2">
+            <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"/>
+            <Label x:Name="label_Copy6" Content="♫" HorizontalAlignment="Left" Width="28" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" FontSize="16" FontWeight="Bold"/>
+            <Label x:Name="label_Copy7" Content="0" HorizontalAlignment="Center" Width="78" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        </StackPanel>
+        <Grid Height="348" Margin="210,71,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4">
+            <ListView x:Name="listView" HorizontalAlignment="Left" Height="307" Margin="0,41,0,0" VerticalAlignment="Top" Width="749" Background="#FF141414" Foreground="White" SelectionMode="Single" BorderBrush="#FF242424">
+                <ListView.GroupStyle>
+                    <GroupStyle HeaderStringFormat="Canción"/>
+                    <GroupStyle HeaderStringFormat="Artista"/>
+                </ListView.GroupStyle>
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn Header="Canción" HeaderStringFormat="Canción" Width="150"/>
+                        <GridViewColumn Header="Artista" HeaderStringFormat="Artista" Width="150"/>
+                        <GridViewColumn Header="Albúm" Width="150"/>
+                        <GridViewColumn Header="Año" Width="150"/>
+                        <GridViewColumn Header="Género" Width="150"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="307" Margin="749,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="290" Background="#FF141414" Foreground="White" BorderBrush="#FF141414"/>
+            <Label x:Name="label_Copy4" Content="CANCIÓN" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="10,10,0,312"/>
+            <Label x:Name="label_Copy9" Content="ARTISTA" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="157,10,0,312"/>
+            <Label x:Name="label_Copy10" Content="ALBÚM" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="304,10,0,312"/>
+            <Label x:Name="label_Copy11" Content="AÑO" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="451,10,0,312"/>
+            <Label x:Name="label_Copy12" Content="GÉNERO" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="607,10,0,312"/>
+            <Label x:Name="label_Copy13" Content="LETRA" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="754,10,0,312"/>
+            <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="307" Margin="754,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="296" Background="#FF141414" Foreground="White" BorderBrush="#FF282828"/>
+        </Grid>
+        <StackPanel HorizontalAlignment="Left" Height="39" Margin="81,435,0,0" VerticalAlignment="Top" Width="322" Orientation="Horizontal" Grid.Column="2" Grid.ColumnSpan="2">
+            <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"/>
+            <Button x:Name="button_Copy11" Content="▲" HorizontalAlignment="Left" Width="34" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF141414" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486" VerticalContentAlignment="Center"/>
+            <Button x:Name="button_Copy12" Content="▼" HorizontalAlignment="Left" Width="34" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF141414" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_Copy16" Content="UserName" HorizontalAlignment="Center" Width="78" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="39"/>
+            <Label x:Name="label_Copy15" Content="UserComment" HorizontalAlignment="Center" Width="164" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,6,0,7"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="39" Margin="283,435,0,0" VerticalAlignment="Top" Width="374" Orientation="Horizontal" Grid.Column="3">
+            <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"/>
+            <TextBox x:Name="textBox_Copy" HorizontalAlignment="Center" Height="39" TextWrapping="Wrap" VerticalAlignment="Center" Width="370" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" Text="Escribir Texto Aquí...." VerticalContentAlignment="Center"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

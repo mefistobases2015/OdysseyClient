@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace pruebawpf.Properties
+namespace OdysseyAplication.Properties
 {
 
 
