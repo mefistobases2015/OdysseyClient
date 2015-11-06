@@ -236,14 +236,14 @@ namespace OdysseyDesktopClient
         /// <returns>
         /// lista de string donde tiene el autor y luego el comentario
         /// </returns>
-        public async Task< List< string > > getSongComments(string pSongID)
+        public async Task< List< Comment > > getSongComments(string pSongID)
         {
 
             int song_id = Convert.ToInt32(pSongID);
 
             RestTools rt = new RestTools();
 
-            List<string> list = await rt.getSongComments(song_id);
+            List<Comment> list = await rt.getSongComments(song_id);
             
             return list;
         }
@@ -401,26 +401,6 @@ namespace OdysseyDesktopClient
             RestTools rt = new RestTools();
 
             return await rt.getVersionOfSong(song_id);
-        }
-
-        /// <summary>
-        /// Obtiene los comentarios de una canción
-        /// </summary>
-        /// <param name="pSongID">
-        /// ID de la canción que se le busan los 
-        /// comentarios
-        /// </param>
-        /// <returns>
-        /// Lista de string que viene comentario y usuario que 
-        /// hizo el comentario
-        /// </returns>
-        public async Task<List<string>> getSongComents(string pSongID)
-        {
-            int song_id = Convert.ToInt32(pSongID);
-
-            RestTools rt = new RestTools();
-
-            return await rt.getSongComments(song_id);
         }
         
         /// <summary>

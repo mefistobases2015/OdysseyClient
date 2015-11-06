@@ -1087,9 +1087,9 @@ namespace OdysseyDesktopClient
         /// <returns>
         /// List de string que tiene comentarios y quien los hizo
         /// </returns>
-        public async Task<List<string>> getSongComments(int song_id)
+        public async Task<List<Comment>> getSongComments(int song_id)
         {
-            List<string> result = new List<string>();
+            List<Comment> result = new List<Comment>();
 
             using (HttpClient client = new HttpClient())
             {
@@ -1103,10 +1103,20 @@ namespace OdysseyDesktopClient
                 {
                     string[] res = await response.Content.ReadAsAsync<string[]>();
 
-                    for (int i = 0; i < res.Length; i++)
+                    if(res.Length%2 == 0)
                     {
-                        result.Add(res[i]);
+                        for (int i = 0; i < res.Length; i += 2)
+                        {
+                            Comment tmp = new Comment() { autor = res[i], cmt = res[i+1] };
+                            result.Add(tmp);
+                        }
                     }
+                    else
+                    {
+                        Console.WriteLine("Error con los comentarios");
+                    }
+
+                    
                 }
                 else
                 {
@@ -1825,6 +1835,7 @@ namespace OdysseyDesktopClient
 
             return users;
         }
+
 
     }
 }
