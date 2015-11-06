@@ -112,7 +112,7 @@ namespace OdysseyDesktopClient
         private void combobox_user_searcher_TextChanged(object sender, EventArgs e)
         {
             // Searchs Users By A String Key
-            List<String> peopleList = this._IPOP.searchUsers(combobox_user_searcher.Text);
+            List<String> peopleList = null;// this._IPOP.searchUsers(combobox_user_searcher.Text);
             combobox_user_searcher.BeginUpdate();
             combobox_user_searcher.Items.Clear();
             foreach(String user_name in peopleList)

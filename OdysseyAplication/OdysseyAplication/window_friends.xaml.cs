@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace pruebawpf
+namespace OdysseyAplication
 {
     /// <summary>
-    /// Lógica de interacción para UserControl1.xaml
+    /// Lógica de interacción para window_friends.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class window_friends : Window
     {
-        public UserControl1()
+        public window_friends()
         {
             InitializeComponent();
         }
