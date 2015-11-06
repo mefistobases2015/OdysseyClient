@@ -7,9 +7,9 @@ namespace OdysseyAplication
     class InfoProvider
     {
         //listo
-        public List<Metadata> getID3ByDirectory(List<string> pPatchs)
+        public List<DataSong> getID3ByDirectory(List<string> pPatchs)
         {
-            List<Metadata> id3Collection = new List<Metadata>();
+            List<DataSong> id3Collection = new List<DataSong>();
             TagManager tmop = new TagManager();
             foreach (string directory in pPatchs)
             {
@@ -18,43 +18,42 @@ namespace OdysseyAplication
             return id3Collection;
         }
         //listo
-        public async Task<List<Metadata>> getSongsByUserInCloud(string pUserName)
+        public async Task<List<DataSong>> getSongsByUserInCloud(string pUserName)
         {
-            List<Metadata> result;
+            List<DataSong> result;
             RestTools rtop = new RestTools();
             result = await rtop.getMetadataSongByUser(pUserName);
             return result;
         }
         //listo
-        public async Task<List<Metadata>> getSongsByUserInLocal(string pUserName)
+        public async Task<List<DataSong>> getSongsByUserInLocal(string pUserName)
         {
-            List<Metadata> result;
+            List<DataSong> result;
             RestTools rtop = new RestTools();
             result = await rtop.getMetadataSongByUser(pUserName);
             return result;
         }
         //listo
-        public void createMetadataVersionLocal(Metadata pMetadataVersion)
+        public void createDataSongVersionLocal(DataSong pDataSongVersion)
         {
             TagManager tmop = new TagManager();
-            tmop.setID3(pMetadataVersion);
+            tmop.setID3(pDataSongVersion);
         }
         //listo
-        public async void createSong(Metadata pMetadataInitial)
+        public async void createSong(DataSong pDataSongInitial)
         {
             RestTools rtop = new RestTools();
-            Song songop = await rtop.createSong(pMetadataInitial._SongDirectory);
+            Song songop = await rtop.createSong(pDataSongInitial._SongDirectory);
             if (songop == null)
             {
                 Console.WriteLine("Canción No Fue Creada");
             }
             else
             {
-                pMetadataInitial._SongID = songop.song_id.ToString();
-                Song songtop = await rtop.createVersion(pMetadataInitial);
+                pDataSongInitial._SongID = songop.song_id.ToString();
+                Song songtop = await rtop.createVersion(pDataSongInitial);
                 if (songtop == null)
                 {
-                    MessageBox.Show(("Primera Versión Creada"));
                 }
                 else
                 {
@@ -63,10 +62,10 @@ namespace OdysseyAplication
             }
         }
         //listo
-        public async void createMetadataVersionCloud(Metadata pMetadataVersion)
+        public async void createDataSongVersionCloud(DataSong pDataSongVersion)
         {
             RestTools rtop = new RestTools();
-            Song songop = await rtop.createVersion(pMetadataVersion);
+            Song songop = await rtop.createVersion(pDataSongVersion);
         }
 
         /// <summary>
@@ -198,7 +197,7 @@ namespace OdysseyAplication
         }
 
         //falta, no se que hace
-        public void addMetadataVersion(int pID, List<string> pMetadata)
+        public void addDataSongVersion(int pID, List<string> pDataSong)
         {
             throw new NotImplementedException();
         }
@@ -393,7 +392,7 @@ namespace OdysseyAplication
         /// <returns>
         /// lista de metadatas
         /// </returns>
-        public async Task<List<Version>> getListOfMetadata(string pSongID)
+        public async Task<List<Version>> getListOfDataSong(string pSongID)
         {
             int song_id = Convert.ToInt32(pSongID);
 

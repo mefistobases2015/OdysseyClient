@@ -19,9 +19,41 @@ namespace OdysseyAplication
     /// </summary>
     public partial class window_friends : Window
     {
-        public window_friends()
+        InfoProvider _InfoManager { get; set; }
+        public string _SignedUser { get; set; }
+        public window_friends(string pUsername)
         {
+            this._SignedUser = pUsername;
             InitializeComponent();
+        }
+        private async void button_friends_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> list = (await this._InfoManager.getFriendByUser(this._SignedUser));
+            listView.Items.Clear();
+            foreach (string m8 in list)
+            {
+                listView.Items.Add(m8);
+            }
+        }
+
+        private async void button_friend_request_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> list = (await this._InfoManager.getFriendRequestByUser(this._SignedUser));
+            listView.Items.Clear();
+            foreach(string m8 in list)
+            {
+                listView.Items.Add(m8);
+            }
+        }
+
+        private async void button_recomendations_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> list = (await this._InfoManager.getFriendRequestByUser(this._SignedUser));
+            listView.Items.Clear();
+            foreach (string m8 in list)
+            {
+                listView.Items.Add(m8);
+            };
         }
     }
 }

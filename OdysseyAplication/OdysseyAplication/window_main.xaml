@@ -19,12 +19,12 @@
             <ProgressBar HorizontalAlignment="Left" Height="8" Margin="254,24,0,0" VerticalAlignment="Top" Width="821"/>
             <Button x:Name="button_Copy3" Content="►" HorizontalAlignment="Left" Margin="75,10,0,13" Width="38" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="29.333" FontFamily="Arial"/>
             <Button x:Name="button_nextSong" Content="▼" HorizontalAlignment="Left" Margin="127,10,0,13" Width="39" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486"/>
-            <Button x:Name="button_prevSong" Content="▲" HorizontalAlignment="Left" Margin="23,10,0,13" Width="38" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="16"/>
+            <Button x:Name="button_prevSong" Content="▲" HorizontalAlignment="Left" Margin="23,10,0,13" Width="38" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="16" Click="button_prevSong_Click"/>
         </Grid>
         <Grid HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="205" Background="#FF323232">
             <Label x:Name="label" Content="MÚSICA" HorizontalAlignment="Left" Width="158" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="9,84,0,309"/>
             <Button x:Name="button_Copy" Content="Biblioteca Local" HorizontalAlignment="Left" Margin="18,150,0,246" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left"/>
-            <Button x:Name="button_community" Content="Comunidad" HorizontalAlignment="Left" Margin="18,271,0,127" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_community_Click"/>
+            <Button x:Name="button_community" Content="Comunidad" HorizontalAlignment="Left" Margin="18,271,0,127" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_community_Click" FocusVisualStyle="{DynamicResource ControlStyle1}"/>
             <Label x:Name="label_Copy" Content="SOCIAL" HorizontalAlignment="Left" Width="158" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="9,241,0,153"/>
             <Label x:Name="label_Odyssey" Content="Odyssey" HorizontalAlignment="Left" Height="43" Margin="18,10,0,0" VerticalAlignment="Top" Width="158" Foreground="#FFC8C8C8" FontSize="26.667" HorizontalContentAlignment="Center"/>
             <Button x:Name="button_descovery" Content="Descubrir" HorizontalAlignment="Left" Margin="18,182,0,215" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_descovery_Click"/>
@@ -81,16 +81,16 @@
             <Label x:Name="label_Copy13" Content="LETRA" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="754,10,0,312"/>
             <TextBox x:Name="textbox_lyrics" HorizontalAlignment="Left" Height="307" Margin="754,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="296" Background="#FF141414" Foreground="White" BorderBrush="#FF282828"/>
         </Grid>
-        <StackPanel HorizontalAlignment="Left" Height="39" Margin="533,436,0,0" VerticalAlignment="Top" Width="353" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Left" Height="60" Margin="533,424,0,0" VerticalAlignment="Top" Width="353" Orientation="Horizontal">
             <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"/>
             <Button x:Name="button_nextComment" Content="▲" HorizontalAlignment="Left" Width="34" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF141414" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486" VerticalContentAlignment="Center" Click="button_nextComment_Click"/>
-            <Button x:Name="button_prevComment" Content="▼" HorizontalAlignment="Left" Width="34" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF141414" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486" VerticalContentAlignment="Center"/>
-            <Label x:Name="label_comment_user" Content="UserName" HorizontalAlignment="Center" Width="78" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="39"/>
+            <Button x:Name="button_prevComment" Content="▼" HorizontalAlignment="Left" Width="34" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF141414" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486" VerticalContentAlignment="Center" Click="button_prevComment_Click"/>
+            <Label x:Name="label_comment_user" Content="UserName" HorizontalAlignment="Center" Width="78" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="39" FontWeight="Bold"/>
             <Label x:Name="label_comment_text" Content="UserComment" HorizontalAlignment="Center" Width="201" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,6,0,7"/>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Left" Height="39" Margin="891,435,0,0" VerticalAlignment="Top" Width="374" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Left" Height="49" Margin="891,435,0,0" VerticalAlignment="Top" Width="361" Orientation="Horizontal">
             <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"/>
-            <TextBox x:Name="textBox_Copy" HorizontalAlignment="Center" Height="39" TextWrapping="Wrap" VerticalAlignment="Center" Width="370" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" Text="Escribir Texto Aquí...." VerticalContentAlignment="Center"/>
+            <TextBox x:Name="textBox_Copy" HorizontalAlignment="Center" Height="49" TextWrapping="Wrap" VerticalAlignment="Center" Width="358" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" Text="Escribir Texto Aquí...." VerticalContentAlignment="Center"/>
         </StackPanel>
 
     </Grid>

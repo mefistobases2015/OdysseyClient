@@ -430,7 +430,7 @@ namespace OdysseyAplication
         /// </summary>
         /// <param name="met"></param>
         /// <returns></returns>
-        public async Task<Song> createVersion(Metadata met)
+        public async Task<Song> createVersion(DataSong met)
         {
             Song song;
 
@@ -665,9 +665,9 @@ namespace OdysseyAplication
         /// <returns>
         /// Lista de objetos metadata 
         /// </returns>
-        public async Task<List<Metadata>> getMetadataSongByUser(string user_name)
+        public async Task<List<DataSong>> getMetadataSongByUser(string user_name)
         {
-            List<Metadata> songs_metadata = new List<Metadata>();
+            List<DataSong> songs_metadata = new List<DataSong>();
 
             using (HttpClient client = new HttpClient())
             {
@@ -681,7 +681,7 @@ namespace OdysseyAplication
 
                 for (int i = 0; i < sngs_n_met.Length; i++)
                 {
-                    Metadata song_met = new Metadata();
+                    DataSong song_met = new DataSong();
 
                     song_met._ID3Artist = (sngs_n_met[i].id3v2_author);
 
