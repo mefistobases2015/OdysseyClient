@@ -677,25 +677,34 @@ namespace OdysseyAplication
 
                 HttpResponseMessage response = await client.GetAsync(songs_by_user_path + "/" + user_name);
 
-                MetadataAndSong[] sngs_n_met = await response.Content.ReadAsAsync<MetadataAndSong[]>();
-
-                for (int i = 0; i < sngs_n_met.Length; i++)
+                if (response.IsSuccessStatusCode)
                 {
-                    DataSong song_met = new DataSong();
+                    MetadataAndSong[] sngs_n_met = await response.Content.ReadAsAsync<MetadataAndSong[]>();
 
-                    song_met._ID3Artist = (sngs_n_met[i].id3v2_author);
+                    for (int i = 0; i < sngs_n_met.Length; i++)
+                    {
+                        DataSong song_met = new DataSong();
 
-                    song_met._ID3Title = (sngs_n_met[i].id3v2_title);
-                    song_met._ID3Album = (sngs_n_met[i].id3v2_album);
-                    song_met._ID3Year = (sngs_n_met[i].year.ToString());
-                    song_met._ID3Genre = (sngs_n_met[i].id3v2_genre);
-                    song_met._ID3Lyrics = (sngs_n_met[i].id3v2_lyrics);
-                    song_met._SongID = (sngs_n_met[i].song_id.ToString());
-                    song_met._ID3Title = (sngs_n_met[i].song_name);
-                    song_met._SongDirectory = (sngs_n_met[i].song_directory);
-                    song_met._SubmissionDate = (sngs_n_met[i].submission_date);
-                    songs_metadata.Add(song_met);
+                        song_met._ID3Artist = (sngs_n_met[i].id3v2_author);
+
+                        song_met._ID3Title = (sngs_n_met[i].id3v2_title);
+                        song_met._ID3Album = (sngs_n_met[i].id3v2_album);
+                        song_met._ID3Year = (sngs_n_met[i].year.ToString());
+                        song_met._ID3Genre = (sngs_n_met[i].id3v2_genre);
+                        song_met._ID3Lyrics = (sngs_n_met[i].id3v2_lyrics);
+                        song_met._SongID = (sngs_n_met[i].song_id.ToString());
+                        song_met._ID3Title = (sngs_n_met[i].song_name);
+                        song_met._SongDirectory = (sngs_n_met[i].song_directory);
+                        song_met._SubmissionDate = (sngs_n_met[i].submission_date);
+                        songs_metadata.Add(song_met);
+                    }
                 }
+                else
+                {
+                    songs_metadata = null;
+                }
+
+               
             }
             return songs_metadata;
 
@@ -1163,6 +1172,7 @@ namespace OdysseyAplication
                 }
                 else
                 {
+                    requests = null;
                     Console.WriteLine("Status Code {0}", response.StatusCode);
                 }
             }
@@ -1326,6 +1336,8 @@ namespace OdysseyAplication
                 else
                 {
                     Console.WriteLine("Status Code {0}", response.StatusCode);
+
+                    list = null;
                 }
             }
 
@@ -1648,6 +1660,7 @@ namespace OdysseyAplication
                 else
                 {
                     Console.WriteLine("Status Code {0}", response.StatusCode);
+                    versions = null;
                 }
             }
 
@@ -1684,6 +1697,7 @@ namespace OdysseyAplication
                 else
                 {
                     Console.WriteLine("Status Code {0}", response.StatusCode);
+                    topSongs = null;
                 }
             }
 
@@ -1720,6 +1734,7 @@ namespace OdysseyAplication
                 else
                 {
                     Console.WriteLine("Status Code {0}", response.StatusCode);
+                    topSongs = null;
                 }
             }
 
@@ -1757,6 +1772,7 @@ namespace OdysseyAplication
                 else
                 {
                     Console.WriteLine("Status Code {0}", response.StatusCode);
+                    bottom_users = null;
                 }
             }
 
@@ -1791,6 +1807,7 @@ namespace OdysseyAplication
                 else
                 {
                     Console.WriteLine("Status Code {0}", response.StatusCode);
+                    top_users = null;
                 }
             }
 
@@ -1830,6 +1847,7 @@ namespace OdysseyAplication
                 else
                 {
                     Console.WriteLine("Status Code {0}", response.StatusCode);
+                    users = null;
                 }
             }
 
