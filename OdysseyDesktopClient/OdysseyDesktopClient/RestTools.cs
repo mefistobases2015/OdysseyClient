@@ -11,11 +11,11 @@ namespace OdysseyDesktopClient
         private string server_url = "http://odysseyop.azurewebsites.net/";
         private string format = "application/json";
 
-        private string credentials_path = "api/Credenciales";
-        private string songs_path = "api/Canciones";
-        private string versions_path = "api/Versiones";
-        private string properties_path = "api/Propiedades";
-        private string songs_by_user_path = "api/CancionesUsuario";
+        private const string credentials_path = "api/Credenciales";
+        private const string songs_path = "api/Canciones";
+        private const string versions_path = "api/Versiones";
+        private const string properties_path = "api/Propiedades";
+        private const string songs_by_user_path = "api/CancionesUsuario";
         private const string mongo_songs_path = "api/CancionesMongo";
         private const string friend_request_path = "api/Solicitud";
         private const string mongo_users_path = "api/Usuarios";
@@ -1602,6 +1602,228 @@ namespace OdysseyDesktopClient
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Obtiene la version 
+        /// </summary>
+        /// <param name="song_id">
+        /// Identificador de la canción que se le va a 
+        /// buscar la metadata
+        /// </param>
+        /// <returns>
+        /// 
+        /// </returns>
+        public async Task<List<Version>> getVersionOfSong(int song_id)
+        {
+            List<Version> versions = new List<Version>();
+
+            using(HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.GetAsync(songs_by_user_path+"VersionesMetadata?id="+song_id.ToString());
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Version[] versions_array = await response.Content.ReadAsAsync<Version[]>();
+
+                    for(int i = 0; i < versions_array.Length; i++)
+                    {
+                        versions.Add(versions_array[i]);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                }
+            }
+
+            return versions;
+        }
+
+        /// <summary>
+        /// Obtiene una lista con el top 10 de las cancioens 
+        /// </summary>
+        /// <returns>
+        /// Lista con top 10 de las canciones
+        /// </returns>
+        public async Task<List<TopSong>> getTop10ofSongs()
+        {
+            List<TopSong> topSongs = new List<TopSong>();
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.GetAsync(mongo_songs_path+"/Top10Like");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TopSong[] topSongs_array = await response.Content.ReadAsAsync<TopSong[]>();
+
+                    for(int i = 0; i < topSongs_array.Length; i++)
+                    {
+                        topSongs.Add(topSongs_array[i]);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                }
+            }
+
+            return topSongs;
+        }
+
+        /// <summary>
+        /// Obtiene una lista con las 10 canciones con más dislikes
+        /// </summary>
+        /// <returns>
+        /// Lista de TopSong, canciones con mas dislikes
+        /// </returns>
+        public async Task<List<TopSong>> getTop10Dislike()
+        {
+            List<TopSong> topSongs = new List<TopSong>();
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.GetAsync(mongo_songs_path + "/Top10Dislike");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TopSong[] topSongs_array = await response.Content.ReadAsAsync<TopSong[]>();
+
+                    for (int i = 0; i < topSongs_array.Length; i++)
+                    {
+                        topSongs.Add(topSongs_array[i]);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                }
+            }
+
+            return topSongs;
+        }
+
+        /// <summary>
+        /// Obitne la lista de los usuarios menos populares
+        /// </summary>
+        /// <returns>
+        /// Lista de con objetos TopUser que tiene son menos
+        /// populares
+        /// </returns>
+        public async Task<List<TopUser>> getBottomUser()
+        {
+            List<TopUser> bottom_users = new List<TopUser>();
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.GetAsync(mongo_users_path+"/Bottom3");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TopUser[] topSongs_array = await response.Content.ReadAsAsync<TopUser[]>();
+
+                    for (int i = 0; i < topSongs_array.Length; i++)
+                    {
+                        bottom_users.Add(topSongs_array[i]);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                }
+            }
+
+            return bottom_users;
+        }
+
+        /// <summary>
+        /// Obtiene la lista con con el top 3 de los usuarios
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<TopUser>> getTopUsers()
+        {
+            List<TopUser> top_users = new List<TopUser>();
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.GetAsync(mongo_users_path + "/Top3");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TopUser[] topUsers_array = await response.Content.ReadAsAsync<TopUser[]>();
+
+                    for (int i = 0; i < topUsers_array.Length; i++)
+                    {
+                        top_users.Add(topUsers_array[i]);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                }
+            }
+
+            return top_users;
+        }
+
+        /// <summary>
+        /// Con una sentencia busca los usuarios que calzen o se parezca
+        /// </summary>
+        /// <param name="user_id">
+        /// nombre que se parece y se esta buscando
+        /// </param>
+        /// <returns>
+        /// Lista de los posibles usuarios
+        /// </returns>
+        public async Task<List<string>> searchUsers(string user_id)
+        {
+            List<string> users = new List<string>();
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.GetAsync(mongo_users_path+"/BuscaUsuarios?id="+user_id);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string[] users_array = await response.Content.ReadAsAsync<string[]>();
+
+                    for(int i = 0; i < users_array.Length; i++)
+                    {
+                        users.Add(users_array[i]);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                }
+            }
+
+            return users;
         }
 
     }

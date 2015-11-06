@@ -113,4 +113,19 @@ namespace OdysseyDesktopClient
         public string autor { get; set; }
         public string cmt { get; set; }
     }
+
+    public class TopSong
+    {
+        public int song_id { get; set; }
+        public string song_name { get; set; }
+        public int cantidad { get; set; }
+    }
+
+    public class TopUser
+    {
+        public string user_name { get; set; }
+        public int puntaje { get; set; }
+    }
+
+
 }
