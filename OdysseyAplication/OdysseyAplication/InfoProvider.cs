@@ -7,9 +7,9 @@ namespace OdysseyAplication
     class InfoProvider
     {
         //listo
-        public List<DataSong> getID3ByDirectory(List<string> pPatchs)
+        public List<Metadata> getID3ByDirectory(List<string> pPatchs)
         {
-            List<DataSong> id3Collection = new List<DataSong>();
+            List<Metadata> id3Collection = new List<Metadata>();
             TagManager tmop = new TagManager();
             foreach (string directory in pPatchs)
             {
@@ -18,42 +18,43 @@ namespace OdysseyAplication
             return id3Collection;
         }
         //listo
-        public async Task<List<DataSong>> getSongsByUserInCloud(string pUserName)
+        public async Task<List<Metadata>> getSongsByUserInCloud(string pUserName)
         {
-            List<DataSong> result;
+            List<Metadata> result;
             RestTools rtop = new RestTools();
-            result = await rtop.getDataSongSongByUser(pUserName);
+            result = await rtop.getMetadataSongByUser(pUserName);
             return result;
         }
         //listo
-        public async Task<List<DataSong>> getSongsByUserInLocal(string pUserName)
+        public async Task<List<Metadata>> getSongsByUserInLocal(string pUserName)
         {
-            List<DataSong> result;
+            List<Metadata> result;
             RestTools rtop = new RestTools();
-            result = await rtop.getDataSongSongByUser(pUserName);
+            result = await rtop.getMetadataSongByUser(pUserName);
             return result;
         }
         //listo
-        public void createDataSongVersionLocal(DataSong pDataSongVersion)
+        public void createMetadataVersionLocal(Metadata pMetadataVersion)
         {
             TagManager tmop = new TagManager();
-            tmop.setID3(pDataSongVersion);
+            tmop.setID3(pMetadataVersion);
         }
         //listo
-        public async void createSong(DataSong pDataSongInitial)
+        public async void createSong(Metadata pMetadataInitial)
         {
             RestTools rtop = new RestTools();
-            Song songop = await rtop.createSong(pDataSongInitial._SongDirectory);
+            Song songop = await rtop.createSong(pMetadataInitial._SongDirectory);
             if (songop == null)
             {
                 Console.WriteLine("Canción No Fue Creada");
             }
             else
             {
-                pDataSongInitial._SongID = songop.song_id.ToString();
-                Song songtop = await rtop.createVersion(pDataSongInitial);
+                pMetadataInitial._SongID = songop.song_id.ToString();
+                Song songtop = await rtop.createVersion(pMetadataInitial);
                 if (songtop == null)
                 {
+                    MessageBox.Show(("Primera Versión Creada"));
                 }
                 else
                 {
@@ -62,10 +63,10 @@ namespace OdysseyAplication
             }
         }
         //listo
-        public async void createDataSongVersionCloud(DataSong pDataSongVersion)
+        public async void createMetadataVersionCloud(Metadata pMetadataVersion)
         {
             RestTools rtop = new RestTools();
-            Song songop = await rtop.createVersion(pDataSongVersion);
+            Song songop = await rtop.createVersion(pMetadataVersion);
         }
 
         /// <summary>
@@ -197,7 +198,7 @@ namespace OdysseyAplication
         }
 
         //falta, no se que hace
-        public void addDataSongVersion(int pID, List<string> pDataSong)
+        public void addMetadataVersion(int pID, List<string> pMetadata)
         {
             throw new NotImplementedException();
         }
@@ -234,14 +235,14 @@ namespace OdysseyAplication
         /// <returns>
         /// lista de string donde tiene el autor y luego el comentario
         /// </returns>
-        public async Task<List<string>> getSongComments(string pSongID)
+        public async Task<List<Comment>> getSongComments(string pSongID)
         {
 
             int song_id = Convert.ToInt32(pSongID);
 
             RestTools rt = new RestTools();
 
-            List<string> list = await rt.getSongComments(song_id);
+            List<Comment> list = await rt.getSongComments(song_id);
 
             return list;
         }
@@ -383,42 +384,22 @@ namespace OdysseyAplication
         }
 
         /// <summary>
-        /// Obtiene todas las versiones de DataSong de
+        /// Obtiene todas las versiones de metadata de
         /// una cación
         /// </summary>
         /// <param name="pSongID">
-        /// id de la canción de la que se obtienen DataSongs
+        /// id de la canción de la que se obtienen metadatas
         /// </param>
         /// <returns>
-        /// lista de DataSongs
+        /// lista de metadatas
         /// </returns>
-        public async Task<List<Version>> getListOfDataSong(string pSongID)
+        public async Task<List<Version>> getListOfMetadata(string pSongID)
         {
             int song_id = Convert.ToInt32(pSongID);
 
             RestTools rt = new RestTools();
 
             return await rt.getVersionOfSong(song_id);
-        }
-
-        /// <summary>
-        /// Obtiene los comentarios de una canción
-        /// </summary>
-        /// <param name="pSongID">
-        /// ID de la canción que se le busan los 
-        /// comentarios
-        /// </param>
-        /// <returns>
-        /// Lista de string que viene comentario y usuario que 
-        /// hizo el comentario
-        /// </returns>
-        public async Task<List<string>> getSongComents(string pSongID)
-        {
-            int song_id = Convert.ToInt32(pSongID);
-
-            RestTools rt = new RestTools();
-
-            return await rt.getSongComments(song_id);
         }
 
         /// <summary>

@@ -313,15 +313,15 @@ namespace OdysseyAplication
         }
 
         /// <summary>
-        /// Crea una version de DataSong
+        /// Crea una version de metadata
         /// </summary>
         /// <param name="new_version">
-        /// Lista con los valores de DataSong, viene con los 
+        /// Lista con los valores de metadata, viene con los 
         /// datos necesario para crear una version
         /// </param>
         /// <param name="p_song_directory">
         /// Directorio de la cancion, para ser
-        /// creada y agregarle la version de DataSong
+        /// creada y agregarle la version de metadata
         /// </param>
         /// <returns>
         /// Objeto Song con los parametros de la canción
@@ -353,7 +353,7 @@ namespace OdysseyAplication
                     if (updsng.IsSuccessStatusCode)
                     {
                         song = await updsng.Content.ReadAsAsync<Song>();
-                        Console.WriteLine("\nSe creo correctamente, DataSong_id {0}", song.metadata_id);
+                        Console.WriteLine("\nSe creo correctamente, metadata_id {0}", song.metadata_id);
                     }
 
                     else
@@ -408,7 +408,7 @@ namespace OdysseyAplication
 
                     if (updsng.IsSuccessStatusCode)
                     {
-                        Console.WriteLine("\nSe creo correctamente, DataSong_id {0}", song.metadata_id);
+                        Console.WriteLine("\nSe creo correctamente, metadata_id {0}", song.metadata_id);
                     }
                     else
                     {
@@ -430,7 +430,7 @@ namespace OdysseyAplication
         /// </summary>
         /// <param name="met"></param>
         /// <returns></returns>
-        public async Task<Song> createVersion(DataSong met)
+        public async Task<Song> createVersion(Metadata met)
         {
             Song song;
 
@@ -456,7 +456,7 @@ namespace OdysseyAplication
 
                     if (updsng.IsSuccessStatusCode)
                     {
-                        Console.WriteLine("\nSe creo correctamente, DataSong_id {0}", song.metadata_id);
+                        Console.WriteLine("\nSe creo correctamente, metadata_id {0}", song.metadata_id);
                     }
                     else
                     {
@@ -582,7 +582,7 @@ namespace OdysseyAplication
         /// <returns>
         /// bool true si se logra asignar, false en cualquier otro caso
         /// </returns>
-        public async Task<bool> setDataSongSong(int p_song_id, int p_version_id)
+        public async Task<bool> setMetadataSong(int p_song_id, int p_version_id)
         {
             bool flag = false;
 
@@ -657,17 +657,17 @@ namespace OdysseyAplication
         }
 
         /// <summary>
-        /// Obtiene todas las canciones de un usario y su DataSong
+        /// Obtiene todas las canciones de un usario y su metadata
         /// </summary>
         /// <param name="user_name">
         /// nombre del usuario
         /// </param>
         /// <returns>
-        /// Lista de objetos DataSong 
+        /// Lista de objetos metadata 
         /// </returns>
-        public async Task<List<DataSong>> getDataSongSongByUser(string user_name)
+        public async Task<List<Metadata>> getMetadataSongByUser(string user_name)
         {
-            List<DataSong> songs_DataSong = new List<DataSong>();
+            List<Metadata> songs_metadata = new List<Metadata>();
 
             using (HttpClient client = new HttpClient())
             {
@@ -681,7 +681,7 @@ namespace OdysseyAplication
 
                 for (int i = 0; i < sngs_n_met.Length; i++)
                 {
-                    DataSong song_met = new DataSong();
+                    Metadata song_met = new Metadata();
 
                     song_met._ID3Artist = (sngs_n_met[i].id3v2_author);
 
@@ -694,10 +694,10 @@ namespace OdysseyAplication
                     song_met._ID3Title = (sngs_n_met[i].song_name);
                     song_met._SongDirectory = (sngs_n_met[i].song_directory);
                     song_met._SubmissionDate = (sngs_n_met[i].submission_date);
-                    songs_DataSong.Add(song_met);
+                    songs_metadata.Add(song_met);
                 }
             }
-            return songs_DataSong;
+            return songs_metadata;
 
         }
 
@@ -1087,9 +1087,9 @@ namespace OdysseyAplication
         /// <returns>
         /// List de string que tiene comentarios y quien los hizo
         /// </returns>
-        public async Task<List<string>> getSongComments(int song_id)
+        public async Task<List<Comment>> getSongComments(int song_id)
         {
-            List<string> result = new List<string>();
+            List<Comment> result = new List<Comment>();
 
             using (HttpClient client = new HttpClient())
             {
@@ -1103,10 +1103,20 @@ namespace OdysseyAplication
                 {
                     string[] res = await response.Content.ReadAsAsync<string[]>();
 
-                    for (int i = 0; i < res.Length; i++)
+                    if (res.Length % 2 == 0)
                     {
-                        result.Add(res[i]);
+                        for (int i = 0; i < res.Length; i += 2)
+                        {
+                            Comment tmp = new Comment() { autor = res[i], cmt = res[i + 1] };
+                            result.Add(tmp);
+                        }
                     }
+                    else
+                    {
+                        Console.WriteLine("Error con los comentarios");
+                    }
+
+
                 }
                 else
                 {
@@ -1609,7 +1619,7 @@ namespace OdysseyAplication
         /// </summary>
         /// <param name="song_id">
         /// Identificador de la canción que se le va a 
-        /// buscar la DataSong
+        /// buscar la metadata
         /// </param>
         /// <returns>
         /// 
@@ -1624,7 +1634,7 @@ namespace OdysseyAplication
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage response = await client.GetAsync(songs_by_user_path + "VersionesDataSong?id=" + song_id.ToString());
+                HttpResponseMessage response = await client.GetAsync(songs_by_user_path + "VersionesMetadata?id=" + song_id.ToString());
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -1825,6 +1835,7 @@ namespace OdysseyAplication
 
             return users;
         }
+
 
     }
 }
