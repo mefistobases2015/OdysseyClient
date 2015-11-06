@@ -426,5 +426,22 @@ namespace OdysseyAplication
 
             return await rt.setComment2ASong(song_id, pUsrName, pComment);
         }
+
+        /// <summary>
+        /// Obtiene las reconmendaciones de amigos 
+        /// </summary>
+        /// <param name="usr_name">
+        /// Usuario a l que se le hacen recomendaciones
+        /// </param>
+        /// <returns>
+        /// Lista de string donde estan las recomendaciones.
+        /// </returns>
+        public async Task<List<string>> getRecomendations(string usr_name)
+        {
+            RestTools rt = new RestTools();
+
+            return await rt.getRecomendedFriends(usr_name);
+        }
+
     }
 }
