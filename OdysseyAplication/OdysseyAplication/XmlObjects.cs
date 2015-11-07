@@ -43,9 +43,6 @@ namespace OdysseyAplication
         [XmlAttribute("musicUrl")]
         public string musicUrl { set; get; }
 
-        [XmlAttribute("dwnlMusicPath")]
-        public string downloadMusicPath { set; get; }
-
     }
 
 }
