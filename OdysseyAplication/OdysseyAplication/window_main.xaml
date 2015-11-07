@@ -33,7 +33,7 @@
         </Grid>
         <Grid HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="205" Background="#FF323232">
             <Label x:Name="label" Content="MÚSICA" HorizontalAlignment="Left" Width="158" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="28,166,0,227"/>
-            <Button x:Name="button_local" Content="Biblioteca Local" HorizontalAlignment="Left" Margin="37,232,0,164" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left"/>
+            <Button x:Name="button_local" Content="Biblioteca Local" HorizontalAlignment="Left" Margin="37,232,0,164" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_local_Click"/>
             <Button x:Name="button_community" Content="Comunidad" HorizontalAlignment="Left" Margin="37,353,0,45" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_community_Click" >
             </Button>
             <Label x:Name="label_Copy" Content="SOCIAL" HorizontalAlignment="Left" Width="158" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="28,323,0,71"/>
@@ -55,7 +55,7 @@
             <Button x:Name="button_id3Editor" Content="#" HorizontalAlignment="Left" Height="33" Margin="124,17,0,0" VerticalAlignment="Top" Width="33" Background="#FF700E7A" Foreground="White" FontSize="18.667" BorderBrush="#FF242424" Click="button_id3Editor_Click" ContentTemplate="{DynamicResource Control}"/>
             <Label x:Name="label_signedUserName" Content="Professional With Standars" HorizontalAlignment="Left" Width="263" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="787,13,0,13" FontSize="18.667" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
         </Grid>
-        <Grid Height="348" Margin="210,71,0,0" VerticalAlignment="Top">
+        <Grid Height="348" Margin="205,71,0,0" VerticalAlignment="Top">
             <ListView x:Name="listview_data" Style="{StaticResource myListboxStyle}" HorizontalAlignment="Left" Height="297" Margin="0,41,0,0" VerticalAlignment="Top" Width="749" Background="#FF141414" Foreground="White" SelectionMode="Single" BorderBrush="#FF242424" SelectionChanged="listview_data_SelectionChanged">
                 <ListView.GroupStyle>
                     <GroupStyle HeaderStringFormat="Canción"/>
@@ -78,7 +78,7 @@
             <Label x:Name="label_Copy13" Content="LETRA" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="754,10,0,312"/>
             <TextBox x:Name="textbox_lyrics" HorizontalAlignment="Center" Height="297" Margin="749,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="312" Background="#FF141414" Foreground="White" BorderBrush="#FF282828" HorizontalContentAlignment="Center"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="87" Margin="210,408,0,0" VerticalAlignment="Top" Width="1071">
+        <Grid x:Name="socialGrid" HorizontalAlignment="Left" Height="87" Margin="210,408,0,0" VerticalAlignment="Top" Width="1071">
             <StackPanel HorizontalAlignment="Left" Height="39" Margin="5,30,0,0" VerticalAlignment="Top" Width="106" Orientation="Horizontal">
                 <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"/>
                 <Button x:Name="button_makeLike" Content="☀" HorizontalAlignment="Left" Width="34" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF141414" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.5,0.5" Height="34" VerticalContentAlignment="Center" Margin="0,2,0,0" VerticalAlignment="Top" Click="button_makeLike_Click"/>

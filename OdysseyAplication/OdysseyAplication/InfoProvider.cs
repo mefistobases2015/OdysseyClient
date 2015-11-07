@@ -26,11 +26,9 @@ namespace OdysseyAplication
             return result;
         }
         //listo
-        public async Task<List<DataSong>> getSongsByUserInLocal(string pUserName)
+        public List<DataSong> getSongsByUserInLocal(string pUserName)
         {
-            List<DataSong> result;
-            RestTools rtop = new RestTools();
-            result = await rtop.getMetadataSongByUser(pUserName);
+            List<DataSong> result = null;
             return result;
         }
         //listo
@@ -441,6 +439,16 @@ namespace OdysseyAplication
             RestTools rt = new RestTools();
 
             return await rt.getRecomendedFriends(usr_name);
+        }
+
+        public void syncCloudLibray(string pUserName, List<string> pCompleteSong)
+        {
+
+        }
+
+        public void syncLocalLibrary(string pUserName, List<string> pCompleteSong)
+        {
+
         }
 
     }
