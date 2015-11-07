@@ -24,10 +24,12 @@
     <Grid x:Name="MainGrid" Margin="0,0,4,0">
 
         <Grid Height="60" Margin="0,500,0,0" VerticalAlignment="Top" Background="#FF323232">
-            <ProgressBar HorizontalAlignment="Left" Height="8" Margin="254,24,0,0" VerticalAlignment="Top" Width="821"/>
-            <Button x:Name="button_Copy3" Content="►" HorizontalAlignment="Left" Margin="75,10,0,13" Width="38" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="29.333" FontFamily="Arial"/>
+            <ProgressBar HorizontalAlignment="Left" Height="7" Margin="245,26,0,0" VerticalAlignment="Top" Width="748"/>
+            <Button x:Name="button_playSong" Content="▶" HorizontalAlignment="Left" Margin="75,10,0,13" Width="38" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="29.333" FontFamily="Arial" Click="button_playSong_Click"/>
             <Button x:Name="button_nextSong" Content="▶▏" HorizontalAlignment="Left" Margin="127,10,0,13" Width="39" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486" Click="button_nextSong_Click"/>
             <Button x:Name="button_prevSong" Content="▏◀" HorizontalAlignment="Left" Margin="23,10,0,13" Width="38" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="16" Click="button_prevSong_Click"/>
+            <Label x:Name="label_dislike_counter_Copy" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8"  Margin="188,17,0,17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_dislike_counter_Copy1" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8" Margin="1007,17,0,17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </Grid>
         <Grid HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="205" Background="#FF323232">
             <Label x:Name="label" Content="MÚSICA" HorizontalAlignment="Left" Width="158" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="28,166,0,227"/>
@@ -45,8 +47,8 @@
             <Label x:Name="label_actualSong_artist" Content="Artista" HorizontalAlignment="Left" Width="186" Foreground="White" FontWeight="Bold" Margin="9,10,0,35" VerticalContentAlignment="Bottom"/>
             <Label x:Name="label_actualSong_Title" Content="Título de la canción" HorizontalAlignment="Left" Width="185" Foreground="White" Margin="10,36,0,5" RenderTransformOrigin="0.728,1.56"/>
         </Grid>
-        <Grid HorizontalAlignment="Left" Height="66" Margin="210,0,0,0" VerticalAlignment="Top" Width="1060" Grid.ColumnSpan="4">
-            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="172,29,0,0" VerticalAlignment="Top" Width="146" Height="21" BorderBrush="#FF242424" IsEditable="True" Background="Black" RenderTransformOrigin="0.513,1.381" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}"/>
+        <Grid HorizontalAlignment="Left" Height="66" Margin="205,0,0,0" VerticalAlignment="Top" Width="1065">
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="172,17,0,0" VerticalAlignment="Top" Width="146" Height="33" BorderBrush="#FF242424" IsEditable="True" Background="Black" RenderTransformOrigin="0.513,1.381" ItemContainerStyle="{DynamicResource ComboBoxItemStyle1}"/>
             <Button x:Name="button_upload" Content="↑" HorizontalAlignment="Left" Height="33" Margin="10,17,0,0" VerticalAlignment="Top" Width="33" Background="#FFC31414" Foreground="White" FontSize="18.667" BorderBrush="#FF242424"/>
             <Button x:Name="button_add" Content="+" HorizontalAlignment="Left" Height="33" Margin="86,17,0,0" VerticalAlignment="Top" Width="33" Background="#FF28BD19" Foreground="White" FontSize="18.667" BorderBrush="#FF242424"/>
             <Button x:Name="button1_download" Content="↓" HorizontalAlignment="Left" Height="33" Margin="48,17,0,0" VerticalAlignment="Top" Width="33" Background="#FF1A1A95" Foreground="White" FontSize="18.667" BorderBrush="#FF242424" />
@@ -92,12 +94,12 @@
                 <Label x:Name="label_Copy6" Content="♫" HorizontalAlignment="Left" Width="28" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" FontSize="16" FontWeight="Bold"/>
                 <Label x:Name="label_play_counter" Content="0" HorizontalAlignment="Center" Width="62" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="0,6,0,7"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Height="70" Margin="628,13,0,0" VerticalAlignment="Top" Width="414" Orientation="Horizontal">
+            <StackPanel HorizontalAlignment="Left" Height="70" Margin="628,13,0,0" VerticalAlignment="Top" Width="433" Orientation="Horizontal">
                 <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"/>
                 <Button x:Name="button_nextComment" Content="▲" HorizontalAlignment="Left" Width="34" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF141414" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486" VerticalContentAlignment="Center" Click="button_nextComment_Click"/>
                 <Button x:Name="button_prevComment" Content="▼" HorizontalAlignment="Left" Width="34" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF141414" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486" VerticalContentAlignment="Center" Click="button_prevComment_Click"/>
-                <Label x:Name="label_comment_user" Content="UserName" HorizontalAlignment="Center" Width="78" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="70" FontWeight="Bold"/>
-                <Label x:Name="label_comment_text" Content="UserComment" HorizontalAlignment="Center" Width="265" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="70"/>
+                <Label x:Name="label_comment_user" Content="" HorizontalAlignment="Center" Width="78" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="70" FontWeight="Bold"/>
+                <Label x:Name="label_comment_text" Content="" HorizontalAlignment="Center" Width="284" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="70"/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Left" Height="70" Margin="328,12,0,0" VerticalAlignment="Top" Width="284" Orientation="Horizontal">
                 <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"/>

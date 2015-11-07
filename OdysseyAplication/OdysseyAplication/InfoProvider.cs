@@ -107,7 +107,7 @@ namespace OdysseyAplication
         {
             BlobManager bm = new BlobManager();
 
-            return bm.downloadSong(Convert.ToInt32(pSongID), pSongName, pDestinyPath);
+            return bm.downloadSong(Convert.ToInt32(pSongID), pSongName);
         }
 
         /// <summary>
