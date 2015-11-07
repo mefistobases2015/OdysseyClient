@@ -34,6 +34,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
@@ -108,12 +113,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BlobManager.cs" />
+    <Compile Include="Mp3Player.cs" />
+    <Compile Include="MP3StreamerPlayer.cs" />
+    <Compile Include="ReadFullyStream.cs" />
     <Compile Include="RestTools.cs" />
     <Compile Include="TagManager.cs" />
     <Compile Include="window_friends.xaml.cs">
       <DependentUpon>window_friends.xaml</DependentUpon>
     </Compile>
     <Page Include="window_id3Tool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="window_login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -129,6 +141,9 @@
     <Compile Include="JsonObjects.cs" />
     <Compile Include="window_id3Tool.xaml.cs">
       <DependentUpon>window_id3Tool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="window_login.xaml.cs">
+      <DependentUpon>window_login.xaml</DependentUpon>
     </Compile>
     <Compile Include="window_main.xaml.cs">
       <DependentUpon>window_main.xaml</DependentUpon>
@@ -166,6 +181,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="login.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
