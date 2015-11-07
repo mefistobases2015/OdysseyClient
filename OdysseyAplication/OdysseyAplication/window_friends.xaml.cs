@@ -23,13 +23,19 @@ namespace OdysseyAplication
         public string _SignedUser { get; set; }
         public window_friends(string pUsername)
         {
+
             this._SignedUser = pUsername;
+            this._InfoManager = new InfoProvider();
             InitializeComponent();
         }
         private async void button_friends_Click(object sender, RoutedEventArgs e)
         {
             List<string> list = (await this._InfoManager.getFriendByUser(this._SignedUser));
-            listView.Items.Clear();
+            // Delete The Current Data
+            while (listView.Items.Count > 0)
+            {
+                listView.Items.RemoveAt(0);
+            }
             foreach (string m8 in list)
             {
                 listView.Items.Add(m8);
@@ -39,8 +45,12 @@ namespace OdysseyAplication
         private async void button_friend_request_Click(object sender, RoutedEventArgs e)
         {
             List<string> list = (await this._InfoManager.getFriendRequestByUser(this._SignedUser));
-            listView.Items.Clear();
-            foreach(string m8 in list)
+            // Delete The Current Data
+            while (listView.Items.Count > 0)
+            {
+                listView.Items.RemoveAt(0);
+            }
+            foreach (string m8 in list)
             {
                 listView.Items.Add(m8);
             }
@@ -48,8 +58,12 @@ namespace OdysseyAplication
 
         private async void button_recomendations_Click(object sender, RoutedEventArgs e)
         {
-            List<string> list = (await this._InfoManager.getFriendRequestByUser(this._SignedUser));
-            listView.Items.Clear();
+            List<string> list = (await this._InfoManager.getFriendByUser(this._SignedUser));
+            // Delete The Current Data
+            while (listView.Items.Count > 0)
+            {
+                listView.Items.RemoveAt(0);
+            }
             foreach (string m8 in list)
             {
                 listView.Items.Add(m8);

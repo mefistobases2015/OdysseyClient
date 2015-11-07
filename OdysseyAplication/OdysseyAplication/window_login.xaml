@@ -1,0 +1,24 @@
+﻿<Window x:Class="OdysseyAplication.window_login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OdysseyAplication"
+        mc:Ignorable="d"
+        Title="window_login" Height="502.128" Width="760.639" Background="#FF006097" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+    <Grid HorizontalAlignment="Left" Height="472" VerticalAlignment="Top" Width="751" Margin="0,0,0,-1">
+        <Grid.Background>
+            <ImageBrush ImageSource="login.png"/>
+        </Grid.Background>
+
+        <Grid HorizontalAlignment="Left" Height="273" Margin="381,189,0,0" VerticalAlignment="Top" Width="360">
+
+            <Label x:Name="label" Content="Usuario" HorizontalAlignment="Left" Width="360" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="0,73,0,167"/>
+            <Label x:Name="label_Copy" Content="Contraseña" HorizontalAlignment="Left" Width="360" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="0,150,0,91"/>
+            <TextBox x:Name="textbox_user" HorizontalAlignment="Center" Height="29" TextWrapping="Wrap" VerticalAlignment="Center" Width="340" Background="{x:Null}" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="10,111,10,133" TextChanged="textBox_Copy_TextChanged"/>
+            <Button x:Name="button_ok" Content="Entrar" HorizontalAlignment="Left" Margin="201,233,0,0" Width="149" Background="{x:Null}" Foreground="#FFC8C8C8" BorderBrush="#FF282828" HorizontalContentAlignment="Center" Click="button_ok_Click" Height="30" VerticalAlignment="Top"/>
+            <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Height="29" Margin="10,187,0,0" VerticalAlignment="Top" Width="340" Background="{x:Null}" BorderBrush="#FF282828" Foreground="#FFC8C8C8"/>
+            <Label x:Name="label_Copy1" Content="Odyssey Desktop" HorizontalAlignment="Left" Width="360" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="0,35,0,205" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18.667"/>
+        </Grid>
+    </Grid>
+</Window>
