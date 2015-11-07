@@ -96,7 +96,7 @@ namespace OdysseyAplication
         /// <returns>
         /// bool que es true si todo salió bien y false si no. 
         /// </returns>
-        static private  bool isDatabase()
+        static public  bool isDatabase()
         {
             
             return settings.databaseSettings.isDatabase;

@@ -113,6 +113,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BlobManager.cs" />
+    <Compile Include="DatabaseManager.cs" />
     <Compile Include="Mp3Player.cs" />
     <Compile Include="MP3StreamerPlayer.cs" />
     <Compile Include="ReadFullyStream.cs" />
