@@ -113,6 +113,8 @@
     <Compile Include="window_friends.xaml.cs">
       <DependentUpon>window_friends.xaml</DependentUpon>
     </Compile>
+    <Compile Include="XmlManager.cs" />
+    <Compile Include="XmlObjects.cs" />
     <Page Include="window_id3Tool.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
