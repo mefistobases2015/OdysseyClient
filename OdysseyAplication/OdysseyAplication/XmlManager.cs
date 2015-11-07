@@ -161,5 +161,14 @@ namespace OdysseyAplication
         {
             return settings.blobManagerSettings.musicUrl;
         }
+
+        /// <summary>
+        /// Si se hacen cambios en el xml se puede 
+        /// actulizar los settings
+        /// </summary>
+        static public void updateSettings()
+        {
+            settings = readSettings();
+        }
     }
 }
