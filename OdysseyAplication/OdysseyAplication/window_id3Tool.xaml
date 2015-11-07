@@ -1,0 +1,50 @@
+﻿<Window x:Class="OdysseyAplication.window_id3Tool"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OdysseyAplication"
+        mc:Ignorable="d"
+        Title="window_id3Tool" Height="558.509" Width="1089.362">
+    <Window.Resources>
+        <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FF141414" Margin="0,0,2,0">
+        <Grid HorizontalAlignment="Left" Height="213" Margin="0,247,0,0" VerticalAlignment="Top" Width="1079" Background="#FF282828">
+            <ListView x:Name="listView" HorizontalAlignment="Left" Height="109" Margin="20,85,0,0" VerticalAlignment="Top" Width="1039" Background="#FF282828">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label x:Name="label_Odyssey_Copy" Content="Versiones Antiguas" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="188" Foreground="#FFC8C8C8" FontSize="18.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" Margin="20,0,0,0"/>
+            <Label x:Name="label_Copy5" Content="CANCIÓN" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="21,54,0,133"/>
+            <Label x:Name="label_Copy6" Content="ARTISTA" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="168,54,0,133"/>
+            <Label x:Name="label_Copy10" Content="ALBÚM" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="315,54,0,133"/>
+            <Label x:Name="label_Copy11" Content="AÑO" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="462,54,0,133"/>
+            <Label x:Name="label_Copy12" Content="GÉNERO" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="618,54,0,133"/>
+            <Label x:Name="label_Copy13" Content="LETRA" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="765,54,0,133"/>
+            <Label x:Name="label_Copy7" Content="FECHA" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="912,54,0,133"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="247" VerticalAlignment="Top" Width="1079">
+            <Label x:Name="label_Copy9" Content="CANCIÓN" HorizontalAlignment="Left" Width="96" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="50,95,0,126"/>
+            <TextBox x:Name="textbox_title" HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" VerticalAlignment="Center" Width="187" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="49,121,843,100"/>
+            <Label x:Name="label_Copy" Content="ARTISTA" HorizontalAlignment="Left" Width="96" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="50,158,0,63"/>
+            <TextBox x:Name="textbox_artist" HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" VerticalAlignment="Center" Width="187" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="49,184,843,37"/>
+            <Label x:Name="label_Copy1" Content="ÁLBUM" HorizontalAlignment="Left" Width="96" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="300,32,0,189"/>
+            <TextBox x:Name="textbox_album" HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" VerticalAlignment="Center" Width="186" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="300,58,593,163"/>
+            <Label x:Name="label_Copy2" Content="GÉNERO" HorizontalAlignment="Left" Width="96" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="299,95,0,126"/>
+            <TextBox x:Name="textbox_genre" HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" VerticalAlignment="Center" Width="186" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="299,121,594,100"/>
+            <Label x:Name="label_Copy3" Content="AÑO" HorizontalAlignment="Left" Width="96" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="299,158,0,63"/>
+            <TextBox x:Name="textbox_year" HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" VerticalAlignment="Center" Width="188" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="298,184,593,37"/>
+            <Label x:Name="label_Copy4" Content="LETRA" HorizontalAlignment="Left" Width="96" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="542,32,0,189"/>
+            <TextBox x:Name="textbox_lyric" HorizontalAlignment="Center" Height="158" TextWrapping="Wrap" VerticalAlignment="Center" Width="495" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="542,58,42,31"/>
+            <Label x:Name="label_Odyssey" Content="Editor ID3" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="188" Foreground="#FFC8C8C8" FontSize="26.667" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" Margin="50,23,0,0"/>
+        </Grid>
+        <Button x:Name="button_Copy5" Content="Aplicar" HorizontalAlignment="Left" Margin="343,480,0,10" Width="149" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF3C3C3C" HorizontalContentAlignment="Center"/>
+        <Button x:Name="button_Copy" Content="Cancelar" HorizontalAlignment="Left" Margin="514,480,0,10" Width="149" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF3C3C3C" HorizontalContentAlignment="Center"/>
+    </Grid>
+</Window>

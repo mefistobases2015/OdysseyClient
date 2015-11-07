@@ -24,21 +24,22 @@
     <Grid x:Name="MainGrid" Margin="0,0,4,0">
 
         <Grid Height="60" Margin="0,500,0,0" VerticalAlignment="Top" Background="#FF323232">
-            <ProgressBar HorizontalAlignment="Left" Height="7" Margin="245,26,0,0" VerticalAlignment="Top" Width="748"/>
+            <ProgressBar HorizontalAlignment="Left" Height="5" Margin="286,26,0,0" VerticalAlignment="Top" Width="913"/>
             <Button x:Name="button_playSong" Content="▶" HorizontalAlignment="Left" Margin="75,10,0,13" Width="38" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="29.333" FontFamily="Arial" Click="button_playSong_Click"/>
             <Button x:Name="button_nextSong" Content="▶▏" HorizontalAlignment="Left" Margin="127,10,0,13" Width="39" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486" Click="button_nextSong_Click"/>
             <Button x:Name="button_prevSong" Content="▏◀" HorizontalAlignment="Left" Margin="23,10,0,13" Width="38" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="16" Click="button_prevSong_Click"/>
-            <Label x:Name="label_dislike_counter_Copy" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8"  Margin="188,17,0,17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <Label x:Name="label_dislike_counter_Copy1" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8" Margin="1007,17,0,17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_dislike_counter_Copy" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8"  Margin="226,17,0,17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_dislike_counter_Copy1" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8" Margin="1217,17,0,17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Button x:Name="button_nextSong_Copy" Content="◼" HorizontalAlignment="Left" Margin="171,10,0,13" Width="39" Background="#FF323232" Foreground="White" BorderBrush="#FF323232" HorizontalContentAlignment="Center" FontSize="16" RenderTransformOrigin="0.718,0.486" Click="button_nextSong_Click"/>
         </Grid>
         <Grid HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="205" Background="#FF323232">
-            <Label x:Name="label" Content="MÚSICA" HorizontalAlignment="Left" Width="158" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="28,166,0,227"/>
-            <Button x:Name="button_local" Content="Biblioteca Local" HorizontalAlignment="Left" Margin="37,232,0,164" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_local_Click"/>
-            <Button x:Name="button_community" Content="Comunidad" HorizontalAlignment="Left" Margin="37,353,0,45" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_community_Click" >
+            <Label x:Name="label" Content="MÚSICA" HorizontalAlignment="Left" Width="158" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="23,115,0,278"/>
+            <Button x:Name="button_local" Content="Biblioteca Local" HorizontalAlignment="Left" Margin="32,181,0,215" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_local_Click"/>
+            <Button x:Name="button_community" Content="Comunidad" HorizontalAlignment="Left" Margin="32,302,0,96" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_community_Click" >
             </Button>
-            <Label x:Name="label_Copy" Content="SOCIAL" HorizontalAlignment="Left" Width="158" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="28,323,0,71"/>
-            <Button x:Name="button_descovery" Content="Descubrir" HorizontalAlignment="Left" Margin="37,264,0,133" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_descovery_Click"/>
-            <Button x:Name="button_cloud" Content="Biblioteca Cloud" HorizontalAlignment="Left" Margin="37,203,0,193" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_cloud_Click"/>
+            <Label x:Name="label_Copy" Content="SOCIAL" HorizontalAlignment="Left" Width="158" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="23,272,0,122"/>
+            <Button x:Name="button_descovery" Content="Descubrir" HorizontalAlignment="Left" Margin="32,213,0,184" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_descovery_Click"/>
+            <Button x:Name="button_cloud" Content="Biblioteca Cloud" HorizontalAlignment="Left" Margin="32,152,0,244" Width="149" Background="#FF323232" Foreground="#FFC8C8C8" BorderBrush="#FF323232" HorizontalContentAlignment="Left" Click="button_cloud_Click"/>
             <StackPanel HorizontalAlignment="Left" Height="57" Margin="37,19,0,0" VerticalAlignment="Top" Width="132" Orientation="Horizontal">
                 <Label x:Name="label_Odyssey" Content="Odyssey" HorizontalAlignment="Left" Height="53" VerticalAlignment="Top" Width="130" Foreground="#FFC8C8C8" FontSize="26.667" HorizontalContentAlignment="Center"/>
             </StackPanel>
