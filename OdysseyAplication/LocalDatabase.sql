@@ -1,11 +1,4 @@
-﻿CREATE TABLE credenciales_tbl
-(
-	usr_name VARCHAR (32) NOT NULL,
-	pass VARCHAR(12) NOT NULL,
-	CONSTRAINT pk_usr_id PRIMARY KEY(usr_name)
-)
-
-CREATE TABLE propiedades_tbl
+﻿CREATE TABLE propiedades_tbl
 (
 	usr_name VARCHAR(32) NOT NULL,
 	local_song_id INT NOT NULL,
@@ -38,13 +31,6 @@ CREATE TABLE versiones_tbl
 	CONSTRAINT pk_version_id PRIMARY KEY(local_version_id, local_song_id, submission_date)
 )
 
- 
-
-ALTER TABLE propiedades_tbl
-ADD CONSTRAINT fk_usr_name
-FOREIGN KEY (usr_name)
-REFERENCES credenciales_tbl(usr_name)
-
 
 ALTER TABLE propiedades_tbl
 ADD CONSTRAINT fk_song_id
@@ -56,3 +42,11 @@ ALTER TABLE versiones_tbl
 ADD CONSTRAINT fk_canc_song_id
 FOREIGN KEY (local_song_id)
 REFERENCES canciones_tbl(local_song_id)
+
+GO
+
+CREATE VIEW canc_metadata_tbl AS
+SELECT P.usr_name, V.id3v2_title, V.id3v2_author, V.id3v2_album, V.id3v2_year, V.id3v2_genre, V.id3v2_lyrics, V.submission_date, C.song_directory, C.local_song_id
+FROM canciones_tbl AS C 
+	JOIN propiedades_tbl AS P ON C.local_song_id = P.local_song_id 
+	JOIN versiones_tbl AS V ON C.metadata_id = V.cloud_version_id
