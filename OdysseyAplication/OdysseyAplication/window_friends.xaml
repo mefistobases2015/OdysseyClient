@@ -28,12 +28,12 @@
             <ListViewItem Content="fvfda" Margin="0"/>
         </ListView>
         <Grid HorizontalAlignment="Left" Height="415" Margin="461,0,0,0" VerticalAlignment="Top" Width="237">
-            <Label x:Name="label_Odyssey_Copy" Content="Nombre de Usuario" HorizontalAlignment="Left" Height="43" Margin="15,41,0,0" VerticalAlignment="Top" Width="212" Foreground="#FFC8C8C8" FontSize="13.333" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-            <Label x:Name="label_Odyssey_Copy1" Content="Comunidad" HorizontalAlignment="Left" Height="43" Margin="15,89,0,0" VerticalAlignment="Top" Width="212" Foreground="#FFC8C8C8" FontSize="13.333" HorizontalContentAlignment="Center"/>
-            <Label x:Name="label_Odyssey_Copy2" Content="Clasificación de biblioteca" HorizontalAlignment="Left" Height="43" Margin="15,166,0,0" VerticalAlignment="Top" Width="212" Foreground="#FFC8C8C8" FontSize="13.333" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-            <Label x:Name="label_Odyssey_Copy3" Content="Comunidad" HorizontalAlignment="Left" Height="43" Margin="15,214,0,0" VerticalAlignment="Top" Width="212" Foreground="#FFC8C8C8" FontSize="13.333" HorizontalContentAlignment="Center"/>
-            <Label x:Name="label_Odyssey_Copy4" Content="Clasificación Por Amigos" HorizontalAlignment="Left" Height="43" Margin="15,289,0,0" VerticalAlignment="Top" Width="212" Foreground="#FFC8C8C8" FontSize="13.333" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-            <Label x:Name="label_Odyssey_Copy5" Content="Comunidad" HorizontalAlignment="Left" Height="43" Margin="15,337,0,0" VerticalAlignment="Top" Width="212" Foreground="#FFC8C8C8" FontSize="13.333" HorizontalContentAlignment="Center"/>
+            <Label x:Name="label_Odyssey_Copy" Content="Nombre de Usuario" HorizontalAlignment="Left" Height="34" Margin="15,50,0,0" VerticalAlignment="Top" Width="212" Foreground="#FFC8C8C8" FontSize="13.333" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+            <Label x:Name="label_Odyssey_Copy1" Content="Comunidad" HorizontalAlignment="Left" Height="33" Margin="15,89,0,0" VerticalAlignment="Top" Width="212" Foreground="#FFC8C8C8" FontSize="13.333" HorizontalContentAlignment="Center"/>
+            <Label x:Name="label_Odyssey_Copy2" Content="Clasificación de biblioteca" HorizontalAlignment="Left" Height="32" Margin="15,166,0,0" VerticalAlignment="Top" Width="212" Foreground="#FFC8C8C8" FontSize="13.333" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+            <Label x:Name="label_Odyssey_Copy3" Content="Comunidad" HorizontalAlignment="Left" Height="35" Margin="15,203,0,0" VerticalAlignment="Top" Width="212" Foreground="#FFC8C8C8" FontSize="13.333" HorizontalContentAlignment="Center"/>
+            <Label x:Name="label_Odyssey_Copy4" Content="Clasificación Por Amigos" HorizontalAlignment="Left" Height="34" Margin="15,289,0,0" VerticalAlignment="Top" Width="212" Foreground="#FFC8C8C8" FontSize="13.333" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+            <Label x:Name="label_Odyssey_Copy5" Content="Comunidad" HorizontalAlignment="Left" Height="34" Margin="15,328,0,0" VerticalAlignment="Top" Width="212" Foreground="#FFC8C8C8" FontSize="13.333" HorizontalContentAlignment="Center"/>
         </Grid>
         <Button x:Name="button" Content="✓" HorizontalAlignment="Left" Height="47" Margin="205,358,0,0" VerticalAlignment="Top" Width="82" Background="{x:Null}" Foreground="White" BorderBrush="#FF282828"/>
         <Button x:Name="button_Copy" Content="✕" HorizontalAlignment="Left" Height="47" Margin="287,358,0,0" VerticalAlignment="Top" Width="90" RenderTransformOrigin="1.621,0.56" Background="{x:Null}" Foreground="White" BorderBrush="#FF282828"/>

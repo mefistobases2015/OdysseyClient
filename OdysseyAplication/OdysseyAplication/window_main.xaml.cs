@@ -51,21 +51,48 @@ namespace OdysseyAplication
         }
         private void button_community_Click(object sender, RoutedEventArgs e)
         {
-            window_friends joey = new window_friends(this._SignedUser);
-            joey.Show();
+            toolbarMain.Visibility = Visibility.Collapsed;
+            musicGrid.Visibility = Visibility.Collapsed;
+            communityGrid.Visibility = Visibility.Visible;
+            toolbarCommunity.Visibility = Visibility.Visible;
         }
         private void button_id3Editor_Click(object sender, RoutedEventArgs e)
         {
-            int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
-            window_id3Tool id3T = new window_id3Tool(this._SongDataList[index]);
-            id3T.Show();
+            if (this._SongDataList != null && listview_data.SelectedIndex > -1)
+            {
+                // Disable The Music Kit
+                toolbarMain.Visibility = Visibility.Collapsed;
+                musicGrid.Visibility = Visibility.Collapsed;
+                // Enable The Kit
+                toolbarEditor.Visibility = Visibility.Visible;
+                id3Grid.Visibility = Visibility.Visible;
+                // Set The Actual Medatada As Info
+                int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
+                textbox_artist.Text = this._SongDataList[index]._ID3Artist;
+                textbox_genre.Text  = this._SongDataList[index]._ID3Genre;
+                textbox_lyric.Text  = this._SongDataList[index]._ID3Lyrics;
+                textbox_title.Text  = this._SongDataList[index]._ID3Title;
+                textbox_album.Text  = this._SongDataList[index]._ID3Album;
+                // Get List OF Past Versions Of The Song
+                // Song In Cloud Library
+                if(this._uploadMode == window_main.MODE_CLOUD)
+                {
+
+                }
+                // Song In Local Library
+                else if (this._uploadMode == window_main.MODE_LOCAL)
+                {
+
+                }
+                //this._InfoManager.getListOfDataSong(this._SongDataList[index]._SongID);
+            }
         }
         private async void button_descovery_Click(object sender, RoutedEventArgs e)
         {
         }
         private async void listview_data_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (listview_data.SelectedItems.Count > 0)
+            if (listview_data.SelectedItems.Count > 0 && listview_data.SelectedIndex >  -1)
             {
                 // Index Of Selected Item
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
@@ -234,6 +261,45 @@ namespace OdysseyAplication
             {
                 this.refreshSongCollection();
             }
+        }
+
+        private void button_add_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void button_add_Click_1(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void button1_download_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_close_id3Editor_Click(object sender, RoutedEventArgs e)
+        {
+            toolbarEditor.Visibility = Visibility.Collapsed;
+            id3Grid.Visibility = Visibility.Collapsed;
+            toolbarMain.Visibility = Visibility.Visible;
+            musicGrid.Visibility = Visibility.Visible;
+            textbox_artist.Text = "";
+            textbox_genre.Text  = "";
+            textbox_lyric.Text  = "";
+            textbox_title.Text  = "";
+            textbox_album.Text  = "";
+        }
+
+        private void button_close_community_Click(object sender, RoutedEventArgs e)
+        {
+            toolbarCommunity.Visibility = Visibility.Collapsed;
+            communityGrid.Visibility = Visibility.Collapsed;
+            musicGrid.Visibility = Visibility.Visible;
+            toolbarMain.Visibility = Visibility.Visible;
+        }
+
+        private void button_upload_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
