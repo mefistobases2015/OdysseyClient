@@ -304,7 +304,7 @@ namespace OdysseyAplication
         }
 
         /// <summary>
-        /// 
+        /// Obtiene todas las versiones de una canción
         /// </summary>
         /// <param name="song_id">
         /// 
@@ -369,7 +369,7 @@ namespace OdysseyAplication
         }
 
         /// <summary>
-        /// 
+        /// Obtiene todas las canciones de un usuario
         /// </summary>
         /// <param name="user_name">
         /// 
@@ -390,9 +390,9 @@ namespace OdysseyAplication
                     versionSongs.CommandType = System.Data.CommandType.Text;
 
                     versionSongs.CommandText = "SELECT * "
-                        + "FROM canc_metadata_tbl WHERE ";
+                        + "FROM canc_metadata_tbl WHERE usr_name = @usrname";
 
-                    versionSongs.Parameters.AddWithValue("@song_id", Convert.ToInt32(song_id));
+                    versionSongs.Parameters.AddWithValue("@usrname", user_name);
 
                     versionSongs.Connection = connection;
 
@@ -435,7 +435,7 @@ namespace OdysseyAplication
         }
 
         /// <summary>
-        /// 
+        /// Evalua si una canción esta sincronizada
         /// </summary>
         /// <param name="song_id">
         /// 
