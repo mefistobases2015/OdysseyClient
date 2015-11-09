@@ -441,15 +441,23 @@ namespace OdysseyAplication
             return await rt.getRecomendedFriends(usr_name);
         }
 
-        public void syncCloudLibray(string pUserName, List<string> pCompleteSong)
+        public async Task<List<DataSong>> getRecomendatedSongs(string pUserName)
+        {
+            return null;
+        }
+
+        public async Task<bool> makeReproduction(string pSongID)
+        {
+            return true;
+        }
+
+        public async void acceptFriendRequest(string pUserSigned, string pUser)
         {
 
         }
-
-        public void syncLocalLibrary(string pUserName, List<string> pCompleteSong)
+        public async void declineFriendRequest(string pUserSigned, string pUser)
         {
 
         }
-
     }
 }

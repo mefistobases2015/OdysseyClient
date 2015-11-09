@@ -392,7 +392,7 @@ namespace OdysseyAplication
                     versionSongs.CommandText = "SELECT * "
                         + "FROM canc_metadata_tbl WHERE ";
 
-                    versionSongs.Parameters.AddWithValue("@song_id", Convert.ToInt32(song_id));
+                   //versionSongs.Parameters.AddWithValue("@song_id", Convert.ToInt32(song_id));
 
                     versionSongs.Connection = connection;
 

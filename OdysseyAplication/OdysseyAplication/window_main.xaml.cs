@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,6 +52,7 @@ namespace OdysseyAplication
         }
         private void button_community_Click(object sender, RoutedEventArgs e)
         {
+            this.label_signedUserName.Content = this._SignedUser;
             toolbarMain.Visibility = Visibility.Collapsed;
             musicGrid.Visibility = Visibility.Collapsed;
             communityGrid.Visibility = Visibility.Visible;
@@ -77,7 +79,7 @@ namespace OdysseyAplication
                 // Song In Cloud Library
                 if(this._uploadMode == window_main.MODE_CLOUD)
                 {
-
+                  //  this._InfoManager.getListOfDataSong(_SongDataList[index]._SongID);
                 }
                 // Song In Local Library
                 else if (this._uploadMode == window_main.MODE_LOCAL)
@@ -89,6 +91,14 @@ namespace OdysseyAplication
         }
         private async void button_descovery_Click(object sender, RoutedEventArgs e)
         {
+            this.label_signedUserName.Content = this._SignedUser;
+            this._SongDataList = await this._InfoManager.getRecomendatedSongs(this._SignedUser);
+            if (this._SongDataList != null)
+            {
+                this.refreshSongCollection();
+            }
+
+            
         }
         private async void listview_data_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -216,6 +226,7 @@ namespace OdysseyAplication
 
         private async void button_cloud_Click(object sender, RoutedEventArgs e)
         {
+            this.label_signedUserName.Content = this._SignedUser;
             this._uploadMode = window_main.MODE_CLOUD;
             this._SongDataList = await _InfoManager.getSongsByUserInCloud(this._SignedUser);
             if(this._SongDataList != null)
@@ -243,18 +254,36 @@ namespace OdysseyAplication
                 }
             }
         }
-        private void button_playSong_Click(object sender, RoutedEventArgs e)
+        private async void button_playSong_Click(object sender, RoutedEventArgs e)
         {
             if (listview_data.Items.Count > 0)
             {
+                // Index Of The Selected Song
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
+
+                // Actual Song In The Play Queue
                 label_actualSong_artist.Content = this._SongDataList[index]._ID3Artist;
                 label_actualSong_Title.Content = this._SongDataList[index]._ID3Title;
+
+                // Make A Song Reproduction
+                await this._InfoManager.makeReproduction(this._SongDataList[index]._SongID);
+
+                // Play A MP3 Stream
+                if(this._uploadMode == window_main.MODE_CLOUD)
+                {
+
+                }
+                // Play A MP3 Local File
+                else if(this._uploadMode == window_main.MODE_LOCAL)
+                {
+
+                }
             }
         }
 
         private void button_local_Click(object sender, RoutedEventArgs e)
         {
+            this.label_signedUserName.Content = this._SignedUser;
             this._uploadMode = window_main.MODE_LOCAL;
             this._SongDataList = _InfoManager.getSongsByUserInLocal(this._SignedUser);
             if (this._SongDataList != null)
@@ -300,6 +329,88 @@ namespace OdysseyAplication
         private void button_upload_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void button_createVersion_Click(object sender, RoutedEventArgs e)
+        {
+            //DataSong
+            //this._InfoManager.createDataSongVersionLocal();
+        }
+
+        private async void button_friend_request_Copy_Click(object sender, RoutedEventArgs e)
+        {
+            // List Of Users
+            List<String> userList = await this._InfoManager.getFriendByUser(this._SignedUser);
+            Thread.Sleep(3000);
+            MessageBox.Show(userList.Count.ToString());
+            // Eliminate All The Users Of The ListView
+            while (listview_users.Items.Count > 0)
+            {
+                listview_users.Items.RemoveAt(0);
+            }
+
+            // Add Users To The UserListView
+            foreach (string var in userList)
+            {
+                listview_users.Items.Add(new { Col1 = var });
+            }
+        }
+
+        private async void button_friend_request_Click(object sender, RoutedEventArgs e)
+        {
+            // List Of Users
+            MessageBox.Show(this._SignedUser);
+            List<String> userList = await this._InfoManager.getFriendRequestByUser(this._SignedUser);
+            // Eliminate All The Users Of The ListView
+            while (listview_users.Items.Count > 0)
+            {
+                listview_users.Items.RemoveAt(0);
+            }
+
+            // Add Users To The UserListView
+            foreach (string var in userList)
+            {
+                listview_users.Items.Add(new { Col1 = var });
+            }
+        }
+
+        private void button_addRequest_Click(object sender, RoutedEventArgs e)
+        {
+            if (listview_data.SelectedIndex > -1)
+            {
+                this._InfoManager.acceptFriendRequest(this._SignedUser, "");
+            }
+        }
+
+        private void button_cancelRequest_Click(object sender, RoutedEventArgs e)
+        {
+            if (listview_data.SelectedIndex > -1)
+            {
+                this._InfoManager.declineFriendRequest(this._SignedUser, "");
+            }
+        }
+
+        private async void button_seeProfile_Click(object sender, RoutedEventArgs e)
+        {
+            if (listview_users.SelectedIndex > -1)
+            {
+                this._SongDataList = await _InfoManager.getSongsByUserInCloud("Braisman");
+            }
+        }
+
+        private void ListViewItem_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ListViewItem_Selected_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_recomendations_Click(object sender, RoutedEventArgs e)
+        {
+            listview_users.Items.Add(new { Col1 = "Braisman"});
         }
     }
 }
