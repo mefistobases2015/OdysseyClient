@@ -51,7 +51,7 @@ namespace OdysseyAplication
         /// Objeto Settings nuevo que esta actualizado y 
         /// va a ser escrito.
         /// </param>
-        static private void writeSettings(Settings newSettings)
+        static private void writeSettings()
         {
             try
             {
@@ -60,7 +60,7 @@ namespace OdysseyAplication
                 //
                 TextWriter txtWrt = new StringWriter();
                 //Crea el string del nuevo settings
-                serializer.Serialize(txtWrt, newSettings);
+                serializer.Serialize(txtWrt, settings);
                 //Limpia buffers
                 txtWrt.Flush();
                 //Obtiene el string del objeto en xml
@@ -74,7 +74,7 @@ namespace OdysseyAplication
                 //se obtiene el string despues de ser analizado
                 xmlObj = doc.OuterXml;
 
-                using (StreamWriter writer  = new StreamWriter("Settings.xml", false))
+                using (StreamWriter writer  = new StreamWriter(XML_PATH, false))
                 {
                     writer.Write(xmlObj.Trim());
                     writer.Flush();
@@ -111,9 +111,9 @@ namespace OdysseyAplication
         {
             settings.databaseSettings.isDatabase = true;
 
-            writeSettings(settings);
+            writeSettings();
 
-            settings = readSettings();
+            updateSettings();
         }
 
         /// <summary>

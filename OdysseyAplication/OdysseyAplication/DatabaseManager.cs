@@ -12,6 +12,8 @@ namespace OdysseyAplication
     {
         private const string queryPath = "../../../LocalDatabase.sql";
 
+        private const string viewPath = "../../../View.sql";
+
         private const string masterConn = "Server=localhost;Integrated security=SSPI;database=master";
 
         static private string  createDatabaseQuery = "CREATE DATABASE " + XmlManager.getDatabaseName();
@@ -42,7 +44,7 @@ namespace OdysseyAplication
 
                         connection.Close();
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         Console.WriteLine(e);
                         Console.WriteLine("Por alguna razón muy satánica no se pudo crear la base");
@@ -74,10 +76,32 @@ namespace OdysseyAplication
 
                 }
 
+                using (SqlConnection connection = new SqlConnection(databaseConn))
+                {
+                    try
+                    {
+                        string view_script = File.ReadAllText(viewPath);
+
+                        SqlCommand createView = new SqlCommand(view_script, connection);
+
+                        connection.Open();
+
+                        createView.ExecuteNonQuery();
+
+                        connection.Close();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        Console.WriteLine("#NoSirveView");
+                    }
+
+                }
+
+                XmlManager.databaseCreated();
+
 
             }//fin el if
-
-
         }
 
         /// <summary>
@@ -143,9 +167,9 @@ namespace OdysseyAplication
                     SqlCommand insertConnection = new SqlCommand();
 
                     insertConnection.CommandType = System.Data.CommandType.Text;
-                    insertConnection.CommandText = "INSERT versiones_tbl output INSERTED.local_version_id"+ 
+                    insertConnection.CommandText = "INSERT versiones_tbl "+ 
                         "(local_song_id, id3v2_title, id3v2_author, id3v2_lyrics, id3v2_album, id3v2_genre, id3v2_year) "+
-                        "VALUES (@lsng_id, @title, @author, @lyrics, @album, @genre, @year)";
+                        "output INSERTED.local_version_id VALUES (@lsng_id, @title, @author, @lyrics, @album, @genre, @year)";
 
                     insertConnection.Parameters.AddWithValue("@lsng_id", Convert.ToInt32(datasong._SongID));
                     insertConnection.Parameters.AddWithValue("@title", datasong._ID3Title);
@@ -168,8 +192,10 @@ namespace OdysseyAplication
 
                 return result;
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e);
+
                 return -1;
             }
         }
@@ -204,8 +230,8 @@ namespace OdysseyAplication
                         "VALUES (@usr, @lsng_id, @sng_name)";
 
                     createProperty.Parameters.AddWithValue("@usr", usr_name);
-                    createProperty.Parameters.AddWithValue("@lsng_id", usr_name);
-                    createProperty.Parameters.AddWithValue("@sng_name", usr_name);
+                    createProperty.Parameters.AddWithValue("@lsng_id", local_song_id);
+                    createProperty.Parameters.AddWithValue("@sng_name", song_name);
 
                     createProperty.Connection = connection;
 
@@ -270,8 +296,10 @@ namespace OdysseyAplication
 
                 return true;
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e);
+
                 return false;
             }
         }
@@ -304,7 +332,7 @@ namespace OdysseyAplication
         }
 
         /// <summary>
-        /// 
+        /// Obtiene todas las versiones de una canción
         /// </summary>
         /// <param name="song_id">
         /// 
@@ -347,7 +375,7 @@ namespace OdysseyAplication
                             version.id3v2_album = reader.GetString(4);
                             version.id3v2_genre = reader.GetString(5);
                             version.id3v2_year = reader.GetInt32(6);
-                            version.submission_date = reader.GetString(7);
+                            version.submission_date = reader.GetDateTime(7).ToString();
                             version.song_id = Convert.ToInt32(song_id);
 
                             versions_list.Add(version);
@@ -369,7 +397,7 @@ namespace OdysseyAplication
         }
 
         /// <summary>
-        /// 
+        /// Obtiene todas las canciones de un usuario
         /// </summary>
         /// <param name="user_name">
         /// 
@@ -390,9 +418,9 @@ namespace OdysseyAplication
                     versionSongs.CommandType = System.Data.CommandType.Text;
 
                     versionSongs.CommandText = "SELECT * "
-                        + "FROM canc_metadata_tbl WHERE ";
+                        + "FROM canc_metadata_tbl WHERE usr_name = @usrname";
 
-                   //versionSongs.Parameters.AddWithValue("@song_id", Convert.ToInt32(song_id));
+                    versionSongs.Parameters.AddWithValue("@usrname", user_name);
 
                     versionSongs.Connection = connection;
 
@@ -412,7 +440,7 @@ namespace OdysseyAplication
                             dataSong._ID3Year = reader.GetInt32(4).ToString();
                             dataSong._ID3Genre = reader.GetString(5);
                             dataSong._ID3Lyrics = reader.GetString(6);
-                            dataSong._SubmissionDate = reader.GetString(7);
+                            dataSong._SubmissionDate = reader.GetDateTime(7).ToString();
                             dataSong._SongDirectory = reader.GetString(8);
                             dataSong._SongDirectory = reader.GetInt32(9).ToString();
 
@@ -435,7 +463,7 @@ namespace OdysseyAplication
         }
 
         /// <summary>
-        /// 
+        /// Evalua si una canción esta sincronizada
         /// </summary>
         /// <param name="song_id">
         /// 
@@ -458,7 +486,7 @@ namespace OdysseyAplication
                     isSync.CommandText = "SELECT cloud_song_id  "
                         + "FROM canciones_tbl WHERE local_song_id = @id";
 
-                    isSync.Parameters.AddWithValue("@song_id", Convert.ToInt32(song_id));
+                    isSync.Parameters.AddWithValue("@id", Convert.ToInt32(song_id));
 
                     isSync.Connection = connection;
 
