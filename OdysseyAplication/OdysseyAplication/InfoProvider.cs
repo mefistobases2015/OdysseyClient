@@ -277,7 +277,7 @@ namespace OdysseyAplication
         /// return un bool que es true si se logra agregar la reproducción
         /// y false en cualquier otro caso
         /// </returns>
-        public async Task<bool> setSongReproduction(string pSongID)
+        public async Task<bool> makeReproduction(string pSongID)
         {
             bool result = false;
 
@@ -443,21 +443,38 @@ namespace OdysseyAplication
 
         public async Task<List<DataSong>> getRecomendatedSongs(string pUserName)
         {
+
+            RestTools rt = new RestTools();
+
             return null;
         }
 
-        public async Task<bool> makeReproduction(string pSongID)
-        {
-            return true;
-        }
-
+        /// <summary>
+        /// Agrega un amigo 
+        /// </summary>
+        /// <param name="pUserSigned"></param>
+        /// <param name="pUser"></param>
         public async void acceptFriendRequest(string pUserSigned, string pUser)
         {
+            RestTools rt = new RestTools();
 
+            bool result = await rt.addFriendByUserName(pUserSigned, pUser);
         }
+
+        /// <summary>
+        /// Elimina solicitud de amistad
+        /// </summary>
+        /// <param name="pUserSigned">
+        /// 
+        /// </param>
+        /// <param name="pUser">
+        /// 
+        /// </param>
         public async void declineFriendRequest(string pUserSigned, string pUser)
         {
+            RestTools rt = new RestTools();
 
+            bool result = await rt.deleteRequest(pUser, pUserSigned);
         }
     }
 }
