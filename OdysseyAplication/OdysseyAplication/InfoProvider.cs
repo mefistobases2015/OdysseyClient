@@ -482,7 +482,11 @@ namespace OdysseyAplication
             RestTools rtop = new RestTools();
             return await rtop.getTopUsers();
         }
-
+        /// <summary>
+        /// Poularidad 
+        /// </summary>
+        /// <param name="pUserName"></param>
+        /// <returns></returns>
         public async Task<string> getUserSocialRanking(string pUserName)
         {
             RestTools rtop = new RestTools();

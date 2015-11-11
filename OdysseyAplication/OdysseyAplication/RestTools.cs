@@ -1478,7 +1478,7 @@ namespace OdysseyAplication
         /// </summary>
         /// <param name="popularity"></param>
         /// <returns></returns>
-        public async Task<bool> setPopularity(string usr_name, int popularity)
+        public async Task<bool> setPopularity(string usr_name, string popularity)
         {
             bool result = false;
 
@@ -1488,7 +1488,7 @@ namespace OdysseyAplication
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage response = await client.PutAsJsonAsync<int>(mongo_users_path + "/Popular?id=" + usr_name, popularity);
+                HttpResponseMessage response = await client.PutAsJsonAsync<string>(mongo_users_path + "/Popular?id=" + usr_name, popularity);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -1504,6 +1504,8 @@ namespace OdysseyAplication
 
             return result;
         }
+
+
 
         /// <summary>
         /// Elimina un usuario de la base
@@ -1878,6 +1880,133 @@ namespace OdysseyAplication
             return users;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <param name="musical"></param>
+        /// <returns></returns>
+        public async Task<bool> setMusical(string user_id, string musical)
+        {
+            bool result = false;
 
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.PutAsJsonAsync<string>(mongo_users_path + "/Musical?id=" + user_id, musical);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    result = true;
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                    result = false;
+                }
+            }
+
+
+            return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <param name="social"></param>
+        /// <returns></returns>
+        public async Task<bool> setSocial(string user_id, string social)
+        {
+            bool result = false;
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.PutAsJsonAsync<string>(mongo_users_path + "/Social?id=" + user_id, social);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    result = true;
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                    result = false;
+                }
+            }
+
+
+            return result;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <returns></returns>
+        public async Task<string> getGenreClasification(string user_id)
+        {
+            string genreClas = "";
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.GetAsync(songs_by_user_path + "/Clasificar?id=" + user_id);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    GenreClasf[] genre = await response.Content.ReadAsAsync<GenreClasf[]>();
+                    genreClas = genre[0].Genero;
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                    genreClas = null;
+                }
+            }
+
+            return genreClas;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user_id"></param>
+        /// <returns></returns>
+        public async Task<string> getFriendsGenreClasification(string user_id)
+        {
+            string result = "";
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.GetAsync(songs_by_user_path + "/ClasificarAmigos?id=" + user_id);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsAsync<string>();
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                    result = null;
+                }
+            }
+
+            return null;
+        }
     }
 }

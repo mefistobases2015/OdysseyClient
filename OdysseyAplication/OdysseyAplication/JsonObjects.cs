@@ -127,5 +127,10 @@ namespace OdysseyAplication
         public int puntaje { get; set; }
     }
 
+    public class GenreClasf
+    {
+        public string Genero { get; set; }
+        public int Cantidad { get; set; }
+    }
 
 }
