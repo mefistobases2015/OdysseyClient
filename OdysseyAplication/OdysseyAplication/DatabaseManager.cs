@@ -521,6 +521,84 @@ namespace OdysseyAplication
             }
         }
 
+        /// <summary>
+        /// Cambia la version de metadata de una canción ya 
+        /// existente
+        /// </summary>
+        /// <param name="dataSong">
+        /// Objeto DataSong que contiene el id de la canción y 
+        /// la información de la nueva versión
+        /// </param>
+        /// <returns>
+        /// bool que es true si se hace el cambio exitosamente, false 
+        /// en cualquier otro caso. 
+        /// </returns>
+        public static bool setVersion2Song(DataSong dataSong)
+        {
+            try
+            {
+                //crea la version a agregar a la canción
+                int version_id = createVersion(dataSong);
+
+                return setVersion2Song(dataSong._SongID, version_id.ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            
+        }
+        
+        /// <summary>
+        /// Actuliza una canción, estableciendole un cloud id
+        /// </summary>
+        /// <param name="localIdSong">
+        /// La canción local que se va a sincronizar
+        /// </param>
+        /// <param name="syncIdSong">
+        /// Id de la cancion en la nube
+        /// </param>
+        /// <returns>
+        /// bool que es true si se termino correctamente la escritura 
+        /// del id, false en cualquier otro caso.
+        /// </returns>
+        public static bool setSyncId2Song(int localIdSong, int syncIdSong)
+        {
+            try
+            {
+
+                using (SqlConnection connection = new SqlConnection(databaseConn))
+                {
+                    SqlCommand insertSong = new SqlCommand();
+
+                    insertSong.CommandType = System.Data.CommandType.Text;
+                    insertSong.CommandText = "UPDATE canciones_tbl "
+                        + "SET cloud_song_id = @syncId "
+                        + "WHERE local_song_id = @localId";
+
+                    insertSong.Parameters.AddWithValue("@localId", localIdSong);
+                    insertSong.Parameters.AddWithValue("@syncId", syncIdSong);
+
+                    insertSong.Connection = connection;
+
+                    connection.Open();
+
+                    insertSong.ExecuteNonQuery();
+
+                    connection.Close();
+                }
+
+                return true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e);
+
+                return false;
+            }
+        }
+
     }
 
 }

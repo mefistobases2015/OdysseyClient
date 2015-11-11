@@ -804,7 +804,7 @@ namespace OdysseyAplication
         }
 
         /// <summary>
-        /// Envia una solicitud de amista a un usuario
+        /// Agrega un amigo al usuario 
         /// </summary>
         /// <param name="usr_name">
         /// Nombre del usuario que hace la solicitud
