@@ -19,6 +19,7 @@ namespace OdysseyAplication
         private const string mongo_songs_path = "api/CancionesMongo";
         private const string friend_request_path = "api/Solicitud";
         private const string mongo_users_path = "api/Usuarios";
+        private const string mongo_users_popularity_path = "api/Usuarios/Popularidad";
 
         /// <summary>
         /// Constructor vacío, con valores por 
@@ -719,7 +720,7 @@ namespace OdysseyAplication
         /// <returns>
         /// string con la clasificación del usuario
         /// </returns>
-        public async Task<string> getMusicalByUserName(string usr_id)
+        public async Task<string> getMusicalByLibrary(string usr_id)
         {
             string res = "";
             using (HttpClient client = new HttpClient())
@@ -728,7 +729,7 @@ namespace OdysseyAplication
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage response = await client.GetAsync(mongo_users_path + "/Musical?id=" + usr_id);
+                HttpResponseMessage response = await client.GetAsync(songs_by_user_path + "/Clasificar?id=" + usr_id);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -743,6 +744,29 @@ namespace OdysseyAplication
             return res;
         }
 
+        public async Task<string> getMusicalByFriends(string usr_id)
+        {
+            string res = "";
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.GetAsync(songs_by_user_path + "/ClasificarAmigos?id=" + usr_id);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    res = await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    res = "";
+                }
+            }
+
+            return res;
+        }
         /// <summary>
         /// Obtiene la clasificacion como resultado de los gustos de 
         /// los amigos

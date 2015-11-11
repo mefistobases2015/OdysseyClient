@@ -6,7 +6,21 @@ namespace OdysseyAplication
 {
     class InfoProvider
     {
-        //listo
+        public async Task<string> getUserSocialStatus (string pUsername)
+        {
+            RestTools rt = new RestTools();
+            return await rt.getSocialByUserName(pUsername);
+        }
+        public async Task<string> getUserClasificationByFriends(string pUsername)
+        {
+            RestTools rt = new RestTools();
+            return (await rt.getMusicalByFriends(pUsername));
+        }
+        public async Task<string> getUserClasificationByLibrary(string pUsername)
+        {
+            RestTools rt = new RestTools();
+            return (await rt.getMusicalByLibrary(pUsername));
+        }
         public List<DataSong> getID3ByDirectory(List<string> pPatchs)
         {
             List<DataSong> id3Collection = new List<DataSong>();
@@ -441,23 +455,40 @@ namespace OdysseyAplication
             return await rt.getRecomendedFriends(usr_name);
         }
 
-        public async Task<List<DataSong>> getRecomendatedSongs(string pUserName)
+        public async Task<List<string>> getRecomendatedSongs(string pUserName)
         {
-            return null;
+            RestTools rtop = new RestTools();
+            return await rtop.getRecomendedFriends(pUserName);
         }
 
         public async Task<bool> makeReproduction(string pSongID)
         {
+            RestTools rtop = new RestTools();
             return true;
         }
 
-        public async void acceptFriendRequest(string pUserSigned, string pUser)
+        public async Task<bool> acceptFriendRequest(string pUserSigned, string pUser)
         {
-
+            RestTools rtop = new RestTools();
+            return await rtop.addFriendByUserName(pUserSigned, pUser);
         }
-        public async void declineFriendRequest(string pUserSigned, string pUser)
+        public async Task<bool> declineFriendRequest(string pUserSigned, string pUser)
         {
+            RestTools rtop = new RestTools();
+            return await rtop.deleteRequest(pUser, pUserSigned);
+        }
+        public async Task<List<TopUser>> getTopUsers()
+        {
+            RestTools rtop = new RestTools();
+            return await rtop.getTopUsers();
+        }
 
+        public async Task<string> getUserSocialRanking(string pUserName)
+        {
+            RestTools rtop = new RestTools();
+            int commentIndex = await rtop.getPopularityByComments(pUserName);
+            int friendIndex = await rtop.getPopularityByFriends(pUserName);
+            return (commentIndex + friendIndex).ToString(); 
         }
     }
 }

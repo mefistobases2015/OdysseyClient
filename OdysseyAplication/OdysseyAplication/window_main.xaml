@@ -12,6 +12,11 @@
         <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Visibility" Value="Collapsed" />
         </Style>
+        <Style TargetType="ListViewItem">
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+            </Style.Resources>
+        </Style>
         <Style x:Key="playerButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#FF323232" ></Setter>
             <Setter Property="Foreground" Value="White" ></Setter>
@@ -91,7 +96,7 @@
             <Label x:Name="label_actualSong_Title" Content="Título de la canción" HorizontalAlignment="Left" Width="185" Foreground="White" Margin="9,38,0,0" RenderTransformOrigin="0.728,1.56"/>
         </Grid>
         <Grid x:Name="musicGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1080" Margin="0,7,0,0" Visibility="Collapsed" >
-            <ListView x:Name="listview_data"  HorizontalAlignment="Left" Height="298" Margin="0,112,0,0" VerticalAlignment="Top" Width="749" Background="{x:Null}" Foreground="White" SelectionMode="Single" BorderBrush="{x:Null}" SelectionChanged="listview_data_SelectionChanged" BorderThickness="0,1,1,1" FocusVisualStyle ="{x:Null}">
+            <ListView x:Name="listview_data"  HorizontalAlignment="Left" Height="298" Margin="0,112,0,0" VerticalAlignment="Top" Width="749" Background="{x:Null}" Foreground="White" SelectionMode="Single" BorderBrush="{x:Null}" SelectionChanged="listview_data_SelectionChanged" BorderThickness="0,1,1,1" FocusVisualStyle ="{x:Null}" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListView.View>
                     <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
                         <GridViewColumn Header="Canción" HeaderStringFormat="Canción" Width="150"  DisplayMemberBinding="{Binding Col1}"/>
@@ -202,52 +207,70 @@
             </ListView>
         </Grid>
         <Grid x:Name="toolbarCommunity" Background="#FF323232" Margin="5,2,1094,149">
-            <Button x:Name="button_friend_request" Content="Solitudes de Amistad" HorizontalAlignment="Left" Margin="30,184,0,196" Width="149" Background="{x:Null}" Foreground="#FFC8C8C8" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Click="button_friend_request_Click"/>
-            <Button x:Name="button_recomendations" Content="Recomendaciones" HorizontalAlignment="Left" Margin="30,232,0,148" Width="149" Background="{x:Null}" Foreground="#FFC8C8C8" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Click="button_recomendations_Click"/>
+            <Button x:Name="button_friend_request" Content="      Solitudes de Amistad" Margin="0,184,0,196" Style="{StaticResource toolbarButton}" Click="button_friend_request_Click"/>
+            <Button x:Name="button_recomendations" Content="      Recomendaciones" Margin="0,232,0,148" Style="{StaticResource toolbarButton}" Click="button_recomendations_Click"/>
             <Label x:Name="label_Odyssey2" Content="Comunidad" HorizontalAlignment="Left" Height="43" Margin="0,21,0,0" VerticalAlignment="Top" Width="200" Foreground="#FFC8C8C8" FontSize="20" HorizontalContentAlignment="Center"/>
-            <Button x:Name="button_close_community" Content="Cerrar" HorizontalAlignment="Left" Margin="30,349,0,31" Width="149" Background="{x:Null}" Foreground="#FFC8C8C8" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Click="button_close_community_Click"/>
-            <Button x:Name="button_friend_request_Copy" Content="Amigos" HorizontalAlignment="Left" Margin="30,132,0,248" Width="149" Background="{x:Null}" Foreground="#FFC8C8C8" BorderBrush="{x:Null}" HorizontalContentAlignment="Left" Click="button_friend_request_Copy_Click"/>
+            <Button x:Name="button_close_community" Content="       Cerrar" Margin="0,349,0,31" Style="{StaticResource toolbarButton}" Click="button_close_community_Click"/>
+            <Button x:Name="button_friend_request_Copy"  Style="{StaticResource toolbarButton}" Content="      Amigos"  Margin="0,132,0,248" Click="button_friend_request_Copy_Click"/>
         </Grid>
-        <Grid x:Name="communityGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1080" Margin="0,13,-1,0" Height="494" >
-            <Button x:Name="button_addRequest" Content="✓" HorizontalAlignment="Left" Height="59" Margin="232,411,0,0" VerticalAlignment="Top" Width="71" Background="{x:Null}" Foreground="White" BorderBrush="#FF282828" Click="button_addRequest_Click"/>
-            <Button x:Name="button_cancelRequest" Content="✕" HorizontalAlignment="Left" Height="60" Margin="161,411,0,0" VerticalAlignment="Top" Width="66" RenderTransformOrigin="1.621,0.56" Background="{x:Null}" Foreground="White" BorderBrush="#FF282828" Click="button_cancelRequest_Click"/>
-            <Button x:Name="button_seeProfile" Content="☰" HorizontalAlignment="Left" Height="59" Margin="10,408,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="2.566,0.478" Background="{x:Null}" Foreground="White" BorderBrush="#FF282828" Click="button_seeProfile_Click"/>
-            <ListView x:Name="listview_topusers" HorizontalAlignment="Left" Height="386" Margin="758,84,0,24" VerticalAlignment="Center" Width="294" Background="{x:Null}" Foreground="#FFC8C8C8" HorizontalContentAlignment="Center" BorderBrush="{x:Null}" Focusable="False">
-                <ListView.View>
-                    <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
-                        <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding UserName}" />
-                        <GridViewColumn Header="Post" Width="120" DisplayMemberBinding="{Binding Position}" />
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Label x:Name="label_Odyssey2_Copy1" Content="Top #10 Popularidad" HorizontalAlignment="Left" Height="43" Margin="758,3,0,0" VerticalAlignment="Top" Width="294" Foreground="#FFC8C8C8" FontSize="14.667" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-            <Label x:Name="label_Odyssey2_Copy2" Content="POSICIÓN" HorizontalAlignment="Left" Height="33" Margin="758,46,0,0" VerticalAlignment="Top" Width="107" Foreground="#FFC8C8C8" VerticalContentAlignment="Center"/>
-            <Label x:Name="label_Odyssey2_Copy3" Content="NOMBRE DE USUARIO" HorizontalAlignment="Left" Height="33" Margin="870,46,0,0" VerticalAlignment="Top" Width="182" Foreground="#FFC8C8C8" VerticalContentAlignment="Center"/>
-            <Label x:Name="label_Odyssey2_Copy" Content="NOMBRE DE USUARIO" HorizontalAlignment="Left" Height="33" Margin="10,46,0,0" VerticalAlignment="Top" Width="293" Foreground="#FFC8C8C8" VerticalContentAlignment="Center"/>
-            <Label x:Name="label_Odyssey2_Copy4" Content="Clasificación" HorizontalAlignment="Left" Height="43" Margin="10,3,0,0" VerticalAlignment="Top" Width="293" Foreground="#FFC8C8C8" FontSize="14.667" VerticalContentAlignment="Center" FontWeight="Bold" HorizontalContentAlignment="Center"/>
-            <StackPanel HorizontalAlignment="Left" Height="386" Margin="377,89,0,0" VerticalAlignment="Top" Width="313">
+        <Grid x:Name="communityGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1080" Margin="0,19,-5,0" Height="487" ScrollViewer.HorizontalScrollBarVisibility="Hidden" >
+            <Button x:Name="button_addRequest" Content="✓" HorizontalAlignment="Left" Height="59" Margin="232,387,0,0" VerticalAlignment="Top" Width="71" Background="{x:Null}" Foreground="White" BorderBrush="#FF282828" Click="button_addRequest_Click"/>
+            <Button x:Name="button_cancelRequest" Content="✕" HorizontalAlignment="Left" Height="60" Margin="161,387,0,0" VerticalAlignment="Top" Width="66" RenderTransformOrigin="1.621,0.56" Background="{x:Null}" Foreground="White" BorderBrush="#FF282828" Click="button_cancelRequest_Click"/>
+            <Button x:Name="button_seeProfile" Content="☰" HorizontalAlignment="Left" Height="59" Margin="10,387,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="2.566,0.478" Background="{x:Null}" Foreground="White" BorderBrush="#FF282828" Click="button_seeProfile_Click"/>
+            <Label x:Name="label_Odyssey2_Copy2" Content="POSICIÓN" HorizontalAlignment="Left" Height="33" Margin="758,59,0,0" VerticalAlignment="Top" Width="67" Foreground="#FFC8C8C8" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_Odyssey2_Copy3" Content="USUARIO" HorizontalAlignment="Left" Height="33" Margin="862,59,0,0" VerticalAlignment="Top" Width="67" Foreground="#FFC8C8C8" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_communityMode" Content="Categoría" HorizontalAlignment="Left" Height="44" Margin="10,10,0,0" VerticalAlignment="Top" Width="293" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" FontSize="14.667" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <StackPanel HorizontalAlignment="Left" Height="388" Margin="373,83,0,0" VerticalAlignment="Top" Width="313">
                 <Border
             		BorderBrush="Gray"
             		BorderThickness="1"
             		HorizontalAlignment="Stretch"
             		VerticalAlignment="Stretch"/>
-                <Label x:Name="label_Odyssey2_Copy5" Content="Nombre de Usuario" HorizontalAlignment="Right" Height="68" VerticalAlignment="Top" Width="313" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-                <Label x:Name="label_userName" Content="UserName" HorizontalAlignment="Right" Height="61" Margin="0,0,-2,0" VerticalAlignment="Top" Width="315" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <Label x:Name="label_Odyssey2_Copy7" Content="Clasificación de Biblioteca" HorizontalAlignment="Right" Height="69" Margin="0,0,-2,0" VerticalAlignment="Top" Width="315" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-                <Label x:Name="label_LibraryClas" Content="UserName" HorizontalAlignment="Right" Height="61" Margin="0,0,-2,0" VerticalAlignment="Top" Width="315" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                <Label x:Name="label_Odyssey2_Copy9" Content="Clasificación Por Amigos" HorizontalAlignment="Right" Height="63" Margin="0,0,-2,0" VerticalAlignment="Top" Width="315" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold"/>
-                <Label x:Name="label_FriendClas" Content="UserName" HorizontalAlignment="Right" Height="61" VerticalAlignment="Top" Width="313" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="label_Odyssey2_Copy5" Content="Nombre de Usuario" HorizontalAlignment="Right" Height="47" VerticalAlignment="Top" Width="313" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                <Label x:Name="label_userName" Content="" HorizontalAlignment="Right" Height="41" Margin="0,0,-2,0" VerticalAlignment="Top" Width="315" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="label_Odyssey2_Copy7" Content="Clasificación de Biblioteca" HorizontalAlignment="Right" Height="50" Margin="0,0,-2,0" VerticalAlignment="Top" Width="315" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                <Label x:Name="label_LibraryClas" Content="" HorizontalAlignment="Right" Height="43" Margin="0,0,-2,0" VerticalAlignment="Top" Width="315" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="label_Odyssey2_Copy9" Content="Clasificación Por Amigos" HorizontalAlignment="Right" Height="54" Margin="0,0,-2,0" VerticalAlignment="Top" Width="315" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                <Label x:Name="label_FriendClas" Content="" HorizontalAlignment="Right" Height="45" VerticalAlignment="Top" Width="313" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="label_Odyssey2_Copy" Content="Puntos de Populismo" HorizontalAlignment="Right" Height="52" VerticalAlignment="Top" Width="313" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                <Label x:Name="label_PorrasIndex" Content="" HorizontalAlignment="Right" Height="42" VerticalAlignment="Top" Width="313" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
-            <ListView x:Name="listview_users"  HorizontalAlignment="Left" Height="319" Margin="10,84,0,0" VerticalAlignment="Top" Width="293" Background="{x:Null}" Foreground="White" SelectionMode="Single" BorderBrush="{x:Null}" SelectionChanged="listview_data_SelectionChanged" BorderThickness="0,1,1,1" FocusVisualStyle ="{x:Null}" Focusable="False">
+            <Grid HorizontalAlignment="Left" Height="447" Margin="325,24,0,0" VerticalAlignment="Top" Width="3" Background="#FF505050"/>
+            <Grid HorizontalAlignment="Left" Height="447" Margin="724,24,0,0" VerticalAlignment="Top" Width="3" Background="#FF505050"/>
+            <ListView x:Name="listview_users"  HorizontalAlignment="Left" Height="274" Margin="10,98,0,0" VerticalAlignment="Top" Width="293" Background="{x:Null}" Foreground="White" SelectionMode="Single" BorderBrush="{x:Null}" SelectionChanged="listview_data_SelectionChanged" BorderThickness="0,1,1,1" FocusVisualStyle ="{x:Null}">
                 <ListView.View>
                     <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
-                        <GridViewColumn Header="Canción" HeaderStringFormat="UserName" DisplayMemberBinding="{Binding Col1}"/>
+                        <GridViewColumn Header="Canción" HeaderStringFormat="Canción" Width="150"  DisplayMemberBinding="{Binding Col1}"/>
                     </GridView>
                 </ListView.View>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Setter Property="Height" Value="40" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FFC8C8C8" />
+                                <Setter Property="BorderThickness" Value="0" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="#FF1E1E1E" />
+                                <Setter Property="BorderThickness" Value="0" />
+                                <Setter Property="Background" Value="White" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+            <ListView x:Name="listview_topUsers" Height="349" Margin="758,98,14,0" VerticalAlignment="Top" Background="{x:Null}" Foreground="White" SelectionMode="Single" BorderBrush="{x:Null}" SelectionChanged="listview_data_SelectionChanged" BorderThickness="0,1,1,1" FocusVisualStyle ="{x:Null}" IsTextSearchEnabled="False" ScrollViewer.HorizontalScrollBarVisibility="Auto" Focusable="False" IsSynchronizedWithCurrentItem="False">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn Header="Posicion" HeaderStringFormat="Pos" Width="100"  DisplayMemberBinding="{Binding Col1}"/>
+                        <GridViewColumn Header="Nombre" HeaderStringFormat="User" Width="100"  DisplayMemberBinding="{Binding Col2}"/>
+                        <GridViewColumn Header="Puntuaje" HeaderStringFormat="User" Width="50"  DisplayMemberBinding="{Binding Col3}"/>
+                    </GridView>
+                </ListView.View>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="#FF141414" />
@@ -263,6 +286,10 @@
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>
+            <Label x:Name="label_Odyssey2_Copy4" Content="PUNTUAJE" HorizontalAlignment="Left" Height="33" Margin="962,59,0,0" VerticalAlignment="Top" Width="91" Foreground="#FFC8C8C8" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_communityMode_Copy" Content="Información de Usuario" HorizontalAlignment="Left" Height="44" Margin="373,10,0,0" VerticalAlignment="Top" Width="313" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" FontSize="14.667" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <Label x:Name="label_communityMode_Copy1" Content="Usuarios Populares" HorizontalAlignment="Left" Height="44" Margin="758,10,0,0" VerticalAlignment="Top" Width="308" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" FontSize="14.667" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+            <Label x:Name="label_Odyssey2_Copy1" Content="USUARIO" HorizontalAlignment="Left" Height="33" Margin="10,65,0,0" VerticalAlignment="Top" Width="117" Foreground="#FFC8C8C8" VerticalContentAlignment="Center"/>
         </Grid>
 
     </Grid>
