@@ -30,10 +30,12 @@ namespace OdysseyAplication
         public string _uploadMode { get; set; }
         InfoProvider _InfoManager { get; set; }
         public int _CommentIndex { get; set; }
+        MP3StreamerPlayer _Player { get; set; }
         public window_main(string pUserSigned)
         {
             this._SignedUser = pUserSigned;
             this._InfoManager = new InfoProvider();
+            this._Player = new MP3StreamerPlayer();
             InitializeComponent();
             label_signedUserName.Content = pUserSigned;
         }
@@ -270,10 +272,10 @@ namespace OdysseyAplication
                 label_actualSong_Title.Content = this._SongDataList[index]._ID3Title;
 
                 // Make A Song Reproduction
-                await this._InfoManager.makeReproduction(this._SongDataList[index]._SongID);
-
+                // await this._InfoManager.makeReproduction(this._SongDataList[index]._SongID);
+                MP3StreamerPlayer.PlayMp3FromUrl("https://odysseyblob.blob.core.windows.net/braisman/6.mp3");
                 // Play A MP3 Stream
-                if(this._uploadMode == window_main.MODE_CLOUD)
+                if (this._uploadMode == window_main.MODE_CLOUD)
                 {
 
                 }

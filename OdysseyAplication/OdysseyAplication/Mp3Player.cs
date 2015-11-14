@@ -16,11 +16,11 @@ namespace OdysseyAplication
             Playing,
             Paused
         }
-        WaveOutEvent _waveOut { get; set; }
+        WaveOut _waveOut { get; set; }
         Mp3FileReader _Reader { get; set; }
         public MP3Player()
         {
-            this._waveOut = new WaveOutEvent();
+            this._waveOut = new WaveOut(WaveCallbackInfo.FunctionCallback());
         }
         ~MP3Player()
         {
