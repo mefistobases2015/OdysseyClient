@@ -1966,13 +1966,23 @@ namespace OdysseyAplication
 
                 if (response.IsSuccessStatusCode)
                 {
+                    
                     GenreClasf[] genre = await response.Content.ReadAsAsync<GenreClasf[]>();
-                    genreClas = genre[0].Genero;
+
+                    if (genre.Length > 0)
+                    {
+                        genreClas = genre[0].Genero;
+                    }
+                    else
+                    {
+                        genreClas = "";
+                    }
+                    
                 }
                 else
                 {
                     Console.WriteLine("Status Code {0}", response.StatusCode);
-                    genreClas = null;
+                    genreClas = "";
                 }
             }
 
