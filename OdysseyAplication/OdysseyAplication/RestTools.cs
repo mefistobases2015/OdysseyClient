@@ -1950,7 +1950,8 @@ namespace OdysseyAplication
         /// 
         /// </summary>
         /// <param name="user_id"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
         public async Task<string> getGenreClasification(string user_id)
         {
             string genreClas = "";
@@ -1982,7 +1983,8 @@ namespace OdysseyAplication
         /// 
         /// </summary>
         /// <param name="user_id"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
         public async Task<string> getFriendsGenreClasification(string user_id)
         {
             string result = "";

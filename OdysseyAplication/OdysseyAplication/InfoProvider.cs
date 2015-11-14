@@ -19,7 +19,7 @@ namespace OdysseyAplication
         public async Task<string> getUserClasificationByLibrary(string pUsername)
         {
             RestTools rt = new RestTools();
-            return (await rt.getMusicalByLibrary(pUsername));
+            return (await rt.getGenreClasification(pUsername));
         }
         public List<DataSong> getID3ByDirectory(List<string> pPatchs)
         {
@@ -482,6 +482,7 @@ namespace OdysseyAplication
             RestTools rtop = new RestTools();
             return await rtop.getTopUsers();
         }
+
         /// <summary>
         /// Poularidad 
         /// </summary>
@@ -490,9 +491,9 @@ namespace OdysseyAplication
         public async Task<string> getUserSocialRanking(string pUserName)
         {
             RestTools rtop = new RestTools();
-            int commentIndex = await rtop.getPopularityByComments(pUserName);
-            int friendIndex = await rtop.getPopularityByFriends(pUserName);
-            return (commentIndex + friendIndex).ToString(); 
+            int popularity = await rtop.getPopularityByComments(pUserName);
+            return popularity.ToString();
         }
+
     }
 }
