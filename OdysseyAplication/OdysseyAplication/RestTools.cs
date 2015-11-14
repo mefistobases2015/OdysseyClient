@@ -2010,7 +2010,7 @@ namespace OdysseyAplication
                 if (response.IsSuccessStatusCode)
                 {
                     result = await response.Content.ReadAsAsync<string>();
-                    result = result.Replace('\"','\0');
+                    result = result.Replace('\"',' ');
                 }
                 else
                 {
