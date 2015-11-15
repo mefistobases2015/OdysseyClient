@@ -567,5 +567,17 @@ namespace OdysseyAplication
             return false;
         }
 
+        /// <summary>
+        /// Agrega una version nueva a una canción ya creada.
+        /// </summary>
+        /// <param name="dataSong">
+        /// Objeto DataSong que cnotiene la información 
+        /// de la version
+        /// </param>
+        public void setVersion2Song(DataSong dataSong)
+        {
+            DatabaseManager.setVersion2Song(dataSong);
+        }
+
     }
 }
