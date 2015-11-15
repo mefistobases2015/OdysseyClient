@@ -302,10 +302,10 @@
             <Button x:Name="button_user_search"  Style="{StaticResource toolbarButton}" Content="   ☌"  Margin="156,95,10,289" HorizontalContentAlignment="Center" Click="button_user_search_Click"/>
             <Button x:Name="button_personal_info" Content="      Información Personal" Margin="0,255,0,125" Style="{StaticResource toolbarButton}" Click="button_personal_info_Click"/>
         </Grid>
-        <Grid x:Name="communityGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1080" Margin="0,19,-5,0" Height="467" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Visibility="Collapsed" >
-            <Button x:Name="button_addRequest" Content="✓"    Margin="240,386,777,21" Style="{StaticResource mainButton}" Click="button_addRequest_Click"/>
-            <Button x:Name="button_cancelRequest" Content="✕" Margin="168,386,845,21" Style="{StaticResource mainButton}"  Click="button_cancelRequest_Click"/>
-            <Button x:Name="button_seeProfile" Content="☰" Margin="21,386,993,21" Style="{StaticResource mainButton}" Click="button_seeProfile_Click"/>
+        <Grid x:Name="communityGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1080" Margin="0,19,-5,0" Height="467" ScrollViewer.HorizontalScrollBarVisibility="Hidden" >
+            <Button x:Name="button_addRequest" Content="✓"    Margin="240,382,777,25" Style="{StaticResource mainButton}" Click="button_addRequest_Click" MouseLeave="button_addRequest_MouseLeave" MouseMove="button_addRequest_MouseMove"/>
+            <Button x:Name="button_cancelRequest" Content="✕" Margin="168,382,845,25" Style="{StaticResource mainButton}"  Click="button_cancelRequest_Click" MouseMove="button_cancelRequest_MouseMove" MouseLeave="button_cancelRequest_MouseLeave"/>
+            <Button x:Name="button_seeProfile" Content="☰" Margin="21,382,993,25" Style="{StaticResource mainButton}" Click="button_seeProfile_Click" MouseLeave="button_seeProfile_MouseLeave" MouseMove="button_seeProfile_MouseMove"/>
             <Label x:Name="label_Odyssey2_Copy2" Content="POSICIÓN" HorizontalAlignment="Left" Height="33" Margin="758,59,0,0" VerticalAlignment="Top" Width="67" Foreground="#FFC8C8C8" VerticalContentAlignment="Center"/>
             <Label x:Name="label_Odyssey2_Copy3" Content="USUARIO" HorizontalAlignment="Left" Height="33" Margin="862,59,0,0" VerticalAlignment="Top" Width="67" Foreground="#FFC8C8C8" VerticalContentAlignment="Center"/>
             <Label x:Name="label_communityMode" Content="Categoría" HorizontalAlignment="Left" Height="44" Margin="10,10,0,0" VerticalAlignment="Top" Width="293" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" FontSize="14.667" FontWeight="Bold" HorizontalContentAlignment="Center"/>
@@ -360,7 +360,7 @@
                 </ListView.View>
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="Height" Value="40" />
+                        <Setter Property="Height" Value="40" />
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="#FF141414" />
@@ -380,9 +380,10 @@
             <Label x:Name="label_communityMode_Copy" Content="Información de Usuario" HorizontalAlignment="Left" Height="44" Margin="373,10,0,0" VerticalAlignment="Top" Width="313" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" FontSize="14.667" FontWeight="Bold" HorizontalContentAlignment="Center"/>
             <Label x:Name="label_communityMode_Copy1" Content="Usuarios Populares" HorizontalAlignment="Left" Height="44" Margin="758,10,0,0" VerticalAlignment="Top" Width="308" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" FontSize="14.667" FontWeight="Bold" HorizontalContentAlignment="Center"/>
             <Label x:Name="label_Odyssey2_Copy1" Content="USUARIO" HorizontalAlignment="Left" Height="33" Margin="10,65,0,0" VerticalAlignment="Top" Width="117" Foreground="#FFC8C8C8" VerticalContentAlignment="Center"/>
-            <Button x:Name="button_sendRequest" Content="✚" Margin="92,387,917,20" Style="{StaticResource mainButton}" Width="71"/>
+            <Button x:Name="button_sendRequest" Content="✚" Margin="92,382,917,25" Style="{StaticResource mainButton}" Width="71" MouseMove="button_sendRequest_MouseMove" MouseLeave="button_sendRequest_MouseLeave" Click="button_sendRequest_Click"/>
+            <Label x:Name="label_social_option" Content="" HorizontalAlignment="Left" Height="25" Margin="21,442,0,0" VerticalAlignment="Top" Width="282" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </Grid>
-        <Grid x:Name="loginGrid" HorizontalAlignment="Left" Height="567" VerticalAlignment="Top" Width="1300" Margin="0,0,-1,0">
+        <Grid x:Name="loginGrid" HorizontalAlignment="Left" Height="567" VerticalAlignment="Top" Width="1300" Margin="0,0,-1,0" Visibility="Collapsed">
             <Grid.Background>
                 <ImageBrush ImageSource="vintage.jpg"/>
             </Grid.Background>
