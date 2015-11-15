@@ -1883,9 +1883,15 @@ namespace OdysseyAplication
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="user_id"></param>
-        /// <param name="musical"></param>
-        /// <returns></returns>
+        /// <param name="user_id">
+        /// 
+        /// </param>
+        /// <param name="musical">
+        /// 
+        /// </param>
+        /// <returns>
+        /// 
+        /// </returns>
         public async Task<bool> setMusical(string user_id, string musical)
         {
             bool result = false;
@@ -1916,9 +1922,15 @@ namespace OdysseyAplication
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="user_id"></param>
-        /// <param name="social"></param>
-        /// <returns></returns>
+        /// <param name="user_id">
+        /// 
+        /// </param>
+        /// <param name="social">
+        /// 
+        /// </param>
+        /// <returns>
+        /// 
+        /// </returns>
         public async Task<bool> setSocial(string user_id, string social)
         {
             bool result = false;
@@ -1949,7 +1961,8 @@ namespace OdysseyAplication
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="user_id"></param>
+        /// <param name="user_id">
+        /// </param>
         /// <returns>
         /// </returns>
         public async Task<string> getGenreClasification(string user_id)
@@ -1992,7 +2005,8 @@ namespace OdysseyAplication
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="user_id"></param>
+        /// <param name="user_id">
+        /// </param>
         /// <returns>
         /// </returns>
         public async Task<string> getFriendsGenreClasification(string user_id)
@@ -2021,5 +2035,6 @@ namespace OdysseyAplication
 
             return null;
         }
+
     }
 }
