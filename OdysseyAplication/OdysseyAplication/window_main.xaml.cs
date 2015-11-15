@@ -28,6 +28,7 @@ namespace OdysseyAplication
         public List<Comment> _CommmentList { get; set; }
         public List<string> _CommunityList { get; set; }
         public string _SignedUser { get; set; }
+        public string _ProfileUser { get; set; }
         public string _uploadMode { get; set; }
         InfoProvider _InfoManager { get; set; }
         public int _CommentIndex { get; set; }
@@ -68,6 +69,38 @@ namespace OdysseyAplication
             else if(this._uploadMode == window_main.MODE_LOCAL)
             {
                 this._SongDataList = DatabaseManager.getSongsOfUser(this._SignedUser);
+            }
+            // Delete The Current Data
+            while (listview_data.Items.Count > 0)
+            {
+                listview_data.Items.RemoveAt(0);
+            }
+            // Insert New Items
+            foreach (DataSong ww in this._SongDataList)
+            {
+                listview_data.Items.Add(new { Col1 = ww._ID3Artist, Col2 = ww._ID3Title, Col3 = ww._ID3Album, Col4 = ww._ID3Year, Col5 = ww._ID3Genre });
+            }
+        }
+
+        private void refreshMusicGrid()
+        {
+            // Verify Friend Settings
+            if (this._SignedUser == this._ProfileUser)
+            {
+                button_main_friend.Visibility = Visibility.Collapsed;
+                button_id3Editor.Visibility = Visibility.Visible;
+            }
+            //else if (this._InfoManager.areFriends(this._ProfileUser, this._SignedUser))
+            //{
+            //button_main_friend.Visibility = Visibility.Visible;
+            //button_id3Editor.Visibility = Visibility.Visible;
+            //button_main_friend.Content = "✔";
+            //}
+            else
+            {
+                button_main_friend.Visibility = Visibility.Visible;
+                button_id3Editor.Visibility = Visibility.Collapsed;
+                button_main_friend.Content = "✚";
             }
             // Delete The Current Data
             while (listview_data.Items.Count > 0)
@@ -180,6 +213,7 @@ namespace OdysseyAplication
         }
         private async void button_makeDislike_Click(object sender, RoutedEventArgs e)
         {
+
             if (listview_data.SelectedItems.Count > 0)
             {
                 // Index Of Selected Item
@@ -203,21 +237,6 @@ namespace OdysseyAplication
                 }
             }
         }
-
-        private void button_prevSong_Click(object sender, RoutedEventArgs e)
-        {
-            if (listview_data.Items.Count > 0)
-            {
-                int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
-                if (index > 0)
-                {
-                    listview_data.SelectedIndex = index - 1;
-                    label_actualSong_artist.Content = this._SongDataList[index - 1]._ID3Artist;
-                    label_actualSong_Title.Content = this._SongDataList[index - 1]._ID3Title;
-                }
-            }
-        }
-
         private void button_prevComment_Click(object sender, RoutedEventArgs e)
         {
             if (this._CommmentList != null)
@@ -268,7 +287,9 @@ namespace OdysseyAplication
         {
             if (listview_data.Items.Count > 0)
             {
+                // Index Of The Selected Song
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
+                // Last Item
                 if (index < listview_data.Items.Count - 1)
                 {
                     listview_data.SelectedIndex = index + 1;
@@ -278,30 +299,32 @@ namespace OdysseyAplication
                 }
             }
         }
+        private void button_prevSong_Click(object sender, RoutedEventArgs e)
+        {
+            if (listview_data.Items.Count > 0)
+            {
+                // Index Of The Selected Song
+                int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
+                // First Item
+                if (index > 0)
+                {
+                    listview_data.SelectedIndex = index - 1;
+                    label_actualSong_artist.Content = this._SongDataList[index - 1]._ID3Artist;
+                    label_actualSong_Title.Content = this._SongDataList[index - 1]._ID3Title;
+                }
+            }
+        }
         private async void button_playSong_Click(object sender, RoutedEventArgs e)
         {
             if (listview_data.Items.Count > 0)
             {
                 // Index Of The Selected Song
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
-
                 // Actual Song In The Play Queue
                 label_actualSong_artist.Content = this._SongDataList[index]._ID3Artist;
                 label_actualSong_Title.Content = this._SongDataList[index]._ID3Title;
-
                 // Make A Song Reproduction
-                // await this._InfoManager.makeReproduction(this._SongDataList[index]._SongID);
-                MP3StreamerPlayer.PlayMp3FromUrl("https://odysseyblob.blob.core.windows.net/braisman/6.mp3");
-                // Play A MP3 Stream
-                if (this._uploadMode == window_main.MODE_CLOUD)
-                {
-
-                }
-                // Play A MP3 Local File
-                else if(this._uploadMode == window_main.MODE_LOCAL)
-                {
-
-                }
+                await this._InfoManager.setSongReproduction(this._SongDataList[index]._SongID);
             }
         }
 
@@ -543,6 +566,21 @@ namespace OdysseyAplication
                     MessageBox.Show(this._DBManager.etrace3);
                 }
             }
+        }
+
+        private void button_main_cerrar_Click(object sender, RoutedEventArgs e)
+        {
+            label_signedUserName.Content = "";
+            loginGrid.Visibility = Visibility.Visible;
+            musicGrid.Visibility = Visibility.Collapsed;
+            toolbarMain.Visibility = Visibility.Collapsed;
+            playerGrid.Visibility = Visibility.Collapsed;
+            playerInfoGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void button_nextSong(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
