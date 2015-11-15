@@ -628,6 +628,164 @@ namespace OdysseyAplication
             }
         }
 
+        /// <summary>
+        /// Establece los id de la nube, una vez que son sincronizados.
+        /// </summary>
+        /// <param name="local_version_id">
+        /// id de version local
+        /// </param>
+        /// <param name="cloud_version_id">
+        /// id de version en la nube
+        /// </param>
+        /// <param name="cloud_song_id">
+        /// id de la cancion en la nube
+        /// </param>
+        /// <returns></returns>
+        public static bool setSyncIdVersion(int local_version_id, int cloud_version_id, int cloud_song_id)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(databaseConn))
+                {
+                    SqlCommand updateVersion = new SqlCommand();
+
+                    updateVersion.CommandType = System.Data.CommandType.Text;
+                    updateVersion.CommandText = "UPDATE versiones_tbl "
+                        + "SET cloud_song_id = @syncSongId, cloud_version_id = @syncVersionId"
+                        + "WHERE local_version_id = @localId";
+
+                    updateVersion.Parameters.AddWithValue("@syncSongId", cloud_song_id);
+                    updateVersion.Parameters.AddWithValue("@syncVersionId", cloud_version_id);
+
+                    updateVersion.Connection = connection;
+
+                    connection.Open();
+
+                    updateVersion.ExecuteNonQuery();
+
+                    connection.Close();
+                }
+
+                return true;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene la información necessario para subir 
+        /// una version a la nube
+        /// </summary>
+        /// <param name="local_version_id">
+        /// identificador de la version
+        /// </param>
+        /// <returns>
+        /// objeto Version que contiene la información importante sobre 
+        /// la version, si viene vacia, algo salio mal con la obtencion 
+        /// de la información.
+        /// </returns>
+        public static Version getVersion(int local_version_id)
+        {
+            Version version = new Version();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(databaseConn))
+                {
+                    SqlCommand versionSongs = new SqlCommand();
+
+                    versionSongs.CommandType = System.Data.CommandType.Text;
+
+                    versionSongs.CommandText = "SELECT id3v2_title, id3v2_author, id3v2_lyrics, id3v2_album, id3v2_genre, id3v2_year, submission_date "
+                        + "FROM versiones_tbl WHERE local_version_id = @locVerId";
+
+                    versionSongs.Parameters.AddWithValue("@locVerId", local_version_id);
+
+                    versionSongs.Connection = connection;
+
+                    connection.Open();
+
+                    SqlDataReader reader = versionSongs.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        if (reader.Read())
+                        {
+                            version.id3v2_title = reader.GetString(1);
+                            version.id3v2_author = reader.GetString(2);
+                            version.id3v2_lyrics = reader.GetString(3);
+                            version.id3v2_album = reader.GetString(4);
+                            version.id3v2_genre = reader.GetString(5);
+                            version.id3v2_year = reader.GetInt32(6);
+                            version.submission_date = reader.GetDateTime(7).ToString();
+                        }
+
+                    }
+
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return version;
+        }
+
+        /// <summary>
+        /// 
+        /// 
+        /// </summary>
+        /// <param name="local_song_id"></param>
+        /// <returns></returns>
+        public static string getSongDirectoryFromASong(int local_song_id)
+        {
+            string songDirectory = "";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(databaseConn))
+                {
+                    SqlCommand songDirectoryQuery = new SqlCommand();
+
+                    songDirectoryQuery.CommandType = System.Data.CommandType.Text;
+
+                    songDirectoryQuery.CommandText = "SELECT song_directory"
+                        + "FROM canciones_tbl WHERE local_song_id = @locSngId";
+
+                    songDirectoryQuery.Parameters.AddWithValue("@locSngId", local_song_id);
+
+                    songDirectoryQuery.Connection = connection;
+
+                    connection.Open();
+
+                    SqlDataReader reader = songDirectoryQuery.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        if (reader.Read())
+                        {
+                            songDirectory = reader.GetString(0);
+                        }
+                    }
+
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return songDirectory;
+        }
+
     }
 
 }
