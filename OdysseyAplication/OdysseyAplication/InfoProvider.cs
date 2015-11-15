@@ -461,12 +461,6 @@ namespace OdysseyAplication
             return await rtop.getRecomendedFriends(pUserName);
         }
 
-        public async Task<bool> makeReproduction(string pSongID)
-        {
-            RestTools rtop = new RestTools();
-            return true;
-        }
-
         public async Task<bool> acceptFriendRequest(string pUserSigned, string pUser)
         {
             RestTools rtop = new RestTools();
@@ -486,13 +480,91 @@ namespace OdysseyAplication
         /// <summary>
         /// Poularidad 
         /// </summary>
-        /// <param name="pUserName"></param>
-        /// <returns></returns>
+        /// <param name="pUserName">
+        /// </param>
+        /// <returns>
+        /// </returns>
         public async Task<string> getUserSocialRanking(string pUserName)
         {
             RestTools rtop = new RestTools();
             int popularity = await rtop.getPopularityByComments(pUserName);
             return popularity.ToString();
+        }
+
+        /// <summary>
+        /// Agreaga una canción a un usuario
+        /// </summary>
+        /// <param name="pUserName">
+        /// Nomre del usuario al que se le agregan canciones
+        /// </param>
+        /// <param name="pSongsNames">
+        /// Lista con los nombre de las canciones
+        /// </param>
+        /// <param name="pMetadatas">
+        /// Lista con los metadatos de las canciones
+        /// </param>
+        /// <returns>
+        /// bool que es true si se logran agregar todas las canciones.
+        /// </returns>
+        public bool addSong2User(string pUserName, List<string> pSongsNames, List<DataSong> pMetadatas)
+        {
+            //si no es la misma cantidad de valores en las listas
+            if (!(pSongsNames.Count == pMetadatas.Count))
+            {
+                Console.WriteLine("#NoHayLaMismaCantidadEnListas");
+                return false;
+            }
+            else
+            {
+                //si una lista no tiene elementos
+                if(pSongsNames.Count < 1 || pMetadatas.Count < 1)
+                {
+                    Console.WriteLine("#NoHayDatosEnUnaDeLasListasOAmbas");
+                    return false;
+                }
+                else
+                {
+
+                    for(int i = 0; i < pMetadatas.Count; i++)
+                    {
+                        bool state = DatabaseManager.addSong2User(pUserName, pSongsNames[i], pMetadatas[i]);
+                        if (!state)
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Verifica si un usuario es amigo del otro
+        /// </summary>
+        /// <param name="pUserName">
+        /// Nombre de usuario al que se le va a verificar amigo
+        /// </param>
+        /// <param name="pFriendName">
+        /// Nombre de usurio que se va a ver si es amigo del otor usuario
+        /// </param>
+        /// <returns>
+        /// bool que es true si son amigos, en otro caso false.
+        /// </returns>
+        public async Task<bool> areFriends(string pUserName, string pFriendName)
+        {
+
+            RestTools rt = new RestTools();
+
+            List<string> friends = await rt.getFriends(pUserName);
+
+            for (int i = 0; i < friends.Count; i++)
+            {
+                if(friends[i].CompareTo(pFriendName) == 0)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }
