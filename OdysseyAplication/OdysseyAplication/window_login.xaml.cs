@@ -30,7 +30,7 @@ namespace OdysseyAplication
         }
         private void button_ok_Click(object sender, RoutedEventArgs e)
         {
-            window_main main = new window_main(textbox_user.Text);
+            window_main main = new window_main();
             main.Show();
             this.Close();
         }

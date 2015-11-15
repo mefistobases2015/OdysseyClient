@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,19 +33,29 @@ namespace OdysseyAplication
         public int _CommentIndex { get; set; }
         MP3StreamerPlayer _Player { get; set; }
         DatabaseManager _DBManager { get; set; }
-        public window_main(string pUserSigned)
+        public window_main()
         {
-            this._SignedUser = pUserSigned;
+            //this._SignedUser = pUserSigned;
+            InitializeComponent();
+            //this._SignedUser = pUserSigned;
             this._InfoManager = new InfoProvider();
             this._Player = new MP3StreamerPlayer();
-            InitializeComponent();
-            label_signedUserName.Content = pUserSigned;
-            if (!XmlManager.isDatabase())
-            {
-                this._DBManager = new DatabaseManager();
-                if (XmlManager.isDatabase())
-                    MessageBox.Show("Itz created");
-            }
+            //label_signedUserName.Content = pUserSigned;
+            // if (!XmlManager.isDatabase())
+            //{
+            //   this._DBManager = new DatabaseManager();
+            //  if (XmlManager.isDatabase())
+            // {
+            //    MessageBox.Show("Itz created");
+            //}
+            //else
+            //{
+            //   MessageBox.Show(this._DBManager.etrace1);
+            //  MessageBox.Show(this._DBManager.etrace2);
+            // MessageBox.Show(this._DBManager.etrace3);
+            //}
+
+            //}
         }
         private async void refreshLibrary(string pUserName, string pMode)
         {
@@ -305,10 +316,15 @@ namespace OdysseyAplication
 
         private void button_add_Click(object sender, RoutedEventArgs e)
         {
-        }
+            OpenFileDialog saveFileDialog = new OpenFileDialog();
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveFileDialog.Filter = "MP3 File (*.mp3)|*.mp3";
+            saveFileDialog.Multiselect = true;
+            if(saveFileDialog.ShowDialog() == true)
+            {
 
-        private void button_add_Click_1(object sender, RoutedEventArgs e)
-        {
+            }
+
         }
 
         private void button1_download_Click(object sender, RoutedEventArgs e)
@@ -462,6 +478,56 @@ namespace OdysseyAplication
                 listview_topUsers.Items.Add(new { Col1 = userPos.ToString(), Col2 = user.user_name, Col3 = user.puntaje });
                 userPos++;
             }
+        }
+
+        private void button_upload_MouseMove(object sender, MouseEventArgs e)
+        {
+            label_button_info.Content = "Subir";
+        }
+
+        private void button_upload_MouseLeave(object sender, MouseEventArgs e)
+        {
+            label_button_info.Content = "";
+        }
+
+        private void button1_download_MouseMove(object sender, MouseEventArgs e)
+        {
+            label_button_info.Content = "Descargar";
+        }
+
+        private void button1_download_MouseLeave(object sender, MouseEventArgs e)
+        {
+            label_button_info.Content = "";
+        }
+        private void button_add_MouseMove(object sender, MouseEventArgs e)
+        {
+            label_button_info.Content = "Añadir";
+        }
+
+        private void button_add_MouseLeave(object sender, MouseEventArgs e)
+        {
+            label_button_info.Content = "";
+        }
+        
+        private void button_id3Editor_MouseMove(object sender, MouseEventArgs e)
+        {
+            label_button_info.Content = "Editar";
+        }
+
+        private void button_id3Editor_MouseLeave(object sender, MouseEventArgs e)
+        {
+            label_button_info.Content = "";
+        }
+
+        private void button_ok_Click(object sender, RoutedEventArgs e)
+        {
+            this._SignedUser = textbox_user.Text;
+            label_signedUserName.Content = this._SignedUser;
+            loginGrid.Visibility = Visibility.Collapsed;
+            musicGrid.Visibility = Visibility.Visible;
+            toolbarMain.Visibility = Visibility.Visible;
+            playerGrid.Visibility = Visibility.Visible;
+            playerInfoGrid.Visibility = Visibility.Visible;
         }
     }
 }

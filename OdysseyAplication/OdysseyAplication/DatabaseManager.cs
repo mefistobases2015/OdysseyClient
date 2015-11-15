@@ -22,6 +22,12 @@ namespace OdysseyAplication
         
         private bool isDatabase;
 
+        public string etrace1 = "";
+
+        public string etrace2 = "";
+
+        public string etrace3 = "";
+
         /// <summary>
         /// Constructor, verifica si ya se ha creado 
         /// la base de datos, y si no la crea con las 
@@ -52,6 +58,7 @@ namespace OdysseyAplication
                     }
                     catch (Exception e)
                     {
+                        etrace1 = e.Message;
                         Console.WriteLine(e);
                         Console.WriteLine("Por alguna razón muy satánica no se pudo crear la base");
                     }
@@ -83,6 +90,7 @@ namespace OdysseyAplication
                     }
                     catch (Exception e)
                     {
+                        etrace2 = e.Message;
                         Console.WriteLine(e);
                         Console.WriteLine("#AlgoSalioMal");
                     }
@@ -111,6 +119,7 @@ namespace OdysseyAplication
                     }
                     catch (Exception e)
                     {
+                        etrace3 = e.Message;
                         Console.WriteLine(e);
                         Console.WriteLine("#NoSirveView");
                     }
