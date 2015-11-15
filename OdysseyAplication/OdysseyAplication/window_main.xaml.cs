@@ -528,6 +528,21 @@ namespace OdysseyAplication
             toolbarMain.Visibility = Visibility.Visible;
             playerGrid.Visibility = Visibility.Visible;
             playerInfoGrid.Visibility = Visibility.Visible;
+
+            if (!XmlManager.isDatabase())
+            {
+                this._DBManager = new DatabaseManager();
+                if (XmlManager.isDatabase())
+                {
+                    MessageBox.Show("Itz created");
+                }
+                else
+                {
+                    MessageBox.Show(this._DBManager.etrace1);
+                    MessageBox.Show(this._DBManager.etrace2);
+                    MessageBox.Show(this._DBManager.etrace3);
+                }
+            }
         }
     }
 }
