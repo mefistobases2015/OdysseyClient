@@ -31,6 +31,7 @@ namespace OdysseyAplication
         InfoProvider _InfoManager { get; set; }
         public int _CommentIndex { get; set; }
         MP3StreamerPlayer _Player { get; set; }
+        DatabaseManager _DBManager { get; set; }
         public window_main(string pUserSigned)
         {
             this._SignedUser = pUserSigned;
@@ -38,6 +39,12 @@ namespace OdysseyAplication
             this._Player = new MP3StreamerPlayer();
             InitializeComponent();
             label_signedUserName.Content = pUserSigned;
+            if (!XmlManager.isDatabase())
+            {
+                this._DBManager = new DatabaseManager();
+                if (XmlManager.isDatabase())
+                    MessageBox.Show("Itz created");
+            }
         }
         private async void refreshLibrary(string pUserName, string pMode)
         {
@@ -49,7 +56,7 @@ namespace OdysseyAplication
             }
             else if(this._uploadMode == window_main.MODE_LOCAL)
             {
-                this._SongDataList = await this._InfoManager.getSongsByUserInCloud(pUserName);
+                this._SongDataList = DatabaseManager.getSongsOfUser(this._SignedUser);
             }
             // Delete The Current Data
             while (listview_data.Items.Count > 0)
@@ -289,6 +296,10 @@ namespace OdysseyAplication
 
         private void button_local_Click(object sender, RoutedEventArgs e)
         {
+            if(!XmlManager.isDatabase())
+            {
+                this._DBManager = new DatabaseManager();
+            }
             this.refreshLibrary(this._SignedUser, window_main.MODE_LOCAL);
         }
 

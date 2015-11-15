@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-16"?>
 <Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <DatabaseSettings databaseName="OdysseyOffline" isDatabase="false" />
-  <BlobManagerSettings accountName="odysseyblob" accountKey="+LNzgFo5XOB7J7lFffed0oEha5qUDN+8aV3fIbBk8B2eeAFk/VxAwmfyBv0gk7WuSMJewyOu5R2Bnu8O0jUtKA==" musicUrl="https://odysseyblob.blob.core.windows.net/music"/>
+  <DatabaseSettings databaseName="OdysseyOffline" isDatabase="true" />
+  <BlobManagerSettings accountName="odysseyblob" accountKey="+LNzgFo5XOB7J7lFffed0oEha5qUDN+8aV3fIbBk8B2eeAFk/VxAwmfyBv0gk7WuSMJewyOu5R2Bnu8O0jUtKA==" musicUrl="https://odysseyblob.blob.core.windows.net/music" />
 </Settings>
