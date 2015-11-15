@@ -596,13 +596,31 @@ namespace OdysseyAplication
             return await rt.setConnectedState(connectedStatus, userName);
         }
 
-        public void uploadSong(string user_name)
+        public async void uploadSong(string user_name)
         {
+            RestTools rt = new RestTools();
+
             List<DataSong> datasongs = DatabaseManager.getSongsOfUser(user_name);
 
             for (int i = 0; i < datasongs.Count; i++)
             {
+                if (!DatabaseManager.isSongSync(datasongs[i]._SongID))
+                {
+                    int lc_song_id = Convert.ToInt32(datasongs[i]._SongID);
 
+                    //se crea la cancion
+                    string song_directory = DatabaseManager.getSongDirectoryFromASong(lc_song_id);
+
+                    Song syncSong = await rt.createSong(song_directory);
+
+                    DatabaseManager.setSyncId2Song(lc_song_id, syncSong.song_id);
+
+                    //se agrega la version
+                    Version lc_version = DatabaseManager.getVersion(lc_song_id);
+                    lc_version.song_id = syncSong.song_id;
+
+                    Version syncVersion = await rt.syncVersion(lc_version);
+                }
             }
 
         }
@@ -610,6 +628,19 @@ namespace OdysseyAplication
         public void downloadDatabase()
         {
 
+        }
+
+        /// <summary>
+        /// Envia una peticion de amistad
+        /// </summary>
+        /// <param name="userName">NOmbre de usuario que hace la peticion</param>
+        /// <param name="friendUserName">Nombre de usuario a quien se le hace la peticion</param>
+        /// <returns>bool que es true si se completa, false en cualquier otro caso</returns>
+        public async Task<bool> setFriendRequest(string userName, string friendUserName)
+        {
+            RestTools rt = new RestTools();
+
+            return await rt.setRequest(userName, friendUserName);
         }
 
     }

@@ -679,7 +679,7 @@ namespace OdysseyAplication
         /// Obtiene la información necessario para subir 
         /// una version a la nube
         /// </summary>
-        /// <param name="local_version_id">
+        /// <param name="local_song_id">
         /// identificador de la version
         /// </param>
         /// <returns>
@@ -687,7 +687,7 @@ namespace OdysseyAplication
         /// la version, si viene vacia, algo salio mal con la obtencion 
         /// de la información.
         /// </returns>
-        public static Version getVersion(int local_version_id)
+        public static Version getVersion(int local_song_id)
         {
             Version version = new Version();
 
@@ -702,7 +702,7 @@ namespace OdysseyAplication
                     versionSongs.CommandText = "SELECT id3v2_title, id3v2_author, id3v2_lyrics, id3v2_album, id3v2_genre, id3v2_year, submission_date "
                         + "FROM versiones_tbl WHERE local_version_id = @locVerId";
 
-                    versionSongs.Parameters.AddWithValue("@locVerId", local_version_id);
+                    versionSongs.Parameters.AddWithValue("@locVerId", local_song_id);
 
                     versionSongs.Connection = connection;
 
