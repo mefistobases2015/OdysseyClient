@@ -1483,7 +1483,7 @@ namespace OdysseyAplication
         /// bool que es true si se completa la acción, en cualquier otro
         /// caso es false;
         /// </returns>
-        public async Task<bool> setConnectedState(bool state)
+        public async Task<bool> setConnectedState(bool state, string userName)
         {
             bool result = false;
 
@@ -1493,8 +1493,8 @@ namespace OdysseyAplication
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage response = await client.PutAsJsonAsync<string>(mongo_users_path + "/Conectado?id=" + state.ToString()
-                    , "");
+                HttpResponseMessage response = await client.PutAsJsonAsync<bool>(mongo_users_path + "/Conectado?id=" + userName
+                    , state);
                 if (response.IsSuccessStatusCode)
                 {
                     result = true;

@@ -589,21 +589,21 @@ namespace OdysseyAplication
         /// bool que es true si se logra la accion por completo, 
         /// false en cualquier otro caso.
         /// </returns>
-        public async Task<bool> setConnectedState(bool connectedStatus)
+        public async Task<bool> setConnectedState(string userName, bool connectedStatus)
         {
             RestTools rt = new RestTools();
 
-            return await rt.setConnectedState(connectedStatus);
+            return await rt.setConnectedState(connectedStatus, userName);
         }
 
         public void uploadSong(string user_name)
         {
-            //List<DataSong> datasongs = DatabaseManager.getSongsOfUser(user_name);
+            List<DataSong> datasongs = DatabaseManager.getSongsOfUser(user_name);
 
-            //for(int i = 0; i < datasongs.Count; i++)
-            //{
+            for (int i = 0; i < datasongs.Count; i++)
+            {
 
-            //}
+            }
 
         }
 
