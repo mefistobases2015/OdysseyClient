@@ -7,8 +7,9 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="Odyssey Client" Height="595.736" Width="1308.783" Background="#FF141414" HorizontalAlignment="Center" VerticalAlignment="Center">
+        Title="Odyssey Client" Height="595.736" Width="1308.783" Background="#FF141414" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF141414">
     <Window.Resources>
+
         <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Visibility" Value="Collapsed" />
         </Style>
@@ -16,6 +17,32 @@
             <Style.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
             </Style.Resources>
+        </Style>
+        <Style x:Key="mainButton" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF141414" ></Setter>
+            <Setter Property="Foreground" Value="White" ></Setter>
+            <Setter Property="BorderBrush" Value="White"></Setter>
+            <Setter Property="BorderThickness" Value="2"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="0" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF323232" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF282828" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style x:Key="playerButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#FF323232" ></Setter>
@@ -213,10 +240,10 @@
             <Button x:Name="button_close_community" Content="       Cerrar" Margin="0,349,0,31" Style="{StaticResource toolbarButton}" Click="button_close_community_Click"/>
             <Button x:Name="button_friend_request_Copy"  Style="{StaticResource toolbarButton}" Content="      Amigos"  Margin="0,132,0,248" Click="button_friend_request_Copy_Click"/>
         </Grid>
-        <Grid x:Name="communityGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1080" Margin="0,19,-5,0" Height="487" ScrollViewer.HorizontalScrollBarVisibility="Hidden" >
-            <Button x:Name="button_addRequest" Content="✓" HorizontalAlignment="Left" Height="59" Margin="232,387,0,0" VerticalAlignment="Top" Width="71" Background="{x:Null}" Foreground="White" BorderBrush="#FF282828" Click="button_addRequest_Click"/>
-            <Button x:Name="button_cancelRequest" Content="✕" HorizontalAlignment="Left" Height="60" Margin="161,387,0,0" VerticalAlignment="Top" Width="66" RenderTransformOrigin="1.621,0.56" Background="{x:Null}" Foreground="White" BorderBrush="#FF282828" Click="button_cancelRequest_Click"/>
-            <Button x:Name="button_seeProfile" Content="☰" HorizontalAlignment="Left" Height="59" Margin="10,387,0,0" VerticalAlignment="Top" Width="70" RenderTransformOrigin="2.566,0.478" Background="{x:Null}" Foreground="White" BorderBrush="#FF282828" Click="button_seeProfile_Click"/>
+        <Grid x:Name="communityGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1080" Margin="0,19,-5,0" Height="467" ScrollViewer.HorizontalScrollBarVisibility="Hidden" >
+            <Button x:Name="button_addRequest" Content="✓"    Margin="232,386,777,21" Style="{StaticResource mainButton}" Width="71" Click="button_addRequest_Click"/>
+            <Button x:Name="button_cancelRequest" Content="✕" Margin="152,386,862,21" Style="{StaticResource mainButton}" Width="71"  Click="button_cancelRequest_Click"/>
+            <Button x:Name="button_seeProfile" Content="☰" Margin="21,386,988,21"  Width="71" Style="{StaticResource mainButton}" Click="button_seeProfile_Click"/>
             <Label x:Name="label_Odyssey2_Copy2" Content="POSICIÓN" HorizontalAlignment="Left" Height="33" Margin="758,59,0,0" VerticalAlignment="Top" Width="67" Foreground="#FFC8C8C8" VerticalContentAlignment="Center"/>
             <Label x:Name="label_Odyssey2_Copy3" Content="USUARIO" HorizontalAlignment="Left" Height="33" Margin="862,59,0,0" VerticalAlignment="Top" Width="67" Foreground="#FFC8C8C8" VerticalContentAlignment="Center"/>
             <Label x:Name="label_communityMode" Content="Categoría" HorizontalAlignment="Left" Height="44" Margin="10,10,0,0" VerticalAlignment="Top" Width="293" Foreground="#FFC8C8C8" VerticalContentAlignment="Center" FontSize="14.667" FontWeight="Bold" HorizontalContentAlignment="Center"/>

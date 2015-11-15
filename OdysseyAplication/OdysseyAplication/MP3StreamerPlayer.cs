@@ -30,7 +30,8 @@ namespace OdysseyAplication
         {
             using (Stream ms = new MemoryStream())
             {
-                using (Stream stream = WebRequest.Create(url).GetResponse().GetResponseStream())
+                using (Stream stream = WebRequest.Create(url)
+                    .GetResponse().GetResponseStream())
                 {
                     byte[] buffer = new byte[32768];
                     int read;
@@ -39,18 +40,21 @@ namespace OdysseyAplication
                         ms.Write(buffer, 0, read);
                     }
                 }
+
                 ms.Position = 0;
                 using (WaveStream blockAlignedStream =
                     new BlockAlignReductionStream(
                         WaveFormatConversionStream.CreatePcmStream(
                             new Mp3FileReader(ms))))
                 {
-                    _waveOut = new WaveOutEvent();
-                    _waveOut.Init(blockAlignedStream);
-                    _waveOut.Play();
-                    while (_waveOut.PlaybackState == PlaybackState.Playing)
+                    using (WaveOut waveOut = new WaveOut(WaveCallbackInfo.FunctionCallback()))
                     {
-                        System.Threading.Thread.Sleep(100);
+                        waveOut.Init(blockAlignedStream);
+                        waveOut.Play();
+                        while (waveOut.PlaybackState == PlaybackState.Playing)
+                        {
+                            System.Threading.Thread.Sleep(100);
+                        }
                     }
                 }
             }
