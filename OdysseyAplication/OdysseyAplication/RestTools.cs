@@ -430,7 +430,9 @@ namespace OdysseyAplication
         /// 
         /// </summary>
         /// <param name="met"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// 
+        /// </returns>
         public async Task<Song> createVersion(DataSong met)
         {
             Song song;
@@ -472,6 +474,36 @@ namespace OdysseyAplication
 
                 return song;
             }
+        }
+
+        /// <summary>
+        /// Sincroniza una version de la base local en la base cloud
+        /// </summary>
+        /// <param name="version"></param>
+        /// <returns></returns>
+        public async Task<Version> syncVersion(Version version)
+        {
+            Version resVer = new Version();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.PostAsJsonAsync(versions_path, version);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    resVer = await response.Content.ReadAsAsync<Version>();
+                }
+                else
+                {
+                    Console.WriteLine(response.StatusCode);
+                }
+            }
+
+            return resVer;
         }
 
         /// <summary>
@@ -569,6 +601,43 @@ namespace OdysseyAplication
             }
 
             return flag;
+        }
+
+        /// <summary>
+        /// Sincroniza propiedad en la nube.
+        /// </summary>
+        /// <param name="userName">Nombre de usuario</param>
+        /// <param name="songId">Identificador del usuario</param>
+        /// <param name="songName">nombre de la cancion del archivo</param>
+        /// <returns>bool que es true si se completa la sincronizacion</returns>
+        public async Task<bool> syncProperty(string userName, int songId, string songName)
+        {
+            bool statusResult = false;
+
+            using (HttpClient client = new HttpClient())
+            {
+
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                Property prop = new Property() { user_name = userName, song_id = songId, song_name = songName };
+
+                HttpResponseMessage response = await client.PostAsJsonAsync<Property>(properties_path, prop);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    statusResult = true;
+                }
+                else
+                {
+                    Console.WriteLine(response.StatusCode);
+
+                    statusResult = false;
+                }
+            }
+
+            return statusResult;
         }
 
         /// <summary>
@@ -1872,7 +1941,6 @@ namespace OdysseyAplication
                 else
                 {
                     Console.WriteLine("Status Code {0}", response.StatusCode);
-                    users = null;
                 }
             }
 

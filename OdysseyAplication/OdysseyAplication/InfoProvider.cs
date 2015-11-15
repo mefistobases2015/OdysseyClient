@@ -464,7 +464,7 @@ namespace OdysseyAplication
         public async Task<bool> acceptFriendRequest(string pUserSigned, string pUser)
         {
             RestTools rtop = new RestTools();
-            return await rtop.addFriendByUserName(pUserSigned, pUser);
+            return await rtop.addFriendByUserName(pUserSigned, pUser) && await rtop.deleteRequest(pUser, pUserSigned);
         }
         public async Task<bool> declineFriendRequest(string pUserSigned, string pUser)
         {
@@ -577,6 +577,16 @@ namespace OdysseyAplication
         public void setVersion2Song(DataSong dataSong)
         {
             DatabaseManager.setVersion2Song(dataSong);
+        }
+
+        public void uploadSong()
+        {
+
+        }
+
+        public void downloadDatabase()
+        {
+
         }
 
     }

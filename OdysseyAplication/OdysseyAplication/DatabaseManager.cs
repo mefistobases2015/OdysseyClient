@@ -770,7 +770,7 @@ namespace OdysseyAplication
                     {
                         if (reader.Read())
                         {
-                            songDirectory = reader.GetString(0);
+                            songDirectory = reader.GetString(1);
                         }
                     }
 
@@ -785,6 +785,64 @@ namespace OdysseyAplication
 
             return songDirectory;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user_name">
+        /// </param>
+        /// <param name="local_song_id">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static string getSongName(string user_name, int local_song_id)
+        {
+            string songName = "";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(databaseConn))
+                {
+                    SqlCommand getSongName = new SqlCommand();
+
+                    getSongName.CommandType = System.Data.CommandType.Text;
+
+                    getSongName.CommandText = "SELECT song_name "
+                        + "FROM propiedades_tbl "
+                        + "WHERE usr_name = @usrName AND local_song_id = @lcSongId";
+
+                    getSongName.Parameters.AddWithValue("@usrName", user_name);
+
+                    getSongName.Parameters.AddWithValue("@lcSongId", local_song_id);
+
+                    getSongName.Connection = connection;
+
+                    connection.Open();
+
+                    SqlDataReader reader = getSongName.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        if (reader.Read())
+                        {
+                            songName = reader.GetString(1);
+                        }
+
+                    }
+
+                    reader.Close();
+                    connection.Close();
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return songName;
+        }
+
 
     }
 
