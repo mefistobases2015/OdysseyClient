@@ -232,14 +232,14 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Grid x:Name="toolbarEditor" Margin="0,4,1094,149" Width="205" Background="#FF323232" Visibility="Collapsed">
+        <Grid x:Name="toolbarEditor" Margin="0,4,1094,149" Width="205" Background="#FF323232">
             <Label x:Name="label_Odyssey1" Content="Editor ID3" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="200" Foreground="#FFC8C8C8" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" Margin="0,28,0,0"/>
             <Button x:Name="button_makeVersion" Content="         Crear Versión"  Margin="0,157,0,221" Width="205" Style="{StaticResource toolbarButton}" Click="button_makeVersion_Click" />
             <Button x:Name="button_close_id3Editor" Content="         Cerrar" Margin="0,354,0,24" Width="205" Style="{StaticResource toolbarButton}" Click="button_close_id3Editor_Click"/>
             <Button x:Name="button_chooseVersion" Content="         Escojer Versión" Margin="0,198,0,180" Width="205" Style="{StaticResource toolbarButton}" Click="button_chooseVersion_Click"/>
             <Button x:Name="button_recoveryVersion" Content="         Recuperar Versión" Style="{StaticResource toolbarButton}" Margin="0,239,0,139" Width="205" />
         </Grid>
-        <Grid x:Name="id3Grid" HorizontalAlignment="Left" Height="495" VerticalAlignment="Top" Width="1081" Margin="210,2,0,0" Visibility="Collapsed">
+        <Grid x:Name="id3Grid" HorizontalAlignment="Left" Height="495" VerticalAlignment="Top" Width="1081" Margin="210,2,0,0">
             <Label x:Name="label_Copy2" Content="CANCIÓN" HorizontalAlignment="Left" Width="187" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="11,65,0,403"/>
             <TextBox x:Name="textbox_title" HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" VerticalAlignment="Center" Width="187" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="10,100,884,369"/>
             <Label x:Name="label_Copy3" Content="ARTISTA" HorizontalAlignment="Left" Width="186" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="12,141,0,324"/>
@@ -247,21 +247,20 @@
             <Label x:Name="label_Copy5" Content="ÁLBUM" HorizontalAlignment="Left" Width="186" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="10,216,0,252"/>
             <TextBox x:Name="textbox_album" HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" VerticalAlignment="Center" Width="186" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="10,248,885,221"/>
             <Label x:Name="label_Copy7" Content="GÉNERO" HorizontalAlignment="Left" Width="186" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="234,62,0,403"/>
-            <TextBox x:Name="textbox_genre" HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" VerticalAlignment="Center" Width="188" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="236,176,657,293"/>
+            <TextBox x:Name="textbox_genre" HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" VerticalAlignment="Center" Width="188" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="236,104,657,365"/>
             <Label x:Name="label_Copy8" Content="AÑO" HorizontalAlignment="Left" Width="186" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="236,141,0,327"/>
-            <TextBox x:Name="textbox_year" HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" VerticalAlignment="Center" Width="188" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="234,100,659,369"/>
+            <TextBox x:Name="textbox_year" HorizontalAlignment="Center" Height="26" TextWrapping="Wrap" VerticalAlignment="Center" Width="188" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" VerticalContentAlignment="Center" Margin="234,176,659,293"/>
             <Label x:Name="label_Copy11" Content="LETRA" HorizontalAlignment="Left" Width="536" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="461,62,0,403"/>
             <TextBox x:Name="textbox_lyric" HorizontalAlignment="Center" Height="170" TextWrapping="Wrap" VerticalAlignment="Center" Width="606" Background="#FF141414" Foreground="#FFC8C8C8" BorderBrush="#FF282828" Margin="461,104,14,221" HorizontalContentAlignment="Center"/>
             <Label x:Name="label_Odyssey_Copy1" Content="Versión Actual" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="188" Foreground="#FFC8C8C8" FontSize="18.667" VerticalContentAlignment="Center" Background="{x:Null}" Margin="8,10,0,0"/>
             <Label x:Name="label_Odyssey_Copy" Content="Versiones Antiguas" HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="188" Foreground="#FFC8C8C8" FontSize="18.667" VerticalContentAlignment="Center" Background="{x:Null}" Margin="10,289,0,0"/>
-            <Label x:Name="label_Copy14" Content="CANCIÓN" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="10,339,0,127"/>
-            <Label x:Name="label_Copy15" Content="ARTISTA" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="157,339,0,127"/>
-            <Label x:Name="label_Copy16" Content="ALBÚM" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="304,339,0,127"/>
-            <Label x:Name="label_Copy17" Content="AÑO" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="451,339,0,127"/>
-            <Label x:Name="label_Copy18" Content="GÉNERO" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="598,339,0,127"/>
-            <Label x:Name="label_Copy19" Content="LETRA" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="745,339,0,127"/>
-            <Label x:Name="label_Copy20" Content="FECHA" HorizontalAlignment="Left" Width="175" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="892,339,0,127"/>
-            <ListView x:Name="listview_version" HorizontalAlignment="Left" Height="109" Margin="10,376,0,0" VerticalAlignment="Top" Width="1057" Background="{x:Null}" Foreground="White">
+            <Label x:Name="label_Copy14" Content="CANCIÓN" HorizontalAlignment="Left" Width="167" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="10,339,0,127"/>
+            <Label x:Name="label_Copy15" Content="ARTISTA" HorizontalAlignment="Left" Width="166" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="182,339,0,127"/>
+            <Label x:Name="label_Copy16" Content="ALBÚM" HorizontalAlignment="Left" Width="153" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="353,339,0,127"/>
+            <Label x:Name="label_Copy17" Content="AÑO" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="511,339,0,127"/>
+            <Label x:Name="label_Copy18" Content="GÉNERO" HorizontalAlignment="Left" Width="192" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="658,339,0,127" RenderTransformOrigin="0.944,0.517"/>
+            <Label x:Name="label_Copy20" Content="FECHA" HorizontalAlignment="Left" Width="212" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="855,339,0,127"/>
+            <ListView x:Name="listview_version" HorizontalAlignment="Left" Height="109" Margin="10,376,0,0" VerticalAlignment="Top" Width="1057" Background="{x:Null}" Foreground="White" SelectionChanged="listview_version_SelectionChanged">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="{x:Type ListViewItem}">
                         <Setter Property="Height" Value="40" />
@@ -302,7 +301,7 @@
             <Button x:Name="button_user_search"  Style="{StaticResource toolbarButton}" Content="   ☌"  Margin="156,95,10,289" HorizontalContentAlignment="Center" Click="button_user_search_Click"/>
             <Button x:Name="button_personal_info" Content="      Información Personal" Margin="0,255,0,125" Style="{StaticResource toolbarButton}" Click="button_personal_info_Click"/>
         </Grid>
-        <Grid x:Name="communityGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1080" Margin="0,19,-5,0" Height="467" ScrollViewer.HorizontalScrollBarVisibility="Hidden" >
+        <Grid x:Name="communityGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1080" Margin="0,19,-5,0" Height="467" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Visibility="Collapsed" >
             <Button x:Name="button_addRequest" Content="✓"    Margin="240,382,777,25" Style="{StaticResource mainButton}" Click="button_addRequest_Click" MouseLeave="button_addRequest_MouseLeave" MouseMove="button_addRequest_MouseMove"/>
             <Button x:Name="button_cancelRequest" Content="✕" Margin="168,382,845,25" Style="{StaticResource mainButton}"  Click="button_cancelRequest_Click" MouseMove="button_cancelRequest_MouseMove" MouseLeave="button_cancelRequest_MouseLeave"/>
             <Button x:Name="button_seeProfile" Content="☰" Margin="21,382,993,25" Style="{StaticResource mainButton}" Click="button_seeProfile_Click" MouseLeave="button_seeProfile_MouseLeave" MouseMove="button_seeProfile_MouseMove"/>
