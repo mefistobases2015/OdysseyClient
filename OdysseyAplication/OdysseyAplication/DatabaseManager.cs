@@ -31,6 +31,10 @@ namespace OdysseyAplication
         {
             isDatabase = XmlManager.isDatabase();
 
+            bool isTables = XmlManager.isTables();
+
+            bool isView = XmlManager.isView();
+
             if (!isDatabase)
             {
                 using (SqlConnection connection = new SqlConnection(masterConn))
@@ -43,6 +47,8 @@ namespace OdysseyAplication
                         createDatabase.ExecuteNonQuery();
 
                         connection.Close();
+
+                        XmlManager.databaseCreated();
                     }
                     catch (Exception e)
                     {
@@ -52,6 +58,11 @@ namespace OdysseyAplication
 
                 }
 
+            }
+
+            //crea tablas
+            if (isTables)
+            {
                 //se crean las tablas de la base
 
                 using (SqlConnection connection = new SqlConnection(databaseConn))
@@ -67,6 +78,8 @@ namespace OdysseyAplication
                         addTables.ExecuteNonQuery();
 
                         connection.Close();
+
+                        XmlManager.tablesCreated();
                     }
                     catch (Exception e)
                     {
@@ -75,7 +88,11 @@ namespace OdysseyAplication
                     }
 
                 }
+            }
 
+            //crea View 
+            if (isView)
+            {
                 using (SqlConnection connection = new SqlConnection(databaseConn))
                 {
                     try
@@ -89,6 +106,8 @@ namespace OdysseyAplication
                         createView.ExecuteNonQuery();
 
                         connection.Close();
+
+                        XmlManager.viewCreated();
                     }
                     catch (Exception e)
                     {
@@ -97,11 +116,7 @@ namespace OdysseyAplication
                     }
 
                 }
-
-                XmlManager.databaseCreated();
-
-
-            }//fin el if
+            }
         }
 
         /// <summary>

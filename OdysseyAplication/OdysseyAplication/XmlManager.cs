@@ -104,12 +104,59 @@ namespace OdysseyAplication
         }
 
         /// <summary>
+        /// Retorna si la tablas fueron creadas
+        /// </summary>
+        /// <returns>
+        /// bool que es true si las tablas fueron creadas
+        /// </returns>
+        static public bool isTables()
+        {
+            return settings.databaseSettings.isTables;
+        }
+
+        /// <summary>
+        /// Verifica si la vista fue creada
+        /// </summary>
+        /// <returns>
+        /// bool que es true si la vista fue creada
+        /// </returns>
+        static public bool isView()
+        {
+            return settings.databaseSettings.isView;
+        }
+
+        /// <summary>
         /// Despes de crear una base de datos establece en 
         /// el xml los nuevos valores.
         /// </summary>
         static public void databaseCreated()
         {
             settings.databaseSettings.isDatabase = true;
+
+            writeSettings();
+
+            updateSettings();
+        }
+
+        /// <summary>
+        /// Establece que las tablas dentro de la base de datos fueron 
+        /// creadas 
+        /// </summary>
+        static public void tablesCreated()
+        {
+            settings.databaseSettings.isTables = true;
+
+            writeSettings();
+
+            updateSettings();
+        }
+
+        /// <summary>
+        /// Establece que la vista fue creada
+        /// </summary>
+        static public void viewCreated()
+        {
+            settings.databaseSettings.isView = true;
 
             writeSettings();
 

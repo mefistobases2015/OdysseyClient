@@ -27,8 +27,15 @@ namespace OdysseyAplication
     {
         [XmlAttribute("databaseName")]
         public string databaseName { set; get; }
+
         [XmlAttribute("isDatabase")]
         public bool isDatabase { set; get; }
+
+        [XmlAttribute("isTables")]
+        public bool isTables { set; get; }
+
+        [XmlAttribute("isView")]
+        public bool isView { set; get; }
     }
 
     [Serializable()]
