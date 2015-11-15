@@ -699,10 +699,11 @@ namespace OdysseyAplication
 
                     versionSongs.CommandType = System.Data.CommandType.Text;
 
-                    versionSongs.CommandText = "SELECT id3v2_title, id3v2_author, id3v2_lyrics, id3v2_album, id3v2_genre, id3v2_year, submission_date "
-                        + "FROM versiones_tbl WHERE local_version_id = @locVerId";
+                    versionSongs.CommandText = "SELECT V.id3v2_title, V.id3v2_author, V.id3v2_lyrics, V.id3v2_album, V.id3v2_genre, V.id3v2_year, V.submission_date, V.local_version_id "
+                        + "FROM canciones_tbl AS C JOIN versiones_tbl AS V ON C.metadata_id = V.local_version_id"
+                        + "WHERE V.local_song_id = @lc_sng_id";
 
-                    versionSongs.Parameters.AddWithValue("@locVerId", local_song_id);
+                    versionSongs.Parameters.AddWithValue("@lc_sng_id", local_song_id);
 
                     versionSongs.Connection = connection;
 
@@ -721,6 +722,7 @@ namespace OdysseyAplication
                             version.id3v2_genre = reader.GetString(5);
                             version.id3v2_year = reader.GetInt32(6);
                             version.submission_date = reader.GetDateTime(7).ToString();
+                            version.version_id = reader.GetInt32(8);
                         }
 
                     }

@@ -580,6 +580,22 @@ namespace OdysseyAplication
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="song_id"></param>
+        /// <param name="version_id"></param>
+        /// <returns></returns>
+        public async Task<bool> setOldVersion2Song(string song_id, string version_id)
+        {
+            int songId = Convert.ToInt32(song_id);
+            int versionId = Convert.ToInt32(version_id);
+
+            RestTools rt = new RestTools();
+
+            return await rt.setMetadataSong(songId, versionId);
+        }
+
+        /// <summary>
         /// Cambia el estado de un usuario
         /// </summary>
         /// <param name="connectedStatus">
@@ -620,6 +636,9 @@ namespace OdysseyAplication
                     lc_version.song_id = syncSong.song_id;
 
                     Version syncVersion = await rt.syncVersion(lc_version);
+                    DatabaseManager.setSyncIdVersion(lc_version.version_id, syncVersion.version_id, syncSong.song_id);
+
+                    
                 }
             }
 
