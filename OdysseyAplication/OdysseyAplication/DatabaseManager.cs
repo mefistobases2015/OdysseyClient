@@ -14,11 +14,15 @@ namespace OdysseyAplication
 
         private const string viewPath = "../../../View.sql";
 
+        static private string createDatabaseQuery = "CREATE DATABASE " + XmlManager.getDatabaseName();
+
+        static private string databaseConn = "Server=localhost;Database=" + XmlManager.getDatabaseName() + ";Trusted_Connection=True;";
+
         private const string masterConn = "Server=localhost;Integrated security=SSPI;database=master";
 
-        static private string  createDatabaseQuery = "CREATE DATABASE " + XmlManager.getDatabaseName();
+        //static private string  createDatabaseQuery = "CREATE DATABASE " + XmlManager.getDatabaseName();
 
-        static private string databaseConn = "Server=localhost;Integrated security=SSPI;database=" + XmlManager.getDatabaseName();
+        //static private string databaseConn = "Server=localhost;Integrated security=SSPI;database=" + XmlManager.getDatabaseName();
         
         private bool isDatabase;
 
