@@ -1672,7 +1672,7 @@ namespace OdysseyAplication
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage response = await client.GetAsync(songs_by_user_path + "VersionesMetadata?id=" + song_id.ToString());
+                HttpResponseMessage response = await client.GetAsync(mongo_songs_path + "/VersionesMetadata?id=" + song_id.ToString());
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -1686,7 +1686,6 @@ namespace OdysseyAplication
                 else
                 {
                     Console.WriteLine("Status Code {0}", response.StatusCode);
-                    versions = null;
                 }
             }
 
