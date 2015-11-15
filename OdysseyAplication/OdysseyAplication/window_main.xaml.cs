@@ -83,7 +83,7 @@ namespace OdysseyAplication
             }
         }
 
-        private void refreshMusicGrid()
+        private async void refreshMusicGrid()
         {
             // Verify Friend Settings
             if (this._SignedUser == this._ProfileUser)
@@ -91,33 +91,35 @@ namespace OdysseyAplication
                 button_main_friend.Visibility = Visibility.Collapsed;
                 button_id3Editor.Visibility = Visibility.Visible;
             }
-            //else if (this._InfoManager.areFriends(this._ProfileUser, this._SignedUser))
-            //{
-            //button_main_friend.Visibility = Visibility.Visible;
-            //button_id3Editor.Visibility = Visibility.Visible;
-            //button_main_friend.Content = "✔";
-            //}
+            else if (await this._InfoManager.areFriends(this._ProfileUser, this._SignedUser))
+            {
+                button_main_friend.Visibility = Visibility.Visible;
+                button_id3Editor.Visibility = Visibility.Visible;
+                button_main_friend.Content = "✔";
+            }
             else
             {
                 button_main_friend.Visibility = Visibility.Visible;
                 button_id3Editor.Visibility = Visibility.Collapsed;
                 button_main_friend.Content = "✚";
             }
-            // Delete The Current Data
-            while (listview_data.Items.Count > 0)
+            label_signedUserName.Content = this._ProfileUser;
+            if (this._SongDataList != null)
             {
-                listview_data.Items.RemoveAt(0);
-            }
-            // Insert New Items
-            foreach (DataSong ww in this._SongDataList)
-            {
-                listview_data.Items.Add(new { Col1 = ww._ID3Artist, Col2 = ww._ID3Title, Col3 = ww._ID3Album, Col4 = ww._ID3Year, Col5 = ww._ID3Genre });
+                // Delete The Current Data
+                while (listview_data.Items.Count > 0)
+                {
+                    listview_data.Items.RemoveAt(0);
+                }
+                // Insert New Items
+                foreach (DataSong ww in this._SongDataList)
+                {
+                    listview_data.Items.Add(new { Col1 = ww._ID3Artist, Col2 = ww._ID3Title, Col3 = ww._ID3Album, Col4 = ww._ID3Year, Col5 = ww._ID3Genre });
+                }
             }
         }
         private async void button_community_Click(object sender, RoutedEventArgs e)
         {
-            this.label_signedUserName.Content = this._SignedUser;
-
             // Change The Actual Grid
             toolbarMain.Visibility = Visibility.Collapsed;
             musicGrid.Visibility = Visibility.Collapsed;
@@ -125,6 +127,8 @@ namespace OdysseyAplication
             toolbarCommunity.Visibility = Visibility.Visible;
             label_userName.Content = this._SignedUser;
             this.refreshFriendList(this._SignedUser);
+            // Name Of The Signed User
+            this.label_signedUserName.Content = this._SignedUser;
             // Social Ranking By Comments And Friends
             label_PorrasIndex.Content = await this._InfoManager.getUserSocialRanking(this._SignedUser);
             // Clasification By Library
@@ -142,7 +146,8 @@ namespace OdysseyAplication
             // Insert New Items
             foreach (Version ww in this._VersionList)
             {
-                listview_version.Items.Add(new { Col1 = ww.id3v2_title, Col2 = ww.id3v2_author, Col3 = ww.id3v2_album, Col4 = ww.id3v2_year, Col5 = ww.submission_date });
+                listview_version.Items.Add(new { Col1 = ww.id3v2_title, Col2 = ww.id3v2_author, Col3 = ww.id3v2_album, Col4 = ww.id3v2_year,
+                                                 Col5 = ww.id3v2_genre, Col7 = ww.submission_date });
             }
         }
         private async void button_id3Editor_Click(object sender, RoutedEventArgs e)
@@ -158,21 +163,14 @@ namespace OdysseyAplication
                 // Set The Actual Medatada As Info
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 textbox_artist.Text = this._SongDataList[index]._ID3Artist;
-                textbox_genre.Text  = this._SongDataList[index]._ID3Genre;
+                textbox_genre.Text  = this._SongDataList[index]._ID3Year;
+                textbox_year.Text = this._SongDataList[index]._ID3Genre;
                 textbox_lyric.Text  = this._SongDataList[index]._ID3Lyrics;
                 textbox_title.Text  = this._SongDataList[index]._ID3Title;
                 textbox_album.Text  = this._SongDataList[index]._ID3Album;
                 // Get List OF Past Versions Of The Song
                 // Song In Cloud Library
-                if (this._uploadMode == window_main.MODE_CLOUD)
-                {
-                    this._VersionList = await this._InfoManager.getListOfDataSong(this._SongDataList[index]._SongID);
-                }
-                // Song In Local Library
-                else if (this._uploadMode == window_main.MODE_LOCAL)
-                {
-
-                }
+                this._VersionList = await this._InfoManager.getListOfDataSong(this._SongDataList[index]._SongID);
                 if (this._VersionList !=  null)
                 {
                     MessageBox.Show(this._VersionList.Count.ToString());
@@ -297,6 +295,7 @@ namespace OdysseyAplication
 
         private async void button_cloud_Click(object sender, RoutedEventArgs e)
         {
+            this._ProfileUser = this._SignedUser;
             this._uploadMode = window_main.MODE_CLOUD;
             this._SongDataList = await this._InfoManager.getSongsByUserInCloud(this._SignedUser);
             this.refreshMusicGrid();
@@ -409,13 +408,13 @@ namespace OdysseyAplication
         {
             // Indicator Of Selected Community
             label_communityMode.Content = "Amigos";
-            // List Of Users
-            this._CommunityList = await this._InfoManager.getFriendByUser(this._SignedUser);
             // Eliminate All The Users Of The ListView
             while (listview_users.Items.Count > 0)
             {
                 listview_users.Items.RemoveAt(0);
             }
+            // List Of Users
+            this._CommunityList = await this._InfoManager.getFriendByUser(this._SignedUser);
             // Add Users To The UserListView
             foreach (string var in this._CommunityList)
             {
@@ -423,18 +422,19 @@ namespace OdysseyAplication
             }
             button_cancelRequest.Visibility = Visibility.Collapsed;
             button_addRequest.Visibility = Visibility.Collapsed;
+            button_sendRequest.Visibility = Visibility.Collapsed;
         }
         private async void refreshRequestFriendList(string pUserName)
         {
             // Indicator Of Selected Community
             label_communityMode.Content = "Solicitudes de Amistad";
-            // List Of Users
-            this._CommunityList = await this._InfoManager.getFriendRequestByUser(this._SignedUser);
             // Eliminate All The Users Of The ListView
             while (listview_users.Items.Count > 0)
             {
                 listview_users.Items.RemoveAt(0);
             }
+            // List Of Users
+            this._CommunityList = await this._InfoManager.getFriendRequestByUser(this._SignedUser);
             // Add Users To The UserListView
             foreach (string var in this._CommunityList)
             {
@@ -442,25 +442,27 @@ namespace OdysseyAplication
             }
             button_cancelRequest.Visibility = Visibility.Visible;
             button_addRequest.Visibility = Visibility.Visible;
+            button_sendRequest.Visibility = Visibility.Collapsed;
         }
         private async void refreshFriendRecomendationList(string pUserName)
         {
             // Indicator Of Selected Community
             label_communityMode.Content = "Recomendaciones";
-            // List Of Users
-            this._CommunityList = await this._InfoManager.getRecomendations(this._SignedUser);
-            // Eliminate All The Users Of The ListView
             while (listview_users.Items.Count > 0)
             {
                 listview_users.Items.RemoveAt(0);
             }
+            // List Of Users
+            this._CommunityList = await this._InfoManager.getRecomendations(this._SignedUser);
+            // Eliminate All The Users Of The ListView
             // Add Users To The UserListView
             foreach (string var in this._CommunityList)
             {
                 listview_users.Items.Add(new { Col1 = var });
             }
-            button_cancelRequest.Visibility = Visibility.Visible;
-            button_addRequest.Visibility = Visibility.Visible;
+            button_cancelRequest.Visibility = Visibility.Collapsed;
+            button_addRequest.Visibility = Visibility.Collapsed;
+            button_sendRequest.Visibility = Visibility.Visible;
 
         }
         private void button_friend_request_Copy_Click(object sender, RoutedEventArgs e)
@@ -489,17 +491,21 @@ namespace OdysseyAplication
             }
         }
 
-        private void button_seeProfile_Click(object sender, RoutedEventArgs e)
+        private async void button_seeProfile_Click(object sender, RoutedEventArgs e)
         {
             if(listview_users.SelectedIndex > -1)
             {
-                this.refreshLibrary(this._CommunityList[listview_users.SelectedIndex], window_main.MODE_CLOUD);
-                toolbarCommunity.Visibility = Visibility.Collapsed;
-                communityGrid.Visibility = Visibility.Collapsed;
-                musicGrid.Visibility = Visibility.Visible;
-                toolbarMain.Visibility = Visibility.Visible;
+                this._ProfileUser = this._CommunityList[listview_users.SelectedIndex];
+                this._SongDataList = await this._InfoManager.getSongsByUserInCloud(this._ProfileUser);
+                this._uploadMode = window_main.MODE_CLOUD;
 
-                label_signedUserName.Content = this._CommunityList[listview_users.SelectedIndex];
+                // Change The Grid
+                toolbarCommunity.Visibility = Visibility.Collapsed;
+                communityGrid.Visibility    = Visibility.Collapsed;
+                musicGrid.Visibility        = Visibility.Visible;
+                toolbarMain.Visibility      = Visibility.Visible;
+                
+                this.refreshMusicGrid();
             }
         }
         private void button_recomendations_Click(object sender, RoutedEventArgs e)
@@ -563,13 +569,14 @@ namespace OdysseyAplication
         private void button_ok_Click(object sender, RoutedEventArgs e)
         {
             this._SignedUser = textbox_user.Text;
+            this._ProfileUser = textbox_user.Text;
             label_signedUserName.Content = this._SignedUser;
             loginGrid.Visibility = Visibility.Collapsed;
             musicGrid.Visibility = Visibility.Visible;
             toolbarMain.Visibility = Visibility.Visible;
             playerGrid.Visibility = Visibility.Visible;
             playerInfoGrid.Visibility = Visibility.Visible;
-
+            this.refreshMusicGrid();
             if (!XmlManager.isDatabase())
             {
                 this._DBManager = new DatabaseManager();
@@ -599,6 +606,81 @@ namespace OdysseyAplication
         private void button_stopSong_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void button_makeVersion_Click(object sender, RoutedEventArgs e)
+        {
+            DataSong newMeta = new DataSong();
+            
+            if(this._uploadMode == window_main.MODE_CLOUD)
+            {
+                //this._InfoManager.createDataSongVersionCloud();
+            }
+            else if(this._uploadMode == window_main.MODE_LOCAL)
+            {
+                //this._InfoManager.createDataSongVersionCloud();
+            }
+        }
+
+        private void button_chooseVersion_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private async void  button_user_search_Click(object sender, RoutedEventArgs e)
+        {
+            // Indicator Of Selected Community
+            label_communityMode.Content = "Buscador de Usuarios";
+            // Set The Configuration Of Friends 
+            button_cancelRequest.Visibility = Visibility.Collapsed;
+            button_addRequest.Visibility = Visibility.Collapsed;
+            button_sendRequest.Visibility = Visibility.Visible;
+            // Eliminate All The Users Of The ListView
+            while (listview_users.Items.Count > 0)
+            {
+                listview_users.Items.RemoveAt(0);
+            }
+            // List Of Users
+            this._CommunityList = await this._InfoManager.searchUsers(textBox.Text);
+            // Add Users To The UserListView
+            foreach (string var in this._CommunityList)
+            {
+                listview_users.Items.Add(new { Col1 = var });
+            }
+            // Set The Default Text
+            textBox.Text = "Buscar Usuario...";
+        }
+
+        private void textBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            textBox.Text = "";
+        }
+
+        private async void button_personal_info_Click(object sender, RoutedEventArgs e)
+        {
+            // Name Of The Signed User
+            this.label_signedUserName.Content = this._SignedUser;
+            // Social Ranking By Comments And Friends
+            label_PorrasIndex.Content = await this._InfoManager.getUserSocialRanking(this._SignedUser);
+            // Clasification By Library
+            label_LibraryClas.Content = await this._InfoManager.getUserClasificationByLibrary(this._SignedUser);
+            // Clasification By Friend Library
+            label_FriendClas.Content = await this._InfoManager.getUserClasificationByFriends(this._SignedUser);
+        }
+
+        private async void listview_users_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(listview_users.SelectedIndex > -1)
+            {
+                // Name Of The Signed User
+                this.label_userName.Content = this._CommunityList[listview_users.SelectedIndex];
+                // Social Ranking By Comments And Friends
+                label_PorrasIndex.Content = await this._InfoManager.getUserSocialRanking(this._CommunityList[listview_users.SelectedIndex]);
+                // Clasification By Library
+                label_LibraryClas.Content = await this._InfoManager.getUserClasificationByLibrary(this._CommunityList[listview_users.SelectedIndex]);
+                // Clasification By Friend Library
+                label_FriendClas.Content = await this._InfoManager.getUserClasificationByFriends(this._CommunityList[listview_users.SelectedIndex]);
+            }
         }
     }
 }
