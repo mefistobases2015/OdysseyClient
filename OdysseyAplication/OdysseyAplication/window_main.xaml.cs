@@ -103,6 +103,14 @@ namespace OdysseyAplication
                 button_id3Editor.Visibility = Visibility.Collapsed;
                 button_main_friend.Content = "✚";
             }
+            if(this._uploadMode == window_main.MODE_LOCAL)
+            {
+                socialPanel.Visibility = Visibility.Collapsed;
+            }
+            else if(this._uploadMode == window_main.MODE_CLOUD)
+            {
+                socialPanel.Visibility = Visibility.Visible;
+            }
             label_signedUserName.Content = this._ProfileUser;
             if (this._SongDataList != null)
             {
@@ -475,19 +483,19 @@ namespace OdysseyAplication
             this.refreshRequestFriendList(this._SignedUser);
         }
 
-        private void button_addRequest_Click(object sender, RoutedEventArgs e)
+        private async void button_addRequest_Click(object sender, RoutedEventArgs e)
         {
             if (listview_data.SelectedIndex > -1)
             {
-                this._InfoManager.acceptFriendRequest(this._SignedUser, "");
+                await this._InfoManager.acceptFriendRequest(this._SignedUser, this._CommunityList[listview_data.SelectedIndex]);
             }
         }
 
-        private void button_cancelRequest_Click(object sender, RoutedEventArgs e)
+        private async void button_cancelRequest_Click(object sender, RoutedEventArgs e)
         {
             if (listview_data.SelectedIndex > -1)
             {
-                this._InfoManager.declineFriendRequest(this._SignedUser, "");
+                await this._InfoManager.declineFriendRequest(this._SignedUser, this._CommunityList[listview_data.SelectedIndex]);
             }
         }
 
@@ -650,12 +658,10 @@ namespace OdysseyAplication
             // Set The Default Text
             textBox.Text = "Buscar Usuario...";
         }
-
         private void textBox_MouseEnter(object sender, MouseEventArgs e)
         {
             textBox.Text = "";
         }
-
         private async void button_personal_info_Click(object sender, RoutedEventArgs e)
         {
             // Name Of The Signed User
@@ -667,7 +673,6 @@ namespace OdysseyAplication
             // Clasification By Friend Library
             label_FriendClas.Content = await this._InfoManager.getUserClasificationByFriends(this._SignedUser);
         }
-
         private async void listview_users_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(listview_users.SelectedIndex > -1)
@@ -680,6 +685,46 @@ namespace OdysseyAplication
                 label_LibraryClas.Content = await this._InfoManager.getUserClasificationByLibrary(this._CommunityList[listview_users.SelectedIndex]);
                 // Clasification By Friend Library
                 label_FriendClas.Content = await this._InfoManager.getUserClasificationByFriends(this._CommunityList[listview_users.SelectedIndex]);
+            }
+        }
+        private void button_seeProfile_MouseLeave(object sender, MouseEventArgs e)
+        {
+            label_social_option.Content = "";
+        }
+        private void button_seeProfile_MouseMove(object sender, MouseEventArgs e)
+        {
+            label_social_option.Content = "Ver Perfil";
+        }
+        private void button_sendRequest_MouseMove(object sender, MouseEventArgs e)
+        {
+            label_social_option.Content = "Enviar Solicitud";
+        }
+        private void button_sendRequest_MouseLeave(object sender, MouseEventArgs e)
+        {
+            label_social_option.Content = "";
+        }
+        private void button_cancelRequest_MouseMove(object sender, MouseEventArgs e)
+        {
+            label_social_option.Content = "Ahorita No";
+        }
+        private void button_addRequest_MouseLeave(object sender, MouseEventArgs e)
+        {
+            label_social_option.Content = "";
+        }
+        private void button_addRequest_MouseMove(object sender, MouseEventArgs e)
+        {
+            label_social_option.Content = "Aceptar Solicitud";
+        }
+        private void button_cancelRequest_MouseLeave(object sender, MouseEventArgs e)
+        {
+            label_social_option.Content = "";
+        }
+
+        private async void button_sendRequest_Click(object sender, RoutedEventArgs e)
+        {
+            if (listview_data.SelectedIndex > -1)
+            {
+                await this._InfoManager.setFriendRequest(this._SignedUser, this._CommunityList[listview_data.SelectedIndex]);
             }
         }
     }
