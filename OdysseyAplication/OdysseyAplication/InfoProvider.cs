@@ -579,8 +579,31 @@ namespace OdysseyAplication
             DatabaseManager.setVersion2Song(dataSong);
         }
 
-        public void uploadSong()
+        /// <summary>
+        /// Cambia el estado de un usuario
+        /// </summary>
+        /// <param name="connectedStatus">
+        /// Estado nuevo que se va a colocar para el usuario
+        /// </param>
+        /// <returns>
+        /// bool que es true si se logra la accion por completo, 
+        /// false en cualquier otro caso.
+        /// </returns>
+        public async Task<bool> setConnectedState(bool connectedStatus)
         {
+            RestTools rt = new RestTools();
+
+            return await rt.setConnectedState(connectedStatus);
+        }
+
+        public void uploadSong(string user_name)
+        {
+            //List<DataSong> datasongs = DatabaseManager.getSongsOfUser(user_name);
+
+            //for(int i = 0; i < datasongs.Count; i++)
+            //{
+
+            //}
 
         }
 
