@@ -61,7 +61,7 @@ namespace OdysseyAplication
             }
 
             //crea tablas
-            if (isTables)
+            if (!isTables)
             {
                 //se crean las tablas de la base
 
@@ -91,7 +91,7 @@ namespace OdysseyAplication
             }
 
             //crea View 
-            if (isView)
+            if (!isView)
             {
                 using (SqlConnection connection = new SqlConnection(databaseConn))
                 {
@@ -117,6 +117,7 @@ namespace OdysseyAplication
 
                 }
             }
+
         }
 
         /// <summary>
