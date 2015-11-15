@@ -27,6 +27,7 @@ namespace OdysseyAplication
         public List<DataSong> _SongDataList { get; set; }
         public List<Comment> _CommmentList { get; set; }
         public List<string> _CommunityList { get; set; }
+        public List<Version> _VersionList { get; set;  }
         public string _SignedUser { get; set; }
         public string _ProfileUser { get; set; }
         public string _uploadMode { get; set; }
@@ -64,7 +65,7 @@ namespace OdysseyAplication
             this._uploadMode = pMode;
             if(this._uploadMode == window_main.MODE_CLOUD)
             {
-                this._SongDataList = await this._InfoManager.getSongsByUserInCloud(pUserName);
+                
             }
             else if(this._uploadMode == window_main.MODE_LOCAL)
             {
@@ -116,18 +117,35 @@ namespace OdysseyAplication
         private async void button_community_Click(object sender, RoutedEventArgs e)
         {
             this.label_signedUserName.Content = this._SignedUser;
+
+            // Change The Actual Grid
             toolbarMain.Visibility = Visibility.Collapsed;
             musicGrid.Visibility = Visibility.Collapsed;
             communityGrid.Visibility = Visibility.Visible;
             toolbarCommunity.Visibility = Visibility.Visible;
             label_userName.Content = this._SignedUser;
             this.refreshFriendList(this._SignedUser);
+            // Social Ranking By Comments And Friends
             label_PorrasIndex.Content = await this._InfoManager.getUserSocialRanking(this._SignedUser);
+            // Clasification By Library
             label_LibraryClas.Content = await this._InfoManager.getUserClasificationByLibrary(this._SignedUser);
+            // Clasification By Friend Library
             label_FriendClas.Content =  await this._InfoManager.getUserClasificationByFriends(this._SignedUser);
             this.refresTopUsers();
         }
-        private void button_id3Editor_Click(object sender, RoutedEventArgs e)
+        private void refreshVersion()
+        {
+            while (listview_version.Items.Count > 0)
+            {
+                listview_version.Items.RemoveAt(0);
+            }
+            // Insert New Items
+            foreach (Version ww in this._VersionList)
+            {
+                listview_version.Items.Add(new { Col1 = ww.id3v2_title, Col2 = ww.id3v2_author, Col3 = ww.id3v2_album, Col4 = ww.id3v2_year, Col5 = ww.submission_date });
+            }
+        }
+        private async void button_id3Editor_Click(object sender, RoutedEventArgs e)
         {
             if (this._SongDataList != null && listview_data.SelectedIndex > -1)
             {
@@ -146,16 +164,20 @@ namespace OdysseyAplication
                 textbox_album.Text  = this._SongDataList[index]._ID3Album;
                 // Get List OF Past Versions Of The Song
                 // Song In Cloud Library
-                if(this._uploadMode == window_main.MODE_CLOUD)
+                if (this._uploadMode == window_main.MODE_CLOUD)
                 {
-                  //  this._InfoManager.getListOfDataSong(_SongDataList[index]._SongID);
+                    this._VersionList = await this._InfoManager.getListOfDataSong(this._SongDataList[index]._SongID);
                 }
                 // Song In Local Library
                 else if (this._uploadMode == window_main.MODE_LOCAL)
                 {
 
                 }
-                //this._InfoManager.getListOfDataSong(this._SongDataList[index]._SongID);
+                if (this._VersionList !=  null)
+                {
+                    MessageBox.Show(this._VersionList.Count.ToString());
+                    this.refreshVersion();
+                }
             }
         }
         private void button_descovery_Click(object sender, RoutedEventArgs e)
@@ -273,15 +295,11 @@ namespace OdysseyAplication
             }
         }
 
-        private void button_cloud_Click(object sender, RoutedEventArgs e)
+        private async void button_cloud_Click(object sender, RoutedEventArgs e)
         {
-            this.refreshLibrary(this._SignedUser, window_main.MODE_CLOUD);
-        }
-
-        private void button_Copy3_Click(object sender, RoutedEventArgs e)
-        {
-         //   MP3StreamerPlayer j = new MP3StreamerPlayer();
-            MP3StreamerPlayer.PlayMp3FromUrl("https://odysseyblob.blob.core.windows.net/braisman/6.mp3");
+            this._uploadMode = window_main.MODE_CLOUD;
+            this._SongDataList = await this._InfoManager.getSongsByUserInCloud(this._SignedUser);
+            this.refreshMusicGrid();
         }
         private void button_nextSong_Click(object sender, RoutedEventArgs e)
         {
@@ -578,7 +596,7 @@ namespace OdysseyAplication
             playerInfoGrid.Visibility = Visibility.Collapsed;
         }
 
-        private void button_nextSong(object sender, RoutedEventArgs e)
+        private void button_stopSong_Click(object sender, RoutedEventArgs e)
         {
 
         }
