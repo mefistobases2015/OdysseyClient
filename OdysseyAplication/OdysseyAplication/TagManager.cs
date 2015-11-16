@@ -9,7 +9,7 @@ namespace OdysseyAplication
 {
     class TagManager
     {
-        public void setID3(DataSong pMetadata)
+        static public void setID3(DataSong pMetadata)
         {
             var taglibFile = TagLib.File.Create(pMetadata._SongDirectory);
             taglibFile.Tag.Title = pMetadata._ID3Title;
@@ -26,7 +26,7 @@ namespace OdysseyAplication
             taglibFile.Save();
         }
 
-        public DataSong getID3ByDirectory(string pDirectory)
+        static public DataSong getID3ByDirectory(string pDirectory)
         {
             DataSong id3op = new DataSong();
             TagLib.File tagFile = TagLib.File.Create(pDirectory);

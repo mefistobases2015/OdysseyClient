@@ -389,7 +389,11 @@ namespace OdysseyAplication
 
         private void button_upload_Click(object sender, RoutedEventArgs e)
         {
-            //this._InfoManager.uploadDatabase(this._SignedUser);
+            this._InfoManager.uploadDatabase(this._SignedUser);
+            if(this._SongDataList != null)
+            {
+
+            }
         }
         private async void refreshFriendList(string pUserName)
         {
