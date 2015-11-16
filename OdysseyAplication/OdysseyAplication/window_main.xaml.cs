@@ -358,8 +358,7 @@ namespace OdysseyAplication
             if(saveFileDialog.ShowDialog() == true)
             {
                 DataSong d = TagManager.getID3ByDirectory(saveFileDialog.FileNames[0]);
-                MessageBox.Show(d._SongName);
-                //this._InfoManager.addSong2LocalDatabase(new List<string>(saveFileDialog.FileNames));
+                this._InfoManager.addSong2LocalDatabase(this._SignedUser, new List<string>(saveFileDialog.FileNames));
             }
 
         }
@@ -581,20 +580,20 @@ namespace OdysseyAplication
             playerGrid.Visibility = Visibility.Visible;
             playerInfoGrid.Visibility = Visibility.Visible;
             this.refreshMusicGrid();
-            //if (!XmlManager.isDatabase())
-            //{
-             //   this._DBManager = new DatabaseManager();
-               // if (XmlManager.isDatabase())
-                //{
-                 //   MessageBox.Show("Itz created");
-               // }
-                //else
-                //{
-                 //   MessageBox.Show(this._DBManager.etrace1);
-                  //  MessageBox.Show(this._DBManager.etrace2);
-                   // MessageBox.Show(this._DBManager.etrace3);
-                //}
-            //}
+            if (!XmlManager.isDatabase())
+            {
+                this._DBManager = new DatabaseManager();
+                if (XmlManager.isDatabase())
+                {
+                    MessageBox.Show("Itz created");
+                }
+                else
+                {
+                    MessageBox.Show(this._DBManager.etrace1);
+                    MessageBox.Show(this._DBManager.etrace2);
+                    MessageBox.Show(this._DBManager.etrace3);
+                }
+            }
         }
 
         private void button_main_cerrar_Click(object sender, RoutedEventArgs e)
