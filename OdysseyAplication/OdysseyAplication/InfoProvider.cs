@@ -42,7 +42,7 @@ namespace OdysseyAplication
         //listo
         public List<DataSong> getSongsByUserInLocal(string pUserName)
         {
-            List<DataSong> result = null;
+            List<DataSong> result = DatabaseManager.getSongsOfUser(pUserName);
             return result;
         }
         //listo
