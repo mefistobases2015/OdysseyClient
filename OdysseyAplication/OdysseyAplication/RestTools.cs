@@ -662,7 +662,7 @@ namespace OdysseyAplication
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage song_res = await client.GetAsync(songs_path );
+                HttpResponseMessage song_res = await client.GetAsync(songs_path);
 
                 Song song = await song_res.Content.ReadAsAsync<Song>();
 
