@@ -59,29 +59,6 @@ namespace OdysseyAplication
 
             //}
         }
-        private async void refreshLibrary(string pUserName, string pMode)
-        {
-            label_userName.Content = pUserName;
-            this._uploadMode = pMode;
-            if(this._uploadMode == window_main.MODE_CLOUD)
-            {
-                
-            }
-            else if(this._uploadMode == window_main.MODE_LOCAL)
-            {
-                this._SongDataList = DatabaseManager.getSongsOfUser(this._SignedUser);
-            }
-            // Delete The Current Data
-            while (listview_data.Items.Count > 0)
-            {
-                listview_data.Items.RemoveAt(0);
-            }
-            // Insert New Items
-            foreach (DataSong ww in this._SongDataList)
-            {
-                listview_data.Items.Add(new { Col1 = ww._ID3Artist, Col2 = ww._ID3Title, Col3 = ww._ID3Album, Col4 = ww._ID3Year, Col5 = ww._ID3Genre });
-            }
-        }
 
         private async void refreshMusicGrid()
         {
@@ -187,7 +164,7 @@ namespace OdysseyAplication
         }
         private void button_descovery_Click(object sender, RoutedEventArgs e)
         {
-            this.refreshLibrary(this._SignedUser, window_main.MODE_CLOUD);
+            this.refreshMusicGrid();
             
         }
         private async void listview_data_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -354,11 +331,12 @@ namespace OdysseyAplication
 
         private void button_local_Click(object sender, RoutedEventArgs e)
         {
-            if(!XmlManager.isDatabase())
+            this._SongDataList = this._InfoManager.getSongsByUserInLocal(this._SignedUser);
+            socialPanel.Visibility = Visibility.Collapsed;
+            if(this._SongDataList != null)
             {
-                this._DBManager = new DatabaseManager();
+                this.refreshMusicGrid();
             }
-            this.refreshLibrary(this._SignedUser, window_main.MODE_LOCAL);
         }
 
         private void button_add_Click(object sender, RoutedEventArgs e)
@@ -584,20 +562,20 @@ namespace OdysseyAplication
             playerGrid.Visibility = Visibility.Visible;
             playerInfoGrid.Visibility = Visibility.Visible;
             this.refreshMusicGrid();
-            if (!XmlManager.isDatabase())
-            {
-                this._DBManager = new DatabaseManager();
-                if (XmlManager.isDatabase())
-                {
-                    MessageBox.Show("Itz created");
-                }
-                else
-                {
-                    MessageBox.Show(this._DBManager.etrace1);
-                    MessageBox.Show(this._DBManager.etrace2);
-                    MessageBox.Show(this._DBManager.etrace3);
-                }
-            }
+            //if (!XmlManager.isDatabase())
+            //{
+             //   this._DBManager = new DatabaseManager();
+               // if (XmlManager.isDatabase())
+                //{
+                 //   MessageBox.Show("Itz created");
+               // }
+                //else
+                //{
+                 //   MessageBox.Show(this._DBManager.etrace1);
+                  //  MessageBox.Show(this._DBManager.etrace2);
+                   // MessageBox.Show(this._DBManager.etrace3);
+                //}
+            //}
         }
 
         private void button_main_cerrar_Click(object sender, RoutedEventArgs e)
