@@ -679,5 +679,10 @@ namespace OdysseyAplication
             return await rt.setRequest(userName, friendUserName);
         }
 
+        public void createLocalVersion(DataSong pDataSong)
+        {
+            DatabaseManager.createVersion(pDataSong);
+            //DatabaseManager.setVersion2Song()
+        }
     }
 }

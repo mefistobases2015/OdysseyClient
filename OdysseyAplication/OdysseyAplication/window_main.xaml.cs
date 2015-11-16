@@ -621,6 +621,8 @@ namespace OdysseyAplication
             {
                 if (this._uploadMode == window_main.MODE_CLOUD)
                 {
+                    MessageBox.Show("|" + this._VersionList[listview_version.SelectedIndex].song_id.ToString() + "|");
+                    MessageBox.Show("|" + this._VersionList[listview_version.SelectedIndex].version_id.ToString() + "|");
                     await this._InfoManager.setOldVersion2Song(this._VersionList[listview_version.SelectedIndex].song_id.ToString(), this._VersionList[listview_version.SelectedIndex].version_id.ToString());
                 }
                 else if (this._uploadMode == window_main.MODE_LOCAL)

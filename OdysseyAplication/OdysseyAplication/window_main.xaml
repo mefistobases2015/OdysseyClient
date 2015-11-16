@@ -232,7 +232,7 @@
                 </StackPanel>
             </Grid>
         </Grid>
-        <Grid x:Name="toolbarEditor" Margin="0,4,1094,149" Width="205" Background="#FF323232" Visibility="Collapsed">
+        <Grid x:Name="toolbarEditor" Margin="0,4,1094,149" Width="205" Background="#FF323232">
             <Label x:Name="label_Odyssey1" Content="Editor ID3" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="200" Foreground="#FFC8C8C8" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" Margin="0,28,0,0"/>
             <Button x:Name="button_makeVersion" Content="         Crear Versión"  Margin="0,157,0,221" Width="205" Style="{StaticResource toolbarButton}" Click="button_makeVersion_Click" />
             <Button x:Name="button_close_id3Editor" Content="         Cerrar" Margin="0,354,0,24" Width="205" Style="{StaticResource toolbarButton}" Click="button_close_id3Editor_Click"/>
@@ -382,7 +382,7 @@
             <Button x:Name="button_sendRequest" Content="✚" Margin="92,382,917,25" Style="{StaticResource mainButton}" Width="71" MouseMove="button_sendRequest_MouseMove" MouseLeave="button_sendRequest_MouseLeave" Click="button_sendRequest_Click"/>
             <Label x:Name="label_social_option" Content="" HorizontalAlignment="Left" Height="25" Margin="21,442,0,0" VerticalAlignment="Top" Width="282" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </Grid>
-        <Grid x:Name="loginGrid" HorizontalAlignment="Left" Height="567" VerticalAlignment="Top" Width="1300" Margin="0,0,-1,0">
+        <Grid x:Name="loginGrid" HorizontalAlignment="Left" Height="567" VerticalAlignment="Top" Width="1300" Margin="0,0,-1,0" Visibility="Collapsed">
             <Grid.Background>
                 <ImageBrush ImageSource="vintage.jpg"/>
             </Grid.Background>
