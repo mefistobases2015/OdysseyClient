@@ -612,6 +612,10 @@ namespace OdysseyAplication
             return await rt.setConnectedState(connectedStatus, userName);
         }
 
+        /// <summary>
+        /// Sube todas las canciones con su version actual a la base de la nube
+        /// </summary>
+        /// <param name="user_name">Nombre de usuario</param>
         public async void uploadSong(string user_name)
         {
             RestTools rt = new RestTools();
@@ -623,6 +627,8 @@ namespace OdysseyAplication
                 if (!DatabaseManager.isSongSync(datasongs[i]._SongID))
                 {
                     int lc_song_id = Convert.ToInt32(datasongs[i]._SongID);
+
+                    string song_name = DatabaseManager.getSongName(user_name, lc_song_id);
 
                     //se crea la cancion
                     string song_directory = DatabaseManager.getSongDirectoryFromASong(lc_song_id);
@@ -638,7 +644,18 @@ namespace OdysseyAplication
                     Version syncVersion = await rt.syncVersion(lc_version);
                     DatabaseManager.setSyncIdVersion(lc_version.version_id, syncVersion.version_id, syncSong.song_id);
 
-                    
+                    bool link = await rt.setMetadataSong(syncSong.song_id, syncVersion.version_id);
+                    //se hace la propiedad si se unio bien los dos datos
+                    if (link)
+                    {
+                        bool p_result = await rt.syncProperty(user_name, syncSong.song_id, song_name);
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se pudo unir cancion con version");
+                    }
+                    BlobManager bm = new BlobManager();
+                    bm.uploadSong(syncSong.song_id, song_directory);
                 }
             }
 
