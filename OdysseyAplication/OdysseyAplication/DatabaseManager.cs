@@ -349,7 +349,7 @@ namespace OdysseyAplication
         /// bool que es true si se pudo agregar la canción. 
         /// En cualquier otro caso es false
         /// </returns>
-        public static bool addSong2User(string usr_name, string song_name, DataSong datasong)
+        public static bool addSong2User(string usr_name, DataSong datasong)
         {
             int song_id = createSong(datasong);
             datasong._SongID = song_id.ToString();
@@ -357,7 +357,7 @@ namespace OdysseyAplication
             int version_id = createVersion(datasong);
             setVersion2Song(song_id.ToString(), version_id.ToString());
 
-            return createProperty(usr_name, song_id.ToString(), song_name);
+            return createProperty(usr_name, song_id.ToString(), datasong._SongName);
         }
 
         /// <summary>

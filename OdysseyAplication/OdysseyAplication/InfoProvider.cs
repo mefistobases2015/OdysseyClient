@@ -534,7 +534,7 @@ namespace OdysseyAplication
 
                     for(int i = 0; i < pMetadatas.Count; i++)
                     {
-                        bool state = DatabaseManager.addSong2User(pUserName, pSongsNames[i], pMetadatas[i]);
+                        bool state = DatabaseManager.addSong2User(pUserName, pMetadatas[i]);
                         if (!state)
                         {
                             return false;
@@ -677,6 +677,7 @@ namespace OdysseyAplication
         {
 
         }
+
         /// <summary>
         /// Envia una peticion de amistad
         /// </summary>
@@ -700,9 +701,14 @@ namespace OdysseyAplication
             return DatabaseManager.getVersionsOfSongs(pSongID);
         }
 
-        public void addSong2LocalDatabase(List<string> directories)
+        public void addSong2LocalDatabase(string userName, List<string> directories)
         {
             List<DataSong> datasongs = getID3ByDirectory(directories);
+
+            for(int i = 0; i < datasongs.Count; i++)
+            {
+                DatabaseManager.addSong2User(userName, datasongs[i]);
+            }
         }
     }
 }
