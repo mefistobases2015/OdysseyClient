@@ -662,11 +662,11 @@ namespace OdysseyAplication
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage song_res = await client.GetAsync(songs_path);
+                HttpResponseMessage song_res = await client.GetAsync(songs_path+"/"+p_song_id.ToString());
 
                 Song song = await song_res.Content.ReadAsAsync<Song>();
 
-                HttpResponseMessage ver_res = await client.GetAsync(versions_path);
+                HttpResponseMessage ver_res = await client.GetAsync(versions_path+"/"+p_version_id.ToString());
 
                 Version ver = await ver_res.Content.ReadAsAsync<Version>();
 
