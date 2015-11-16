@@ -171,8 +171,8 @@ namespace OdysseyAplication
                 // Set The Actual Medatada As Info
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 textbox_artist.Text = this._SongDataList[index]._ID3Artist;
-                textbox_genre.Text  = this._SongDataList[index]._ID3Year;
-                textbox_year.Text = this._SongDataList[index]._ID3Genre;
+                textbox_genre.Text  = this._SongDataList[index]._ID3Genre;
+                textbox_year.Text = this._SongDataList[index]._ID3Year;
                 textbox_lyric.Text  = this._SongDataList[index]._ID3Lyrics;
                 textbox_title.Text  = this._SongDataList[index]._ID3Title;
                 textbox_album.Text  = this._SongDataList[index]._ID3Album;
@@ -637,10 +637,18 @@ namespace OdysseyAplication
             }
         }
 
-        private void button_chooseVersion_Click(object sender, RoutedEventArgs e)
+        private async void button_chooseVersion_Click(object sender, RoutedEventArgs e)
         {
             if(listview_version.SelectedIndex > -1)
             {
+                if (this._uploadMode == window_main.MODE_CLOUD)
+                {
+                    await this._InfoManager.setOldVersion2Song(this._VersionList[listview_version.SelectedIndex].song_id.ToString(), this._VersionList[listview_version.SelectedIndex].version_id.ToString());
+                }
+                else if (this._uploadMode == window_main.MODE_LOCAL)
+                {
+                    //this._InfoManager.createDataSongVersionCloud();
+                }
             }
         }
 
