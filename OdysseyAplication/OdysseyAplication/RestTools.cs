@@ -438,7 +438,7 @@ namespace OdysseyAplication
             Song song;
 
             Version ver = new Version(met);
-
+            ver.submission_date = "2015-11-15 07:23:23.440"; 
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(server_url);
