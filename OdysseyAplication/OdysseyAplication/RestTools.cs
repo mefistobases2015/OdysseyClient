@@ -1639,7 +1639,7 @@ namespace OdysseyAplication
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage response = await client.GetAsync(mongo_songs_path + "/Popular?id=" + user_id);
+                HttpResponseMessage response = await client.GetAsync(mongo_users_path + "/Popular?id=" + user_id);
 
                 if (response.IsSuccessStatusCode)
                 {
