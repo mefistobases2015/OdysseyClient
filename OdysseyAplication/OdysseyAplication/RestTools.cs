@@ -656,34 +656,39 @@ namespace OdysseyAplication
         {
             bool flag = false;
 
+            Song song = new Song();
+
+            Version version = new Version();
+
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(server_url);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
 
-                HttpResponseMessage song_res = await client.GetAsync(songs_path+"/"+p_song_id.ToString());
+                HttpResponseMessage song_res = await client.GetAsync(songs_path + "/" + p_song_id.ToString());
+                song = await song_res.Content.ReadAsAsync<Song>();
 
-                Song song = await song_res.Content.ReadAsAsync<Song>();
-
-                HttpResponseMessage ver_res = await client.GetAsync(versions_path+"/"+p_version_id.ToString());
-
-                Version ver = await ver_res.Content.ReadAsAsync<Version>();
-
-                song.metadata_id = ver.version_id;
-
-                HttpResponseMessage sng_upd = await client.PutAsJsonAsync<Song>(songs_path + "/" + song.song_id.ToString(), song);
-
-                if (sng_upd.IsSuccessStatusCode)
+                if (song_res.IsSuccessStatusCode)
                 {
-                    flag = true;
-                    Console.WriteLine("\nSe agrego bien la cancion");
+                    song.metadata_id = p_version_id;
+
+                    HttpResponseMessage sng_upd = await client.PutAsJsonAsync<Song>(songs_path + "/" + song.song_id.ToString(), song);
+
+                    if (sng_upd.IsSuccessStatusCode)
+                    {
+                        flag = true;
+                    }
+                    else
+                    {
+                        flag = false;
+                    }
                 }
                 else
                 {
                     flag = false;
-                    Console.WriteLine("\nEl codigo de error: {0}", sng_upd.StatusCode);
                 }
+                
             }
 
             return flag;
