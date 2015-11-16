@@ -85,11 +85,12 @@ namespace OdysseyAplication
         public string id3v2_lyrics { get; set; }
         public string id3v2_album { get; set; }
         public string id3v2_genre { get; set; }
-        public int year { get; set; }
+        public int id3v2_year { get; set; }
     }
 
     public class DataSong
     {
+        public string _SongName { get; set; }
         public string _ID3Title { get; set; }
         public string _ID3Artist { get; set; }
         public string _ID3Album { get; set; }

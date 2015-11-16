@@ -762,15 +762,16 @@ namespace OdysseyAplication
 
                         song_met._ID3Artist = (sngs_n_met[i].id3v2_author);
 
-                        song_met._ID3Title  = (sngs_n_met[i].id3v2_title);
-                        song_met._ID3Album  = (sngs_n_met[i].id3v2_album);
-                        song_met._ID3Year   = (sngs_n_met[i].year.ToString());
-                        song_met._ID3Genre  = (sngs_n_met[i].id3v2_genre);
+                        song_met._ID3Title = (sngs_n_met[i].id3v2_title);
+                        song_met._ID3Album = (sngs_n_met[i].id3v2_album);
+                        song_met._ID3Year = (sngs_n_met[i].id3v2_year.ToString());
+                        song_met._ID3Genre = (sngs_n_met[i].id3v2_genre);
                         song_met._ID3Lyrics = (sngs_n_met[i].id3v2_lyrics);
-                        song_met._SongID    = (sngs_n_met[i].song_id.ToString());
-                        song_met._ID3Title  = (sngs_n_met[i].song_name);
-                        song_met._SongDirectory  = (sngs_n_met[i].song_directory);
+                        song_met._SongID = (sngs_n_met[i].song_id.ToString());
+                        song_met._ID3Title = (sngs_n_met[i].song_name);
+                        song_met._SongDirectory = (sngs_n_met[i].song_directory);
                         song_met._SubmissionDate = (sngs_n_met[i].submission_date);
+                        song_met._SongName = (sngs_n_met[i].song_name);
                         songs_metadata.Add(song_met);
                     }
                 }
@@ -779,7 +780,7 @@ namespace OdysseyAplication
                     songs_metadata = null;
                 }
 
-               
+
             }
             return songs_metadata;
 
