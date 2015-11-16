@@ -181,7 +181,6 @@ namespace OdysseyAplication
                 this._VersionList = await this._InfoManager.getListOfDataSong(this._SongDataList[index]._SongID);
                 if (this._VersionList !=  null)
                 {
-                    MessageBox.Show(this._VersionList.Count.ToString());
                     this.refreshVersion();
                 }
             }
@@ -618,11 +617,19 @@ namespace OdysseyAplication
 
         private void button_makeVersion_Click(object sender, RoutedEventArgs e)
         {
-            DataSong newMeta = new DataSong();
-            
-            if(this._uploadMode == window_main.MODE_CLOUD)
+            DataSong selectedMeta = new DataSong();
+
+            selectedMeta._SongDirectory = this._SongDataList[listview_data.SelectedIndex]._SongDirectory;
+            selectedMeta._SongID        = this._SongDataList[listview_data.SelectedIndex]._SongID;
+            selectedMeta._ID3Title  = textbox_title.Text;
+            selectedMeta._ID3Artist = textbox_artist.Text;
+            selectedMeta._ID3Genre  = textbox_genre.Text;
+            selectedMeta._ID3Lyrics = textbox_lyric.Text;
+            selectedMeta._ID3Album  = textbox_album.Text;
+
+            if (this._uploadMode == window_main.MODE_CLOUD)
             {
-                //this._InfoManager.createDataSongVersionCloud();
+                this._InfoManager.setVersion2Song(selectedMeta);
             }
             else if(this._uploadMode == window_main.MODE_LOCAL)
             {
@@ -632,7 +639,9 @@ namespace OdysseyAplication
 
         private void button_chooseVersion_Click(object sender, RoutedEventArgs e)
         {
-
+            if(listview_version.SelectedIndex > -1)
+            {
+            }
         }
 
         private async void  button_user_search_Click(object sender, RoutedEventArgs e)
@@ -725,6 +734,19 @@ namespace OdysseyAplication
             if (listview_data.SelectedIndex > -1)
             {
                 await this._InfoManager.setFriendRequest(this._SignedUser, this._CommunityList[listview_data.SelectedIndex]);
+            }
+        }
+
+        private void listview_version_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(listview_version.SelectedIndex > -1)
+            {
+                textbox_artist.Text = this._VersionList[listview_version.SelectedIndex].id3v2_author;
+                textbox_genre.Text  = this._VersionList[listview_version.SelectedIndex].id3v2_genre;
+                textbox_year.Text   = this._VersionList[listview_version.SelectedIndex].id3v2_year.ToString();
+                textbox_lyric.Text  = this._VersionList[listview_version.SelectedIndex].id3v2_lyrics;
+                textbox_title.Text  = this._VersionList[listview_version.SelectedIndex].id3v2_title;
+                textbox_album.Text  = this._VersionList[listview_version.SelectedIndex].id3v2_album;
             }
         }
     }
