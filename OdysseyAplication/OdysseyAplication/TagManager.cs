@@ -45,7 +45,9 @@ namespace OdysseyAplication
             {
                 id3op._ID3Artist = tagFile.Tag.Performers[0];
             }
+            id3op._SongName = tagFile.Name;
             return id3op;
         }
+
     }
 }

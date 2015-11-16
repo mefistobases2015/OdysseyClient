@@ -11,26 +11,34 @@ namespace OdysseyAplication
             RestTools rt = new RestTools();
             return await rt.getSocialByUserName(pUsername);
         }
+
         public async Task<string> getUserClasificationByFriends(string pUsername)
         {
             RestTools rt = new RestTools();
             return (await rt.getMusicalByFriends(pUsername));
         }
+
         public async Task<string> getUserClasificationByLibrary(string pUsername)
         {
             RestTools rt = new RestTools();
             return (await rt.getGenreClasification(pUsername));
         }
+
+        /// <summary>
+        /// Crea una lista con Datasong de directorios
+        /// </summary>
+        /// <param name="pPatchs"></param>
+        /// <returns></returns>
         public List<DataSong> getID3ByDirectory(List<string> pPatchs)
         {
             List<DataSong> id3Collection = new List<DataSong>();
-            TagManager tmop = new TagManager();
             foreach (string directory in pPatchs)
             {
-                id3Collection.Add(tmop.getID3ByDirectory(directory));
+                id3Collection.Add(TagManager.getID3ByDirectory(directory));
             }
             return id3Collection;
         }
+
         //listo
         public async Task<List<DataSong>> getSongsByUserInCloud(string pUserName)
         {
@@ -48,8 +56,7 @@ namespace OdysseyAplication
         //listo
         public void createDataSongVersionLocal(DataSong pDataSongVersion)
         {
-            TagManager tmop = new TagManager();
-            tmop.setID3(pDataSongVersion);
+            TagManager.setID3(pDataSongVersion);
         }
         //listo
         public async void createSong(DataSong pDataSongInitial)
@@ -693,9 +700,9 @@ namespace OdysseyAplication
             return DatabaseManager.getVersionsOfSongs(pSongID);
         }
 
-        public void addSong2LocalDatabase(List<String> pVersionList)
+        public void addSong2LocalDatabase(List<string> directories)
         {
-
+            List<DataSong> datasongs = getID3ByDirectory(directories);
         }
     }
 }
