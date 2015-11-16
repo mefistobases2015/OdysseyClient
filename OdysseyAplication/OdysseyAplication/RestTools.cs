@@ -672,7 +672,7 @@ namespace OdysseyAplication
 
                 song.metadata_id = ver.version_id;
 
-                HttpResponseMessage sng_upd = await client.PutAsJsonAsync<Song>(songs_path + "/" + song.song_id, song);
+                HttpResponseMessage sng_upd = await client.PutAsJsonAsync<Song>(songs_path + "/" + song.song_id.ToString(), song);
 
                 if (sng_upd.IsSuccessStatusCode)
                 {
