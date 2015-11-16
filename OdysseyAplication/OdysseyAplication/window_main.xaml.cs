@@ -62,6 +62,7 @@ namespace OdysseyAplication
 
         private async void refreshMusicGrid()
         {
+            label_signedUserName.Content = this._ProfileUser;
             // Verify Friend Settings
             if (this._SignedUser == this._ProfileUser)
             {
@@ -88,7 +89,6 @@ namespace OdysseyAplication
             {
                 socialPanel.Visibility = Visibility.Visible;
             }
-            label_signedUserName.Content = this._ProfileUser;
             if (this._SongDataList != null)
             {
                 // Delete The Current Data
@@ -340,6 +340,7 @@ namespace OdysseyAplication
 
         private void button_local_Click(object sender, RoutedEventArgs e)
         {
+            this._ProfileUser = this._SignedUser;
             this._SongDataList = this._InfoManager.getSongsByUserInLocal(this._SignedUser);
             this._uploadMode = window_main.MODE_LOCAL;
             if(this._SongDataList != null)
@@ -356,14 +357,23 @@ namespace OdysseyAplication
             saveFileDialog.Multiselect = true;
             if(saveFileDialog.ShowDialog() == true)
             {
-                this._InfoManager.addSong2LocalDatabase(new List<string>(saveFileDialog.FileNames));
+                DataSong d = TagManager.getID3ByDirectory(saveFileDialog.FileNames[0]);
+                MessageBox.Show(d._SongName);
+                //this._InfoManager.addSong2LocalDatabase(new List<string>(saveFileDialog.FileNames));
             }
 
         }
 
         private void button1_download_Click(object sender, RoutedEventArgs e)
         {
-            //this._InfoManager.downloadDatabase(this._SignedUser);
+            this._uploadMode = window_main.MODE_LOCAL;
+            this._ProfileUser = this._SignedUser;
+            this._SongDataList = this._InfoManager.getSongsByUserInLocal(this._SignedUser);
+            this._InfoManager.downloadDatabase(this._SignedUser);
+            if(this._SongDataList != null)
+            {
+                this.refreshMusicGrid();
+            }
         }
 
         private void button_close_id3Editor_Click(object sender, RoutedEventArgs e)
@@ -387,12 +397,15 @@ namespace OdysseyAplication
             toolbarMain.Visibility = Visibility.Visible;
         }
 
-        private void button_upload_Click(object sender, RoutedEventArgs e)
+        private async void button_upload_Click(object sender, RoutedEventArgs e)
         {
-            this._InfoManager.uploadDatabase(this._SignedUser);
-            if(this._SongDataList != null)
+            this._uploadMode = window_main.MODE_CLOUD;
+            this._ProfileUser = this._SignedUser;
+            //await this._InfoManager.uploadDatabase(this._SignedUser);
+            this._SongDataList = await this._InfoManager.getSongsByUserInCloud(this._SignedUser);
+            if (this._SongDataList != null)
             {
-
+                this.refreshMusicGrid();
             }
         }
         private async void refreshFriendList(string pUserName)
@@ -749,4 +762,4 @@ namespace OdysseyAplication
             }
         }
     }
-}
+}   
