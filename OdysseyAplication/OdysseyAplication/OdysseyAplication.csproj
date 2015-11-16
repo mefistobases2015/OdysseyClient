@@ -116,6 +116,7 @@
     <Compile Include="DatabaseManager.cs" />
     <Compile Include="Mp3Player.cs" />
     <Compile Include="MP3StreamerPlayer.cs" />
+    <Compile Include="MusicPlayer.cs" />
     <Compile Include="ReadFullyStream.cs" />
     <Compile Include="RestTools.cs" />
     <Compile Include="TagManager.cs" />

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace OdysseyAplication
 {
     
-    class MP3Player
+    class MP3Player : MusicPlayer
     {
         enum StreamingPlaybackState
         {
@@ -30,16 +30,15 @@ namespace OdysseyAplication
             }
             this._waveOut.Dispose();
         }
-        public void  setSong(string pDirectory)
+        public void setSong(string pDirectory)
         {
-            if(this._Reader != null)
+            if (this._Reader != null)
             {
                 this._Reader.Dispose();
             }
             this._Reader = new Mp3FileReader(pDirectory);
             this._waveOut.Init(this._Reader);
         }
-
         public void playSong()
         {
             if(this._Reader != null)

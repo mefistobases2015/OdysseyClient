@@ -37,12 +37,11 @@ namespace OdysseyAplication
         DatabaseManager _DBManager { get; set; }
         public window_main()
         {
-            //this._SignedUser = pUserSigned;
             InitializeComponent();
-            //this._SignedUser = pUserSigned;
+
             this._InfoManager = new InfoProvider();
             this._Player = new MP3StreamerPlayer();
-            //label_signedUserName.Content = pUserSigned;
+
             // if (!XmlManager.isDatabase())
             //{
             //   this._DBManager = new DatabaseManager();
@@ -326,16 +325,8 @@ namespace OdysseyAplication
         }
         private async void button_playSong_Click(object sender, RoutedEventArgs e)
         {
-            if (listview_data.Items.Count > 0)
-            {
-                // Index Of The Selected Song
-                int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
-                // Actual Song In The Play Queue
-                label_actualSong_artist.Content = this._SongDataList[index]._ID3Artist;
-                label_actualSong_Title.Content = this._SongDataList[index]._ID3Title;
-                // Make A Song Reproduction
-                await this._InfoManager.setSongReproduction(this._SongDataList[index]._SongID);
-            }
+            mePlayer.Play();
+         
         }
 
         private void button_local_Click(object sender, RoutedEventArgs e)
@@ -616,6 +607,7 @@ namespace OdysseyAplication
             DataSong selectedMeta = new DataSong();
 
             selectedMeta._SongDirectory = this._SongDataList[listview_data.SelectedIndex]._SongDirectory;
+            selectedMeta._SongName      = this._SongDataList[listview_data.SelectedIndex]._SongName;
             selectedMeta._SongID        = this._SongDataList[listview_data.SelectedIndex]._SongID;
             selectedMeta._ID3Title  = textbox_title.Text;
             selectedMeta._ID3Artist = textbox_artist.Text;
@@ -650,7 +642,7 @@ namespace OdysseyAplication
                 }
                 else if (this._uploadMode == window_main.MODE_LOCAL)
                 {
-                //   this._SongDataList = this._InfoManager.getLocalVersionList(this._VersionList[listview_version.SelectedIndex].song_id.ToString();
+                    this._InfoManager.se
                 }
             }
         }
