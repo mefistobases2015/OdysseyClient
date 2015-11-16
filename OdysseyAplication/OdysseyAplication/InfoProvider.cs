@@ -661,11 +661,15 @@ namespace OdysseyAplication
 
         }
 
-        public void downloadDatabase()
+        public void downloadDatabase(string pUserName)
         {
 
         }
 
+        public void uploadDatabase(string pUserName)
+        {
+
+        }
         /// <summary>
         /// Envia una peticion de amistad
         /// </summary>
@@ -683,6 +687,15 @@ namespace OdysseyAplication
         {
             DatabaseManager.createVersion(pDataSong);
             //DatabaseManager.setVersion2Song()
+        }
+        public List<Version> getLocalVersionList(string pSongID)
+        {
+            return DatabaseManager.getVersionsOfSongs(pSongID);
+        }
+
+        public void addSong2LocalDatabase(List<String> pVersionList)
+        {
+
         }
     }
 }

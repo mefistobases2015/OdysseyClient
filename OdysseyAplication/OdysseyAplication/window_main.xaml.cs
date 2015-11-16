@@ -99,7 +99,7 @@ namespace OdysseyAplication
                 // Insert New Items
                 foreach (DataSong ww in this._SongDataList)
                 {
-                    listview_data.Items.Add(new { Col1 = ww._ID3Artist, Col2 = ww._ID3Title, Col3 = ww._ID3Album, Col4 = ww._ID3Year, Col5 = ww._ID3Genre });
+                    listview_data.Items.Add(new { Col1 = ww._ID3Title, Col2 = ww._ID3Artist, Col3 = ww._ID3Album, Col4 = ww._ID3Genre, Col5 = ww._ID3Year });
                 }
             }
         }
@@ -132,7 +132,7 @@ namespace OdysseyAplication
             foreach (Version ww in this._VersionList)
             {
                 listview_version.Items.Add(new { Col1 = ww.id3v2_title, Col2 = ww.id3v2_author, Col3 = ww.id3v2_album, Col4 = ww.id3v2_year,
-                                                 Col5 = ww.id3v2_genre, Col7 = ww.submission_date });
+                                                 Col5 = ww.id3v2_genre, Col6 = ww.submission_date });
             }
         }
         private async void button_id3Editor_Click(object sender, RoutedEventArgs e)
@@ -149,13 +149,20 @@ namespace OdysseyAplication
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 textbox_artist.Text = this._SongDataList[index]._ID3Artist;
                 textbox_genre.Text  = this._SongDataList[index]._ID3Genre;
-                textbox_year.Text = this._SongDataList[index]._ID3Year;
+                textbox_year.Text   = this._SongDataList[index]._ID3Year;
                 textbox_lyric.Text  = this._SongDataList[index]._ID3Lyrics;
                 textbox_title.Text  = this._SongDataList[index]._ID3Title;
                 textbox_album.Text  = this._SongDataList[index]._ID3Album;
                 // Get List OF Past Versions Of The Song
                 // Song In Cloud Library
-                this._VersionList = await this._InfoManager.getListOfDataSong(this._SongDataList[index]._SongID);
+                if (this._uploadMode == window_main.MODE_CLOUD)
+                {
+                    this._VersionList = await this._InfoManager.getListOfDataSong(this._SongDataList[index]._SongID);
+                }
+                else if(this._uploadMode == window_main.MODE_LOCAL)
+                {
+                    this._VersionList = this._InfoManager.getLocalVersionList(this._SongDataList[listview_data.SelectedIndex]._SongID);
+                }
                 if (this._VersionList !=  null)
                 {
                     this.refreshVersion();
@@ -173,6 +180,7 @@ namespace OdysseyAplication
             {
                 // Index Of Selected Item
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
+
                 // Lyrics
                 textbox_lyrics.Text = this._SongDataList[index]._ID3Lyrics;
 
@@ -210,6 +218,7 @@ namespace OdysseyAplication
                 // Index Of Selected Item
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 await this._InfoManager.makeLike(this._SongDataList[index]._SongID);
+                
                 // Like's Of The Song
                 string likeCounter = (await this._InfoManager.getLikeBySong(this._SongDataList[index]._SongID)).ToString();
                 label_like_counter.Content = likeCounter;
@@ -223,10 +232,10 @@ namespace OdysseyAplication
                 // Index Of Selected Item
                 int index = listview_data.Items.IndexOf(listview_data.SelectedItems[0]);
                 await this._InfoManager.makeDislike(this._SongDataList[index]._SongID);
+
                 // Dislike's Of The Song
                 string dislikeCounter = (await this._InfoManager.getDislikeBySong(this._SongDataList[index]._SongID)).ToString();
                 label_dislike_counter.Content = dislikeCounter;
-
             }
         }
         private void button_nextComment_Click(object sender, RoutedEventArgs e)
@@ -332,7 +341,7 @@ namespace OdysseyAplication
         private void button_local_Click(object sender, RoutedEventArgs e)
         {
             this._SongDataList = this._InfoManager.getSongsByUserInLocal(this._SignedUser);
-            socialPanel.Visibility = Visibility.Collapsed;
+            this._uploadMode = window_main.MODE_LOCAL;
             if(this._SongDataList != null)
             {
                 this.refreshMusicGrid();
@@ -347,14 +356,14 @@ namespace OdysseyAplication
             saveFileDialog.Multiselect = true;
             if(saveFileDialog.ShowDialog() == true)
             {
-
+                this._InfoManager.addSong2LocalDatabase(new List<string>(saveFileDialog.FileNames));
             }
 
         }
 
         private void button1_download_Click(object sender, RoutedEventArgs e)
         {
-
+            //this._InfoManager.downloadDatabase(this._SignedUser);
         }
 
         private void button_close_id3Editor_Click(object sender, RoutedEventArgs e)
@@ -380,15 +389,8 @@ namespace OdysseyAplication
 
         private void button_upload_Click(object sender, RoutedEventArgs e)
         {
-
+            //this._InfoManager.uploadDatabase(this._SignedUser);
         }
-
-        private void button_createVersion_Click(object sender, RoutedEventArgs e)
-        {
-            //DataSong
-            //this._InfoManager.createDataSongVersionLocal();
-        }
-
         private async void refreshFriendList(string pUserName)
         {
             // Indicator Of Selected Community
@@ -593,7 +595,7 @@ namespace OdysseyAplication
 
         }
 
-        private void button_makeVersion_Click(object sender, RoutedEventArgs e)
+        private async void button_makeVersion_Click(object sender, RoutedEventArgs e)
         {
             DataSong selectedMeta = new DataSong();
 
@@ -604,14 +606,21 @@ namespace OdysseyAplication
             selectedMeta._ID3Genre  = textbox_genre.Text;
             selectedMeta._ID3Lyrics = textbox_lyric.Text;
             selectedMeta._ID3Album  = textbox_album.Text;
+            selectedMeta._ID3Year   = textbox_year.Text;
 
             if (this._uploadMode == window_main.MODE_CLOUD)
             {
-                this._InfoManager.setVersion2Song(selectedMeta);
+                this._InfoManager.createDataSongVersionCloud(selectedMeta);
+                this._VersionList = await this._InfoManager.getListOfDataSong(this._SongDataList[listview_data.SelectedIndex]._SongID);
             }
             else if(this._uploadMode == window_main.MODE_LOCAL)
+            {   
+                this._InfoManager.createDataSongVersionLocal(selectedMeta);
+                this._VersionList = this._InfoManager.getLocalVersionList(this._SongDataList[listview_data.SelectedIndex]._SongID);
+            }
+            if (this._VersionList != null)
             {
-                //this._InfoManager.createDataSongVersionCloud();
+                this.refreshVersion();
             }
         }
 
@@ -621,13 +630,11 @@ namespace OdysseyAplication
             {
                 if (this._uploadMode == window_main.MODE_CLOUD)
                 {
-                    MessageBox.Show("|" + this._VersionList[listview_version.SelectedIndex].song_id.ToString() + "|");
-                    MessageBox.Show("|" + this._VersionList[listview_version.SelectedIndex].version_id.ToString() + "|");
                     await this._InfoManager.setOldVersion2Song(this._VersionList[listview_version.SelectedIndex].song_id.ToString(), this._VersionList[listview_version.SelectedIndex].version_id.ToString());
                 }
                 else if (this._uploadMode == window_main.MODE_LOCAL)
                 {
-                    //this._InfoManager.createDataSongVersionCloud();
+                //   this._SongDataList = this._InfoManager.getLocalVersionList(this._VersionList[listview_version.SelectedIndex].song_id.ToString();
                 }
             }
         }
