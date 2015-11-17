@@ -26,11 +26,7 @@ namespace OdysseyAplication
         
         private bool isDatabase;
 
-        public string etrace1 = "";
-
-        public string etrace2 = "";
-
-        public string etrace3 = "";
+        public static string etrace1 = "";
 
         /// <summary>
         /// Constructor, verifica si ya se ha creado 
@@ -94,7 +90,6 @@ namespace OdysseyAplication
                     }
                     catch (Exception e)
                     {
-                        etrace2 = e.Message;
                         Console.WriteLine(e);
                         Console.WriteLine("#AlgoSalioMal");
                     }
@@ -123,7 +118,6 @@ namespace OdysseyAplication
                     }
                     catch (Exception e)
                     {
-                        etrace3 = e.Message;
                         Console.WriteLine(e);
                         Console.WriteLine("#NoSirveView");
                     }
@@ -196,7 +190,7 @@ namespace OdysseyAplication
                     SqlCommand insertConnection = new SqlCommand();
 
                     insertConnection.CommandType = System.Data.CommandType.Text;
-                    insertConnection.CommandText = "INSERT versiones_tbl "+ 
+                    insertConnection.CommandText = "INSERT INTO versiones_tbl "+ 
                         "(local_song_id, id3v2_title, id3v2_author, id3v2_lyrics, id3v2_album, id3v2_genre, id3v2_year) "+
                         "output INSERTED.local_version_id VALUES (@lsng_id, @title, @author, @lyrics, @album, @genre, @year)";
 
@@ -223,6 +217,7 @@ namespace OdysseyAplication
             }
             catch(Exception e)
             {
+                etrace1 = datasong._ID3Lyrics + " "+datasong._ID3Title;
                 Console.WriteLine(e);
 
                 return -1;

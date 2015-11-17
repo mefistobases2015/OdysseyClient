@@ -57,6 +57,10 @@ namespace OdysseyAplication
         public void createDataSongVersionLocal(DataSong pDataSongVersion)
         {
             TagManager.setID3(pDataSongVersion);
+
+            int lversion_id = DatabaseManager.createVersion(pDataSongVersion);
+
+            DatabaseManager.setVersion2Song(pDataSongVersion._SongID, lversion_id.ToString());
         }
         //listo
         public async void createSong(DataSong pDataSongInitial)
@@ -701,6 +705,11 @@ namespace OdysseyAplication
             return DatabaseManager.getVersionsOfSongs(pSongID);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="directories"></param>
         public void addSong2LocalDatabase(string userName, List<string> directories)
         {
             List<DataSong> datasongs = getID3ByDirectory(directories);

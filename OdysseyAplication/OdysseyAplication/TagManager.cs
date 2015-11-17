@@ -46,6 +46,7 @@ namespace OdysseyAplication
                 id3op._ID3Artist = tagFile.Tag.Performers[0];
             }
             id3op._SongName = tagFile.Name.Substring(tagFile.Name.LastIndexOf('\\') + 1);
+            id3op.fillEmpty();
             return id3op;
         }
 
