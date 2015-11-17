@@ -697,12 +697,13 @@ namespace OdysseyAplication
             label_button_info.Content = "";
         }
 
-        private void button_ok_Click(object sender, RoutedEventArgs e)
+        private async void button_ok_Click(object sender, RoutedEventArgs e)
         {
             this._uploadMode = window_main.MODE_CLOUD;
             this._SignedUser = textbox_user.Text;
             this._ProfileUser = textbox_user.Text;
             label_signedUserName.Content = this._SignedUser;
+            await this._InfoManager.setConnectedState(this._SignedUser, true);
             loginGrid.Visibility = Visibility.Collapsed;
             musicGrid.Visibility = Visibility.Visible;
             toolbarMain.Visibility = Visibility.Visible;
@@ -711,8 +712,9 @@ namespace OdysseyAplication
             this.refreshMusicGrid();
         }
 
-        private void button_main_cerrar_Click(object sender, RoutedEventArgs e)
+        private async void button_main_cerrar_Click(object sender, RoutedEventArgs e)
         {
+            await this._InfoManager.setConnectedState(this._SignedUser, false);
             label_signedUserName.Content = "";
             loginGrid.Visibility = Visibility.Visible;
             musicGrid.Visibility = Visibility.Collapsed;
