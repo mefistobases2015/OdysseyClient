@@ -526,7 +526,7 @@ namespace OdysseyAplication
         {
             this._uploadMode = window_main.MODE_CLOUD;
             this._ProfileUser = this._SignedUser;
-            //await this._InfoManager.uploadDatabase(this._SignedUser);
+            await this._InfoManager.uploadDatabase(this._SignedUser);
             this._SongDataList = await this._InfoManager.getSongsByUserInCloud(this._SignedUser);
             if (this._SongDataList != null)
             {

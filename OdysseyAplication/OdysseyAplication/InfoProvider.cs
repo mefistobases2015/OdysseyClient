@@ -640,7 +640,7 @@ namespace OdysseyAplication
         /// Sube todas las canciones con su version actual a la base de la nube
         /// </summary>
         /// <param name="user_name">Nombre de usuario</param>
-        public async void uploadDatabase(string user_name)
+        public async Task<bool> uploadDatabase(string user_name)
         {
             RestTools rt = new RestTools();
 
@@ -682,8 +682,9 @@ namespace OdysseyAplication
                     }
                     BlobManager bm = new BlobManager();
                     bm.uploadSong(syncSong.song_id, song_directory);
+                
             }
-
+            return true;
         }
 
         public void downloadDatabase(string pUserName)
