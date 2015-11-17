@@ -20,7 +20,12 @@ namespace OdysseyAplication
         public string song_directory { set; get; }
 
     }
-
+    public class RankingCancion
+    {
+        public int _songID;
+        public string _songName;
+        public string _cantidad;
+    }
     public class Version
     {
         public int version_id { set; get; }
@@ -90,17 +95,18 @@ namespace OdysseyAplication
 
     public class DataSong
     {
-        public string _SongName { get; set; }
-        public string _ID3Title { get; set; }
-        public string _ID3Artist { get; set; }
         public string _ID3Album { get; set; }
-        public string _ID3Year { get; set; }
+        public string _ID3Artist { get; set; }
         public string _ID3Genre { get; set; }
-        public string _ID3Comment { get; set; }
         public string _ID3Lyrics { get; set; }
+        public string _SongID { get; set; }
+        public string _ID3Year { get; set; }
+        public string _ID3Title { get; set; }
+        public string _SongName { get; set; }
+        public string _ID3Comment { get; set; }
         public string _SubmissionDate { get; set; }
         public string _SongDirectory { get; set; }
-        public string _SongID { get; set; }
+        
 
         public void fillEmpty()
         {
@@ -127,10 +133,6 @@ namespace OdysseyAplication
             if (_ID3Genre == null)
             {
                 _ID3Genre = "n/a";
-            }
-            if (_ID3Comment == null)
-            {
-                _ID3Comment = "n/a";
             }
             if (_ID3Lyrics == null)
             {

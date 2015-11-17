@@ -35,7 +35,6 @@ namespace OdysseyAplication
             id3op._ID3Title = tagFile.Tag.Title;
             id3op._ID3Album = tagFile.Tag.Album;
             id3op._ID3Year = (tagFile.Tag.Year.ToString());
-            id3op._ID3Comment = tagFile.Tag.Comment;
             id3op._ID3Lyrics = tagFile.Tag.Lyrics;
             if (tagFile.Tag.Genres.Length > 0)
             {

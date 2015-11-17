@@ -2099,5 +2099,58 @@ namespace OdysseyAplication
             return null;
         }
 
+        public async Task<List<DataSong>> searchInOmnifinder(string pClave)
+        {
+            List<RankingCancion> previewResult = new List<RankingCancion>();
+            List<DataSong> result = new List<DataSong>();
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+                
+                HttpResponseMessage response = await client.PostAsJsonAsync<string>(mongo_songs_path + "/Omnifinder", pClave);
+                if (response.IsSuccessStatusCode)
+                {
+                    previewResult = await response.Content.ReadAsAsync<List<RankingCancion>>();
+                    foreach(RankingCancion rop in previewResult)
+                    {
+                       // result.Add(await this.getSongById(rop._songID));
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                }
+            }
+
+            return result;
+        }
+
+        public async Task<List<DataSong>> getRecomendatedSongs(string pUserName)
+        {
+            List<DataSong> result = new List<DataSong>();
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(server_url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(format));
+
+                HttpResponseMessage response = await client.GetAsync(mongo_users_path + "/RecomendarCanciones?id=" + pUserName);
+                if (response.IsSuccessStatusCode)
+                {
+                    result = await response.Content.ReadAsAsync<List<DataSong>>();
+                }
+                else
+                {
+                    Console.WriteLine("Status Code {0}", response.StatusCode);
+                }
+            }
+            return result;
+        }
+
     }
+
 }
