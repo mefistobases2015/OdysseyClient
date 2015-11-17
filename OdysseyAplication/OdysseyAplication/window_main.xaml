@@ -125,7 +125,7 @@
     </Window.Resources>
     <Grid x:Name="MainGrid" Margin="0,0,4,0">
 
-        <Grid x:Name="playerGrid" Margin="1,500,-1,0" Background="#FF323232" Visibility="Collapsed">
+        <Grid x:Name="playerGrid" Margin="1,500,-1,0" Background="#FF323232">
             <ProgressBar HorizontalAlignment="Left" Height="7" Margin="283,32,0,0" VerticalAlignment="Top" Width="750" Visibility="Collapsed"/>
             <Button x:Name="button_playSong" Content="▶"   Margin="67,0,1187,0"  Click="button_playSong_Click"     Style="{StaticResource playerButton}" />
             <Button x:Name="button_nextSong" Content="▶▏" Margin="117,0,1137,0" Click="button_nextSong_Click"     Style="{StaticResource playerButton}" />
@@ -134,10 +134,10 @@
             <Label x:Name="label_dislike_counter_Copy" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8"  Margin="226,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Label x:Name="label_dislike_counter_Copy1" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8" Margin="1051,17,0,17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Collapsed"/>
             <ProgressBar HorizontalAlignment="Left" Height="7" Margin="1133,32,0,0" VerticalAlignment="Top" Width="140" Visibility="Collapsed"/>
-            <ProgressBar HorizontalAlignment="Left" Height="7" Margin="274,32,0,0" VerticalAlignment="Top" Width="726"/>
             <Label x:Name="label_dislike_counter_Copy2" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8"  Margin="1008,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-            <ProgressBar HorizontalAlignment="Left" Height="7" Margin="1094,32,0,0" VerticalAlignment="Top" Width="193"/>
+            <ProgressBar HorizontalAlignment="Left" Height="7" Margin="1080,25,0,0" VerticalAlignment="Top" Width="193"/>
             <ProgressBar HorizontalAlignment="Left" Height="10" Margin="1273,55,-74,0" VerticalAlignment="Top" Width="100"/>
+            <Slider x:Name="slider" HorizontalAlignment="Left" Height="24" Margin="283,17,0,0" VerticalAlignment="Top" Width="720" Foreground="Black"/>
         </Grid>
         <Grid x:Name="toolbarMain" Background="#FF323232" Margin="5,2,1094,149" Visibility="Collapsed">
             <Label x:Name="label" Content="MÚSICA" HorizontalAlignment="Left" Width="189" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="11,99,0,276"/>

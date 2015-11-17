@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using WMPLib;
 
 namespace OdysseyAplication
@@ -394,6 +395,12 @@ namespace OdysseyAplication
                             // Plays Of The Song
                             string playCounter = (await this._InfoManager.getSongReproductions(this._SongDataList[listview_data.SelectedIndex]._SongID)).ToString();
                             label_play_counter.Content = playCounter;
+
+                            DispatcherTimer timer = new DispatcherTimer();
+                            timer.Interval = TimeSpan.FromSeconds(1);
+                            //timer.Tick += timer_Tick;
+                            timer.Start();
+
                         }
                         this._Player.controls.play();
 
@@ -557,17 +564,19 @@ namespace OdysseyAplication
 
         private async void button_addRequest_Click(object sender, RoutedEventArgs e)
         {
-            if (listview_data.SelectedIndex > -1)
+            if (listview_users.SelectedIndex > -1)
             {
-                await this._InfoManager.acceptFriendRequest(this._SignedUser, this._CommunityList[listview_data.SelectedIndex]);
+                await this._InfoManager.acceptFriendRequest(this._SignedUser, this._CommunityList[listview_users.SelectedIndex]);
+                this.refresTopUsers();
             }
         }
 
         private async void button_cancelRequest_Click(object sender, RoutedEventArgs e)
         {
-            if (listview_data.SelectedIndex > -1)
+            if (listview_users.SelectedIndex > -1)
             {
-                await this._InfoManager.declineFriendRequest(this._SignedUser, this._CommunityList[listview_data.SelectedIndex]);
+                await this._InfoManager.declineFriendRequest(this._SignedUser, this._CommunityList[listview_users.SelectedIndex]);
+                this.refresTopUsers();
             }
         }
 
@@ -821,9 +830,10 @@ namespace OdysseyAplication
 
         private async void button_sendRequest_Click(object sender, RoutedEventArgs e)
         {
-            if (listview_data.SelectedIndex > -1)
+            if (listview_users.SelectedIndex > -1)
             {
-                await this._InfoManager.setFriendRequest(this._SignedUser, this._CommunityList[listview_data.SelectedIndex]);
+                await this._InfoManager.setFriendRequest(this._SignedUser, this._CommunityList[listview_users.SelectedIndex]);
+                this.refresTopUsers();
             }
         }
 
