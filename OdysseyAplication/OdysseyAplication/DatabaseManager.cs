@@ -194,7 +194,7 @@ namespace OdysseyAplication
                         "(local_song_id, id3v2_title, id3v2_author, id3v2_lyrics, id3v2_album, id3v2_genre, id3v2_year) "+
                         "output INSERTED.local_version_id VALUES (@lsng_id, @title, @author, @lyrics, @album, @genre, @year)";
 
-                    insertConnection.Parameters.AddWithValue("@lsng_id", Convert.ToInt32(datasong._SongID));
+                    insertConnection.Parameters.AddWithValue("@lsng_id", Convert.ToInt32(datasong._LocalSongID));
                     insertConnection.Parameters.AddWithValue("@title", datasong._ID3Title);
                     insertConnection.Parameters.AddWithValue("@author", datasong._ID3Artist);
                     insertConnection.Parameters.AddWithValue("@lyrics", datasong._ID3Lyrics);
@@ -346,13 +346,13 @@ namespace OdysseyAplication
         /// </returns>
         public static bool addSong2User(string usr_name, DataSong datasong)
         {
-            int song_id = createSong(datasong);
-            datasong._SongID = song_id.ToString();
+            int local_song_id = createSong(datasong);
+            datasong._LocalSongID = local_song_id.ToString();
 
             int version_id = createVersion(datasong);
-            setVersion2Song(song_id.ToString(), version_id.ToString());
+            setVersion2Song(local_song_id.ToString(), version_id.ToString());
 
-            return createProperty(usr_name, song_id.ToString(), datasong._SongName);
+            return createProperty(usr_name, local_song_id.ToString(), datasong._SongName);
         }
 
         /// <summary>
@@ -442,7 +442,8 @@ namespace OdysseyAplication
                     versionSongs.CommandType = System.Data.CommandType.Text;
 
                     versionSongs.CommandText = "SELECT * "
-                        + "FROM canc_metadata_tbl WHERE usr_name = @usrname";
+                        + "FROM canc_metadata_tbl " 
+                        + "WHERE usr_name = @usrname";
 
                     versionSongs.Parameters.AddWithValue("@usrname", user_name);
 
@@ -466,7 +467,8 @@ namespace OdysseyAplication
                             dataSong._ID3Lyrics = reader.GetString(6);
                             dataSong._SubmissionDate = reader.GetDateTime(7).ToString();
                             dataSong._SongDirectory = reader.GetString(8);
-                            dataSong._SongID = reader.GetInt32(9).ToString();
+                            dataSong._LocalSongID = reader.GetInt32(9).ToString();
+                            dataSong._SongID = reader.GetInt32(10).ToString();
 
                             songs_list.Add(dataSong);
                         }
@@ -564,7 +566,7 @@ namespace OdysseyAplication
                 //crea la version a agregar a la canción
                 int version_id = createVersion(dataSong);
 
-                return setVersion2Song(dataSong._SongID, version_id.ToString());
+                return setVersion2Song(dataSong._LocalSongID, version_id.ToString());
             }
             catch (Exception e)
             {
@@ -840,6 +842,67 @@ namespace OdysseyAplication
             return songName;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public static List<DataSong> getDesynchronizeSongsByUser(string userName)
+        {
+            List<DataSong> songs_list = new List<DataSong>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(databaseConn))
+                {
+                    SqlCommand versionSongs = new SqlCommand();
+
+                    versionSongs.CommandType = System.Data.CommandType.Text;
+
+                    versionSongs.CommandText = "SELECT * "
+                        + "FROM canc_metadata_tbl "
+                        + "WHERE usr_name = @usrname AND cloud_song_id = -1";
+
+                    versionSongs.Parameters.AddWithValue("@usrname", userName);
+
+                    versionSongs.Connection = connection;
+
+                    connection.Open();
+
+                    SqlDataReader reader = versionSongs.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            DataSong dataSong = new DataSong();
+
+                            dataSong._ID3Title = reader.GetString(1);
+                            dataSong._ID3Artist = reader.GetString(2);
+                            dataSong._ID3Album = reader.GetString(3);
+                            dataSong._ID3Year = reader.GetInt32(4).ToString();
+                            dataSong._ID3Genre = reader.GetString(5);
+                            dataSong._ID3Lyrics = reader.GetString(6);
+                            dataSong._SubmissionDate = reader.GetDateTime(7).ToString();
+                            dataSong._SongDirectory = reader.GetString(8);
+                            dataSong._LocalSongID = reader.GetInt32(9).ToString();
+                            dataSong._SongID = reader.GetInt32(10).ToString();
+
+                            songs_list.Add(dataSong);
+                        }
+                    }
+
+                    reader.Close();
+                    connection.Close();
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            return songs_list;
+        }
 
     }
 
