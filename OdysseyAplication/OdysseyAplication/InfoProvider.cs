@@ -60,7 +60,7 @@ namespace OdysseyAplication
 
             int lversion_id = DatabaseManager.createVersion(pDataSongVersion);
 
-            DatabaseManager.setVersion2Song(pDataSongVersion._SongID, lversion_id.ToString());
+            DatabaseManager.setVersion2Song(pDataSongVersion._LocalSongID, lversion_id.ToString());
         }
         //listo
         public async void createSong(DataSong pDataSongInitial)
@@ -627,7 +627,7 @@ namespace OdysseyAplication
         /// Sube todas las canciones con su version actual a la base de la nube
         /// </summary>
         /// <param name="user_name">Nombre de usuario</param>
-        public async void uploadSong(string user_name)
+        public async void uploadDatabase(string user_name)
         {
             RestTools rt = new RestTools();
 
@@ -678,11 +678,6 @@ namespace OdysseyAplication
 
         }
 
-        public void uploadDatabase(string pUserName)
-        {
-
-        }
-
         /// <summary>
         /// Envia una peticion de amistad
         /// </summary>
@@ -699,7 +694,7 @@ namespace OdysseyAplication
         public void createLocalVersion(DataSong pDataSong)
         {
             int versionID = DatabaseManager.createVersion(pDataSong);
-            DatabaseManager.setVersion2Song(pDataSong._SongID, versionID.ToString());
+            DatabaseManager.setVersion2Song(pDataSong._LocalSongID, versionID.ToString());
         }
         public void setVersion2SongLocal(string pVersionID, string pSongID)
         {
