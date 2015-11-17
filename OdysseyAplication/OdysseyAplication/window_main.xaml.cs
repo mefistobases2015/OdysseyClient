@@ -168,7 +168,7 @@ namespace OdysseyAplication
                 }
                 else if(this._uploadMode == window_main.MODE_LOCAL)
                 {
-                    this._VersionList = this._InfoManager.getLocalVersionList(this._SongDataList[listview_data.SelectedIndex]._SongID);
+                    this._VersionList = this._InfoManager.getLocalVersionList(this._SongDataList[listview_data.SelectedIndex]._LocalSongID);
                 }
                 if (this._VersionList !=  null)
                 {
@@ -346,7 +346,7 @@ namespace OdysseyAplication
                         else if (this._uploadMode == window_main.MODE_LOCAL)
                         {
                             // Set The Local ID
-                            this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._SongID;
+                            this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._LocalSongID;
 
                             // Set Song
                             this._Player.URL = this._SongDataList[listview_data.SelectedIndex]._SongDirectory;
@@ -380,7 +380,7 @@ namespace OdysseyAplication
                     else if (this._uploadMode == window_main.MODE_LOCAL)
                     {
                         // Set The Local ID
-                        this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._SongID;
+                        this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._LocalSongID;
 
                         // Set Song
                         this._Player.URL = this._SongDataList[listview_data.SelectedIndex]._SongDirectory;
@@ -420,10 +420,10 @@ namespace OdysseyAplication
                     }
                     else if (this._uploadMode == window_main.MODE_LOCAL)
                     {
-                        if (this._IDPlay != this._SongDataList[listview_data.SelectedIndex]._SongID)
+                        if (this._IDPlay != this._SongDataList[listview_data.SelectedIndex]._LocalSongID)
                         {
                             // Set The Local ID
-                            this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._SongID;
+                            this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._LocalSongID;
 
                             // Set Song
                             this._Player.URL = this._SongDataList[listview_data.SelectedIndex]._SongDirectory;
@@ -738,6 +738,7 @@ namespace OdysseyAplication
             selectedMeta._SongDirectory = this._SongDataList[listview_data.SelectedIndex]._SongDirectory;
             selectedMeta._SongName      = this._SongDataList[listview_data.SelectedIndex]._SongName;
             selectedMeta._SongID        = this._SongDataList[listview_data.SelectedIndex]._SongID;
+            selectedMeta._LocalSongID   = this._SongDataList[listview_data.SelectedIndex]._LocalSongID;
             selectedMeta._ID3Title  = textbox_title.Text;
             selectedMeta._ID3Artist = textbox_artist.Text;
             selectedMeta._ID3Genre  = textbox_genre.Text;
@@ -753,7 +754,7 @@ namespace OdysseyAplication
             else if(this._uploadMode == window_main.MODE_LOCAL)
             {   
                 this._InfoManager.createDataSongVersionLocal(selectedMeta);
-                this._VersionList = this._InfoManager.getLocalVersionList(this._SongDataList[listview_data.SelectedIndex]._SongID);
+                this._VersionList = this._InfoManager.getLocalVersionList(this._SongDataList[listview_data.SelectedIndex]._LocalSongID);
             }
             if (this._VersionList != null)
             {
