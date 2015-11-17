@@ -697,7 +697,7 @@ namespace OdysseyAplication
                     versionSongs.CommandType = System.Data.CommandType.Text;
 
                     versionSongs.CommandText = "SELECT V.id3v2_title, V.id3v2_author, V.id3v2_lyrics, V.id3v2_album, V.id3v2_genre, V.id3v2_year, V.submission_date, V.local_version_id "
-                        + "FROM canciones_tbl AS C JOIN versiones_tbl AS V ON C.metadata_id = V.local_version_id"
+                        + "FROM canciones_tbl AS C JOIN versiones_tbl AS V ON C.metadata_id = V.local_version_id "
                         + "WHERE V.local_song_id = @lc_sng_id";
 
                     versionSongs.Parameters.AddWithValue("@lc_sng_id", local_song_id);
@@ -712,14 +712,14 @@ namespace OdysseyAplication
                     {
                         if (reader.Read())
                         {
-                            version.id3v2_title = reader.GetString(1);
-                            version.id3v2_author = reader.GetString(2);
-                            version.id3v2_lyrics = reader.GetString(3);
-                            version.id3v2_album = reader.GetString(4);
-                            version.id3v2_genre = reader.GetString(5);
-                            version.id3v2_year = reader.GetInt32(6);
-                            version.submission_date = reader.GetDateTime(7).ToString();
-                            version.version_id = reader.GetInt32(8);
+                            version.id3v2_title = reader.GetString(0);
+                            version.id3v2_author = reader.GetString(1);
+                            version.id3v2_lyrics = reader.GetString(2);
+                            version.id3v2_album = reader.GetString(3);
+                            version.id3v2_genre = reader.GetString(4);
+                            version.id3v2_year = reader.GetInt32(5);
+                            version.submission_date = reader.GetDateTime(6).ToString();
+                            version.version_id = reader.GetInt32(7);
                         }
 
                     }
@@ -859,7 +859,8 @@ namespace OdysseyAplication
 
                     versionSongs.CommandType = System.Data.CommandType.Text;
 
-                    versionSongs.CommandText = "SELECT * "
+                    versionSongs.CommandText = "SELECT id3v2_title, id3v2_author, id3v2_album, id3v2_year, id3v2_genre, id3v2_lyrics, "
+                        + "submission_date, song_directory, local_song_id, cloud_song_id "
                         + "FROM canc_metadata_tbl "
                         + "WHERE usr_name = @usrname AND cloud_song_id = -1";
 
@@ -876,17 +877,17 @@ namespace OdysseyAplication
                         while (reader.Read())
                         {
                             DataSong dataSong = new DataSong();
-
-                            dataSong._ID3Title = reader.GetString(1);
-                            dataSong._ID3Artist = reader.GetString(2);
-                            dataSong._ID3Album = reader.GetString(3);
-                            dataSong._ID3Year = reader.GetInt32(4).ToString();
-                            dataSong._ID3Genre = reader.GetString(5);
-                            dataSong._ID3Lyrics = reader.GetString(6);
-                            dataSong._SubmissionDate = reader.GetDateTime(7).ToString();
-                            dataSong._SongDirectory = reader.GetString(8);
-                            dataSong._LocalSongID = reader.GetInt32(9).ToString();
-                            dataSong._SongID = reader.GetInt32(10).ToString();
+                            
+                            dataSong._ID3Title = reader.GetString(0);
+                            dataSong._ID3Artist = reader.GetString(1);
+                            dataSong._ID3Album = reader.GetString(2);
+                            dataSong._ID3Year = reader.GetInt32(3).ToString();
+                            dataSong._ID3Genre = reader.GetString(4);
+                            dataSong._ID3Lyrics = reader.GetString(5);
+                            dataSong._SubmissionDate = reader.GetDateTime(6).ToString();
+                            dataSong._SongDirectory = reader.GetString(7);
+                            dataSong._LocalSongID = reader.GetInt32(8).ToString();
+                            dataSong._SongID = reader.GetInt32(9).ToString();
 
                             songs_list.Add(dataSong);
                         }
@@ -899,6 +900,12 @@ namespace OdysseyAplication
             catch(Exception e)
             {
                 Console.WriteLine(e.Message);
+
+                DataSong dataSong = new DataSong();
+
+                dataSong._ID3Title = e.Message + e.StackTrace;
+
+                songs_list.Add(dataSong);
             }
 
             return songs_list;
