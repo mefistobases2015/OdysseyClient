@@ -107,9 +107,8 @@ namespace OdysseyAplication
         public string _SubmissionDate { get; set; }
         public string _SongDirectory { get; set; }
         public string _LocalSongID { get; set; }
-        
 
-        public void fillEmpty()
+            public void fillEmpty()
         {
             if (_SongName == null)
             {
@@ -159,7 +158,17 @@ namespace OdysseyAplication
         }
     }
 
-    public class Solicitud
+    public class OtroObjeto
+    {
+        public string album { get; set; }
+        public string author { get; set; }
+        public string genre { get; set; }
+        public string lyrics { get; set; }
+        public int song_id { get; set; }
+        public int song_year { get; set; }
+        public string title { get; set; }
+    }
+public class Solicitud
     {
         public string emisor { get; set; }
         public string receptor { get; set; }

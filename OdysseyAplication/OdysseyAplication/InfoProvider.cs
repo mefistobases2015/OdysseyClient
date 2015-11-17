@@ -466,10 +466,23 @@ namespace OdysseyAplication
             return await rt.getRecomendedFriends(usr_name);
         }
 
-        public async Task<List<string>> getRecomendatedSongs(string pUserName)
+        public async Task<List<DataSong>> getRecomendatedSongs(string pUserName)
         {
             RestTools rtop = new RestTools();
-            return await rtop.getRecomendedFriends(pUserName);
+            List<DataSong> r = new List<DataSong>();
+            foreach(OtroObjeto ob in (await rtop.getRecomendatedSongs(pUserName)))
+            {
+                DataSong d = new DataSong();
+                d._ID3Album = ob.album;
+                d._ID3Artist = ob.author;
+                d._ID3Genre = ob.genre;
+                d._ID3Lyrics = ob.lyrics;
+                d._SongID = ob.song_id.ToString();
+                d._ID3Year = ob.song_year.ToString();
+                d._ID3Title = ob.title;
+                r.Add(d);
+            }
+            return r;
         }
 
         public async Task<bool> acceptFriendRequest(string pUserSigned, string pUser)

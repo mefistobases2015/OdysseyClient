@@ -775,12 +775,6 @@ namespace OdysseyAplication
                         songs_metadata.Add(song_met);
                     }
                 }
-                else
-                {
-                    songs_metadata = null;
-                }
-
-
             }
             return songs_metadata;
 
@@ -2128,9 +2122,9 @@ namespace OdysseyAplication
             return result;
         }
 
-        public async Task<List<DataSong>> getRecomendatedSongs(string pUserName)
+        public async Task<List<OtroObjeto>> getRecomendatedSongs(string pUserName)
         {
-            List<DataSong> result = new List<DataSong>();
+            List<OtroObjeto> result = new List<OtroObjeto>();
 
             using (HttpClient client = new HttpClient())
             {
@@ -2141,7 +2135,7 @@ namespace OdysseyAplication
                 HttpResponseMessage response = await client.GetAsync(mongo_users_path + "/RecomendarCanciones?id=" + pUserName);
                 if (response.IsSuccessStatusCode)
                 {
-                    result = await response.Content.ReadAsAsync<List<DataSong>>();
+                    result = await response.Content.ReadAsAsync<List<OtroObjeto>>();
                 }
                 else
                 {

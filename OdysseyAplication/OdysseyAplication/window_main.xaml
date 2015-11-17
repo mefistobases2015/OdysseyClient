@@ -169,8 +169,8 @@
                     <GridView AllowsColumnReorder="False" ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
                         <GridViewColumn Header="Canción" HeaderStringFormat="Canción" Width="200"  DisplayMemberBinding="{Binding Col1}"/>
                         <GridViewColumn Header="Artista" HeaderStringFormat="Artista" Width="200"  DisplayMemberBinding="{Binding Col2}"/>
-                        <GridViewColumn Header="Albúm" Width="200"  DisplayMemberBinding="{Binding Col3}"/>
-                        <GridViewColumn Header="Año" Width="100"  DisplayMemberBinding="{Binding Col4}"/>
+                        <GridViewColumn Header="Albúm" Width="195"  DisplayMemberBinding="{Binding Col3}"/>
+                        <GridViewColumn Header="Año" Width="90"  DisplayMemberBinding="{Binding Col4}"/>
                         <GridViewColumn Header="Género" Width="40"  DisplayMemberBinding="{Binding Col5}"/>
                     </GridView>
                 </ListView.View>

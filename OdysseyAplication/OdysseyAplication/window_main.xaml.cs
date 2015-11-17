@@ -176,10 +176,12 @@ namespace OdysseyAplication
                 }
             }
         }
-        private void button_descovery_Click(object sender, RoutedEventArgs e)
+        private async void button_descovery_Click(object sender, RoutedEventArgs e)
         {
+            this._SongDataList = await this._InfoManager.getRecomendatedSongs(this._ProfileUser);
+            this._ProfileUser = this._SignedUser;
+            this._uploadMode = window_main.MODE_CLOUD;
             this.refreshMusicGrid();
-            
         }
         private async void listview_data_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
