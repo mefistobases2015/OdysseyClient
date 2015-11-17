@@ -433,7 +433,7 @@ namespace OdysseyAplication
 
                             // Set The Info Player Grid
                             label_actualSong_artist.Content = this._SongDataList[listview_data.SelectedIndex]._ID3Artist;
-                            label_actualSong_Title.Content = this._SongDataList[listview_data.SelectedIndex]._ID3Title;
+                            label_actualSong_Title.Content =  this._SongDataList[listview_data.SelectedIndex]._ID3Title;
                         }
                     }
                     this._Player.controls.play();
