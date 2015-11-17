@@ -315,10 +315,10 @@ namespace OdysseyAplication
                 {
                     if (listview_data.SelectedIndex > -1)
                     {
-                        listview_data.SelectedIndex = index + 1;
+                    listview_data.SelectedIndex = index + 1;
                         this._IDPlay = this._SongDataList[index + 1]._SongID;
-                        label_actualSong_artist.Content = this._SongDataList[index + 1]._ID3Artist;
-                        label_actualSong_Title.Content = this._SongDataList[index + 1]._ID3Title;
+                    label_actualSong_artist.Content = this._SongDataList[index + 1]._ID3Artist;
+                    label_actualSong_Title.Content = this._SongDataList[index + 1]._ID3Title;
                         if (this._uploadMode == window_main.MODE_CLOUD)
                         {
                             //this._SongDataList[listview_data.SelectedIndex]._SongID
@@ -328,12 +328,12 @@ namespace OdysseyAplication
                             string playCounter = (await this._InfoManager.getSongReproductions(this._SongDataList[listview_data.SelectedIndex]._SongID)).ToString();
                             label_play_counter.Content = playCounter;
 
-                        }
+                }
                         else if (this._uploadMode == window_main.MODE_LOCAL)
                         {
 
-                        }
-                    }
+            }
+        }
                 }
             }
         }
@@ -406,7 +406,7 @@ namespace OdysseyAplication
 
                     }
                     else if (this._uploadMode == window_main.MODE_LOCAL)
-                    {
+            {
                         this._Player.controls.pause();
                     }
                 }
@@ -423,8 +423,8 @@ namespace OdysseyAplication
             this._ProfileUser = this._SignedUser;
             this._SongDataList = this._InfoManager.getSongsByUserInLocal(this._SignedUser);
             this._uploadMode = window_main.MODE_LOCAL;
-            this.refreshMusicGrid();
-        }
+                this.refreshMusicGrid();
+            }
 
         private void button_add_Click(object sender, RoutedEventArgs e)
         {
@@ -436,6 +436,7 @@ namespace OdysseyAplication
             {
                 DataSong d = TagManager.getID3ByDirectory(saveFileDialog.FileNames[0]);
                 this._InfoManager.addSong2LocalDatabase(this._SignedUser, new List<string>(saveFileDialog.FileNames));
+                MessageBox.Show(DatabaseManager.etrace1);
             }
 
         }
@@ -446,8 +447,8 @@ namespace OdysseyAplication
             this._ProfileUser = this    ._SignedUser;
             this._SongDataList = this._InfoManager.getSongsByUserInLocal(this._SignedUser);
             this._InfoManager.downloadDatabase(this._SignedUser);
-            this.refreshMusicGrid();
-        }
+                this.refreshMusicGrid();
+            }
 
         private void button_close_id3Editor_Click(object sender, RoutedEventArgs e)
         {
@@ -464,7 +465,7 @@ namespace OdysseyAplication
             if(this._uploadMode == window_main.MODE_CLOUD)
             {
 
-            }
+        }
             else if(this._uploadMode == window_main.MODE_LOCAL)
             {
 

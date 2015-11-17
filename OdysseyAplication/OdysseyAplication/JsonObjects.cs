@@ -101,6 +101,55 @@ namespace OdysseyAplication
         public string _SubmissionDate { get; set; }
         public string _SongDirectory { get; set; }
         public string _SongID { get; set; }
+
+        public void fillEmpty()
+        {
+            if (_SongName == null)
+            {
+                _SongName = "n/a";
+            }
+            if (_ID3Title == null)
+            {
+                _ID3Title = "n/a";
+            }
+            if (_ID3Artist == null)
+            {
+                _ID3Artist = "n/a";
+            }
+            if (_ID3Album == null)
+            {
+                _ID3Album = "n/a";
+            }
+            if (_ID3Year == null)
+            {
+                _ID3Year = "1000";
+            }
+            if (_ID3Genre == null)
+            {
+                _ID3Genre = "n/a";
+            }
+            if (_ID3Comment == null)
+            {
+                _ID3Comment = "n/a";
+            }
+            if (_ID3Lyrics == null)
+            {
+                _ID3Lyrics = "n/a";
+            }
+            if (_SubmissionDate == null)
+            {
+                _SubmissionDate = "1970-01-01 00:00:00.000";
+            }   
+            if (_SongDirectory == null)
+            {
+                _SongDirectory = "n/a";
+            }
+            if (_SongID == null)
+            {
+                _SongID = "-1";
+            }
+                
+        }
     }
 
     public class Solicitud
