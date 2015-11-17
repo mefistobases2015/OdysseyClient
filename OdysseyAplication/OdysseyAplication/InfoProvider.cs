@@ -247,7 +247,11 @@ namespace OdysseyAplication
 
             return result;
         }
-
+        public async Task<bool> userExist(string pUser)
+        {
+            RestTools rtop = new RestTools();
+            return (await rtop.isUser(pUser));
+        }
         /// <summary>
         /// Obtiene los comentarios de una canción
         /// </summary>

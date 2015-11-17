@@ -702,16 +702,41 @@ namespace OdysseyAplication
         private async void button_ok_Click(object sender, RoutedEventArgs e)
         {
             this._uploadMode = window_main.MODE_CLOUD;
-            this._SignedUser = textbox_user.Text;
-            this._ProfileUser = textbox_user.Text;
-            label_signedUserName.Content = this._SignedUser;
-            await this._InfoManager.setConnectedState(this._SignedUser, true);
-            loginGrid.Visibility = Visibility.Collapsed;
-            musicGrid.Visibility = Visibility.Visible;
-            toolbarMain.Visibility = Visibility.Visible;
-            playerGrid.Visibility = Visibility.Visible;
-            playerInfoGrid.Visibility = Visibility.Visible;
-            this.refreshMusicGrid();
+            if (await this._InfoManager.userExist(textbox_user.Text))
+            {
+                if(await this._InfoManager.verifyUser(textbox_user.Text, passwordBox.Password))
+                {
+                    this._SignedUser = textbox_user.Text;
+                    this._ProfileUser = textbox_user.Text;
+                    label_signedUserName.Content = this._SignedUser;
+                    await this._InfoManager.setConnectedState(this._SignedUser, true);
+                    loginGrid.Visibility = Visibility.Collapsed;
+                    musicGrid.Visibility = Visibility.Visible;
+                    toolbarMain.Visibility = Visibility.Visible;
+                    playerGrid.Visibility = Visibility.Visible;
+                    playerInfoGrid.Visibility = Visibility.Visible;
+                    this.refreshMusicGrid();
+                }
+                else
+                {
+                    MessageBox.Show("El Usuario Ha Ingresado Una Contraseña Incorrecta");
+                }
+            }
+            else
+            {
+                await this._InfoManager.registerUser(textbox_user.Text, passwordBox.Password);
+                this._SignedUser = textbox_user.Text;
+                this._ProfileUser = textbox_user.Text;
+                label_signedUserName.Content = this._SignedUser;
+                await this._InfoManager.setConnectedState(this._SignedUser, true);
+                loginGrid.Visibility = Visibility.Collapsed;
+                musicGrid.Visibility = Visibility.Visible;
+                toolbarMain.Visibility = Visibility.Visible;
+                playerGrid.Visibility = Visibility.Visible;
+                playerInfoGrid.Visibility = Visibility.Visible;
+                this.refreshMusicGrid();
+            }
+                
         }
 
         private async void button_main_cerrar_Click(object sender, RoutedEventArgs e)
