@@ -631,21 +631,19 @@ namespace OdysseyAplication
         {
             RestTools rt = new RestTools();
 
-            List<DataSong> datasongs = DatabaseManager.getSongsOfUser(user_name);
+            List<DataSong> datasongs = DatabaseManager.getDesynchronizeSongsByUser(user_name);
 
             for (int i = 0; i < datasongs.Count; i++)
             {
-                if (!DatabaseManager.isSongSync(datasongs[i]._SongID))
-                {
-                    int lc_song_id = Convert.ToInt32(datasongs[i]._SongID);
+                    int lc_song_id = Convert.ToInt32(datasongs[i]._LocalSongID);
 
                     string song_name = DatabaseManager.getSongName(user_name, lc_song_id);
 
                     //se crea la cancion
                     string song_directory = DatabaseManager.getSongDirectoryFromASong(lc_song_id);
 
+                    //sincronizacion
                     Song syncSong = await rt.createSong(song_directory);
-
                     DatabaseManager.setSyncId2Song(lc_song_id, syncSong.song_id);
 
                     //se agrega la version
@@ -660,6 +658,10 @@ namespace OdysseyAplication
                     if (link)
                     {
                         bool p_result = await rt.syncProperty(user_name, syncSong.song_id, song_name);
+                        if (!p_result)
+                        {
+                            Console.WriteLine("No se pudoo hacer la propiedad");
+                        }
                     }
                     else
                     {
@@ -667,7 +669,6 @@ namespace OdysseyAplication
                     }
                     BlobManager bm = new BlobManager();
                     bm.uploadSong(syncSong.song_id, song_directory);
-                }
             }
 
         }
