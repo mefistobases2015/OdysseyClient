@@ -106,6 +106,7 @@ namespace OdysseyAplication
         public string _ID3Comment { get; set; }
         public string _SubmissionDate { get; set; }
         public string _SongDirectory { get; set; }
+        public string _LocalSongID { get; set; }
         
 
         public void fillEmpty()
@@ -149,6 +150,10 @@ namespace OdysseyAplication
             if (_SongID == null)
             {
                 _SongID = "-1";
+            }
+            if(_LocalSongID == null)
+            {
+                _LocalSongID = "-1";
             }
                 
         }
