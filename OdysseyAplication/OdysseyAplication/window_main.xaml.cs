@@ -37,6 +37,7 @@ namespace OdysseyAplication
         public string _uploadMode { get; set; }
         public DispatcherTimer _Timer { get; set; }
         public string _IDPlay { get; set; }
+        public string _IDPlayLocal { get; set; }
         InfoProvider _InfoManager { get; set; }
         public int _CommentIndex { get; set; }
         DatabaseManager _DBManager { get; set; }
@@ -328,12 +329,13 @@ namespace OdysseyAplication
                 {
                     if (listview_data.SelectedIndex > -1)
                     {
-                    listview_data.SelectedIndex = index + 1;
+                        listview_data.SelectedIndex = index + 1;
                         this._IDPlay = this._SongDataList[index + 1]._SongID;
-                    label_actualSong_artist.Content = this._SongDataList[index + 1]._ID3Artist;
-                    label_actualSong_Title.Content = this._SongDataList[index + 1]._ID3Title;
+                        label_actualSong_artist.Content = this._SongDataList[index + 1]._ID3Artist;
+                        label_actualSong_Title.Content = this._SongDataList[index + 1]._ID3Title;
                         if (this._uploadMode == window_main.MODE_CLOUD)
                         {
+                            this._IDPlayLocal = "-1";
                             //this._SongDataList[listview_data.SelectedIndex]._SongID
                             this._Player.URL = "https://odysseyblob.blob.core.windows.net/music/" + this._SongDataList[listview_data.SelectedIndex]._SongID + ".mp3";
 
@@ -345,6 +347,7 @@ namespace OdysseyAplication
                         }
                         else if (this._uploadMode == window_main.MODE_LOCAL)
                         {
+                            this._IDPlay = "-1";
                             // Set The Local ID
                             this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._LocalSongID;
 
@@ -370,6 +373,7 @@ namespace OdysseyAplication
                     label_actualSong_Title.Content =  this._SongDataList[index - 1]._ID3Title;
                     if (this._uploadMode == window_main.MODE_CLOUD)
                     {
+                        this._IDPlayLocal = "-1";
                         //this._SongDataList[listview_data.SelectedIndex]._SongID
                         this._Player.URL = "https://odysseyblob.blob.core.windows.net/music/" + this._SongDataList[listview_data.SelectedIndex]._SongID + ".mp3";
                         await this._InfoManager.setSongReproduction(this._SongDataList[listview_data.SelectedIndex]._SongID);
@@ -379,8 +383,9 @@ namespace OdysseyAplication
                     }
                     else if (this._uploadMode == window_main.MODE_LOCAL)
                     {
+                        this._IDPlay = "-1";
                         // Set The Local ID
-                        this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._LocalSongID;
+                        this._IDPlayLocal = this._SongDataList[listview_data.SelectedIndex]._LocalSongID;
 
                         // Set Song
                         this._Player.URL = this._SongDataList[listview_data.SelectedIndex]._SongDirectory;
@@ -398,6 +403,7 @@ namespace OdysseyAplication
                     button_playSong.Content = "▏ ▏";
                     if (this._uploadMode == window_main.MODE_CLOUD)
                     {
+                        this._IDPlayLocal = "-1";
                         if (this._IDPlay != this._SongDataList[listview_data.SelectedIndex]._SongID)
                         {
                             this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._SongID;
@@ -420,10 +426,11 @@ namespace OdysseyAplication
                     }
                     else if (this._uploadMode == window_main.MODE_LOCAL)
                     {
-                        if (this._IDPlay != this._SongDataList[listview_data.SelectedIndex]._LocalSongID)
+                        this._IDPlay = "-1";
+                        if (this._IDPlayLocal != this._SongDataList[listview_data.SelectedIndex]._LocalSongID)
                         {
                             // Set The Local ID
-                            this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._LocalSongID;
+                            this._IDPlayLocal = this._SongDataList[listview_data.SelectedIndex]._LocalSongID;
 
                             // Set Song
                             this._Player.URL = this._SongDataList[listview_data.SelectedIndex]._SongDirectory;
