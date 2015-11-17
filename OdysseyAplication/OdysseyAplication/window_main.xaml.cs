@@ -528,7 +528,7 @@ namespace OdysseyAplication
             this._ProfileUser = this._SignedUser;
             MessageBox.Show("Se van a cargar canciones, puede tomar un tiempo, no hacer cambios en el programa");
             string debug_message = await this._InfoManager.uploadDatabase(this._SignedUser);
-            MessageBox.Show("Carga Completada");
+            MessageBox.Show("Carga Completada, Se subieron " + debug_message + " Canciones");
             this._SongDataList = await this._InfoManager.getSongsByUserInCloud(this._SignedUser);
             if (this._SongDataList != null)
             {

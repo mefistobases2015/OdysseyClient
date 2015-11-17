@@ -647,7 +647,9 @@ namespace OdysseyAplication
             RestTools rt = new RestTools();
 
             List<DataSong> datasongs = DatabaseManager.getDesynchronizeSongsByUser(user_name);
-            
+
+            debug_message = datasongs.Count.ToString();
+
             for (int i = 0; i < datasongs.Count; i++)
             {
                 
