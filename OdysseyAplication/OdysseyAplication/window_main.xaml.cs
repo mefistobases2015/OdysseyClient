@@ -767,7 +767,7 @@ namespace OdysseyAplication
                 }
                 else if (this._uploadMode == window_main.MODE_LOCAL)
                 {
-                    this._InfoManager.setVersion2SongLocal(this._VersionList[listview_version.SelectedIndex].song_id.ToString(), this._VersionList[listview_version.SelectedIndex].version_id.ToString());
+                    this._InfoManager.setVersion2SongLocal(this._VersionList[listview_version.SelectedIndex].version_id.ToString(), this._VersionList[listview_version.SelectedIndex].song_id.ToString());
                 }
             }
         }
