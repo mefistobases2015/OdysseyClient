@@ -98,8 +98,7 @@
         <Style x:Key="toolbarButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#FF323232" ></Setter>
             <Setter Property="Foreground" Value="#FFC8C8C8" ></Setter>
-            <Setter Property="BorderBrush" Value="#FFC8C8C8" ></Setter>
-            <Setter Property="HorizontalContentAlignment" Value="Left" ></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center" ></Setter>
             <Setter Property="Template">
 
                 <Setter.Value>
@@ -131,27 +130,26 @@
             <Button x:Name="button_nextSong" Content="▶▏" Margin="117,0,1137,0" Click="button_nextSong_Click"     Style="{StaticResource playerButton}" />
             <Button x:Name="button_prevSong" Content="▏◀" Margin="10,0,1244,0"  Click="button_prevSong_Click"     Style="{StaticResource playerButton}" />
             <Button x:Name="button_stopSong" Content="◼" Margin="176,0,1078,0"   Click="button_stopSong_Click"     Style="{StaticResource playerButton}" />
-            <Label x:Name="label_dislike_counter_Copy" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8"  Margin="226,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_counter_timer" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8"  Margin="226,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Label x:Name="label_dislike_counter_Copy1" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8" Margin="1051,17,0,17" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Collapsed"/>
             <ProgressBar HorizontalAlignment="Left" Height="7" Margin="1133,32,0,0" VerticalAlignment="Top" Width="140" Visibility="Collapsed"/>
-            <Label x:Name="label_dislike_counter_Copy2" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8"  Margin="1008,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label x:Name="label_counter_final" Content="00:00" HorizontalAlignment="Left" Width="43" Foreground="#FFC8C8C8"  Margin="1008,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <ProgressBar HorizontalAlignment="Left" Height="7" Margin="1080,25,0,0" VerticalAlignment="Top" Width="193"/>
             <ProgressBar HorizontalAlignment="Left" Height="10" Margin="1273,55,-74,0" VerticalAlignment="Top" Width="100"/>
-            <Slider x:Name="slider" HorizontalAlignment="Left" Height="24" Margin="283,17,0,0" VerticalAlignment="Top" Width="720" Foreground="Black"/>
+            <Slider x:Name="slider" HorizontalAlignment="Left" Height="24" Margin="283,17,0,0" VerticalAlignment="Top" Width="720" Foreground="Black" ValueChanged="slider_ValueChanged" MouseEnter="slider_MouseEnter" MouseLeave="slider_MouseLeave"/>
         </Grid>
-        <Grid x:Name="toolbarMain" Background="#FF323232" Margin="5,2,1094,149" Visibility="Collapsed">
-            <Label x:Name="label" Content="MÚSICA" HorizontalAlignment="Left" Width="189" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="11,99,0,276"/>
-            <Button x:Name="button_local" Style="{StaticResource toolbarButton}" Content="      Biblioteca Local" Margin="0,189,0,193" Click="button_local_Click"/>
-            <Button x:Name="button_descovery" Style="{StaticResource toolbarButton}" Content="      Descubrir" Margin="0,228,0,153"  Click="button_descovery_Click"/>
-            <Button x:Name="button_cloud" Margin="0,145,0,232" Click="button_cloud_Click" Style="{StaticResource toolbarButton}" Content="      Biblioteca Cloud"/>
-            <StackPanel HorizontalAlignment="Left" Height="57" Margin="37,19,0,0" VerticalAlignment="Top" Width="132" Orientation="Horizontal"/>
-            <Label x:Name="label_Odyssey" Content="Odyssey" HorizontalAlignment="Left" Height="53" VerticalAlignment="Top" Width="200" Foreground="#FFC8C8C8" FontSize="26.667" HorizontalContentAlignment="Center" Margin="0,23,0,0"/>
-            <Label x:Name="label_Copy" Content="SOCIAL" HorizontalAlignment="Left" Width="189" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="11,295,0,80"/>
-            <Button x:Name="button_community" Margin="0,341,0,41" Click="button_community_Click" Style="{StaticResource toolbarButton}" Content="      Comunidad"/>
+        <Grid x:Name="toolbarMain" Background="#FF323232" Margin="5,2,1094,149">
+            <Label x:Name="label" Content="MÚSICA" HorizontalAlignment="Left" Width="189" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="11,126,0,249"/>
+            <Button x:Name="button_local" Style="{StaticResource toolbarButton}" Content="      Biblioteca Local" Margin="0,210,0,172" Click="button_local_Click"/>
+            <Button x:Name="button_descovery" Style="{StaticResource toolbarButton}" Content="      Descubrir" Margin="0,249,0,132"  Click="button_descovery_Click"/>
+            <Button x:Name="button_cloud" Margin="0,167,0,210" Click="button_cloud_Click" Style="{StaticResource toolbarButton}" Content="      Biblioteca Cloud"/>
+            <Label x:Name="label_Odyssey" Content="Odyssey" HorizontalAlignment="Left" Height="53" VerticalAlignment="Top" Width="200" Foreground="#FFC8C8C8" FontSize="26.667" HorizontalContentAlignment="Center" Margin="0,10,0,0"/>
+            <Label x:Name="label_Copy" Content="SOCIAL" HorizontalAlignment="Left" Width="189" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="11,305,0,70"/>
+            <Button x:Name="button_community" Margin="0,346,0,36" Click="button_community_Click" Style="{StaticResource toolbarButton}" Content="      Comunidad"/>
         </Grid>
-        <Grid x:Name="playerInfoGrid" Margin="5,418,1094,60" Background="#FF323232" Visibility="Collapsed">
-            <Label x:Name="label_actualSong_artist" Content="Artista" HorizontalAlignment="Left" Width="186" Foreground="White" FontWeight="Bold" Margin="10,0,0,56" VerticalContentAlignment="Bottom"/>
-            <Label x:Name="label_actualSong_Title" Content="Título de la canción" HorizontalAlignment="Left" Width="185" Foreground="White" Margin="9,38,0,0" RenderTransformOrigin="0.728,1.56"/>
+        <Grid x:Name="playerInfoGrid" Margin="5,418,1094,60" Background="#FF323232">
+            <Label x:Name="label_actualSong_artist" Content="Artista" HorizontalAlignment="Left" Width="184" Foreground="White" FontWeight="Bold" Margin="10,0,0,43" VerticalContentAlignment="Bottom"/>
+            <Label x:Name="label_actualSong_Title" Content="Título de la canción" HorizontalAlignment="Left" Width="185" Foreground="White" Margin="9,51,0,0" RenderTransformOrigin="0.728,1.56"/>
         </Grid>
         <Grid x:Name="musicGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Width="1080" Margin="0,7,0,0" >
             <Label x:Name="label_Copy4" Content="CANCIÓN" HorizontalAlignment="Left" Width="142" Foreground="#FFC8C8C8" FontWeight="Bold" Margin="10,75,0,387"/>
@@ -206,7 +204,7 @@
                     </TransformGroup>
                 </Grid.RenderTransform>
             </Grid>
-            <Button x:Name="button_main_friend" Content="✓" Margin="948,10,93,441" Style="{StaticResource socialButton}" Click="button_makeDislike_Click"/>
+            <Button x:Name="button_main_friend" Content="✓" Margin="948,10,93,441" Style="{StaticResource socialButton}" Click="button_main_friend_Click"/>
             <Grid x:Name="socialPanel" HorizontalAlignment="Left" Height="61" Margin="12,417,0,0" VerticalAlignment="Top" Width="1058">
                 <StackPanel HorizontalAlignment="Left" Height="39" Margin="0,10,0,0" VerticalAlignment="Top" Width="106" Orientation="Horizontal">
                     <Border Background="GhostWhite" BorderBrush="Silver" BorderThickness="1"/>
@@ -236,6 +234,8 @@
                     <Label x:Name="label_comment_text" Content="" HorizontalAlignment="Center" Width="251" Foreground="#FFC8C8C8" RenderTransformOrigin="0.728,1.56" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="54"/>
                 </StackPanel>
             </Grid>
+            <TextBox x:Name="textBox_omnifinder" HorizontalAlignment="Left" Height="33" Margin="161,10,0,0" TextWrapping="Wrap" Text="Buscar Canciones...." VerticalAlignment="Top" Width="134" Background="#FFC8C8C8" Foreground="#FF141414" VerticalContentAlignment="Center" MouseLeave="textBox_omnifinder_MouseLeave" MouseDoubleClick="textBox_omnifinder_MouseDoubleClick"/>
+            <Button x:Name="button_search_omnifinder" Content=" ☉ " Margin="295,10,750,445" Style="{StaticResource socialButton}" HorizontalContentAlignment="Center" RenderTransformOrigin="0.086,0.184" FontSize="20" Click="button_search_omnifinder_Click"/>
         </Grid>
         <Grid x:Name="toolbarEditor" Margin="0,4,1094,149" Width="205" Background="#FF323232" Visibility="Collapsed">
             <Label x:Name="label_Odyssey1" Content="Editor ID3" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="200" Foreground="#FFC8C8C8" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="{x:Null}" Margin="0,28,0,0"/>
@@ -295,7 +295,7 @@
                 </ListView.View>
             </ListView>
         </Grid>
-        <Grid x:Name="toolbarCommunity" Background="#FF323232" Margin="5,2,1094,149">
+        <Grid x:Name="toolbarCommunity" Background="#FF323232" Margin="5,2,1094,149" Visibility="Collapsed">
             <Button x:Name="button_friend_request" Content="      Solitudes de Amistad" Margin="0,173,0,207" Style="{StaticResource toolbarButton}" Click="button_friend_request_Click"/>
             <Button x:Name="button_recomendations" Content="      Recomendaciones" Margin="0,214,0,166" Style="{StaticResource toolbarButton}" Click="button_recomendations_Click"/>
             <Label x:Name="label_Odyssey2" Content="Comunidad" HorizontalAlignment="Left" Height="43" Margin="0,21,0,0" VerticalAlignment="Top" Width="200" Foreground="#FFC8C8C8" FontSize="20" HorizontalContentAlignment="Center"/>

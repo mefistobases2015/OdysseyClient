@@ -27,6 +27,7 @@ namespace OdysseyAplication
         public const string MODE_LOCAL = "LOCAL";
         public const string MODE_CLOUD = "CLOUD";
         public WindowsMediaPlayer _Player { get; }
+        public bool _UserDraggin { get; set; }
         public List<DataSong> _SongDataList { get; set; }
         public List<Comment> _CommmentList { get; set; }
         public List<string> _CommunityList { get; set; }
@@ -34,6 +35,7 @@ namespace OdysseyAplication
         public string _SignedUser { get; set; }
         public string _ProfileUser { get; set; }
         public string _uploadMode { get; set; }
+        public DispatcherTimer _Timer { get; set; }
         public string _IDPlay { get; set; }
         InfoProvider _InfoManager { get; set; }
         public int _CommentIndex { get; set; }
@@ -44,6 +46,10 @@ namespace OdysseyAplication
 
             this._InfoManager = new InfoProvider();
             this._Player = new WindowsMediaPlayer();
+            this._Timer = new DispatcherTimer();
+            this._Timer.Interval = TimeSpan.FromSeconds(1);
+            this._Timer.Tick += timer_Tick;
+            this._Timer.Start();
             // if (!XmlManager.isDatabase())
             //{
             //   this._DBManager = new DatabaseManager();
@@ -299,8 +305,13 @@ namespace OdysseyAplication
 
         private async void button_cloud_Click(object sender, RoutedEventArgs e)
         {
-            this._ProfileUser = this._SignedUser;
+            if (this._uploadMode == window_main.MODE_LOCAL)
+            {
+                this._IDPlay = "-1";
+            }
             this._uploadMode = window_main.MODE_CLOUD;
+
+            this._ProfileUser = this._SignedUser;
             this._SongDataList = await this._InfoManager.getSongsByUserInCloud(this._SignedUser);
             this.refreshMusicGrid();
         }
@@ -323,17 +334,22 @@ namespace OdysseyAplication
                         {
                             //this._SongDataList[listview_data.SelectedIndex]._SongID
                             this._Player.URL = "https://odysseyblob.blob.core.windows.net/music/" + this._SongDataList[listview_data.SelectedIndex]._SongID + ".mp3";
+
                             await this._InfoManager.setSongReproduction(this._SongDataList[listview_data.SelectedIndex]._SongID);
+                            
                             // Plays Of The Song
                             string playCounter = (await this._InfoManager.getSongReproductions(this._SongDataList[listview_data.SelectedIndex]._SongID)).ToString();
                             label_play_counter.Content = playCounter;
-
-                }
+                        }
                         else if (this._uploadMode == window_main.MODE_LOCAL)
                         {
+                            // Set The Local ID
+                            this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._SongID;
 
-            }
-        }
+                            // Set Song
+                            this._Player.URL = this._SongDataList[listview_data.SelectedIndex]._SongDirectory;
+                        }
+                    }
                 }
             }
         }
@@ -358,11 +374,14 @@ namespace OdysseyAplication
                         // Plays Of The Song
                         string playCounter = (await this._InfoManager.getSongReproductions(this._SongDataList[listview_data.SelectedIndex]._SongID)).ToString();
                         label_play_counter.Content = playCounter;
-
                     }
                     else if (this._uploadMode == window_main.MODE_LOCAL)
                     {
+                        // Set The Local ID
+                        this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._SongID;
 
+                        // Set Song
+                        this._Player.URL = this._SongDataList[listview_data.SelectedIndex]._SongDirectory;
                     }
                 }
             }
@@ -377,7 +396,6 @@ namespace OdysseyAplication
                     button_playSong.Content = "▏ ▏";
                     if (this._uploadMode == window_main.MODE_CLOUD)
                     {
-                        //this._SongDataList[listview_data.SelectedIndex]._SongID
                         if (this._IDPlay != this._SongDataList[listview_data.SelectedIndex]._SongID)
                         {
                             this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._SongID;
@@ -395,20 +413,25 @@ namespace OdysseyAplication
                             // Plays Of The Song
                             string playCounter = (await this._InfoManager.getSongReproductions(this._SongDataList[listview_data.SelectedIndex]._SongID)).ToString();
                             label_play_counter.Content = playCounter;
-
-                            DispatcherTimer timer = new DispatcherTimer();
-                            timer.Interval = TimeSpan.FromSeconds(1);
-                            //timer.Tick += timer_Tick;
-                            timer.Start();
-
                         }
-                        this._Player.controls.play();
 
                     }
                     else if (this._uploadMode == window_main.MODE_LOCAL)
-            {
-                        this._Player.controls.pause();
+                    {
+                        if (this._IDPlay != this._SongDataList[listview_data.SelectedIndex]._SongID)
+                        {
+                            // Set The Local ID
+                            this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._SongID;
+
+                            // Set Song
+                            this._Player.URL = this._SongDataList[listview_data.SelectedIndex]._SongDirectory;
+
+                            // Set The Info Player Grid
+                            label_actualSong_artist.Content = this._SongDataList[listview_data.SelectedIndex]._ID3Artist;
+                            label_actualSong_Title.Content = this._SongDataList[listview_data.SelectedIndex]._ID3Title;
+                        }
                     }
+                    this._Player.controls.play();
                 }
                 else
                 {
@@ -418,13 +441,30 @@ namespace OdysseyAplication
             }
         }
 
-        private void button_local_Click(object sender, RoutedEventArgs e)
+    private void timer_Tick(object sender, EventArgs e)
+    {
+            if(this._Player.controls.currentItem != null)
+            { 
+                slider.Minimum = 0;
+                slider.Maximum = this._Player.controls.currentItem.duration;
+                slider.Value = this._Player.controls.currentPosition;
+                label_counter_timer.Content = this._Player.controls.currentPositionString;
+                label_counter_final.Content = this._Player.controls.currentItem.durationString;
+            }
+        }
+
+    private void button_local_Click(object sender, RoutedEventArgs e)
         {
+            if(this._uploadMode == window_main.MODE_CLOUD)
+            {
+                this._IDPlay = "-1";
+            }
+            this._uploadMode = window_main.MODE_LOCAL;
+
             this._ProfileUser = this._SignedUser;
             this._SongDataList = this._InfoManager.getSongsByUserInLocal(this._SignedUser);
-            this._uploadMode = window_main.MODE_LOCAL;
-                this.refreshMusicGrid();
-            }
+            this.refreshMusicGrid();
+        }
 
         private void button_add_Click(object sender, RoutedEventArgs e)
         {
@@ -450,7 +490,7 @@ namespace OdysseyAplication
                 this.refreshMusicGrid();
             }
 
-        private void button_close_id3Editor_Click(object sender, RoutedEventArgs e)
+        private async void button_close_id3Editor_Click(object sender, RoutedEventArgs e)
         {
             toolbarEditor.Visibility = Visibility.Collapsed;
             id3Grid.Visibility = Visibility.Collapsed;
@@ -464,11 +504,11 @@ namespace OdysseyAplication
 
             if(this._uploadMode == window_main.MODE_CLOUD)
             {
-
-        }
+                this._SongDataList = await this._InfoManager.getSongsByUserInCloud(this._SignedUser);
+            }
             else if(this._uploadMode == window_main.MODE_LOCAL)
             {
-
+                this._SongDataList = this._InfoManager.getSongsByUserInLocal(this._SignedUser);
             }
             this.refreshMusicGrid();
         }
@@ -587,6 +627,10 @@ namespace OdysseyAplication
             {
                 this._ProfileUser = this._CommunityList[listview_users.SelectedIndex];
                 this._SongDataList = await this._InfoManager.getSongsByUserInCloud(this._ProfileUser);
+                if(this._uploadMode == window_main.MODE_LOCAL)
+                {
+                    this._IDPlay = "-1";
+                }
                 this._uploadMode = window_main.MODE_CLOUD;
 
                 // Change The Grid
@@ -668,20 +712,6 @@ namespace OdysseyAplication
             playerGrid.Visibility = Visibility.Visible;
             playerInfoGrid.Visibility = Visibility.Visible;
             this.refreshMusicGrid();
-            //if (!XmlManager.isDatabase())
-            //{
-            //    this._DBManager = new DatabaseManager();
-            //    if (XmlManager.isDatabase())
-            //    {
-            //        MessageBox.Show("Itz created");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show(this._DBManager.etrace1);
-            //        MessageBox.Show(this._DBManager.etrace2);
-            //        MessageBox.Show(this._DBManager.etrace3);
-            //    }
-            //}
         }
 
         private void button_main_cerrar_Click(object sender, RoutedEventArgs e)
@@ -849,6 +879,51 @@ namespace OdysseyAplication
                 textbox_title.Text  = this._VersionList[listview_version.SelectedIndex].id3v2_title;
                 textbox_album.Text  = this._VersionList[listview_version.SelectedIndex].id3v2_album;
             }
+        }
+
+        private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (this._UserDraggin)
+            {
+                this._Player.controls.currentPosition = slider.Value;
+            }
+        }
+
+        private void slider_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this._UserDraggin = true;
+        }
+
+        private void slider_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this._UserDraggin = false;
+        }
+
+        private async void button_main_friend_Click(object sender, RoutedEventArgs e)
+        {
+            if(button_main_friend.Content.ToString() == "✔")
+            {
+
+            }
+            else if(button_main_friend.Content.ToString() == "✚")
+            {
+                await this._InfoManager.setFriendRequest(this._SignedUser, this._ProfileUser);
+            }
+        }
+
+        private void textBox_omnifinder_MouseLeave(object sender, MouseEventArgs e)
+        {
+            textBox_omnifinder.Text = "Buscar Canción...";
+        }
+
+        private void textBox_omnifinder_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            textBox_omnifinder.Text = "";
+        }
+
+        private void button_search_omnifinder_Click(object sender, RoutedEventArgs e)
+        {
+            this.refreshMusicGrid();
         }
     }
 }   
