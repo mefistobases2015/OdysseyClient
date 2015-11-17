@@ -308,10 +308,6 @@ namespace OdysseyAplication
 
         private async void button_cloud_Click(object sender, RoutedEventArgs e)
         {
-            if (this._uploadMode == window_main.MODE_LOCAL)
-            {
-                this._IDPlay = "-1";
-            }
             this._uploadMode = window_main.MODE_CLOUD;
 
             this._ProfileUser = this._SignedUser;
@@ -464,10 +460,6 @@ namespace OdysseyAplication
 
     private void button_local_Click(object sender, RoutedEventArgs e)
         {
-            if(this._uploadMode == window_main.MODE_CLOUD)
-            {
-                this._IDPlay = "-1";
-            }
             this._uploadMode = window_main.MODE_LOCAL;
 
             this._ProfileUser = this._SignedUser;
@@ -636,10 +628,6 @@ namespace OdysseyAplication
             {
                 this._ProfileUser = this._CommunityList[listview_users.SelectedIndex];
                 this._SongDataList = await this._InfoManager.getSongsByUserInCloud(this._ProfileUser);
-                if(this._uploadMode == window_main.MODE_LOCAL)
-                {
-                    this._IDPlay = "-1";
-                }
                 this._uploadMode = window_main.MODE_CLOUD;
 
                 // Change The Grid
