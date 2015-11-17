@@ -2052,18 +2052,8 @@ namespace OdysseyAplication
 
                 if (response.IsSuccessStatusCode)
                 {
-                    
-                    GenreClasf[] genre = await response.Content.ReadAsAsync<GenreClasf[]>();
 
-                    if (genre.Length > 0)
-                    {
-                        genreClas = genre[0].Genero;
-                    }
-                    else
-                    {
-                        genreClas = "";
-                    }
-                    
+                    genreClas = await response.Content.ReadAsAsync<string>();
                 }
                 else
                 {

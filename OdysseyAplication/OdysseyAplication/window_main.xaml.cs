@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WMPLib;
 
 namespace OdysseyAplication
 {
@@ -24,6 +25,7 @@ namespace OdysseyAplication
     {
         public const string MODE_LOCAL = "LOCAL";
         public const string MODE_CLOUD = "CLOUD";
+        public WindowsMediaPlayer _Player { get; }
         public List<DataSong> _SongDataList { get; set; }
         public List<Comment> _CommmentList { get; set; }
         public List<string> _CommunityList { get; set; }
@@ -31,17 +33,16 @@ namespace OdysseyAplication
         public string _SignedUser { get; set; }
         public string _ProfileUser { get; set; }
         public string _uploadMode { get; set; }
+        public string _IDPlay { get; set; }
         InfoProvider _InfoManager { get; set; }
         public int _CommentIndex { get; set; }
-        MP3StreamerPlayer _Player { get; set; }
         DatabaseManager _DBManager { get; set; }
         public window_main()
         {
             InitializeComponent();
 
             this._InfoManager = new InfoProvider();
-            this._Player = new MP3StreamerPlayer();
-
+            this._Player = new WindowsMediaPlayer();
             // if (!XmlManager.isDatabase())
             //{
             //   this._DBManager = new DatabaseManager();
@@ -197,6 +198,16 @@ namespace OdysseyAplication
 
                 // Comments Of The Song
                 this._CommmentList = await this._InfoManager.getSongComments(this._SongDataList[index]._SongID);
+
+                if (this._SongDataList[index]._SongID == this._IDPlay)
+                {
+                    button_playSong.Content = "▏ ▏";
+                }
+                else
+                {
+                    button_playSong.Content = "▶";
+                }
+
                 this._CommentIndex = 0;
                 if (this._CommmentList.Count > 0)
                 {
@@ -292,7 +303,7 @@ namespace OdysseyAplication
             this._SongDataList = await this._InfoManager.getSongsByUserInCloud(this._SignedUser);
             this.refreshMusicGrid();
         }
-        private void button_nextSong_Click(object sender, RoutedEventArgs e)
+        private async void button_nextSong_Click(object sender, RoutedEventArgs e)
         {
             if (listview_data.Items.Count > 0)
             {
@@ -301,14 +312,31 @@ namespace OdysseyAplication
                 // Last Item
                 if (index < listview_data.Items.Count - 1)
                 {
-                    listview_data.SelectedIndex = index + 1;
-                    label_actualSong_artist.Content = this._SongDataList[index + 1]._ID3Artist;
-                    label_actualSong_Title.Content = this._SongDataList[index + 1]._ID3Title;
+                    if (listview_data.SelectedIndex > -1)
+                    {
+                        listview_data.SelectedIndex = index + 1;
+                        this._IDPlay = this._SongDataList[index + 1]._SongID;
+                        label_actualSong_artist.Content = this._SongDataList[index + 1]._ID3Artist;
+                        label_actualSong_Title.Content = this._SongDataList[index + 1]._ID3Title;
+                        if (this._uploadMode == window_main.MODE_CLOUD)
+                        {
+                            //this._SongDataList[listview_data.SelectedIndex]._SongID
+                            this._Player.URL = "https://odysseyblob.blob.core.windows.net/music/" + this._SongDataList[listview_data.SelectedIndex]._SongID + ".mp3";
+                            await this._InfoManager.setSongReproduction(this._SongDataList[listview_data.SelectedIndex]._SongID);
+                            // Plays Of The Song
+                            string playCounter = (await this._InfoManager.getSongReproductions(this._SongDataList[listview_data.SelectedIndex]._SongID)).ToString();
+                            label_play_counter.Content = playCounter;
 
+                        }
+                        else if (this._uploadMode == window_main.MODE_LOCAL)
+                        {
+
+                        }
+                    }
                 }
             }
         }
-        private void button_prevSong_Click(object sender, RoutedEventArgs e)
+        private async void button_prevSong_Click(object sender, RoutedEventArgs e)
         {
             if (listview_data.Items.Count > 0)
             {
@@ -318,15 +346,69 @@ namespace OdysseyAplication
                 if (index > 0)
                 {
                     listview_data.SelectedIndex = index - 1;
+                    this._IDPlay = this._SongDataList[index - 1]._SongID;
                     label_actualSong_artist.Content = this._SongDataList[index - 1]._ID3Artist;
-                    label_actualSong_Title.Content = this._SongDataList[index - 1]._ID3Title;
+                    label_actualSong_Title.Content =  this._SongDataList[index - 1]._ID3Title;
+                    if (this._uploadMode == window_main.MODE_CLOUD)
+                    {
+                        //this._SongDataList[listview_data.SelectedIndex]._SongID
+                        this._Player.URL = "https://odysseyblob.blob.core.windows.net/music/" + this._SongDataList[listview_data.SelectedIndex]._SongID + ".mp3";
+                        await this._InfoManager.setSongReproduction(this._SongDataList[listview_data.SelectedIndex]._SongID);
+                        // Plays Of The Song
+                        string playCounter = (await this._InfoManager.getSongReproductions(this._SongDataList[listview_data.SelectedIndex]._SongID)).ToString();
+                        label_play_counter.Content = playCounter;
+
+                    }
+                    else if (this._uploadMode == window_main.MODE_LOCAL)
+                    {
+
+                    }
                 }
             }
         }
         private async void button_playSong_Click(object sender, RoutedEventArgs e)
         {
-            mePlayer.Play();
-         
+            if (listview_data.SelectedIndex > -1)
+            {
+                
+                if (button_playSong.Content.ToString() == "▶")
+                {
+                    button_playSong.Content = "▏ ▏";
+                    if (this._uploadMode == window_main.MODE_CLOUD)
+                    {
+                        //this._SongDataList[listview_data.SelectedIndex]._SongID
+                        if (this._IDPlay != this._SongDataList[listview_data.SelectedIndex]._SongID)
+                        {
+                            this._IDPlay = this._SongDataList[listview_data.SelectedIndex]._SongID;
+
+                            // Set Song
+                            this._Player.URL = "https://odysseyblob.blob.core.windows.net/music/" + this._SongDataList[listview_data.SelectedIndex]._SongID + ".mp3";
+
+                            // Notify Play
+                            await this._InfoManager.setSongReproduction(this._SongDataList[listview_data.SelectedIndex]._SongID);
+
+                            // Set The Info Player Grid
+                            label_actualSong_artist.Content = this._SongDataList[listview_data.SelectedIndex]._ID3Artist;
+                            label_actualSong_Title.Content = this._SongDataList[listview_data.SelectedIndex]._ID3Title;
+                            
+                            // Plays Of The Song
+                            string playCounter = (await this._InfoManager.getSongReproductions(this._SongDataList[listview_data.SelectedIndex]._SongID)).ToString();
+                            label_play_counter.Content = playCounter;
+                        }
+                        this._Player.controls.play();
+
+                    }
+                    else if (this._uploadMode == window_main.MODE_LOCAL)
+                    {
+                        this._Player.controls.pause();
+                    }
+                }
+                else
+                {
+                    button_playSong.Content = "▶";
+                    this._Player.controls.pause();
+                }
+            }
         }
 
         private void button_local_Click(object sender, RoutedEventArgs e)
@@ -334,10 +416,7 @@ namespace OdysseyAplication
             this._ProfileUser = this._SignedUser;
             this._SongDataList = this._InfoManager.getSongsByUserInLocal(this._SignedUser);
             this._uploadMode = window_main.MODE_LOCAL;
-            if(this._SongDataList != null)
-            {
-                this.refreshMusicGrid();
-            }
+            this.refreshMusicGrid();
         }
 
         private void button_add_Click(object sender, RoutedEventArgs e)
@@ -357,13 +436,10 @@ namespace OdysseyAplication
         private void button1_download_Click(object sender, RoutedEventArgs e)
         {
             this._uploadMode = window_main.MODE_LOCAL;
-            this._ProfileUser = this._SignedUser;
+            this._ProfileUser = this    ._SignedUser;
             this._SongDataList = this._InfoManager.getSongsByUserInLocal(this._SignedUser);
             this._InfoManager.downloadDatabase(this._SignedUser);
-            if(this._SongDataList != null)
-            {
-                this.refreshMusicGrid();
-            }
+            this.refreshMusicGrid();
         }
 
         private void button_close_id3Editor_Click(object sender, RoutedEventArgs e)
@@ -377,6 +453,16 @@ namespace OdysseyAplication
             textbox_lyric.Text  = "";
             textbox_title.Text  = "";
             textbox_album.Text  = "";
+
+            if(this._uploadMode == window_main.MODE_CLOUD)
+            {
+
+            }
+            else if(this._uploadMode == window_main.MODE_LOCAL)
+            {
+
+            }
+            this.refreshMusicGrid();
         }
 
         private void button_close_community_Click(object sender, RoutedEventArgs e)
@@ -562,6 +648,7 @@ namespace OdysseyAplication
 
         private void button_ok_Click(object sender, RoutedEventArgs e)
         {
+            this._uploadMode = window_main.MODE_CLOUD;
             this._SignedUser = textbox_user.Text;
             this._ProfileUser = textbox_user.Text;
             label_signedUserName.Content = this._SignedUser;
@@ -571,20 +658,20 @@ namespace OdysseyAplication
             playerGrid.Visibility = Visibility.Visible;
             playerInfoGrid.Visibility = Visibility.Visible;
             this.refreshMusicGrid();
-            if (!XmlManager.isDatabase())
-            {
-                this._DBManager = new DatabaseManager();
-                if (XmlManager.isDatabase())
-                {
-                    MessageBox.Show("Itz created");
-                }
-                else
-                {
-                    MessageBox.Show(this._DBManager.etrace1);
-                    MessageBox.Show(this._DBManager.etrace2);
-                    MessageBox.Show(this._DBManager.etrace3);
-                }
-            }
+            //if (!XmlManager.isDatabase())
+            //{
+            //    this._DBManager = new DatabaseManager();
+            //    if (XmlManager.isDatabase())
+            //    {
+            //        MessageBox.Show("Itz created");
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show(this._DBManager.etrace1);
+            //        MessageBox.Show(this._DBManager.etrace2);
+            //        MessageBox.Show(this._DBManager.etrace3);
+            //    }
+            //}
         }
 
         private void button_main_cerrar_Click(object sender, RoutedEventArgs e)
@@ -599,7 +686,7 @@ namespace OdysseyAplication
 
         private void button_stopSong_Click(object sender, RoutedEventArgs e)
         {
-
+            this._Player.controls.stop();
         }
 
         private async void button_makeVersion_Click(object sender, RoutedEventArgs e)
@@ -677,7 +764,7 @@ namespace OdysseyAplication
         private async void button_personal_info_Click(object sender, RoutedEventArgs e)
         {
             // Name Of The Signed User
-            this.label_signedUserName.Content = this._SignedUser;
+            this.label_userName.Content = this._SignedUser;
             // Social Ranking By Comments And Friends
             label_PorrasIndex.Content = await this._InfoManager.getUserSocialRanking(this._SignedUser);
             // Clasification By Library

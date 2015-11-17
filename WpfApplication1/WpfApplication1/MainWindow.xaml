@@ -11,13 +11,9 @@
             <RowDefinition Height="320*"/>
             <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
-        <MediaElement x:Name="MediaPlayer" Grid.RowSpan="1" LoadedBehavior="Manual"/>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-            <Button x:Name="btnPlay" Content="Play" Click="btnPlay_Click" Width="50" Height="25" Margin="5"/>
-            <Button x:Name="btnStop" Content="Stop" Click="btnStop_Click" Width="50" Height="25" Margin="5"/>
-            <Button x:Name="btnMoveBack" Content="Back" Click="btnMoveBack_Click" Width="50" Height="25" Margin="5"/>
-            <Button x:Name="btnMoveForward" Content="Forward" Click="btnMoveForward_Click" Width="50" Height="25" Margin="5"/>
             <Button x:Name="btnOpen" Content="Open" Click="btnOpen_Click" Width="50" Height="25" Margin="5"/>
         </StackPanel>
+        <Button x:Name="btnOpen_Copy" Content="Open" Height="25" Margin="294,9,173,9" RenderTransformOrigin="2.948,2.83" Grid.Row="1" Click="btnOpen_Copy_Click"/>
     </Grid>
 </Window>
