@@ -116,6 +116,7 @@
     <Compile Include="DatabaseManager.cs" />
     <Compile Include="Mp3Player.cs" />
     <Compile Include="MP3StreamerPlayer.cs" />
+    <Compile Include="MusicPlayer.cs" />
     <Compile Include="ReadFullyStream.cs" />
     <Compile Include="RestTools.cs" />
     <Compile Include="TagManager.cs" />
@@ -193,6 +194,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="spartan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

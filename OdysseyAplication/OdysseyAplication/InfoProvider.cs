@@ -697,8 +697,12 @@ namespace OdysseyAplication
 
         public void createLocalVersion(DataSong pDataSong)
         {
-            DatabaseManager.createVersion(pDataSong);
-            //DatabaseManager.setVersion2Song()
+            int versionID = DatabaseManager.createVersion(pDataSong);
+            DatabaseManager.setVersion2Song(pDataSong._SongID, versionID.ToString());
+        }
+        public void setVersion2SongLocal(string pVersionID, string pSongID)
+        {
+            DatabaseManager.setVersion2Song(pSongID, pVersionID);
         }
         public List<Version> getLocalVersionList(string pSongID)
         {
