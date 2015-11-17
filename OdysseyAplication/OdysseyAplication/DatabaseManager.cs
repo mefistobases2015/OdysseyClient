@@ -466,7 +466,7 @@ namespace OdysseyAplication
                             dataSong._ID3Lyrics = reader.GetString(6);
                             dataSong._SubmissionDate = reader.GetDateTime(7).ToString();
                             dataSong._SongDirectory = reader.GetString(8);
-                            dataSong._SongDirectory = reader.GetInt32(9).ToString();
+                            dataSong._SongID = reader.GetInt32(9).ToString();
 
                             songs_list.Add(dataSong);
                         }
